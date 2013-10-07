@@ -7,6 +7,12 @@
     <string name="weather_string">Weather :</string>
     <string name="color_string">Color :</string>
     <string name="validation_string">Generate</string>
+    <string name="outfit_top">Top</string>
+	<string name="outfit_bottom">Bottom</string>
+	<string name="outfit_feet">Feet</string>
+	<string name="outfit_generate">Génerer Tenue</string>
+	<string name="test_button">TEST</string>
+	<string name="generate">Generate Outfit</string>
 
     <string-array name="weather_array">
         <item>Sunny</item>
