@@ -1,6 +1,8 @@
 package main.java.fr.redteam.dressyourself.common;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -82,6 +84,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 														
 	private static final String CREATE_BDD  = TABLE_COLOR + "," +TABLE_WEATHER+","+ TABLE_TYPE+","+ TABLE_CLOTHES +","+ TABLE_OUTFIT+","+ TABLE_OUTFIT_CLOTHES+";";
 	
+	
 	public CreateSQLBase(Context context, String name, CursorFactory factory,int version) {
 		super(context, name, factory, version);
 		// TODO Auto-generated constructor stub
@@ -92,7 +95,45 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		//on créé la table à partir de la requête écrite dans la variable CREATE_BDD
 		db.execSQL(CREATE_BDD);
-
+		insertColor(db, "WHITE");
+		insertColor(db, "BLACK");
+		insertColor(db, "BLUE");
+		insertColor(db, "YELLOW");
+		insertColor(db, "GREEN");
+		insertColor(db, "RED");
+		insertColor(db, "PURPLE");
+		insertColor(db, "PINK");
+		insertBodies(db,"TOP");
+		insertBodies(db,"HEAD");
+		insertBodies(db,"BOTTOM");
+		insertBodies(db,"SHOES");
+		insertWeather(db, "SUNNY");
+		insertWeather(db, "CLOUNY");
+		insertWeather(db, "RAINY");
+		insertWeather(db, "SNOWNY");
+		
+	}
+	
+	public long insertColor(SQLiteDatabase db,String couleur){
+		ContentValues values = new ContentValues();
+		values.put("nom_color", couleur);
+		return db.insert("COLOR", null, values);
+	}
+	public long insertWeather(SQLiteDatabase db,String weather){
+		ContentValues values = new ContentValues();
+		values.put("nom_weather", weather);
+		return db.insert("WEATHER", null, values);
+	}
+	public long insertBodies(SQLiteDatabase db,String bodies){
+		ContentValues values = new ContentValues();
+		values.put("nom_bodies", bodies);
+		return db.insert("BODIES", null, values);
+	}
+	public long insertType(SQLiteDatabase db,String type, int id_bodies){
+		ContentValues values = new ContentValues();
+		values.put("nom_type", type);
+		values.put("ID_b", id_bodies);
+		return db.insert("Type", null, values);
 	}
 
 	@Override

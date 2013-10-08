@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">DressYourself</string>
+    <string name="app_name">DressYourself</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
@@ -9,12 +8,12 @@
     <string name="color_string">Color :</string>
     <string name="validation_string">Generate</string>
     <string name="outfit_top">Top</string>
-    <string name="outfit_bottom">Bottom</string>
-    <string name="outfit_feet">Feet</string>
-    <string name="outfit_generate">Génerer Tenue</string>
-    <string name="test_button">TEST</string>
-    <string name="generate">Generate Outfit</string>
-    <string name="photo">Photo</string>
+	<string name="outfit_bottom">Bottom</string>
+	<string name="outfit_feet">Feet</string>
+	<string name="outfit_generate">Génerer Tenue</string>
+	<string name="test_button">TEST</string>
+	<string name="generate">Generate Outfit</string>
+	<string name="photo">Photo</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="color">Main\nColor:</string>
@@ -36,10 +35,9 @@
         <item>Purple</item>
     </string-array>
 
-    <string name="title_activity_modify_clothe">ModifyClothe</string>
-
-    <string name="label">Label :</string>
-
-    <string name="description">Description:</string>
+    <string name="title_clothe_list">Clothes</string>
+    <string name="title_clothe_detail">Clothe Detail</string>
+    <string name="Body">Body:</string>
+    <string name="modify">modify</string>
 
 </resources>
