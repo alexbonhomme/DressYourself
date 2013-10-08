@@ -1,6 +1,7 @@
 package main.java.fr.redteam.dressyourself.common;
 
 import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
+import main.java.fr.redteam.dressyourself.core.clothes.Colors;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -57,10 +58,21 @@ public class DBHelper
 		ContentValues values = new ContentValues();
 		values.put("nom_type", type);
 		values.put("ID_b", id_bodies);
-		return bdd.insert("Type", null, values);
+		return bdd.insert("TYPE", null, values);
 	}
 	public long insertClothes(Clothes clothe){
-		return 0;
+		ContentValues values = new ContentValues();
+		values.put("nom_clothe",clothe.getDescription());
+		values.put("ID_t", getIDType(clothe.getLabel()));
+		values.put("ID_c", getIDColor(clothe.getColor()));
+		long r = bdd.insert("CLOTHES", null, values);
+		values= new ContentValues();
+		for(int i =0 ;i< clothe.getWeatherList().size();i++){
+		values.put("ID_c",r);
+		values.put("ID_w",getIDWeather(clothe.getWeatherList().get(i)));
+		bdd.insert("WEATHER_CLOTHES", null, values);
+		}
+		return r;
 	}
 	public long insertOutfit(String nom , Clothes[] clothes){
 		return 0;

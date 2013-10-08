@@ -28,7 +28,7 @@ public abstract class Clothes
 	 * @ordered
 	 */
 	
-	protected Colors color;
+	protected String color;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public abstract class Clothes
 	 * @ordered
 	 */
 	
-	protected List<Weather> weatherList;
+	protected List<String> weatherList;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,28 +92,28 @@ public abstract class Clothes
 	/**
 	 * @return the color
 	 */
-	public Colors getColor() {
+	public String getColor() {
 		return color;
 	}
 
 	/**
 	 * @param color the color to set
 	 */
-	public void setColor(Colors color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
 	/**
 	 * @return the weatherList
 	 */
-	public List<Weather> getWeatherList() {
+	public List<String> getWeatherList() {
 		return weatherList;
 	}
 
 	/**
 	 * @param weatherList the weatherList to set
 	 */
-	public void setWeatherList(List<Weather> weatherList) {
+	public void setWeatherList(List<String> weatherList) {
 		this.weatherList = weatherList;
 	}
 
