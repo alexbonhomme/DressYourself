@@ -89,7 +89,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 													+ ","
 													+ "FOREIGN KEY (ID_o)REFERENCES COLOR (ID_outfit))";
 														
-	private static final String CREATE_BDD  = TABLE_COLOR + "," +TABLE_WEATHER+","+ TABLE_TYPE+","+ TABLE_CLOTHES +","+ TABLE_OUTFIT+","+ TABLE_OUTFIT_CLOTHES+";";
+	private static final String CREATE_BDD  = TABLE_COLOR + "," +TABLE_WEATHER+","+ TABLE_TYPE+","+ TABLE_CLOTHES +","+ TABLE_OUTFIT+","+ TABLE_OUTFIT_CLOTHES+","+TABLE_WEATHER_CLOTHES+";";
 	
 	
 	public CreateSQLBase(Context context, String name, CursorFactory factory,int version) {
@@ -101,7 +101,14 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		//on créé la table à partir de la requête écrite dans la variable CREATE_BDD
-		db.execSQL(CREATE_BDD);
+		db.execSQL(TABLE_COLOR);
+		db.execSQL(TABLE_WEATHER);
+		db.execSQL(TABLE_TYPE);
+		db.execSQL(TABLE_CLOTHES);
+		db.execSQL(TABLE_OUTFIT);
+		db.execSQL(TABLE_OUTFIT_CLOTHES);
+		db.execSQL(TABLE_WEATHER_CLOTHES);
+
 		insertColor(db, "WHITE");
 		insertColor(db, "BLACK");
 		insertColor(db, "BLUE");
