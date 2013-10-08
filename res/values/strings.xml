@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DressYourself</string>
+
+    <string name="app_name">DressYourself</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
@@ -35,5 +36,13 @@
         <item>Pink</item>
         <item>Purple</item>
     </string-array>
-        <string name="add_clothing">Add your clothes !</string>
+
+	<string name="add_clothing">Add your clothes !</string>
+    <string name="title_clothe_list">Clothes</string>
+    <string name="title_clothe_detail">Clothe Detail</string>
+    <string name="Body">Body:</string>
+    <string name="modify">modify</string>
+    <string name="label">Label:</string>
+    <string name="description">Description:</string>
+
 </resources>

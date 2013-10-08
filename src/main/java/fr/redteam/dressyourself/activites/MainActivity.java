@@ -33,14 +33,16 @@ public class MainActivity extends Activity {
 		});
 
 		/* TEST */
+		t.open();
+		t.close();
 		final Button connection = (Button) findViewById(R.id.but_test);
-		connection.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
-				startActivity(intent);
-			}
-		});
+	      connection.setOnClickListener(new OnClickListener() {
+	      			
+	    public void onClick(View v) {
+	    	Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
+	        startActivity(intent);
+	      	}
+	      });
 	}
 
 	@Override

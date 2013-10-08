@@ -7,11 +7,11 @@ import android.os.Bundle;
 
 public class AddClothesActivity extends Activity{
 	
-
-	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.addclothes);	
+		setContentView(R.layout.addclothes);
+		
+		
 	}
 
 }
