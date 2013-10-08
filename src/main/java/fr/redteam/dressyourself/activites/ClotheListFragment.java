@@ -77,7 +77,7 @@ public class ClotheListFragment extends ListFragment {
 
 		DBHelper dbh = new DBHelper(this.getActivity());
 		dbh.open();
-		Cursor cursor = dbh.getBDD().query(false, "TABLE_CLOTHES", new String[]{"nom_clothes TEXT"}, null, null, null, null, null, null);
+		Cursor cursor = dbh.getBDD().query(false, "CLOTHES", new String[]{"nom_clothes"}, null, null, null, null, null, null);
 		List<String> clothesList = new ArrayList<String>();
 		String newElement;
 		while(cursor.moveToNext()){

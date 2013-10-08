@@ -60,16 +60,17 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 				  							
 				  							
 				  							;
-	private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE+ " WEATHER_CLOTHES"
+	private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE+ " WEATHER_CLOTHES "
+			+ "( "
 			+ "ID_c INTEGER"
 			+ ","
 			+ "ID_w INTEGER"
 			+ ","
-			+ "PRIMARY KEY (ID_c,ID,w)"
+			+ "PRIMARY KEY (ID_c,ID_w)"
 			+ ","
 			+ "FOREIGN KEY (ID_c)REFERENCES COLOR (ID_clothes)"
 			+ ","
-			+ "FOREIGN KEY (ID_)REFERENCES COLOR (ID_weather))";
+			+ "FOREIGN KEY (ID_w)REFERENCES COLOR (ID_weather))";
 	
 	//requete de creation de la table OUTFIT
 	private static final String TABLE_OUTFIT = CREATE_TABLE_IFE+ " OUTFIT"
@@ -79,11 +80,11 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 				  								"nom_outfit TEXT)";
 	//requete de creation de la table OUTFIT_CLOTHES
 	private static final String TABLE_OUTFIT_CLOTHES = CREATE_TABLE_IFE+ " OUTFIT_CLOTHES"
-													+ "ID_c INTEGER"
+													+ "( ID_c INTEGER"
 													+ ","
 													+ "ID_o INTEGER"
 													+ ","
-													+ "PRIMARY KEY (ID_c,ID,o)"
+													+ "PRIMARY KEY (ID_c,ID_o)"
 													+ ","
 													+ "FOREIGN KEY (ID_c)REFERENCES COLOR (ID_clothes)"
 													+ ","
@@ -106,7 +107,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 		db.execSQL(TABLE_TYPE);
 		db.execSQL(TABLE_CLOTHES);
 		db.execSQL(TABLE_OUTFIT);
-		db.execSQL(TABLE_OUTFIT_CLOTHES);
+	db.execSQL(TABLE_OUTFIT_CLOTHES);
 		db.execSQL(TABLE_WEATHER_CLOTHES);
 
 		insertColor(db, "WHITE");
