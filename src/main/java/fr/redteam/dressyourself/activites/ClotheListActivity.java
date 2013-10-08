@@ -1,8 +1,6 @@
 package main.java.fr.redteam.dressyourself.activites;
 
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.R.id;
-import main.java.fr.redteam.dressyourself.R.layout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

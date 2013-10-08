@@ -1,13 +1,17 @@
 package main.java.fr.redteam.dressyourself.activites;
 
+import java.util.List;
+
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.R.id;
-import main.java.fr.redteam.dressyourself.R.layout;
+import main.java.fr.redteam.dressyourself.common.DBHelper;
+import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
+import main.java.fr.redteam.dressyourself.core.clothes.Weather;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 /**
  * An activity representing a single Clothe detail screen. This activity is only
@@ -19,6 +23,11 @@ import android.view.MenuItem;
  */
 public class ClotheDetailActivity extends FragmentActivity {
 
+	private TextView body;
+	private TextView label;
+	private TextView color;
+	private TextView type;
+	private TextView weather;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +56,23 @@ public class ClotheDetailActivity extends FragmentActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.clothe_detail_container, fragment).commit();
 		}
+		this.body = (TextView) findViewById(R.id.bodyTxt);
+		this.label= (TextView) findViewById(R.id.LabelTxt);
+		this.color = (TextView) findViewById(R.id.colorTxt);
+		this.weather = (TextView) findViewById(R.id.weatherTxt);
+		this.type = (TextView) findViewById(R.id.TypeTxt);
+		DBHelper DB = new DBHelper();
+		Clothes MyClothes = DB.getClothe(Integer.parseInt(ClotheDetailFragment.ARG_ITEM_ID));
+		this.body.setText(MyClothes.getBody());
+		this.label.setText(MyClothes.getLabel());
+		this.color.setText(MyClothes.getColor().name());
+		this.type.setText(MyClothes.getDescription());
+		List<Weather> TheWeather = MyClothes.getWeatherList();
+		String WeatherTxt="";
+		for (Weather weatherLine : TheWeather) {
+			WeatherTxt.concat(weatherLine.name()+" ");
+		}
+		this.weather.setText(WeatherTxt);
 	}
 
 	@Override
