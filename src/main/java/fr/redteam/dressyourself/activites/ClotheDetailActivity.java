@@ -70,7 +70,7 @@ public class ClotheDetailActivity extends FragmentActivity {
 		List<String> TheWeather = MyClothes.getWeatherList();
 		String WeatherTxt="";
 		for (String weatherLine : TheWeather) {
-			WeatherTxt.concat(weatherLine+" ");
+			WeatherTxt += weatherLine + " ";
 		}
 		this.weather.setText(WeatherTxt);
 	}
