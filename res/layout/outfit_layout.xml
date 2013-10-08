@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/body_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical" >
+        
+        <TextView 
+            android:id="@+id/top_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_alignParentLeft="true"
+            />
+
+        <ImageView
+            android:id="@+id/top_image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/outfit_top"
+            android:src="@drawable/pull_beige" />
+
+        <Button
+            android:id="@+id/top_refresh_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/top_image"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/refresh_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/body_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/body_top"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical" >
+        
+        <TextView 
+            android:id="@+id/bottom_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_alignParentLeft="true"
+            />
+
+        <ImageView
+            android:id="@+id/bottom_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/outfit_bottom"
+            android:src="@drawable/jeans_slim" />
+
+        <Button
+            android:id="@+id/bottom_refresh_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/bottom_image"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/refresh_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/body_feet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/body_bottom"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical" >
+        
+        
+        <TextView 
+            android:id="@+id/feet_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_alignParentLeft="true"
+            />
+
+        <ImageView
+            android:id="@+id/feet_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/outfit_feet"
+            android:src="@drawable/basket_compense" />
+        
+        
+         <Button
+            android:id="@+id/feet_refresh_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/feet_image"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/refresh_button" />
+    </RelativeLayout>
+    
+   <Button 
+      android:id="@+id/generate_button"
+      android:layout_width="160dp"
+      android:layout_height="60dp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerInParent="true"
+      android:text="@string/outfit_generate"
+      android:textStyle="bold"
+       /> 
+
+</RelativeLayout>

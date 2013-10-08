@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/event_label"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+      
+    <Spinner
+        android:id="@+id/event_spinner"
+        android:layout_width="127dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/temps_spinner"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@+id/TextView01"
+        android:entries="@array/color_array" />
+
+    <Button
+        android:id="@+id/validationFiltre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:text="@string/validation_string" />
+
+    <TextView
+        android:id="@+id/temps_label"
+        android:layout_width="127dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="51dp"
+        android:text="@string/weather_string" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/event_spinner"
+        android:layout_alignLeft="@+id/temps_label"
+        android:layout_alignRight="@+id/temps_label"
+        android:layout_alignTop="@+id/event_spinner"
+        android:text="@string/color_string" />
+
+    <Spinner
+        android:id="@+id/temps_spinner"
+        android:layout_width="127dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/temps_label"
+        android:layout_alignLeft="@+id/event_spinner"
+        android:layout_alignRight="@+id/event_spinner"
+        android:layout_alignTop="@+id/temps_label"
+        android:entries="@array/weather_array" />
+
+</RelativeLayout>

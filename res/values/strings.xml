@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">DressYourself</string>
+    <string name="app_name">DressYourself</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="weather_string">Weather :</string>
+    <string name="color_string">Color :</string>
+    <string name="validation_string">Generate</string>
+    <string name="outfit_top">Top</string>
+	<string name="outfit_bottom">Bottom</string>
+	<string name="outfit_feet">Feet</string>
+	<string name="outfit_generate">Génerer Tenue</string>
+	<string name="test_button">TEST</string>
+	<string name="generate">Generate Outfit</string>
+	<string name="photo">Photo</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="color">Main\nColor:</string>
+    <string name="type">Type:</string>
+    <string name="PhotoVetement">Clothes photo</string>
+    <string name="Desc">infos:</string>
 
+    <string-array name="weather_array">
+        <item>Sunny</item>
+        <item>Rainy</item>
+        <item>Cloudy</item>
+        <item>Snowy</item>
+    </string-array>
+    <string-array name="color_array">
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>Pink</item>
+        <item>Purple</item>
+    </string-array>
 </resources>
