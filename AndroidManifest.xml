@@ -23,7 +23,7 @@
         </activity>
         
         <activity
-           android:name=".OutfitActivity"
+           android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
            android:label="@string/generate" />
     </application>
 
