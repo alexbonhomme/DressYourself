@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CreateSQLBase extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
-	private static final String PRIMARY_INTEGER_KEY = "INTEGER PRIMARY KEY AUTOINCREMENT";
+	private static final String PRIMARY_INTEGER_KEY = " INTEGER PRIMARY KEY AUTOINCREMENT";
 	//requete de creation de la table COLOR
 	private static final String TABLE_COLOR = CREATE_TABLE_IFE+ " COLOR"
 											  +"("+
@@ -52,18 +52,25 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 				  							"ID_c INTEGER"
 				  							+","+
 				  							"ID_t INTEGER"
-				  							+","+
-				  							"ID_w INTEGER"
-				  							+ ","
+				  							+","
 				  							+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)"
 				  							+ ","
 				  							+ "FOREIGN KEY (ID_t) REFERENCES COLOR (ID_type)"
-				  							+ ","
-				  							+ "FOREIGN KEY (ID_w) REFERENCES COLOR (ID_weather)"
 				  							+ ")"
 				  							
 				  							
 				  							;
+	private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE+ " WEATHER_CLOTHES"
+			+ "ID_c INTEGER"
+			+ ","
+			+ "ID_w INTEGER"
+			+ ","
+			+ "PRIMARY KEY (ID_c,ID,w)"
+			+ ","
+			+ "FOREIGN KEY (ID_c)REFERENCES COLOR (ID_clothes)"
+			+ ","
+			+ "FOREIGN KEY (ID_)REFERENCES COLOR (ID_weather))";
+	
 	//requete de creation de la table OUTFIT
 	private static final String TABLE_OUTFIT = CREATE_TABLE_IFE+ " OUTFIT"
 				  								+"("+
