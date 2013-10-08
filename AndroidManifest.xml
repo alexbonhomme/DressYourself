@@ -5,17 +5,17 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="18"
+        android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo_2_2_1"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="main.java.fr.redteam.dressyourself.activites.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
             android:label="@string/generate" />
         <activity
             android:name="main.java.fr.redteam.dressyourself.activites.AddClothesActivity"
-            android:label="@string/generate" />
+            android:label="@string/title_add_clothing" />
         <activity
             android:name="main.java.fr.redteam.dressyourself.activites.ClotheListActivity"
             android:label="@string/title_clothe_list" >

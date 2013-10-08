@@ -10,6 +10,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+    <ImageView
+        android:id="@+id/imgLogoMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_2_2_long_1" />
+
+    <Button
+        android:id="@+id/btFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="@string/labal_generate_main"
+        android:textSize="25sp" />
+
     <Button
         android:id="@+id/btAddClothing"
         android:layout_width="match_parent"
@@ -18,9 +36,10 @@
         android:text="@string/add_clothing" />
 
     <Button
-        android:id="@+id/but_test"
+        android:id="@+id/btListClothes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/test_button" />
+        android:layout_weight="1"
+        android:text="@string/label_list_clothes" />
 
 </LinearLayout>
