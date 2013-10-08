@@ -13,21 +13,25 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name="main.java.fr.redteam.dressyourself.activites.MainActivity"
-            android:label="@string/title_activity_main">
+        <activity
+            android:name="main.java.fr.redteam.dressyourself.activites.ModifyClothe"
+            android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
-           android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
-           android:label="@string/generate" />
-                <activity
-           android:name="main.java.fr.redteam.dressyourself.activites.AddClothesActivity"
-           android:label="@string/generate" />
+            android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
+            android:label="@string/generate" />
+        <activity
+            android:name="main.java.fr.redteam.dressyourself.activites.AddClothesActivity"
+            android:label="@string/generate" />
+        <activity
+            android:name="main.java.fr.redteam.dressyourself.activites.MainActivity"
+            android:label="@string/title_activity_modify_clothe" >
+        </activity>
     </application>
 
 </manifest>
