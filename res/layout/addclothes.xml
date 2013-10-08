@@ -40,7 +40,7 @@
                 android:id="@+id/textViewColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/color"
+                android:text="@string/color_string"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Spinner
@@ -60,7 +60,7 @@
                 android:id="@+id/textViewType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/type"
+                android:text="@string/type_string"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Spinner
