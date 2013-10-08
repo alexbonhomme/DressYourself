@@ -25,6 +25,9 @@
         <activity
            android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
            android:label="@string/generate" />
+                <activity
+           android:name="main.java.fr.redteam.dressyourself.activites.AddClothesActivity"
+           android:label="@string/generate" />
     </application>
 
 </manifest>
