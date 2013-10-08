@@ -19,7 +19,6 @@ public class MainActivity extends Activity {
 		final Button connection = (Button) findViewById(R.id.but_test);
 	      connection.setOnClickListener(new OnClickListener() {
 	      			
-	    @Override
 	    public void onClick(View v) {
 	    	Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
 	        startActivity(intent);
