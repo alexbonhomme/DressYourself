@@ -65,12 +65,12 @@ public class ClotheDetailActivity extends FragmentActivity {
 		Clothes MyClothes = DB.getClothe(Integer.parseInt(ClotheDetailFragment.ARG_ITEM_ID));
 		this.body.setText(MyClothes.getBody());
 		this.label.setText(MyClothes.getLabel());
-		this.color.setText(MyClothes.getColor().name());
+		this.color.setText(MyClothes.getColor());
 		this.type.setText(MyClothes.getDescription());
-		List<Weather> TheWeather = MyClothes.getWeatherList();
+		List<String> TheWeather = MyClothes.getWeatherList();
 		String WeatherTxt="";
-		for (Weather weatherLine : TheWeather) {
-			WeatherTxt.concat(weatherLine.name()+" ");
+		for (String weatherLine : TheWeather) {
+			WeatherTxt.concat(weatherLine+" ");
 		}
 		this.weather.setText(WeatherTxt);
 	}
