@@ -39,5 +39,7 @@
     <string name="title_clothe_detail">Clothe Detail</string>
     <string name="Body">Body:</string>
     <string name="modify">modify</string>
+    <string name="label">Label:</string>
+    <string name="description">Description:</string>
 
 </resources>
