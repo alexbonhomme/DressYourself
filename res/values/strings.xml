@@ -13,6 +13,13 @@
 	<string name="outfit_generate">Génerer Tenue</string>
 	<string name="test_button">TEST</string>
 	<string name="generate">Generate Outfit</string>
+	<string name="photo">Photo</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="color">Main\nColor:</string>
+    <string name="type">Type:</string>
+    <string name="PhotoVetement">Clothes photo</string>
+    <string name="Desc">infos:</string>
 
     <string-array name="weather_array">
         <item>Sunny</item>
