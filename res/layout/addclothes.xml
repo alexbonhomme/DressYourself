@@ -1,93 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:columnCount="5"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
+    <ImageButton
+        android:id="@+id/ButtonPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="fill_horizontal"
+        android:contentDescription="@string/PhotoVetement"
+        android:src="@drawable/ic_launcher" />
+
     <TextView
         android:id="@+id/textViewCouleur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ButtonPhoto"
-        android:layout_below="@+id/ButtonPhoto"
-        android:layout_marginTop="85dp"
+
+        android:layout_below="@id/ButtonPhoto"
+        android:layout_gravity="fill_vertical"
         android:text="@string/color"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Spinner
+        android:id="@+id/spinnerCouleur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ButtonPhoto"
+        android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/textViewCouleur" />
 
     <TextView
         android:id="@+id/textViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ButtonPhoto"
-        android:layout_below="@+id/ButtonPhoto"
-        android:layout_marginTop="30dp"
+
+        android:layout_below="@id/textViewCouleur"
+        android:layout_gravity="center_vertical"
         android:text="@string/type"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ImageButton
-        android:id="@+id/ButtonPhoto"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_alignRight="@+id/spinnerType"
-        android:contentDescription="@string/PhotoVetement"
-        android:src="@drawable/ic_launcher" />
-
-    <Button
-        android:id="@+id/Annuler"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/Valider"
-        android:layout_alignBottom="@+id/Valider"
-        android:layout_marginRight="16dp"
-        android:layout_toLeftOf="@+id/Valider"
-        android:text="@string/cancel" />
-
-    <Button
-        android:id="@+id/Valider"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/spinnerCouleur"
-        android:layout_marginBottom="18dp"
-        android:layout_marginRight="41dp"
-        android:text="@string/add" />
+    <Spinner
+        android:id="@+id/spinnerType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/spinnerCouleur"
+        android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@+id/textViewType" />
 
     <TextView
         android:id="@+id/TxtDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Annuler"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="18dp"
+
+        android:layout_below="@id/textViewType"
+        android:layout_gravity="fill_vertical"
         android:text="@string/Desc"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Spinner
-        android:id="@+id/spinnerType"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_alignBottom="@+id/textViewType"
-        android:layout_alignRight="@+id/spinnerCouleur" />
-
-    <Spinner
-        android:id="@+id/spinnerCouleur"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_alignBottom="@+id/textViewCouleur"
-        android:layout_alignParentRight="true" />
-
     <EditText
-        android:id="@+id/DscTxt"
+        android:id="@+id/editTextDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/spinnerCouleur"
-        android:layout_alignTop="@+id/TxtDesc"
+        android:layout_below="@id/spinnerType"
+        android:layout_toRightOf="@id/TxtDesc"
         android:ems="10"
-        android:inputType="textLongMessage" />
+        android:inputType="textMultiLine"
+        android:text="@string/enter_description" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCancelAddBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/Annuler"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/Valider"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/add" />
+
+    </LinearLayout>
 
 </RelativeLayout>

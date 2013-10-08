@@ -16,10 +16,11 @@
 	<string name="photo">Photo</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
-    <string name="color">Main\nColor:</string>
+    <string name="color">Color:</string>
     <string name="type">Type:</string>
     <string name="PhotoVetement">Clothes photo</string>
     <string name="Desc">infos:</string>
+    <string name="enter_description">Enter your description</string>
 
     <string-array name="weather_array">
         <item>Sunny</item>
