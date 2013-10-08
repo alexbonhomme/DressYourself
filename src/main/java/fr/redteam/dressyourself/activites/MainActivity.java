@@ -16,10 +16,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//creation base de donnée
+
 		DBHelper t = new DBHelper(this);
-		
-		
+		t.open();
+		t.close();
 		final Button connection = (Button) findViewById(R.id.but_test);
 	      connection.setOnClickListener(new OnClickListener() {
 	      			
