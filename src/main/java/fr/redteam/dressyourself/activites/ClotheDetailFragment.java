@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.R.id;
-import main.java.fr.redteam.dressyourself.R.layout;
 import main.java.fr.redteam.dressyourself.dummy.DummyContent;
 
 /**

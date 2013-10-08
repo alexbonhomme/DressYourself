@@ -55,6 +55,15 @@ public abstract class Clothes
 	 * @ordered
 	 */
 	
+	protected String body;
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
 	protected String imageUrl;
 	
 	/**
@@ -144,7 +153,20 @@ public abstract class Clothes
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	
+	/**
+	 * @return the body
+	 */
+	public String getBody() {
+		return body;
+	}
 
+	/**
+	 * @param body the body to set
+	 */
+	public void setBody(String body) {
+		this.body = body;
+	}
 	
 	
 }

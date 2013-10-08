@@ -27,6 +27,9 @@ public class DBHelper
 		mbdd = new CreateSQLBase(context, "test", null, 1);
 
 	}
+	public DBHelper() {
+		// TODO Stub du constructeur généré automatiquement
+	}
 	public void open(){
 		//on ouvre la BDD en écriture
 	bdd= mbdd.getWritableDatabase();
