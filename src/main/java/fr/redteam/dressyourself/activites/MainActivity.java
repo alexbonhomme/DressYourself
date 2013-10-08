@@ -12,22 +12,35 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+	private Button btAddClothing;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//creation base de donnée
 		DBHelper t = new DBHelper(this);
-		
-		
+
+		/* Open the page to add clothes */
+		btAddClothing = (Button) findViewById(R.id.btAddClothing);
+		btAddClothing.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, AddClothesActivity.class);
+				startActivity(intent);	
+			}
+		});
+
+		/* TEST */
 		final Button connection = (Button) findViewById(R.id.but_test);
-	      connection.setOnClickListener(new OnClickListener() {
-	      			
-	    public void onClick(View v) {
-	    	Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
-	        startActivity(intent);
-	      	}
-	      });
+		connection.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override

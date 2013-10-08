@@ -19,7 +19,7 @@
     <string name="color">Color:</string>
     <string name="type">Type:</string>
     <string name="PhotoVetement">Clothes photo</string>
-    <string name="Desc">infos:</string>
+    <string name="Desc">Description</string>
     <string name="enter_description">Enter your description</string>
 
     <string-array name="weather_array">
@@ -35,4 +35,5 @@
         <item>Pink</item>
         <item>Purple</item>
     </string-array>
+        <string name="add_clothing">Add your clothes !</string>
 </resources>
