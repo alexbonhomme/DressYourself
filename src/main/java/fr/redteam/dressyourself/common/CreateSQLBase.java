@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CreateSQLBase extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
-	private static final String PRIMARY_INTEGER_KEY = "INTEGER PRIMARY KEY ";
+	private static final String PRIMARY_INTEGER_KEY = "INTEGER PRIMARY KEY AUTOINCREMENT";
 	//requete de creation de la table COLOR
 	private static final String TABLE_COLOR = CREATE_TABLE_IFE+ " COLOR"
 											  +"("+
