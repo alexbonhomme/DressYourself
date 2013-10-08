@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
             android:label="@string/generate" />
