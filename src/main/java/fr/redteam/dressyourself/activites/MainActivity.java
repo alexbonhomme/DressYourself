@@ -26,8 +26,8 @@ public class MainActivity extends Activity {
 		// XXX Exception au lancement de l'App
 		// E/SQLiteLog(29954): (1) AUTOINCREMENT is only allowed on an INTEGER PRIMARY KEY
 		
-		//t.open();
-		//t.close();
+		t.open();
+		t.close();
 
 		/* Open the page to add clothes */
 		btAddClothing = (Button) findViewById(R.id.btAddClothing);

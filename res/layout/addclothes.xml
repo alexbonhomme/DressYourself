@@ -131,20 +131,12 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/Annuler"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="@string/cancel" />
-
-            <Button
                 android:id="@+id/Valider"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="@string/add" />
+                android:text="@string/add"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </RelativeLayout>
 
