@@ -34,7 +34,7 @@
         <item>Pink</item>
         <item>Purple</item>
     </string-array>
-        <string-array name="type_array">
+    <string-array name="type_array">
         <item>Top</item>
         <item>Bottom</item>
     </string-array>
@@ -43,11 +43,13 @@
 	<string name="add_clothing">Add new clothes</string>
     <string name="title_clothe_list">Clothes</string>
     <string name="title_clothe_detail">Clothe Detail</string>
+    <string name="title_modify_clothe">Modify</string>
     <string name="Body">Body</string>
     <string name="modify">modify</string>
     <string name="label">Label</string>
     <string name="description">Description:</string>
-    <string name="labal_generate_main">Dress me!</string>
+    <string name="label_generate_main">Get dressed!</string>
     <string name="label_list_clothes">See my closets</string>
+    <string name="title_activity_filter">FilterActivity</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package main.java.fr.redteam.dressyourself.common;
 
+import java.util.ArrayList;
+
 import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
 import main.java.fr.redteam.dressyourself.core.clothes.Colors;
 import android.content.ContentValues;
@@ -114,5 +116,10 @@ public class DBHelper
 		return null;
 	}
 	
+	public ArrayList<Clothes> getListTop (){
+		//getIDBodies("TOP");
+		//bdd.query(true, "CLOTHES", "nom_clothes", "ID_c", null, null, null, null, null, null);
+		return null;
+	}
 	
 }	

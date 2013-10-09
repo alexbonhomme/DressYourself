@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -35,6 +38,17 @@ public class ClotheDetailActivity extends FragmentActivity {
 
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		Button btnModify = (Button) findViewById(R.id.modifyBtn);
+		btnModify.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				//TODO redirected to the 'filters page'
+				Intent intent = new Intent(ClotheDetailActivity.this, ModifyClothe.class);
+				startActivity(intent);	
+			}
+		});
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity
