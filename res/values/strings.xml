@@ -10,11 +10,11 @@
     <string name="type_string">Type</string>
     <string name="validation_string">Generate</string>
     <string name="outfit_top">Top</string>
-	<string name="outfit_bottom">Bottom</string>
-	<string name="outfit_feet">Feet</string>
-	<string name="outfit_generate">Génerer Tenue</string>
-	<string name="generate">Generate Outfit</string>
-	<string name="photo">Photo</string>
+    <string name="outfit_bottom">Bottom</string>
+    <string name="outfit_feet">Feet</string>
+    <string name="outfit_generate">Génerer Tenue</string>
+    <string name="generate">Generate Outfit</string>
+    <string name="photo">Photo</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="PhotoVetement">Clothes photo</string>
@@ -34,20 +34,22 @@
         <item>Pink</item>
         <item>Purple</item>
     </string-array>
-        <string-array name="type_array">
+    <string-array name="type_array">
         <item>Top</item>
         <item>Bottom</item>
     </string-array>
 
     <string name="title_add_clothing">Add clothing</string>
-	<string name="add_clothing">Add new clothes</string>
+    <string name="add_clothing">Add new clothes</string>
     <string name="title_clothe_list">Clothes</string>
     <string name="title_clothe_detail">Clothe Detail</string>
+    <string name="title_modify_clothe">Modify</string>
     <string name="Body">Body</string>
     <string name="modify">modify</string>
     <string name="label">Label</string>
     <string name="description">Description:</string>
-    <string name="labal_generate_main">Dress me!</string>
+    <string name="label_generate_main">Get dressed!</string>
     <string name="label_list_clothes">See my closets</string>
+    <string name="title_activity_filter">FilterActivity</string>
 
 </resources>

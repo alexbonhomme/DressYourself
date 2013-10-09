@@ -79,6 +79,7 @@ public class ClotheListFragment extends ListFragment {
 		dbh.open();
 		Cursor cursor = dbh.getBDD().query(false, "CLOTHES", new String[]{"nom_clothes"}, null, null, null, null, null, null);
 		List<String> clothesList = new ArrayList<String>();
+		
 		String newElement;
 		while(cursor.moveToNext()){
 		    newElement = cursor.getString(cursor.getColumnIndex("NAME"));
@@ -88,6 +89,8 @@ public class ClotheListFragment extends ListFragment {
 		setListAdapter(new ArrayAdapter<String>(getActivity(),
 				R.layout.activity_clothe_list,
 				R.id.clothe_list, clothesList));
+		
+		dbh.close();
 	}
 
 	@Override

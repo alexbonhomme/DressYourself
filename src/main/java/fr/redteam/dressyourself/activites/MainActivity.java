@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				//TODO redirected to the 'filters page'
-				Intent intent = new Intent(MainActivity.this, OutfitActivity.class);
+				Intent intent = new Intent(MainActivity.this, FilterActivity.class);
 				startActivity(intent);	
 			}
 		});
