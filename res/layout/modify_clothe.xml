@@ -56,7 +56,7 @@
 
     <EditText
         android:id="@+id/labelEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/label"
         android:layout_toRightOf="@+id/description"
@@ -67,23 +67,22 @@
     </EditText>
 
     <Spinner
-        android:id="@+id/ColorSpinner"
-        android:layout_width="wrap_content"
+        android:id="@+id/colorSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/labelEdit"
+        android:layout_alignBottom="@+id/weather" />
+    
+    <Spinner
+        android:id="@+id/weatherSpinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/labelEdit"
         android:layout_alignBottom="@+id/color" />
 
-    <CheckBox
-        android:id="@+id/weatherBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/labelEdit"
-        android:layout_alignBottom="@+id/weather"
-        android:text="rainny" />
-
     <EditText
         android:id="@+id/descritpionEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton"
         android:layout_below="@+id/description"
