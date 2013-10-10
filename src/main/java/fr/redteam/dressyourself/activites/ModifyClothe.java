@@ -1,6 +1,9 @@
 package main.java.fr.redteam.dressyourself.activites;
 
+import java.util.ArrayList;
+
 import main.java.fr.redteam.dressyourself.R;
+import main.java.fr.redteam.dressyourself.common.DBHelper;
 import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,8 +23,8 @@ public class ModifyClothe extends Activity {
 
   private Clothes clotheToEdit;
   private ImageButton image;
-  private EditText label;
   private Spinner colorSpinner;
+  private Spinner typeSpinner;
   private Spinner weatherSpinner;
   private EditText description;
 
@@ -30,8 +33,8 @@ public class ModifyClothe extends Activity {
    */
   public void getComponentsFromLayout() {
     this.image = (ImageButton) findViewById(R.id.imageButton);
-    this.label = (EditText) findViewById(R.id.labelEdit);
     this.colorSpinner = (Spinner) findViewById(R.id.colorSpinner);
+    this.typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
     this.weatherSpinner = (Spinner) findViewById(R.id.weatherSpinner);
     this.description = (EditText) findViewById(R.id.descritpionEdit);
   }
@@ -46,7 +49,12 @@ public class ModifyClothe extends Activity {
   /**
    * @param clotheLabel the Label of the Clothe we need informations about
    */
-  private void retrieveClotheInformation(String clotheLabel) {
+  private ArrayList<String> retrieveClotheInformation(String clotheLabel) {
+    ArrayList<String> clotheInformations = new ArrayList<String>();
+    DBHelper bd = new DBHelper(this);
+
+
+    return clotheInformations;
 
   }
 

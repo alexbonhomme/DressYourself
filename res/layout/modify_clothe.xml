@@ -10,38 +10,39 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:src="@android:drawable/alert_dark_frame" />
+        android:src="@drawable/jeans_slim" 
+        android:contentDescription="@string/photo"/>
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/imageButton"
-        android:layout_marginTop="30dp"
-        android:text="@string/label" />
-    
     <TextView
         android:id="@+id/color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/label"
+        android:layout_below="@+id/imageButton"
         android:layout_marginTop="30dp"
         android:text="@string/color_string" />
+    
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_below="@+id/color"
+        android:layout_marginTop="30dp"
+        android:text="@string/type_string" />
     
     <TextView
         android:id="@+id/weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/color"
+        android:layout_below="@+id/type"
         android:layout_marginTop="30dp"
         android:text="@string/weather_string" />
     
@@ -54,31 +55,27 @@
         android:layout_marginTop="30dp"
         android:text="@string/description" />
 
-    <EditText
-        android:id="@+id/labelEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/label"
-        android:layout_toRightOf="@+id/description"
-        android:ems="15"
-        android:layout_below="@+id/imageButton" >
-
-        <requestFocus />
-    </EditText>
-
     <Spinner
         android:id="@+id/colorSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/labelEdit"
-        android:layout_alignBottom="@+id/weather" />
+        android:layout_toRightOf="@+id/description"
+        android:layout_below="@+id/imageButton" 
+        android:layout_alignBottom="@+id/color" />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/colorSpinner"
+        android:layout_alignBottom="@+id/type" />
     
     <Spinner
         android:id="@+id/weatherSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/labelEdit"
-        android:layout_alignBottom="@+id/color" />
+        android:layout_alignLeft="@+id/colorSpinner"
+        android:layout_alignBottom="@+id/weather" />
 
     <EditText
         android:id="@+id/descritpionEdit"
@@ -88,6 +85,16 @@
         android:layout_below="@+id/description"
         android:layout_marginTop="15dp"
         android:ems="20"
+        android:hint="@string/enter_description"
         android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descritpionEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/save" />
 
 </RelativeLayout>
