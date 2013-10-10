@@ -1,11 +1,15 @@
 package main.java.fr.redteam.dressyourself.activites;
 
+import java.util.ArrayList;
+
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
 import main.java.fr.redteam.dressyourself.core.clothes.*;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OutfitActivity extends Activity{
 	
@@ -25,9 +29,19 @@ public class OutfitActivity extends Activity{
 		db.open();
 		
 		//recup top
-		//db.getListTop();
-		Clothe clothe = new Clothe("Pull beige");
+		ArrayList<Clothe> listTop = new ArrayList<Clothe>();
+		listTop = db.getListTop();
 		
+		//recup bottom
+		ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
+        listBottom = db.getListBottom();
+        
+      //recup bottom
+        ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
+        listFeet = db.getListFeet();
+        
+		//vetements statique TODO: récupérer en bdd
+		Clothe clothe = new Clothe("Pull beige");
 		topText.setText(clothe.getLabel());
 		bottomText.setText("slim bleu fonce");
 		feetText.setText("Basket camel");

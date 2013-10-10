@@ -107,7 +107,8 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 		db.execSQL(TABLE_TYPE);
 		db.execSQL(TABLE_CLOTHES);
 		db.execSQL(TABLE_OUTFIT);
-	db.execSQL(TABLE_OUTFIT_CLOTHES);
+		db.execSQL(TABLE_BODIES);
+		db.execSQL(TABLE_OUTFIT_CLOTHES);
 		db.execSQL(TABLE_WEATHER_CLOTHES);
 
 		insertColor(db, "WHITE");
