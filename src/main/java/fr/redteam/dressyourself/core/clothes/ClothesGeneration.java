@@ -18,7 +18,7 @@ public class ClothesGeneration
 	 * @ordered
 	 */
 	
-	public Set<Clothes> clothesList;
+	public Set<Clothe> clothesList;
 	
 	/**
 	 * <!-- begin-user-doc -->

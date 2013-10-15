@@ -4,7 +4,7 @@ import java.util.List;
 
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
-import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
+import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import main.java.fr.redteam.dressyourself.core.clothes.Weather;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,7 +76,7 @@ public class ClotheDetailActivity extends FragmentActivity {
 		this.weather = (TextView) findViewById(R.id.weatherTxt);
 		this.type = (TextView) findViewById(R.id.TypeTxt);
 		DBHelper DB = new DBHelper();
-		Clothes MyClothes = DB.getClothe(Integer.parseInt(ClotheDetailFragment.ARG_ITEM_ID));
+		Clothe MyClothes = DB.getClothe(Integer.parseInt(ClotheDetailFragment.ARG_ITEM_ID));
 		this.body.setText(MyClothes.getBody());
 		this.label.setText(MyClothes.getLabel());
 		this.color.setText(MyClothes.getColor());

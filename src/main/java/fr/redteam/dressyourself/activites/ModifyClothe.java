@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
-import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
+import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +21,7 @@ public class ModifyClothe extends Activity {
 
   /* components */
 
-  private Clothes clotheToEdit;
+  private Clothe clotheToEdit;
   private ImageButton image;
   private Spinner colorSpinner;
   private Spinner typeSpinner;

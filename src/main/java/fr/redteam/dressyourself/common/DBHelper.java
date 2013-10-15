@@ -3,7 +3,6 @@ package main.java.fr.redteam.dressyourself.common;
 import java.util.ArrayList;
 
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
-import main.java.fr.redteam.dressyourself.core.clothes.Clothes;
 import main.java.fr.redteam.dressyourself.core.clothes.Colors;
 import android.content.ContentValues;
 import android.content.Context;
@@ -90,7 +89,7 @@ public class DBHelper
     return r;
   }
   
-  public long insertOutfit(String nom , Clothes[] clothes){
+  public long insertOutfit(String nom , Clothe[] clothes){
     return 0;
   }
   
@@ -134,7 +133,7 @@ public class DBHelper
     return null;
   }
   
-  public Clothes getClothe (int id){
+  public Clothe getClothe (int id){
     return null;
   }
 
