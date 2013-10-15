@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.MainActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityMain"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,29 +28,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.OutfitActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityOutfit"
             android:label="@string/generate" />
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.AddClothesActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityClotheAdd"
             android:label="@string/title_add_clothing" />
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.ClotheListActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityClotheList"
             android:label="@string/title_clothe_list" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.ModifyClothe"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityClotheModify"
             android:label="@string/title_modify_clothe" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.ClotheDetailActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityClotheDetail"
             android:label="@string/title_clothe_detail"
-            android:parentActivityName="main.java.fr.redteam.dressyourself.activites.ClotheListActivity" >
+            android:parentActivityName="main.java.fr.redteam.dressyourself.activites.ActivityClotheList" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ClotheListActivity" />
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.FilterActivity"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityFilter"
             android:label="@string/title_activity_filter" >
         </activity>
     </application>
