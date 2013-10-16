@@ -10,20 +10,20 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
   private static final String PRIMARY_INTEGER_KEY = " INTEGER PRIMARY KEY AUTOINCREMENT";
   private static final String TABLE_COLOR = CREATE_TABLE_IFE + " COLOR" + "(" + "ID_color"
-      + PRIMARY_INTEGER_KEY + "," + "name_color TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "colorName TEXT)";
   
   private static final String TABLE_BODIES = CREATE_TABLE_IFE + " BODIES" + "(" + "ID_bodies"
-      + PRIMARY_INTEGER_KEY + "," + "name_bodies TEXT" + ")";
+      + PRIMARY_INTEGER_KEY + "," + "bodiesName TEXT" + ")";
   
   private static final String TABLE_TYPE = CREATE_TABLE_IFE + " TYPE" + "(" + "ID_type"
-      + PRIMARY_INTEGER_KEY + "," + "name_type TEXT" + "," + "ID_b INTEGER" + ","
+      + PRIMARY_INTEGER_KEY + "," + "typeName TEXT" + "," + "ID_b INTEGER" + ","
       + "FOREIGN KEY (ID_b) REFERENCES BODIES(ID_bodies))";
 
   private static final String TABLE_WEATHER = CREATE_TABLE_IFE + " WEATHER" + "(" + "ID_weather"
-      + PRIMARY_INTEGER_KEY + "," + "name_weather TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT)";
   
   private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes"
-      + PRIMARY_INTEGER_KEY + "," + "name_clothes TEXT" + "," + "image BLOB" + "," + "ID_c INTEGER"
+      + PRIMARY_INTEGER_KEY + "," + "clothesName TEXT" + "," + "image BLOB" + "," + "ID_c INTEGER"
       + "," + "ID_t INTEGER" + "," + "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + ","
       + "FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type)" + ")";
   
@@ -33,12 +33,12 @@ public class CreateSQLBase extends SQLiteOpenHelper {
       + "FOREIGN KEY (ID_w)REFERENCES WEATHER (ID_weather))";
 
   private static final String TABLE_OUTFIT = CREATE_TABLE_IFE + " OUTFIT" + "(" + "ID_outfit"
-      + PRIMARY_INTEGER_KEY + "," + "name_outfit TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "outfitName TEXT)";
 
   private static final String TABLE_OUTFIT_CLOTHES = CREATE_TABLE_IFE + " OUTFIT_CLOTHES"
       + "( ID_c INTEGER" + "," + "ID_o INTEGER" + "," + "PRIMARY KEY (ID_c,ID_o)" + ","
-      + "FOREIGN KEY (ID_c)REFERENCES COLOR (ID_clothes)" + ","
-      + "FOREIGN KEY (ID_o)REFERENCES COLOR (ID_outfit))";
+      + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + ","
+      + "FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))";
 
   private static final String CREATE_BDD = TABLE_COLOR + "," + TABLE_WEATHER + "," + TABLE_TYPE
       + "," + TABLE_CLOTHES + "," + TABLE_OUTFIT + "," + TABLE_OUTFIT_CLOTHES + ","
@@ -84,28 +84,28 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 
   public long insertColor(SQLiteDatabase db, String couleur) {
     ContentValues values = new ContentValues();
-    values.put("name_color", couleur);
+    values.put("colorName", couleur);
     
     return db.insert("COLOR", null, values);
   }
 
   public long insertWeather(SQLiteDatabase db, String weather) {
     ContentValues values = new ContentValues();
-    values.put("name_weather", weather);
+    values.put("weatherName", weather);
     
     return db.insert("WEATHER", null, values);
   }
 
   public long insertBodies(SQLiteDatabase db, String bodies) {
     ContentValues values = new ContentValues();
-    values.put("name_bodies", bodies);
+    values.put("bodiesName", bodies);
     
     return db.insert("BODIES", null, values);
   }
 
   public long insertType(SQLiteDatabase db, String type, int id_bodies) {
     ContentValues values = new ContentValues();
-    values.put("name_type", type);
+    values.put("typeName", type);
     values.put("ID_b", id_bodies);
     
     return db.insert("Type", null, values);
