@@ -1,7 +1,5 @@
 package main.java.fr.redteam.dressyourself.core.clothes;
 import java.util.Set;
-import java.util.HashSet;
-
 
 /**
  * <!-- begin-user-doc -->

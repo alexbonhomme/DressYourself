@@ -3,7 +3,6 @@ package main.java.fr.redteam.dressyourself.common;
 import java.util.ArrayList;
 
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
-import main.java.fr.redteam.dressyourself.core.clothes.Colors;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,10 +29,6 @@ public class DBHelper
     super();
     mbdd = new CreateSQLBase(context, "test", null, 1);
 
-  }
-  
-  public DBHelper() {
-    // TODO Stub du constructeur généré automatiquement
   }
   
   public void open(){

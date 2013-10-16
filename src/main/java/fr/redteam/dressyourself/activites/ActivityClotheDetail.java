@@ -5,7 +5,6 @@ import java.util.List;
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
-import main.java.fr.redteam.dressyourself.core.clothes.Weather;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -70,22 +69,42 @@ public class ActivityClotheDetail extends FragmentActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.clothe_detail_container, fragment).commit();
 		}
+		
+		/*
+		 * make reference on the activity object
+		 */
+		
 		this.textViewBody = (TextView) findViewById(R.id.bodyTxt);
 		this.textViewLabel= (TextView) findViewById(R.id.LabelTxt);
 		this.textViewColor = (TextView) findViewById(R.id.colorTxt);
 		this.textViewWeather = (TextView) findViewById(R.id.weatherTxt);
 		this.textViewType = (TextView) findViewById(R.id.TypeTxt);
-		DBHelper DB = new DBHelper();
+		
+		/*
+		 * Créate new DBhelper in order to take some information in the DB.
+		 */
+		
+		DBHelper DB = new DBHelper(this);
 		Clothe MyClothes = DB.getClothe(Integer.parseInt(FragmentClotheDetail.ARG_ITEM_ID));
+		
+		/*
+		 * Put all information in the text field
+		 */
+		
 		this.textViewBody.setText(MyClothes.getBody());
 		this.textViewLabel.setText(MyClothes.getLabel());
 		this.textViewColor.setText(MyClothes.getColor());
 		this.textViewType.setText(MyClothes.getDescription());
+		
+		/*
+		 * List all weather information and contains with ';'
+		 */
 		List<String> TheWeather = MyClothes.getWeatherList();
 		String WeatherTxt="";
 		for (String weatherLine : TheWeather) {
 			WeatherTxt += weatherLine + " ";
 		}
+		
 		this.textViewWeather.setText(WeatherTxt);
 	}
 

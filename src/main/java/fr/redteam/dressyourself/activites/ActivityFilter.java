@@ -1,7 +1,5 @@
 package main.java.fr.redteam.dressyourself.activites;
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.R.layout;
-import main.java.fr.redteam.dressyourself.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
