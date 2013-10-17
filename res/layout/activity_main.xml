@@ -18,7 +18,9 @@
         android:layout_marginRight="25dp"
         android:layout_weight="1"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_2_2_long_1" />
+        android:src="@drawable/logo_2_2_long_1"
+        android:contentDescription="@string/title_activity_main"
+        android:clickable="true" />
 
     <Button
         android:id="@+id/btFilters"
