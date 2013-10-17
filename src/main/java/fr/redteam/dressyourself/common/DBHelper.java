@@ -46,32 +46,32 @@ public class DBHelper
   
   public long insertColor(String couleur){
     ContentValues values = new ContentValues();
-    values.put("nom_color", couleur);
+    values.put("colorName", couleur);
     return bdd.insert("COLOR", null, values);
   }
   
   public long insertWeather(String weather){
     ContentValues values = new ContentValues();
-    values.put("nom_weather", weather);
+    values.put("weatherName", weather);
     return bdd.insert("WEATHER", null, values);
   }
   
   public long insertBodies(String bodies){
     ContentValues values = new ContentValues();
-    values.put("nom_bodies", bodies);
+    values.put("bodiesName", bodies);
     return bdd.insert("BODIES", null, values);
   }
   
   public long insertType(String type, int id_bodies){
     ContentValues values = new ContentValues();
-    values.put("nom_type", type);
+    values.put("typeName", type);
     values.put("ID_b", id_bodies);
     return bdd.insert("TYPE", null, values);
   }
   
   public long insertClothes(Clothe clothe){
     ContentValues values = new ContentValues();
-    values.put("nom_clothe",clothe.getDescription());
+    values.put("clothesName",clothe.getDescription());
     values.put("ID_t", getIDType(clothe.getLabel()));
     values.put("ID_c", getIDColor(clothe.getColor()));
     long r = bdd.insert("CLOTHES", null, values);
@@ -84,7 +84,7 @@ public class DBHelper
     return r;
   }
   
-  public long insertOutfit(String nom , Clothe[] clothes){
+  public long insertOutfit(String name , Clothe[] clothes){
     return 0;
   }
   
@@ -133,7 +133,7 @@ public class DBHelper
   }
 
   public ArrayList<Clothe> getListTop (){
-    String query = "SELECT nom_clothes FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND nom_bodies='TOP'";
+    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='TOP'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listTop = new ArrayList<Clothe>();
 
@@ -146,7 +146,7 @@ public class DBHelper
   }
   
   public ArrayList<Clothe> getListBottom (){
-    String query = "SELECT nom_clothes FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND nom_bodies='BOTTOM'";
+    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='BOTTOM'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
 
@@ -159,7 +159,7 @@ public class DBHelper
   }
   
   public ArrayList<Clothe> getListFeet (){
-    String query = "SELECT nom_clothes FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND nom_bodies='FEET'";
+    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='FEET'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
 
