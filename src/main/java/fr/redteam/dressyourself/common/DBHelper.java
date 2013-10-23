@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 /**
@@ -27,12 +28,16 @@ public class DBHelper
   
   public DBHelper(Context context){
     super();
-    mbdd = new CreateSQLBase(context, "test", null, 1);
+    mbdd = new CreateSQLBase(context, "GYSBdd", null, 1);
 
   }
   
   public void open(){
     //on ouvre la BDD en écriture
+	//Log.v("DBHelper", "ouverture bdd");
+	
+	//Log.v("DBHelper", mbdd.getDatabaseName()
+
     bdd= mbdd.getWritableDatabase();
   }
   
@@ -71,7 +76,7 @@ public class DBHelper
   
   public long insertClothes(Clothe clothe){
     ContentValues values = new ContentValues();
-    values.put("clothesName",clothe.getDescription());
+    values.put("model",clothe.getDescription());
     values.put("ID_t", getIDType(clothe.getLabel()));
     values.put("ID_c", getIDColor(clothe.getColor()));
     long r = bdd.insert("CLOTHES", null, values);
@@ -133,7 +138,7 @@ public class DBHelper
   }
 
   public ArrayList<Clothe> getListTop (){
-    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='TOP'";
+    String query = "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='TOP'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listTop = new ArrayList<Clothe>();
 
@@ -146,7 +151,7 @@ public class DBHelper
   }
   
   public ArrayList<Clothe> getListBottom (){
-    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='BOTTOM'";
+    String query = "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='BOTTOM'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
 
@@ -159,7 +164,7 @@ public class DBHelper
   }
   
   public ArrayList<Clothe> getListFeet (){
-    String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='FEET'";
+    String query = "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='FEET'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
 

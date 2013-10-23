@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class CreateSQLBase extends SQLiteOpenHelper {
   private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
@@ -23,9 +24,10 @@ public class CreateSQLBase extends SQLiteOpenHelper {
       + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT)";
   
   private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes"
-      + PRIMARY_INTEGER_KEY + "," + "clothesName TEXT" + "," + "image BLOB" + "," + "ID_c INTEGER"
-      + "," + "ID_t INTEGER" + "," + "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + ","
-      + "FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type)" + ")";
+      + PRIMARY_INTEGER_KEY + "," + "model TEXT" +","+  "image BLOB" + "," + "ID_c INTEGER"
+      + "," + "ID_t INTEGER" + ","+"ID_br INTEGER" + ","+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)"
+      + ","+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + ","+ "FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand)" 
+      + ")";
   
   private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE + " WEATHER_CLOTHES " + "( "
       + "ID_c INTEGER" + "," + "ID_w INTEGER" + "," + "PRIMARY KEY (ID_c,ID_w)" + ","
@@ -39,7 +41,10 @@ public class CreateSQLBase extends SQLiteOpenHelper {
       + "( ID_c INTEGER" + "," + "ID_o INTEGER" + "," + "PRIMARY KEY (ID_c,ID_o)" + ","
       + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + ","
       + "FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))";
-
+  
+  private static final String TABLE_BRAND = CREATE_TABLE_IFE + " BRAND" 
+	  + "( ID_brand" + PRIMARY_INTEGER_KEY+"," +"marque TEXT" +")";
+		  
   private static final String CREATE_BDD = TABLE_COLOR + "," + TABLE_WEATHER + "," + TABLE_TYPE
       + "," + TABLE_CLOTHES + "," + TABLE_OUTFIT + "," + TABLE_OUTFIT_CLOTHES + ","
       + TABLE_WEATHER_CLOTHES + ";";
@@ -54,7 +59,8 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   public void onCreate(SQLiteDatabase db) {
     // TODO Auto-generated method stub
     // on créé la table à partir de la requête écrite dans la variable CREATE_BDD
-    db.execSQL(TABLE_COLOR);
+	//Log.v("CreateSQLBase", "creation");
+	db.execSQL(TABLE_COLOR);
     db.execSQL(TABLE_WEATHER);
     db.execSQL(TABLE_TYPE);
     db.execSQL(TABLE_CLOTHES);
@@ -62,6 +68,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     db.execSQL(TABLE_BODIES);
     db.execSQL(TABLE_OUTFIT_CLOTHES);
     db.execSQL(TABLE_WEATHER_CLOTHES);
+    db.execSQL(TABLE_BRAND);
 
     insertColor(db, "WHITE");
     insertColor(db, "BLACK");
@@ -114,6 +121,15 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     // TODO Auto-generated method stub
+	  db.execSQL(TABLE_COLOR);
+	    db.execSQL(TABLE_WEATHER);
+	    db.execSQL(TABLE_TYPE);
+	    db.execSQL(TABLE_CLOTHES);
+	    db.execSQL(TABLE_OUTFIT);
+	    db.execSQL(TABLE_BODIES);
+	    db.execSQL(TABLE_OUTFIT_CLOTHES);
+	    db.execSQL(TABLE_WEATHER_CLOTHES);
+	    db.execSQL(TABLE_BRAND);
 
   }
 
