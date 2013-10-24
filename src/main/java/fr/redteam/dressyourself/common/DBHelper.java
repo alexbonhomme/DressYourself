@@ -73,14 +73,13 @@ public class DBHelper
 
 	public long insertClothes(Clothe clothe){
 		ContentValues values = new ContentValues();
-		values.put("model",clothe.getDescription());
-		values.put("ID_t", getIDType(clothe.getLabel()));
+    values.put("ID_t", getIDType(clothe.getModel()));
 		values.put("ID_c", getIDColor(clothe.getColor()));
 		long r = bdd.insert("CLOTHES", null, values);
 		values= new ContentValues();
-		for(int i =0 ;i< clothe.getWeatherList().size();i++){
+    for(int i =0 ;i< clothe.getWeather().size();i++){
 			values.put("ID_c",r);
-			values.put("ID_w",getIDWeather(clothe.getWeatherList().get(i)));
+      values.put("ID_w",getIDWeather(clothe.getWeather().get(i)));
 			bdd.insert("WEATHER_CLOTHES", null, values);
 		}
 		return r;
