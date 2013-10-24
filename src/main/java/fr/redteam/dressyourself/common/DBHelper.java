@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.method.MovementMethod;
 import android.util.Log;
 
 
@@ -93,28 +94,54 @@ public class DBHelper
   }
   
   public int getIDColor(String color){
-    return 0;
+	String query = "SELECT ID_color FROM COLOR WHERE colorName = \""+ color+"\"";
+	Log.v("BDD", query);
+	Cursor c = bdd.rawQuery(query, null);
+	c.moveToFirst();
+	
+	return c.getInt(0);
+	
   }
   
   public int getIDWeather(String weather){
-    return 0;
-  }
+	  String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \""+ weather+"\"";
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+		
+		return c.getInt(0);  }
   
   public int getIDBodies(String bodies){
-    return 0;
-  }
+	  String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \""+ bodies+"\"";
+	  Log.v("BDD", query);
+	  Cursor c = bdd.rawQuery(query, null);
+	  c.moveToFirst();
+		
+	  return c.getInt(0);  }
   
   public int getIDType(String type){
-    return 0;
-  }
+	  String query = "SELECT ID_type FROM TYPE WHERE typeName = \""+ type+"\"";
+	  Log.v("BDD", query);
+	  Cursor c = bdd.rawQuery(query, null);
+	  c.moveToFirst();
+		
+	  return c.getInt(0);  }
   
   public int getIDClothes(String clothes){
-    return 0;
-  }
+	  String query = "SELECT ID_clothes FROM clothes WHERE clothesName = \""+ clothes+"\"";
+	  Log.v("BDD", query);
+	  Cursor c = bdd.rawQuery(query, null);
+	  c.moveToFirst();
+		
+	  return c.getInt(0);  }
   
   public int getIDOutfit(String outfit){
-    return 0;
-  }
+	  String query = "SELECT ID_outfit FROM COLOR WHERE outfitName = \""+ outfit+"\"";
+	  Log.v("BDD", query);
+	  Cursor c = bdd.rawQuery(query, null);
+	  c.moveToFirst();
+		
+	  return c.getInt(0);  }
   
   public String getColor(int id){
     return null;

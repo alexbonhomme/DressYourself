@@ -25,8 +25,8 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   
   private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes"
       + PRIMARY_INTEGER_KEY + "," + "model TEXT" +","+  "image BLOB" + "," + "ID_c INTEGER"
-      + "," + "ID_t INTEGER" + ","+"ID_br INTEGER" + ","+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)"
-      + ","+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + ","+ "FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand)" 
+      + "," + "ID_t INTEGER" + ","+"ID_br INTEGER" +","+"ID_w INTEGER" + ","+ "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)"
+      + ","+ "FOREIGN KEY (ID_w) REFERENCES WEATHER (ID_weather)" + ","+ "FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand)"+","+ "FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type)" 
       + ")";
   
   private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE + " WEATHER_CLOTHES " + "( "
