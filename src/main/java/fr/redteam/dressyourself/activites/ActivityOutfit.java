@@ -43,7 +43,7 @@ public class ActivityOutfit extends Activity{
         
 		//vetements statique TODO: récupérer en bdd
 		Clothe clothe = new Clothe("Pull beige");
-		textViewTop.setText(clothe.getLabel());
+		textViewTop.setText(clothe.getModel());
 		textViewBottom.setText("slim bleu fonce");
 		textViewFeet.setText("Basket camel");
 		
