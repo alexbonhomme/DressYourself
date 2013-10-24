@@ -171,4 +171,16 @@ public class DBHelper
     return listFeet;
   }
 
+  public ArrayList<Clothe> getListClothes(){
+	  String query = "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
+	  Cursor cursor = bdd.rawQuery(query, null);
+	  ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
+
+	  while (cursor.moveToNext()){
+		  Clothe clothe = new Clothe(cursor.getString(0));
+		  listClothes.add(clothe);
+	  }
+
+	  return listClothes;
+  }
 }	
