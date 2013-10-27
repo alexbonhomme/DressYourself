@@ -91,6 +91,8 @@ public class DBHelper
   }
   
   public long insertOutfit(String name , Clothe[] clothes){
+	    ContentValues values = new ContentValues();
+
     return 0;
   }
   
