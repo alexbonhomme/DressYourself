@@ -1,7 +1,7 @@
 package main.java.fr.redteam.dressyourself.core.clothes;
 
 import java.util.List;
-import java.util.Set;
+
 
 
 /**
@@ -19,7 +19,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected String label;
+	private String model;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,7 +28,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected String color;
+	private String brand;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected List<String> weatherList;
+	private List<String> weather;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected String description;
+	private String color;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,7 +55,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected String body;
+	private String imageUrl;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	protected String imageUrl;
+	private String type;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,7 +73,7 @@ public class Clothe
 	 * @ordered
 	 */
 	
-	public Set<ClothesGeneration> ClotheGeneration;
+	private String body;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,93 +84,64 @@ public class Clothe
 		super();
 	}
 	
-	public Clothe(String label){
-		this.label = label;
+	public Clothe(String model){
+		this.model=model;
 	}
 
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
-		return label;
+	public String getModel() {
+		return model;
 	}
 
-	/**
-	 * @param label the label to set
-	 */
-	public void setLabel(String label) {
-		this.label = label;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	/**
-	 * @return the color
-	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public List<String> getWeather() {
+		return weather;
+	}
+
+	public void setWeather(List<String> weather) {
+		this.weather = weather;
+	}
+
 	public String getColor() {
 		return color;
 	}
 
-	/**
-	 * @param color the color to set
-	 */
 	public void setColor(String color) {
 		this.color = color;
 	}
 
-	/**
-	 * @return the weatherList
-	 */
-	public List<String> getWeatherList() {
-		return weatherList;
-	}
-
-	/**
-	 * @param weatherList the weatherList to set
-	 */
-	public void setWeatherList(List<String> weatherList) {
-		this.weatherList = weatherList;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the imageUrl
-	 */
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	/**
-	 * @param imageUrl the imageUrl to set
-	 */
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
-	/**
-	 * @return the body
-	 */
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getBody() {
 		return body;
 	}
 
-	/**
-	 * @param body the body to set
-	 */
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
-	
+
 }

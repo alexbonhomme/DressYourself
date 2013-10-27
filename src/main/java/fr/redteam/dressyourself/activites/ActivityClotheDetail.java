@@ -92,14 +92,13 @@ public class ActivityClotheDetail extends FragmentActivity {
 		 */
 		
 		this.textViewBody.setText(MyClothes.getBody());
-		this.textViewLabel.setText(MyClothes.getLabel());
+		this.textViewLabel.setText(MyClothes.getModel());
 		this.textViewColor.setText(MyClothes.getColor());
-		this.textViewType.setText(MyClothes.getDescription());
 		
 		/*
 		 * List all weather information and contains with ';'
 		 */
-		List<String> TheWeather = MyClothes.getWeatherList();
+		List<String> TheWeather = MyClothes.getWeather();
 		String WeatherTxt="";
 		for (String weatherLine : TheWeather) {
 			WeatherTxt += weatherLine + " ";

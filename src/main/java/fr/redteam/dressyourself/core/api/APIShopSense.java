@@ -75,7 +75,7 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
       for (int i = 0; i < listClothesJSON.length(); i++) {
         Clothe clothe = new Clothe();
 
-        clothe.setLabel(listClothesJSON.getJSONObject(i).getString("name"));
+        clothe.setModel(listClothesJSON.getJSONObject(i).getString("name"));
         clothe.setImageUrl(listClothesJSON.getJSONObject(i).getJSONObject("image")
             .getJSONObject("size").getJSONObject("Iphone").getString("url"));
 

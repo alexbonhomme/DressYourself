@@ -5,6 +5,7 @@ import java.util.List;
 
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
+import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import main.java.fr.redteam.dressyourself.dummy.DummyContent;
 import android.app.Activity;
 import android.database.Cursor;
@@ -76,21 +77,11 @@ public class FragmentClotheList extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		DBHelper db = new DBHelper(this.getActivity());
-		db.open();
-		Cursor cursor = db.getBDD().query(false, "CLOTHES", new String[]{"nom_clothes"}, null, null, null, null, null, null);
-		List<String> listClothes = new ArrayList<String>();
-		
-		String newElement;
-		while(cursor.moveToNext()){
-		    newElement = cursor.getString(cursor.getColumnIndex("NAME"));
-		    listClothes.add(newElement);
-		}
-
-		setListAdapter(new ArrayAdapter<String>(getActivity(),
+		List<Clothe> listClothes = db.getListClothes();
+		setListAdapter(new ArrayAdapter<Clothe>(getActivity(),
 				R.layout.activity_clothe_list,
 				R.id.clothe_list, listClothes));
 		
-		db.close();
 	}
 
 	@Override

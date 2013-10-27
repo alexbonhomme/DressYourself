@@ -1,5 +1,6 @@
 package main.java.fr.redteam.dressyourself.core.clothes;
-import java.util.Set;
+
+import java.util.List;
 
 
 /**
@@ -8,7 +9,7 @@ import java.util.Set;
  * @generated
  */
 
-public class ClothesGeneration
+public class Outfit
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -17,23 +18,14 @@ public class ClothesGeneration
 	 * @ordered
 	 */
 	
-	public Set<Clothe> clothesList;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Set<Gadget> gadgetList;
+	public List<Clothe> clothesList;
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public ClothesGeneration(){
+	public Outfit(){
 		super();
 	}
 
