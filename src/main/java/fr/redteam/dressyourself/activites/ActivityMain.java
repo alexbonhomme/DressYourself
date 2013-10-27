@@ -6,6 +6,7 @@ import main.java.fr.redteam.dressyourself.common.DBHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,11 +23,14 @@ public class ActivityMain extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    // creation base de donnée
-    DBHelper db = new DBHelper(this);
+    // creation base de donnée et test
+   /* DBHelper db = new DBHelper(this);
 
-    db.open();
-    db.close();
+    db.open(); 
+    String t = Integer.toString(db.getIDColor("WHITE"));
+    
+    Log.v("BDD", t);
+    db.close();*/
 
     /* Open the page to add clothes */
     buttonAddClothing = (Button) findViewById(R.id.btAddClothing);
