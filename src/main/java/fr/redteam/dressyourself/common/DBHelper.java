@@ -74,13 +74,16 @@ public class DBHelper
 
 	public long insertClothes(Clothe clothe){
 		ContentValues values = new ContentValues();
-    values.put("ID_t", getIDType(clothe.getModel()));
+		values.put("model", clothe.getModel());
+		values.put("ID_t", getIDType(clothe.getType()));
 		values.put("ID_c", getIDColor(clothe.getColor()));
+		values.put("ID_br",getIDBrand(clothe.getBrand()));
+		
 		long r = bdd.insert("CLOTHES", null, values);
 		values= new ContentValues();
-    for(int i =0 ;i< clothe.getWeather().size();i++){
+		for(int i =0 ;i< clothe.getWeather().size();i++){
 			values.put("ID_c",r);
-      values.put("ID_w",getIDWeather(clothe.getWeather().get(i)));
+			values.put("ID_w",getIDWeather(clothe.getWeather().get(i)));
 			bdd.insert("WEATHER_CLOTHES", null, values);
 		}
 		return r;
@@ -125,7 +128,7 @@ public class DBHelper
 		return c.getInt(0);  }
 
 	public int getIDClothes(String clothes){
-		String query = "SELECT ID_clothes FROM clothes WHERE clothesName = \""+ clothes+"\"";
+		String query = "SELECT ID_clothes FROM CLOTHES WHERE clothesName = \""+ clothes+"\"";
 		Log.v("BDD", query);
 		Cursor c = bdd.rawQuery(query, null);
 		c.moveToFirst();
@@ -133,7 +136,14 @@ public class DBHelper
 		return c.getInt(0);  }
 
 	public int getIDOutfit(String outfit){
-		String query = "SELECT ID_outfit FROM COLOR WHERE outfitName = \""+ outfit+"\"";
+		String query = "SELECT ID_outfit FROM OUTFIT WHERE outfitName = \""+ outfit+"\"";
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getInt(0);  }
+	public int getIDBrand(String brand){
+		String query = "SELECT ID_brand FROM BRAND WHERE brandName = \""+ brand+"\"";
 		Log.v("BDD", query);
 		Cursor c = bdd.rawQuery(query, null);
 		c.moveToFirst();
@@ -141,20 +151,44 @@ public class DBHelper
 		return c.getInt(0);  }
 
 	public String getColor(int id){
-		return null;
-	}
+		String query = "SELECT colorName FROM BRAND WHERE ID_brand = "+ id;
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getString(0); 	}
 
 	public String getBodies (int id){
-		return null;
-	}
+		String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = "+ id;
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getString(0); 	}
 
 	public String getWeather(int id){
-		return null;
-	}
+		String query = "SELECT weatherName FROM WEATHER WHERE ID_weather = "+ id;
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getString(0); 		}
 
 	public String getType (int id){
-		return null;
-	}
+		String query = "SELECT typeName FROM TYPE WHERE ID_type = "+ id;
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getString(0); 		}
+	public String getBrand (int id){
+		String query = "SELECT brandName FROM BRAND WHERE ID_brand = "+ id;
+		Log.v("BDD", query);
+		Cursor c = bdd.rawQuery(query, null);
+		c.moveToFirst();
+
+		return c.getString(0); 		}
+
 
 	public Clothe getClothe (int id){
 		return null;
