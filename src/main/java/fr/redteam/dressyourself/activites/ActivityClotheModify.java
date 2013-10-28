@@ -19,24 +19,28 @@ import android.widget.Spinner;
 
 public class ActivityClotheModify extends Activity {
 
-  /* components */
 
+  /* the clothe to Edit */
   private Clothe clotheToEdit;
-  private ImageButton imageButtonImage;
-  private Spinner Spinnercolor;
-  private Spinner Spinnertype;
-  private Spinner Spinnerweather;
-  private EditText editTextDescription;
+
+  /* components */
+  private ImageButton image;
+  private EditText model;
+  private Spinner brands;
+  private Spinner colors;
+  private Spinner types;
+  private Spinner weathers;
+
 
   /**
    * init the attributes with their corresponding item in layout
    */
   public void getComponentsFromLayout() {
-    this.imageButtonImage = (ImageButton) findViewById(R.id.imageButton);
-    this.Spinnercolor = (Spinner) findViewById(R.id.colorSpinner);
-    this.Spinnertype = (Spinner) findViewById(R.id.typeSpinner);
-    this.Spinnerweather = (Spinner) findViewById(R.id.weatherSpinner);
-    this.editTextDescription = (EditText) findViewById(R.id.descritpionEdit);
+    this.image = (ImageButton) findViewById(R.id.imageButton);
+    this.model = (EditText) findViewById(R.id.modelEdit);
+    this.colors = (Spinner) findViewById(R.id.colorSpinner);
+    this.types = (Spinner) findViewById(R.id.typeSpinner);
+    this.weathers = (Spinner) findViewById(R.id.weatherSpinner);
   }
 
   /**

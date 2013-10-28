@@ -7,24 +7,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityClotheModify" >
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/jeans_slim" 
-        android:contentDescription="@string/photo"/>
-
+	
+    <TextView
+        android:id="@+id/model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_below="@+id/imageButton"
+        android:layout_marginTop="30dp"
+        android:text="@string/model_string" />
+    
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_below="@+id/model"
+        android:layout_marginTop="30dp"
+        android:text="@string/brand_string" />
+    
     <TextView
         android:id="@+id/color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/imageButton"
+        android:layout_below="@+id/brand"
         android:layout_marginTop="30dp"
         android:text="@string/color_string" />
     
@@ -45,56 +52,61 @@
         android:layout_below="@+id/type"
         android:layout_marginTop="30dp"
         android:text="@string/weather_string" />
-    
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/weather"
-        android:layout_marginTop="30dp"
-        android:text="@string/description" />
 
+    <EditText 
+        android:id="@+id/modelEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/weather"
+        android:layout_below="@+id/imageButton" 
+        android:layout_alignBottom="@+id/model"
+        android:hint="@string/modelHint" />
+        
+     <Spinner
+        android:id="@+id/brandSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/modelEdit"
+        android:layout_alignBottom="@+id/brand" />
+    
     <Spinner
         android:id="@+id/colorSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/description"
-        android:layout_below="@+id/imageButton" 
+        android:layout_alignLeft="@+id/modelEdit"
         android:layout_alignBottom="@+id/color" />
 
     <Spinner
         android:id="@+id/typeSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/colorSpinner"
+        android:layout_alignLeft="@+id/modelEdit"
         android:layout_alignBottom="@+id/type" />
     
     <Spinner
         android:id="@+id/weatherSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/colorSpinner"
+        android:layout_alignLeft="@+id/modelEdit"
         android:layout_alignBottom="@+id/weather" />
-
-    <EditText
-        android:id="@+id/descritpionEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/description"
-        android:layout_marginTop="15dp"
-        android:ems="20"
-        android:hint="@string/enter_description"
-        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/descritpionEdit"
+        android:layout_below="@+id/weatherSpinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/save" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
+        android:contentDescription="@string/photo"
+        android:src="@drawable/jeans_slim" />
 
 </RelativeLayout>
