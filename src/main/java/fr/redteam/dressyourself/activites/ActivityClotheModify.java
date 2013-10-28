@@ -38,6 +38,7 @@ public class ActivityClotheModify extends Activity {
   public void getComponentsFromLayout() {
     this.image = (ImageButton) findViewById(R.id.imageButton);
     this.model = (EditText) findViewById(R.id.modelEdit);
+    this.brands = (Spinner) findViewById(R.id.brandSpinner);
     this.colors = (Spinner) findViewById(R.id.colorSpinner);
     this.types = (Spinner) findViewById(R.id.typeSpinner);
     this.weathers = (Spinner) findViewById(R.id.weatherSpinner);
