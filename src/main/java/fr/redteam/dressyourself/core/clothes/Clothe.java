@@ -2,7 +2,6 @@ package main.java.fr.redteam.dressyourself.core.clothes;
 
 
 
-
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
@@ -62,13 +61,6 @@ public class Clothe {
    * @ordered
    */
 
-  private String body;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
   public Clothe() {
     super();
   }
@@ -115,14 +107,6 @@ public class Clothe {
 
   public void setType(String type) {
     this.type = type;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
   }
 
 }
