@@ -1,9 +1,6 @@
 package main.java.fr.redteam.dressyourself.activites;
 
-import java.util.ArrayList;
-
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.common.DBHelper;
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import android.app.Activity;
 import android.os.Bundle;
@@ -29,8 +26,6 @@ public class ActivityClotheModify extends Activity {
   private Spinner brands;
   private Spinner colors;
   private Spinner types;
-  private Spinner weathers;
-
 
   /**
    * init the attributes with their corresponding item in layout
@@ -41,26 +36,21 @@ public class ActivityClotheModify extends Activity {
     this.brands = (Spinner) findViewById(R.id.brandSpinner);
     this.colors = (Spinner) findViewById(R.id.colorSpinner);
     this.types = (Spinner) findViewById(R.id.typeSpinner);
-    this.weathers = (Spinner) findViewById(R.id.weatherSpinner);
+  }
+
+  /**
+   * Init the spinners with the values stored in database
+   */
+  public void initSpinnersWithData() {
+
   }
 
   /**
    * fill the editable fields with the caracteristics of the clothe in order to edit them
    */
-  private void initFieldsWithValues() {
-
-  }
-
-  /**
-   * @param clotheLabel the Label of the Clothe we need informations about
-   */
-  private ArrayList<String> retrieveClotheInformation(String clotheLabel) {
-    ArrayList<String> listClotheInformations = new ArrayList<String>();
-    DBHelper db = new DBHelper(this);
-
-
-    return listClotheInformations;
-
+  public void initFieldsWithValues(Clothe c) {
+    // mettre l'image this.image.setI
+    this.model.setText(this.clotheToEdit.getModel());
   }
 
   @Override

@@ -8,6 +8,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityClotheModify" >
 	
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/photo"
+        android:src="@drawable/jeans_slim" />
+    
     <TextView
         android:id="@+id/model"
         android:layout_width="wrap_content"
@@ -43,21 +53,12 @@
         android:layout_below="@+id/color"
         android:layout_marginTop="30dp"
         android:text="@string/type_string" />
-    
-    <TextView
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_below="@+id/type"
-        android:layout_marginTop="30dp"
-        android:text="@string/weather_string" />
 
     <EditText 
         android:id="@+id/modelEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/weather"
+        android:layout_toRightOf="@+id/model"
         android:layout_below="@+id/imageButton" 
         android:layout_alignBottom="@+id/model"
         android:hint="@string/modelHint" />
@@ -82,31 +83,15 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/modelEdit"
         android:layout_alignBottom="@+id/type" />
-    
-    <Spinner
-        android:id="@+id/weatherSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/modelEdit"
-        android:layout_alignBottom="@+id/weather" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weatherSpinner"
+        android:layout_below="@+id/typeSpinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/save" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
-        android:contentDescription="@string/photo"
-        android:src="@drawable/jeans_slim" />
+        android:text="@string/save"
+        android:textAlignment="center" />
 
 </RelativeLayout>
