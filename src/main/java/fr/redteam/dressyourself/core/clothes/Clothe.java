@@ -1,76 +1,25 @@
 package main.java.fr.redteam.dressyourself.core.clothes;
 
+import java.io.Serializable;
 import java.util.List;
 
 
+public class Clothe implements Serializable {
 
-/**
- * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
- * @generated
- */
-
-public class Clothe {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
+  final static long serialVersionUID = 1L;
 
   private String model;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-
   private String brand;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
 
   private String color;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-
   private String imageUrl;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
 
   private String type;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-
   private List<String> weather;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
 
   public Clothe() {
     super();
