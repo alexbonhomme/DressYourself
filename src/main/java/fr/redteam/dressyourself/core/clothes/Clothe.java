@@ -1,5 +1,7 @@
 package main.java.fr.redteam.dressyourself.core.clothes;
 
+import java.util.List;
+
 
 
 /**
@@ -61,6 +63,15 @@ public class Clothe {
    * @ordered
    */
 
+  private List<String> weather;
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+
   public Clothe() {
     super();
   }
@@ -107,6 +118,14 @@ public class Clothe {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  public List<String> getWeather() {
+    return weather;
+  }
+
+  public void setWeather(List<String> weather) {
+    this.weather = weather;
   }
 
 }
