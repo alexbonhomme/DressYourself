@@ -56,5 +56,9 @@
     <string name="label_list_clothes">See my closets</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_activity_debug">/!\\ Debug Zone /!\\</string>
+    <string name="title_activity_outfit_mail">OutfitMail</string>
+    <string name="Destinataire">Entrée(s) destinataires:</string>
+    <string name="Envoyer">Envoyer</string>
+    <string name="Saisie">Saisir texte :</string>
 
 </resources>
