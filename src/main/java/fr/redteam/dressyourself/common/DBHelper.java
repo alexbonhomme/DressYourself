@@ -3,6 +3,7 @@ package main.java.fr.redteam.dressyourself.common;
 import java.util.ArrayList;
 
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
+import main.java.fr.redteam.dressyourself.core.clothes.Outfit;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -291,6 +292,10 @@ public class DBHelper {
     int r =
         bdd.update("CLOTHES", values, "ID_clothes = ?", new String[] {String.valueOf(clotheID)});
     return r;
+  }
+  
+  public Outfit getOutfit(int id){
+	  return null;
   }
 
 }
