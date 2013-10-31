@@ -28,6 +28,15 @@ public class Outfit
 	public Outfit(){
 		super();
 	}
+	
+	/**
+	 * get the list of clothes
+	 * @return ClothesList
+	 */
+	public List<Clothe> getClothes()
+	{
+		return this.getClothes();
+	}
 
 }
 
