@@ -281,5 +281,15 @@ public class DBHelper {
     return types;
   }
 
+  public void updateClothe(Clothe clothe, int clotheID) {
+    ContentValues values = new ContentValues();
+    values.put("model", clothe.getModel());
+    values.put("ID_t", getIDType(clothe.getType()));
+    values.put("ID_c", getIDColor(clothe.getColor()));
+    values.put("ID_br", getIDBrand(clothe.getBrand()));
+
+    int r =
+        bdd.update("CLOTHES", values, "ID_clothes = ?", new String[] {String.valueOf(clotheID)});
+  }
 
 }
