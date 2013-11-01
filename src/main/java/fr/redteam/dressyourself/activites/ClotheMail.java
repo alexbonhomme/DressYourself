@@ -91,14 +91,14 @@ public class ClotheMail extends Activity {
 	 public void creationMail() 
     {
 		Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-		Clothe Vetement;
+		Clothe vetement;
 		/**
 		 * get the key of outfit which was passed in parameter.
 		 */
 		Bundle b = getIntent().getExtras();
 		int cleTenue = b.getInt("idClothe");
 
-		Vetement = new DBHelper(this).getClothe(cleTenue);
+		vetement = new DBHelper(this).getClothe(cleTenue);
 
 		/*Set the type of the mail*/
 		emailIntent.setType("image/png");
@@ -111,9 +111,9 @@ public class ClotheMail extends Activity {
 		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,"j'ai trouvé cette tenue et je pense qu'elle va te plaire.\n");
 		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,"Ma tenue contient les pieces suivantes.\n");
 		/* Made the body of mail */
-		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,"un(e) "+Vetement.getType()+
-		" de la marque "+Vetement.getBrand()+" et de couleur "+Vetement.getColor()+" "+Vetement.getModel()+".\n");
-		emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" +Vetement.getImageUrl()));		
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,"un(e) "+vetement.getType()+
+		" de la marque "+vetement.getBrand()+" et de couleur "+vetement.getColor()+" "+vetement.getModel()+".\n");
+		emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" +vetement.getImageUrl()));		
 			
 		startActivity(Intent.createChooser(emailIntent,"Choisissez un client mail"));
 		
