@@ -1,7 +1,9 @@
 package main.java.fr.redteam.dressyourself;
 
+import main.java.fr.redteam.dressyourself.activites.OutfitMail;
 import main.java.fr.redteam.dressyourself.core.api.APIShopSense;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,13 +14,28 @@ import android.widget.Button;
 public class ActivityDebug extends Activity {
 
   private Button debugAPI;
-
+  private Button sendMail; 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_debug);
 
     debugAPI = (Button) findViewById(R.id.buttonDebugAPI);
+    sendMail = (Button) findViewById(R.id.btnSendOutfitMail);
+    
+    sendMail.setOnClickListener(new OnClickListener()
+    {
+
+		@Override
+		public void onClick(View v) 
+		{
+			
+			Intent intent = new Intent(ActivityDebug.this,	OutfitMail.class);
+			intent.putExtra("idClothe", 1);
+			startActivity(intent);
+		}
+	});
+    
     debugAPI.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -26,6 +43,8 @@ public class ActivityDebug extends Activity {
         new APITesting().execute(new String());
       }
     });
+    
+    
   }
 
   @Override

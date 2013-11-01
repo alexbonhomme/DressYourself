@@ -61,5 +61,6 @@
     <string name="Envoyer">Envoyer</string>
     <string name="Saisie">Saisir texte :</string>
     <string name="sendOutfitByMail">Send outfit by mail</string>
+    <string name="GetDressed">Get all \'dresses\' from the API</string>
 
 </resources>

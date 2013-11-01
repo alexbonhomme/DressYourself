@@ -97,7 +97,7 @@ public class OutfitMail extends Activity {
 	 * get the key of outfit which was passed in parameter.
 	 */
 	Bundle b = getIntent().getExtras();
-	int cleTenue = b.getInt("key");
+	int cleTenue = b.getInt("idClothe");
 
 	Tenu = new DBHelper(this).getOutfit(cleTenue);
 
