@@ -63,5 +63,6 @@
     <string name="sendOutfitByMail">Send outfit by mail</string>
     <string name="GetDressed">Get all \'dresses\' from the API</string>
     <string name="title_activity_clothe_mail">ClotheMail</string>
+    <string name="sendClothMail">Send Cloth by mail</string>
 
 </resources>

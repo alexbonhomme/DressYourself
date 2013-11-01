@@ -18,8 +18,14 @@
 
     <Button
         android:id="@+id/btnSendOutfitMail"
-        android:layout_width="281dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:text="@string/sendOutfitByMail" />
+
+    <Button
+        android:id="@+id/btnClothMail"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sendClothMail" />
 
 </LinearLayout>
