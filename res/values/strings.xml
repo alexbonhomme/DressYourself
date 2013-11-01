@@ -60,5 +60,6 @@
     <string name="Destinataire">Entrée(s) destinataires:</string>
     <string name="Envoyer">Envoyer</string>
     <string name="Saisie">Saisir texte :</string>
+    <string name="sendOutfitByMail">Send outfit by mail</string>
 
 </resources>
