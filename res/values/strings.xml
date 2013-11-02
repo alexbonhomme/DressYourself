@@ -56,13 +56,13 @@
     <string name="label_list_clothes">See my closets</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_activity_debug">/!\\ Debug Zone /!\\</string>
-    <string name="title_activity_outfit_mail">OutfitMail</string>
+    <string name="title_activity_outfit_mail">Mail an outfit</string>
     <string name="Destinataire">Entrée(s) destinataires:</string>
     <string name="Envoyer">Envoyer</string>
     <string name="Saisie">Saisir texte :</string>
     <string name="sendOutfitByMail">Send outfit by mail</string>
     <string name="GetDressed">Get all \'dresses\' from the API</string>
-    <string name="title_activity_clothe_mail">ClotheMail</string>
+    <string name="title_activity_clothe_mail">Mail an clothe</string>
     <string name="sendClothMail">Send Cloth by mail</string>
 
 </resources>
