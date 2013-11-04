@@ -1,6 +1,6 @@
 package main.java.fr.redteam.dressyourself;
 
-import main.java.fr.redteam.dressyourself.activites.ClotheMail;
+import main.java.fr.redteam.dressyourself.activites.ActivityClotheMail;
 import main.java.fr.redteam.dressyourself.activites.ActivityOutfitMail;
 import main.java.fr.redteam.dressyourself.core.api.APIShopSense;
 import android.app.Activity;
@@ -48,7 +48,7 @@ public class ActivityDebug extends Activity {
 		public void onClick(View v) 
 		{
 			
-			Intent intent = new Intent(ActivityDebug.this,	ClotheMail.class);
+			Intent intent = new Intent(ActivityDebug.this,	ActivityClotheMail.class);
 			intent.putExtra("idClothe", 1);
 			startActivity(intent);
 		}

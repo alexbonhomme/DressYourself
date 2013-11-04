@@ -68,7 +68,7 @@
             android:label="@string/title_activity_outfit_mail" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activites.ClotheMail"
+            android:name="main.java.fr.redteam.dressyourself.activites.ActivityClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
         
