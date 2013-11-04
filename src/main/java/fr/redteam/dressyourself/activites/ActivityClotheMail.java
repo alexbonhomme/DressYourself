@@ -16,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ClotheMail extends Activity {
+public class ActivityClotheMail extends Activity {
 
 	private Button buttonEnvoyer;
     private EditText textDestinataire;
@@ -37,8 +37,8 @@ public class ClotheMail extends Activity {
 		    public void onClick(View v)
 		    {
 		    	// TODO redirected to the 'filters page'
-		    	ClotheMail.this.creationMail();
-		    	Intent intent = new Intent(ClotheMail.this, ActivityMain.class);
+		    	ActivityClotheMail.this.creationMail();
+		    	Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
 		    	startActivity(intent);
 		    }
 			});
