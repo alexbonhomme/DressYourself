@@ -8,6 +8,10 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
+    <instrumentation
+    android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="main.java.fr.redteam.dressyourself" />
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -67,6 +71,8 @@
             android:name="main.java.fr.redteam.dressyourself.activites.ClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
+        
+        <uses-library android:name="android.test.runner" />
     </application>
 
 </manifest>
