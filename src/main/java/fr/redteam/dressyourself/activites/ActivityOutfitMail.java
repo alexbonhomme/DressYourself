@@ -20,7 +20,7 @@ import android.widget.EditText;
  * This activity is made in order to share by mail
  * 
  */
-public class OutfitMail extends Activity {
+public class ActivityOutfitMail extends Activity {
 
     private Button buttonEnvoyer;
     private EditText textDestinataire;
@@ -40,8 +40,8 @@ public class OutfitMail extends Activity {
 
 	    public void onClick(View v) {
 		// TODO redirected to the 'filters page'
-		OutfitMail.this.creationMail();
-		Intent intent = new Intent(OutfitMail.this, ActivityMain.class);
+		ActivityOutfitMail.this.creationMail();
+		Intent intent = new Intent(ActivityOutfitMail.this, ActivityMain.class);
 		startActivity(intent);
 	    }
 	});
