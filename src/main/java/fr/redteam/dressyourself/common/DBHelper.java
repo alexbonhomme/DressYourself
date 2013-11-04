@@ -17,7 +17,7 @@ import android.util.Log;
  * @generated
  */
 
-public class DBHelper {
+public class DBHelper implements IntDBHelper{
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
