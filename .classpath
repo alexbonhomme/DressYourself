@@ -7,7 +7,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="tests"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" output="bin/classes" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>

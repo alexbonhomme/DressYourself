@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourselftest.activitesTest;
+package main.java.fr.redteam.dressyourself.activites;
 
 import junit.framework.TestCase;
 import main.java.fr.redteam.dressyourself.activites.ActivityMain;

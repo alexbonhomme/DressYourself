@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourselftest.activitesTest;
+package main.java.fr.redteam.dressyourself.activites;
 
 import main.java.fr.redteam.dressyourself.activites.ActivityOutfit;
 import android.test.ActivityInstrumentationTestCase2;
