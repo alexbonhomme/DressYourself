@@ -1,7 +1,7 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
 import junit.framework.TestCase;
-import main.java.fr.redteam.dressyourself.activites.ActivityMain;
+import main.java.fr.redteam.dressyourself.activities.ActivityMain;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ImageView;
 

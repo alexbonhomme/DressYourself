@@ -1,9 +1,9 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
 import java.util.List;
 
 import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.activites.ActivityClotheDetail;
+import main.java.fr.redteam.dressyourself.activities.ActivityClotheDetail;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
 import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import android.test.ActivityInstrumentationTestCase2;
