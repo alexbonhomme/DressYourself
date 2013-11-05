@@ -12,6 +12,11 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * 
+ * @author Alexandre Bonhomme
+ * 
+ */
 public class APIShopSense extends APIAbstractHelper implements APIInterface {
 
   private static final String API_BASE = "http://api.shopstyle.com/api/";

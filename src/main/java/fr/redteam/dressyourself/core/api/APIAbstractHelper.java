@@ -9,6 +9,11 @@ import java.net.URL;
 import main.java.fr.redteam.dressyourself.common.StreamTools;
 import android.util.Log;
 
+/**
+ * 
+ * @author Alexandre Bonhomme
+ * 
+ */
 abstract class APIAbstractHelper {
 
   /**
