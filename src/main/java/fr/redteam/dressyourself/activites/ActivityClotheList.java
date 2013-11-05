@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.activities;
+package main.java.fr.redteam.dressyourself.activites;
 
 import main.java.fr.redteam.dressyourself.R;
 import android.content.Intent;

@@ -1,7 +1,9 @@
-package main.java.fr.redteam.dressyourself;
+package main.java.fr.redteam.dressyourself.activites;
 
-import main.java.fr.redteam.dressyourself.activities.ActivityClotheMail;
-import main.java.fr.redteam.dressyourself.activities.ActivityOutfitMail;
+import main.java.fr.redteam.dressyourself.R;
+import main.java.fr.redteam.dressyourself.R.id;
+import main.java.fr.redteam.dressyourself.R.layout;
+import main.java.fr.redteam.dressyourself.R.menu;
 import main.java.fr.redteam.dressyourself.core.api.APIShopSense;
 import android.app.Activity;
 import android.content.Intent;

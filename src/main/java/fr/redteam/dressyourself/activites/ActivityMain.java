@@ -1,6 +1,5 @@
-package main.java.fr.redteam.dressyourself.activities;
+package main.java.fr.redteam.dressyourself.activites;
 
-import main.java.fr.redteam.dressyourself.ActivityDebug;
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.common.DBHelper;
 import android.app.Activity;
@@ -56,7 +55,7 @@ public class ActivityMain extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(ActivityMain.this,ActivityClotheList.class);
+				Intent intent = new Intent(ActivityMain.this, ActivityClotheList.class);
 				startActivity(intent);
 			}
 		});
