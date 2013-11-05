@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
 import main.java.fr.redteam.dressyourself.R;
 import main.java.fr.redteam.dressyourself.R.id;

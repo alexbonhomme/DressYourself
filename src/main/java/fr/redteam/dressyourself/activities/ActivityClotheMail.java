@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
 import java.util.ArrayList;
 import java.util.List;

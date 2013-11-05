@@ -1,6 +1,6 @@
-package main.java.fr.redteam.dressyourself.activites;
+package main.java.fr.redteam.dressyourself.activities;
 
-import main.java.fr.redteam.dressyourself.activites.ActivityOutfit;
+import main.java.fr.redteam.dressyourself.activities.ActivityOutfit;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.widget.Button;
