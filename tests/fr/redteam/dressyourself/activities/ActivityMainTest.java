@@ -1,12 +1,9 @@
 package fr.redteam.dressyourself.activities;
 
-import org.junit.Ignore;
-
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
 
-@Ignore
 public class ActivityMainTest extends ActivityInstrumentationTestCase2<ActivityMain> {
 
   private ActivityMain mActivity;
