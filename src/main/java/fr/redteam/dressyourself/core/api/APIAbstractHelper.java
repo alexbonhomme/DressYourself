@@ -19,9 +19,9 @@ abstract class APIAbstractHelper {
   /**
    * 
    * @param url
-   * @return a JSON formated string
+   * @return the content of the page `url`
    */
-  protected String getJSONContent(URL url) {
+  protected String getContent(URL url) {
     String content = "";
     HttpURLConnection urlConnection = null;
     try {

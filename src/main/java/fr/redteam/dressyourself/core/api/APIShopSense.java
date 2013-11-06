@@ -59,7 +59,7 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
         new URL(API_BASE + "products?" + "pid=" + API_PID + "&format=" + API_FORMAT + "&cat="
             + category);
 
-    String contentJSON = getJSONContent(url);
+    String contentJSON = getContent(url);
 
     return new JSONObject(contentJSON);
 
@@ -74,7 +74,7 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
           new URL(API_BASE + "products?" + "pid=" + API_PID + "&format=" + API_FORMAT + "&cat="
               + category);
 
-      String content = getJSONContent(url);
+      String content = getContent(url);
       JSONArray listClothesJSON = new JSONObject(content).getJSONArray("produts");
 
       for (int i = 0; i < listClothesJSON.length(); i++) {
