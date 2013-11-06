@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/clothe_list"
-        android:name="main.java.fr.redteam.dressyourself.activities.FragmentClotheList"
+        android:name="fr.redteam.dressyourself.activities.FragmentClotheList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
