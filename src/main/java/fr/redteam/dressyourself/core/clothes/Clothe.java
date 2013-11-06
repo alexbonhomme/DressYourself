@@ -7,6 +7,8 @@ import java.util.List;
 public class Clothe implements Serializable {
 
   final static long serialVersionUID = 1L;
+  
+  private int id;
 
   private String model;
 
@@ -17,6 +19,8 @@ public class Clothe implements Serializable {
   private String imageUrl;
 
   private String type;
+  
+  private String bodies;
 
   private List<String> weather;
 
@@ -29,10 +33,18 @@ public class Clothe implements Serializable {
     this.model = model;
   }
 
+  public int getId() {
+		return id;
+  }
+
   public String getModel() {
     return model;
   }
 
+  public void setId(int id) {
+		this.id = id;
+  }
+  
   public void setModel(String model) {
     this.model = model;
   }
@@ -67,6 +79,16 @@ public class Clothe implements Serializable {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  
+  public String getBodies() {
+	return bodies;
+  }
+
+
+  public void setBodies(String bodies) {
+	this.bodies = bodies;
   }
 
   public List<String> getWeather() {
