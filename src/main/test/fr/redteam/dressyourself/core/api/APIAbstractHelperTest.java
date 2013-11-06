@@ -1,9 +1,11 @@
-package main.java.fr.redteam.dressyourself.core.api;
+package main.test.fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import main.java.fr.redteam.dressyourself.core.api.APIAbstractHelper;
 
 import org.junit.Test;
 
