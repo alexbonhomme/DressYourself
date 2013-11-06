@@ -14,14 +14,14 @@ import android.util.Log;
  * @author Alexandre Bonhomme
  * 
  */
-abstract class APIAbstractHelper {
+public abstract class APIAbstractHelper {
 
   /**
    * 
    * @param url
    * @return the content of the page `url`
    */
-  protected String getContent(URL url) {
+  public String getContent(URL url) {
     String content = "";
     HttpURLConnection urlConnection = null;
     try {
