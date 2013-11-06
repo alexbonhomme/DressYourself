@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.common;
+package fr.redteam.dressyourself.common;
 
 import java.io.BufferedReader;
 import java.io.IOException;

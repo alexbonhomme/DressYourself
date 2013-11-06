@@ -1,16 +1,15 @@
-package main.java.fr.redteam.dressyourself.core.api;
+package fr.redteam.dressyourself.core.api;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
  * 

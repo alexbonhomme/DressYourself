@@ -1,95 +1,90 @@
-package main.java.fr.redteam.dressyourself.activities;
+package fr.redteam.dressyourself.activities;
 
-import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.common.DBHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import fr.redteam.dressyourself.R;
 
 public class ActivityMain extends Activity {
 
-	private Button buttonAddClothing;
-	private Button buttonListClothes;
-	private Button buttonFilters;
+  private Button buttonAddClothing;
+  private Button buttonListClothes;
+  private Button buttonFilters;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     // creation base de donnée et test
-   /* DBHelper db = new DBHelper(this);
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		// creation base de donnée
-		DBHelper db = new DBHelper(this);
->>>>>>> branch 'master' of https://tbuisine@bitbucket.org/blckshrk/dressyourself.git
+    /*
+     * DBHelper db = new DBHelper(this);
+     * 
+     * @Override protected void onCreate(Bundle savedInstanceState) {
+     * super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); // creation base
+     * de donnée DBHelper db = new DBHelper(this); >>>>>>> branch 'master' of
+     * https://tbuisine@bitbucket.org/blckshrk/dressyourself.git
+     * 
+     * <<<<<<< HEAD db.open(); String t = Integer.toString(db.getIDColor("WHITE"));
+     * 
+     * Log.v("BDD", t); db.close();
+     */
 
-<<<<<<< HEAD
-    db.open(); 
-    String t = Integer.toString(db.getIDColor("WHITE"));
-    
-    Log.v("BDD", t);
-    db.close();*/
+    /* Open the page to add clothes */
+    buttonAddClothing = (Button) findViewById(R.id.btAddClothing);
+    buttonAddClothing.setOnClickListener(new OnClickListener() {
 
-		/* Open the page to add clothes */
-		buttonAddClothing = (Button) findViewById(R.id.btAddClothing);
-		buttonAddClothing.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivityClotheAdd.class);
+        startActivity(intent);
+      }
+    });
 
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ActivityMain.this, ActivityClotheAdd.class);
-				startActivity(intent);
-			}
-		});
+    buttonListClothes = (Button) findViewById(R.id.btListClothes);
+    buttonListClothes.setOnClickListener(new OnClickListener() {
 
-		buttonListClothes = (Button) findViewById(R.id.btListClothes);
-		buttonListClothes.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivityClotheList.class);
+        startActivity(intent);
+      }
+    });
 
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ActivityMain.this, ActivityClotheList.class);
-				startActivity(intent);
-			}
-		});
+    buttonFilters = (Button) findViewById(R.id.btFilters);
+    buttonFilters.setOnClickListener(new OnClickListener() {
 
-		buttonFilters = (Button) findViewById(R.id.btFilters);
-		buttonFilters.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ActivityMain.this, ActivityFilter.class);
-				startActivity(intent);
-			}
-		});
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivityFilter.class);
+        startActivity(intent);
+      }
+    });
 
 
-		/* Hard tricks */
-		/* Debbug zone */
-		ImageView logoMain = (ImageView) findViewById(R.id.imgLogoMain);
-		logoMain.setOnClickListener(new OnClickListener() {
+    /* Hard tricks */
+    /* Debbug zone */
+    ImageView logoMain = (ImageView) findViewById(R.id.imgLogoMain);
+    logoMain.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ActivityMain.this, ActivityDebug.class);
-				startActivity(intent);
-			}
-		});
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivityDebug.class);
+        startActivity(intent);
+      }
+    });
 
-	}
+  }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+  }
 
 }

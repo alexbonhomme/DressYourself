@@ -2,11 +2,12 @@ package main.java.fr.redteam.dressyourself.activities;
 
 import java.util.List;
 
-import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.common.DBHelper;
-import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.activities.ActivityClotheDetail;
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class ActivityClotheDetailTest
     extends ActivityInstrumentationTestCase2<ActivityClotheDetail> {

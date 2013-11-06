@@ -1,10 +1,7 @@
-package main.java.fr.redteam.dressyourself.activities;
+package fr.redteam.dressyourself.activities;
 
 import java.util.ArrayList;
 
-import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.common.DBHelper;
-import main.java.fr.redteam.dressyourself.core.clothes.Clothe;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
  * 

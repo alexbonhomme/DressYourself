@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.core;
+package fr.redteam.dressyourself.core;
 
 
 /**

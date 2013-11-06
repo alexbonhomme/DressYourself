@@ -1,17 +1,16 @@
-package main.java.fr.redteam.dressyourself.activities;
+package fr.redteam.dressyourself.activities;
 
 import java.util.ArrayList;
 
-import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.common.DBHelper;
-import main.java.fr.redteam.dressyourself.core.clothes.*;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class ActivityOutfit extends Activity {
 
@@ -21,8 +20,9 @@ public class ActivityOutfit extends Activity {
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
-  private DBHelper db = new DBHelper(this);
+  private final DBHelper db = new DBHelper(this);
 
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.outfit_layout);
@@ -56,6 +56,7 @@ public class ActivityOutfit extends Activity {
 
     buttonRefreshTop = (Button) findViewById(R.id.top_refresh_button);
     buttonRefreshTop.setOnClickListener(new OnClickListener() {
+      @Override
       public void onClick(View v) {
         refreshTop();
       }
@@ -64,6 +65,7 @@ public class ActivityOutfit extends Activity {
     buttonRefreshBottom = (Button) findViewById(R.id.bottom_refresh_button);
     buttonRefreshBottom.setOnClickListener(new OnClickListener() {
 
+      @Override
       public void onClick(View v) {
         refreshBottom();
       }
@@ -72,6 +74,7 @@ public class ActivityOutfit extends Activity {
     buttonRefreshFeet = (Button) findViewById(R.id.feet_refresh_button);
     buttonRefreshFeet.setOnClickListener(new OnClickListener() {
 
+      @Override
       public void onClick(View v) {
         refreshFeet();
       }

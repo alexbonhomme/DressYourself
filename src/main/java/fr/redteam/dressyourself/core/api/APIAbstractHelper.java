@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.core.api;
+package fr.redteam.dressyourself.core.api;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import main.java.fr.redteam.dressyourself.common.StreamTools;
 import android.util.Log;
+import fr.redteam.dressyourself.common.StreamTools;
 
 /**
  * 

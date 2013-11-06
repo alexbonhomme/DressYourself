@@ -5,4 +5,4 @@
  * @author Alexandre Bonhomme
  * 
  */
-package test.java.fr.redteam.dressyourself;
+package fr.redteam.dressyourself;

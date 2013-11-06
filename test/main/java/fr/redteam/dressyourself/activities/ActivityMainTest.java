@@ -1,8 +1,9 @@
 package main.java.fr.redteam.dressyourself.activities;
 
-import main.java.fr.redteam.dressyourself.activities.ActivityMain;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ImageView;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.activities.ActivityMain;
 
 public class ActivityMainTest extends ActivityInstrumentationTestCase2<ActivityMain> {
 
@@ -25,7 +26,7 @@ public class ActivityMainTest extends ActivityInstrumentationTestCase2<ActivityM
     mActivity = getActivity();
     // Recup. du logo par exemple
     imgView =
-        (ImageView) mActivity.findViewById(main.java.fr.redteam.dressyourself.R.id.imgLogoMain);
+ (ImageView) mActivity.findViewById(R.id.imgLogoMain);
 
   }
 

@@ -1,10 +1,5 @@
-package main.java.fr.redteam.dressyourself.activities;
+package fr.redteam.dressyourself.activities;
 
-import main.java.fr.redteam.dressyourself.R;
-import main.java.fr.redteam.dressyourself.R.id;
-import main.java.fr.redteam.dressyourself.R.layout;
-import main.java.fr.redteam.dressyourself.R.menu;
-import main.java.fr.redteam.dressyourself.core.api.APIShopSense;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,13 +8,15 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.core.api.APIShopSense;
 
 public class ActivityDebug extends Activity {
 
   private Button debugAPI;
   private Button sendMailOutfit;
   private Button sendMailClothe;
-  
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -27,36 +24,32 @@ public class ActivityDebug extends Activity {
 
     debugAPI = (Button) findViewById(R.id.buttonDebugAPI);
     sendMailOutfit = (Button) findViewById(R.id.btnSendOutfitMail);
-    sendMailClothe = (Button)  findViewById(R.id.btnEnvoieMailClothe);
-    
-    
-    sendMailOutfit.setOnClickListener(new OnClickListener()
-    {
+    sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
 
-		@Override
-		public void onClick(View v) 
-		{
-			
-			Intent intent = new Intent(ActivityDebug.this,	ActivityOutfitMail.class);
-			intent.putExtra("idClothe", 1);
-			startActivity(intent);
-		}
-	});
-    
-    sendMailClothe.setOnClickListener(new OnClickListener()
-    {
 
-		@Override
-		public void onClick(View v) 
-		{
-			
-			Intent intent = new Intent(ActivityDebug.this,	ActivityClotheMail.class);
-			intent.putExtra("idClothe", 1);
-			startActivity(intent);
-		}
-	});
-    
-    
+    sendMailOutfit.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
+        intent.putExtra("idClothe", 1);
+        startActivity(intent);
+      }
+    });
+
+    sendMailClothe.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        intent.putExtra("idClothe", 1);
+        startActivity(intent);
+      }
+    });
+
+
     debugAPI.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -64,8 +57,8 @@ public class ActivityDebug extends Activity {
         new APITesting().execute(new String());
       }
     });
-    
-    
+
+
   }
 
   @Override

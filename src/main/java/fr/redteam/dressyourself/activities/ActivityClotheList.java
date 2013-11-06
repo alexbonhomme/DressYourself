@@ -1,9 +1,9 @@
-package main.java.fr.redteam.dressyourself.activities;
+package fr.redteam.dressyourself.activities;
 
-import main.java.fr.redteam.dressyourself.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import fr.redteam.dressyourself.R;
 
 /**
  * An activity representing a list of Clothes. This activity has different

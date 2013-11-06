@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.core.clothes;
+package fr.redteam.dressyourself.core.clothes;
 
 import java.io.Serializable;
 import java.util.List;

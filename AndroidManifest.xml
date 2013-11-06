@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="main.java.fr.redteam.dressyourself"
+    package="fr.redteam.dressyourself"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,7 +10,7 @@
 
     <instrumentation
     android:name="android.test.InstrumentationTestRunner"
-    android:targetPackage="main.java.fr.redteam.dressyourself" />
+    android:targetPackage="fr.redteam.dressyourself" />
     
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityMain"
+            android:name="fr.redteam.dressyourself.activities.ActivityMain"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,41 +34,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityOutfit"
+            android:name="fr.redteam.dressyourself.activities.ActivityOutfit"
             android:label="@string/generate" />
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityClotheAdd"
+            android:name="fr.redteam.dressyourself.activities.ActivityClotheAdd"
             android:label="@string/title_add_clothing" />
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityClotheList"
+            android:name="fr.redteam.dressyourself.activities.ActivityClotheList"
             android:label="@string/title_clothe_list" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityClotheModify"
+            android:name="fr.redteam.dressyourself.activities.ActivityClotheModify"
             android:label="@string/title_modify_clothe" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityClotheDetail"
+            android:name="fr.redteam.dressyourself.activities.ActivityClotheDetail"
             android:label="@string/title_clothe_detail"
-            android:parentActivityName="main.java.fr.redteam.dressyourself.activities.ActivityClotheList" >
+            android:parentActivityName="fr.redteam.dressyourself.activities.ActivityClotheList" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ClotheListActivity" />
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityFilter"
+            android:name="fr.redteam.dressyourself.activities.ActivityFilter"
             android:label="@string/title_activity_filter" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityDebug"
+            android:name="fr.redteam.dressyourself.activities.ActivityDebug"
             android:label="@string/title_activity_activity_debug" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityOutfitMail"
+            android:name="fr.redteam.dressyourself.activities.ActivityOutfitMail"
             android:label="@string/title_activity_outfit_mail" >
         </activity>
         <activity
-            android:name="main.java.fr.redteam.dressyourself.activities.ActivityClotheMail"
+            android:name="fr.redteam.dressyourself.activities.ActivityClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
         

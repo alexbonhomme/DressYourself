@@ -1,4 +1,4 @@
-package main.java.fr.redteam.dressyourself.dummy;
+package fr.redteam.dressyourself.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
