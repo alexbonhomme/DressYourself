@@ -33,7 +33,7 @@ public class DBHelper implements IntDBHelper{
   }
 
 
-  public void open() {
+  public void open(){
     // on ouvre la BDD en écriture
     bdd = mbdd.getWritableDatabase();
   }
@@ -199,12 +199,31 @@ public class DBHelper implements IntDBHelper{
     c.moveToFirst();
 
     return c.getString(0);
-  }
+  
+ }
 
 
   public Clothe getClothe(int id) {
-    return null;
-  }
+	  String query ="SELECT CLOTHES.id, CLOTHES.model, TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
+	  Cursor cursor = bdd.rawQuery(query, null);
+	  Clothe clothe = new Clothe();
+	  cursor.moveToFirst();
+	  ArrayList<String> weather = new ArrayList<String>();
+	  clothe.setId(cursor.getInt(0));
+	  clothe.setModel(cursor.getString(1));;
+	  clothe.setType(cursor.getString(2));
+	  clothe.setBodies(cursor.getString(3));
+	  clothe.setBrand(cursor.getString(4));
+	  weather.add(cursor.getString(5));
+	  clothe.setType(cursor.getString(6));
+	  while(cursor.moveToNext()){
+		  weather.add(cursor.getString(5));
+	  }
+	  clothe.setWeather(weather);
+	  return clothe;
+	  }
+	  
+
 
   public ArrayList<Clothe> getListTop() {
     String query =
