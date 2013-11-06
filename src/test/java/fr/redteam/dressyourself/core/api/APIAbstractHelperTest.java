@@ -1,7 +1,5 @@
 package fr.redteam.dressyourself.core.api;
 
-import static org.junit.Assert.assertEquals;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -22,6 +20,5 @@ public class APIAbstractHelperTest {
     String content = api.getContent(url);
 
     // assertEquals("{\"key\": \"value\"}", content);
-    assertEquals(true, true);
   }
 }
