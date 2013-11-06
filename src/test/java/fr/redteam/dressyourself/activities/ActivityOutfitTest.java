@@ -1,13 +1,15 @@
 package fr.redteam.dressyourself.activities;
 
+import org.junit.Ignore;
+
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.activities.ActivityOutfit;
 
+@Ignore
 public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<ActivityOutfit> {
 
   private ActivityOutfit mActivity;
