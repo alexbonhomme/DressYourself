@@ -1,4 +1,4 @@
-package main.test.fr.redteam.dressyourself.core.api;
+package test.java.fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
 
