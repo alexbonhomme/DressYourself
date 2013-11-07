@@ -45,19 +45,14 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   private static final String TABLE_BRAND = CREATE_TABLE_IFE + " BRAND" + "( ID_brand"
       + PRIMARY_INTEGER_KEY + "," + "brandName TEXT" + ")";
 
-  private static final String CREATE_BDD = TABLE_COLOR + "," + TABLE_WEATHER + "," + TABLE_TYPE
-      + "," + TABLE_CLOTHES + "," + TABLE_OUTFIT + "," + TABLE_OUTFIT_CLOTHES + ","
-      + TABLE_WEATHER_CLOTHES + ";";
 
 
   public CreateSQLBase(Context context, String name, CursorFactory factory, int version) {
     super(context, name, factory, version);
-    // TODO Auto-generated constructor stub
   }
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-    // TODO Auto-generated method stub
     // on créé la table à partir de la requête écrite dans la variable CREATE_BDD
     // Log.v("CreateSQLBase", "creation");
     db.execSQL(TABLE_COLOR);
@@ -120,7 +115,6 @@ public class CreateSQLBase extends SQLiteOpenHelper {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    // TODO Auto-generated method stub
     db.execSQL(TABLE_COLOR);
     db.execSQL(TABLE_WEATHER);
     db.execSQL(TABLE_TYPE);
