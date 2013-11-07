@@ -42,17 +42,14 @@ public class ActivityOutfit extends Activity {
     // recup top
     ArrayList<Clothe> listTop = new ArrayList<Clothe>();
     listTop = db.getListTop();
-    System.out.println(listTop);
 
     // recup bottom
     ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
     listBottom = db.getListBottom();
-    System.out.println(listBottom);
 
     // recup bottom
     ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
     listFeet = db.getListFeet();
-    System.out.println(listFeet);
 
     // vetements statique TODO: récupérer en bdd
     Clothe clothe = new Clothe("Pull beige");
