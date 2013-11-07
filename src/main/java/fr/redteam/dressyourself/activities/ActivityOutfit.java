@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.plugins.weather.Weather;
 
 public class ActivityOutfit extends Activity {
 
@@ -29,6 +31,10 @@ public class ActivityOutfit extends Activity {
     textViewTop = (TextView) findViewById(R.id.top_text);
     textViewBottom = (TextView) findViewById(R.id.bottom_text);
     textViewFeet = (TextView) findViewById(R.id.feet_text);
+    
+    if (Weather.getWeather() != null) {
+      Log.d("weather", Weather.getWeather());
+    }
 
     // connexion bdd
     db.open();
