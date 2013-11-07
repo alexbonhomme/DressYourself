@@ -102,7 +102,7 @@ public class ActivityClotheMail extends Activity {
     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "un(e) " + vetement.getType()
         + " de la marque " + vetement.getBrand() + " et de couleur " + vetement.getColor() + " "
         + vetement.getModel() + ".\n");
-    emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + vetement.getImageUrl()));
+    emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + vetement.getImage()));
 
     startActivity(Intent.createChooser(emailIntent, "Choisissez un client mail"));
 

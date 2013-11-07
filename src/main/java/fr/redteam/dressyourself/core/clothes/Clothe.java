@@ -1,5 +1,6 @@
 package fr.redteam.dressyourself.core.clothes;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Clothe implements Serializable {
 
   private String color;
 
-  private String imageUrl;
+  private File image;
 
   private String type;
   
@@ -65,12 +66,12 @@ public class Clothe implements Serializable {
     this.color = color;
   }
 
-  public String getImageUrl() {
-    return imageUrl;
+  public File getImage() {
+    return image;
   }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public void setImage(File imageUrl) {
+    this.image = imageUrl;
   }
 
   public String getType() {
