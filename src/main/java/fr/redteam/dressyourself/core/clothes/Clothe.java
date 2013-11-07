@@ -70,8 +70,8 @@ public class Clothe implements Serializable {
     return image;
   }
 
-  public void setImageUrl(File image) {
-    this.image = image;
+  public void setImage(File imageUrl) {
+    this.image = imageUrl;
   }
 
   public String getType() {
