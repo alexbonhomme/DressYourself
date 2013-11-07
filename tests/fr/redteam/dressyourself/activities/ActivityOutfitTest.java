@@ -73,20 +73,20 @@ public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<Activit
   public void testButtonRefreshTop() {
     String oldTextTop = (String) textViewTop.getText();
     this.buttonRefreshTop.performClick();
-    assertTrue(textViewTop.getText() != oldTextTop);
+    assertFalse(textViewTop.getText().equals(oldTextTop));
   }
 
   @UiThreadTest
   public void testButtonRefreshBottom() {
     String oldTextBottom = (String) textViewBottom.getText();
     this.buttonRefreshBottom.performClick();
-    assertTrue(textViewBottom.getText() != oldTextBottom);
+    assertFalse(textViewBottom.getText().equals(oldTextBottom));
   }
 
   @UiThreadTest
   public void testButtonRefreshFeet() {
     String oldTextFeet = (String) textViewFeet.getText();
     this.buttonRefreshFeet.performClick();
-    assertTrue(textViewFeet.getText() != oldTextFeet);
+    assertFalse(textViewFeet.getText().equals(oldTextFeet));
   }
 }
