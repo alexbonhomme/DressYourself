@@ -6,21 +6,27 @@ import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.matchers.InstanceOf;
 import org.objenesis.instantiator.basic.NewInstanceInstantiator;
 
+import fr.redteam.dressyourself.activities.ActivityOutfit;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.test.AndroidTestCase;
+import android.test.mock.MockContext;
 
-public class DBHelperTest {
-  Context context;
+public class DBHelperTest extends AndroidTestCase  {
   DBHelper db;
+  
+  Context context;
+ 
+  
   @Before
   public void setUp() throws Exception {
-    MockitoAnnotations.initMocks(this);
-    context = Mockito.mock(Context.class);
+    context = new MockContext();
     db = new DBHelper(context, null);
     db.open();
   }
@@ -31,15 +37,12 @@ public class DBHelperTest {
     db.close();
   }
 
-  @Test
-  public void testGetBDD() {
-    SQLiteDatabase bdd  = db.getBDD();
-    assertTrue(bdd instanceof SQLiteDatabase);
-  }
-
+  
   @Test
   public void testInsertColor() {
     db.insertColor("Mauve");
+    int c = db.getIDColor("Mauve");
+   assert c!=0;
     
   }
 
