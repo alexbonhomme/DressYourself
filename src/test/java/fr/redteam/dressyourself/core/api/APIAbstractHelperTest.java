@@ -1,5 +1,7 @@
 package fr.redteam.dressyourself.core.api;
 
+import static org.junit.Assert.assertEquals;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -16,9 +18,9 @@ public class APIAbstractHelperTest {
   public void testGetContent() throws MalformedURLException {
     APIAbstractHelper api = new APIAbstractHelper() {};
 
-    URL url = new URL("http://echo.jsontest.com/key/value");
+    URL url = new URL("http://www.blacko-product.ovh.org/");
     String content = api.getContent(url);
 
-    // assertEquals("{\"key\": \"value\"}", content);
+    assertEquals("Hello world !", content);
   }
 }
