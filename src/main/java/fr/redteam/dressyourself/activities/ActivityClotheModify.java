@@ -73,9 +73,6 @@ public class ActivityClotheModify extends Activity {
         clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
         // !!!!!!!!!! Image à ajouter !!!!!!!!!!!
 
-        // open BDD
-        bdd = new DBHelper(ActivityClotheModify.this);
-        bdd.open();
         // update in DB
         Toast toast;
         if (bdd.updateClothe(clotheToEdit) == 1) {
@@ -153,6 +150,9 @@ public class ActivityClotheModify extends Activity {
         throw new RuntimeException(new Exception("Error while retrieving information from intent"));
       }
     }
+    // open BDD
+    bdd = new DBHelper(ActivityClotheModify.this);
+    bdd.open();
     // init the components of the page
     this.initComponents();
   }
