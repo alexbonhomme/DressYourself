@@ -86,7 +86,9 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     insertWeather(db, "CLOUNY");
     insertWeather(db, "RAINY");
     insertWeather(db, "SNOWNY");
-
+    insertType(db, "pull", 1);
+    insertType(db, "pantalon", 2);
+    insertType(db, "T-shirt", 1);
   }
 
   public long insertColor(SQLiteDatabase db, String couleur) {

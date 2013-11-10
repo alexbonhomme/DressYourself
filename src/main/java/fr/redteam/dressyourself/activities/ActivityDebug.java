@@ -10,12 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.api.APIShopSense;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class ActivityDebug extends Activity {
 
   private Button debugAPI;
   private Button sendMailOutfit;
   private Button sendMailClothe;
+  private Button modifyClothe;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class ActivityDebug extends Activity {
     debugAPI = (Button) findViewById(R.id.buttonDebugAPI);
     sendMailOutfit = (Button) findViewById(R.id.btnSendOutfitMail);
     sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
-
+    this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
 
     sendMailOutfit.setOnClickListener(new OnClickListener() {
 
@@ -38,16 +40,17 @@ public class ActivityDebug extends Activity {
       }
     });
 
-    sendMailClothe.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-
-        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
-        intent.putExtra("idClothe", 1);
-        startActivity(intent);
-      }
-    });
+    // NullPointerException
+    // sendMailClothe.setOnClickListener(new OnClickListener() {
+    //
+    // @Override
+    // public void onClick(View v) {
+    //
+    // Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+    // intent.putExtra("idClothe", 1);
+    // startActivity(intent);
+    // }
+    // });
 
 
     debugAPI.setOnClickListener(new OnClickListener() {
@@ -59,6 +62,20 @@ public class ActivityDebug extends Activity {
     });
 
 
+    this.modifyClothe.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        // TODO Auto-generated method stub
+        Clothe clothe = new Clothe("Adrien's clothe");
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheModify.class);
+        intent.putExtra("clothe", clothe);
+        startActivity(intent);
+      }
+    });
   }
 
   @Override
