@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +29,7 @@ public class ActivityClotheModify extends Activity {
 
   /* the clothe to Edit */
   private Clothe clotheToEdit;
-  /* the id in bdd of the clothe to edit (needed for Update the bdd after modifications) */
-  private int clotheID;
+
   /* components */
   private ImageButton image;
   private EditText modelEditText;
@@ -75,19 +75,23 @@ public class ActivityClotheModify extends Activity {
 
         // update in DB
         Toast toast;
-        if (bdd.updateClothe(clotheToEdit, clotheID) == 1) {
+        if (bdd.updateClothe(clotheToEdit) == 1) {
           toast =
-              Toast.makeText(getApplicationContext(), "Modifications have been saved !",
+              Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !",
                   Toast.LENGTH_SHORT);
         } else {
           toast =
-              Toast.makeText(getApplicationContext(),
+              Toast.makeText(ActivityClotheModify.this,
                   "An error occured while saving modifications", Toast.LENGTH_SHORT);
         }
+        // DEBUG display clothe informations
+        Log.d("Clothe After Modification ", clotheToEdit.getModel() + " " + clotheToEdit.getBrand()
+            + " " + clotheToEdit.getColor() + " " + clotheToEdit.getType());
         // print message
         toast.show();
         // close DB
         bdd.close();
+        finish();
       }
     });
 
@@ -104,7 +108,7 @@ public class ActivityClotheModify extends Activity {
 
     /* create colorSpinnerAdapter and initialising the corresponding spinner with */
     ArrayAdapter<String> colorAdapter =
-        new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,
+        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
             colors);
     colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.colorSpinner.setAdapter(colorAdapter);
@@ -113,7 +117,7 @@ public class ActivityClotheModify extends Activity {
 
     /* create typeSpinnerAdapter and initialising the corresponding spinner with */
     ArrayAdapter<String> typeAdapter =
-        new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,
+        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
             types);
     typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.typeSpinner.setAdapter(typeAdapter);
@@ -126,8 +130,8 @@ public class ActivityClotheModify extends Activity {
    */
   public void initFieldsWithValues() {
     // !!!!!!!!!! Image à ajouter !!!!!!!!!!!
-    this.modelEditText.setText(this.clotheToEdit.getModel());
-    this.brandEditText.setText(this.clotheToEdit.getBrand());
+    this.modelEditText.append(this.clotheToEdit.getModel());
+    this.brandEditText.append(this.clotheToEdit.getBrand());
     this.initSpinnersWithData();
   }
 
@@ -136,16 +140,23 @@ public class ActivityClotheModify extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.modify_clothe);
 
+    // just to test
     this.bdd = new DBHelper(this);
     this.bdd.open();
-
-    // retrieve the clothe object and his Id in Database passed in the intent
+    this.bdd.insertType("Adrien's type", 1);
+    this.bdd.insertType("another type", 2);
+    Clothe clothe = new Clothe("Adrien's clothe");
+    clothe.setBrand("Zara");
+    clothe.setColor("RED");
+    clothe.setType("Adrien's type");
+    clothe.setId(1);
+    this.bdd.insertClothes(clothe);
+    // retrieve the clothe object passed in the intent
     Intent intent = getIntent();
     if (intent != null) {
       this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
-      this.clotheID = intent.getIntExtra("ID", 0);
 
-      if (this.clotheToEdit == null || this.clotheID == 0) {
+      if (this.clotheToEdit == null) {
         throw new RuntimeException(new Exception("Error while retrieving information from intent"));
       }
     }
