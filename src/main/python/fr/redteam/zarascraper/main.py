@@ -65,6 +65,8 @@ class Main(object):
         itemList = self.scraper.run(usePlainImage = False);
         self.fillDataBase(itemList)
 
+        log.info('\n-- Scraping DONE ! --')
+
     '''
     Fills database with products from scraping
     '''
