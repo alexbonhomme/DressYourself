@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import android.util.Log;
 import fr.redteam.dressyourself.common.StreamTools;
 
 /**
@@ -30,7 +29,7 @@ public abstract class APIAbstractHelper {
       content = StreamTools.convertStreamToString(in);
       urlConnection.disconnect();
     } catch (IOException e) {
-      Log.w("HTTP IO", e.getMessage() == null ? "No message" : e.getMessage());
+      throw new RuntimeException(e);
     } finally {
       if (urlConnection != null) {
         urlConnection.disconnect();
