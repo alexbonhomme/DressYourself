@@ -73,6 +73,9 @@ public class ActivityClotheModify extends Activity {
         clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
         // !!!!!!!!!! Image à ajouter !!!!!!!!!!!
 
+        // open BDD
+        bdd = new DBHelper(ActivityClotheModify.this);
+        bdd.open();
         // update in DB
         Toast toast;
         if (bdd.updateClothe(clotheToEdit) == 1) {
@@ -87,10 +90,11 @@ public class ActivityClotheModify extends Activity {
         // DEBUG display clothe informations
         Log.d("Clothe After Modification ", clotheToEdit.getModel() + " " + clotheToEdit.getBrand()
             + " " + clotheToEdit.getColor() + " " + clotheToEdit.getType());
-        // print message
+        // print feedback message
         toast.show();
         // close DB
         bdd.close();
+        // close Window
         finish();
       }
     });
@@ -140,17 +144,6 @@ public class ActivityClotheModify extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.modify_clothe);
 
-    // just to test
-    this.bdd = new DBHelper(this);
-    this.bdd.open();
-    this.bdd.insertType("Adrien's type", 1);
-    this.bdd.insertType("another type", 2);
-    Clothe clothe = new Clothe("Adrien's clothe");
-    clothe.setBrand("Zara");
-    clothe.setColor("RED");
-    clothe.setType("Adrien's type");
-    clothe.setId(1);
-    this.bdd.insertClothes(clothe);
     // retrieve the clothe object passed in the intent
     Intent intent = getIntent();
     if (intent != null) {
