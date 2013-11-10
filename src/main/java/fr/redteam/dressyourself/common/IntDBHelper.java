@@ -58,7 +58,7 @@ public interface IntDBHelper {
 
   public ArrayList<String> getAllTypes();
 
-  public int updateClothe(Clothe clothe, int clotheID);
+  public int updateClothe(Clothe clothe);
 
   public Outfit getOutfit(int id);
 }
