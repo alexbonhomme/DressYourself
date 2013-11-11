@@ -48,9 +48,8 @@
     <string name="title_clothe_list">Clothes</string>
     <string name="title_clothe_detail">Clothe Detail</string>
     <string name="title_modify_clothe">Modify</string>
-    <string name="Body">Body</string>
+    <string name="Body">Body :</string>
     <string name="modify">modify</string>
-    <string name="label">Label</string>
     <string name="description">Description :</string>
     <string name="label_generate_main">Get dressed!</string>
     <string name="label_list_clothes">See my closets</string>

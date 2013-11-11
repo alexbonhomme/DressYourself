@@ -29,6 +29,7 @@ public class ActivityClotheDetail extends FragmentActivity {
   private TextView textViewColor;
   private TextView textViewType;
   private TextView textViewWeather;
+  private TextView textViewBody;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +75,12 @@ public class ActivityClotheDetail extends FragmentActivity {
      * make reference on the activity object
      */
 
-    this.textViewBrand = (TextView) findViewById(R.id.bodyTxt);
-    this.textViewLabel = (TextView) findViewById(R.id.LabelTxt);
+    this.textViewBrand = (TextView) findViewById(R.id.brandTxt);
+    this.textViewLabel = (TextView) findViewById(R.id.modelTxt);
     this.textViewColor = (TextView) findViewById(R.id.colorTxt);
     this.textViewWeather = (TextView) findViewById(R.id.weatherTxt);
-    this.textViewType = (TextView) findViewById(R.id.TypeTxt);
+    this.textViewType = (TextView) findViewById(R.id.typeTxt);
+    this.textViewBody =  (TextView) findViewById(R.id.bodyTxt);
 
     /*
      * Créate new DBhelper in order to take some information in the DB.
@@ -95,6 +97,7 @@ public class ActivityClotheDetail extends FragmentActivity {
     this.textViewLabel.setText(MyClothes.getModel());
     this.textViewColor.setText(MyClothes.getColor());
     this.textViewType.setText(MyClothes.getType());
+    this.textViewBody.setText(MyClothes.getType());
 
     /*
      * List all weather information and contains with ';'

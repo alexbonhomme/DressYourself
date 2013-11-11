@@ -17,6 +17,8 @@ public class ActivityClotheDetailTest
   private TextView textViewColor;
   private TextView textViewType;
   private TextView textViewWeather;
+  private TextView textViewBody;
+
   private Clothe vetementTest;
 
   public ActivityClotheDetailTest(Class<ActivityClotheDetail> activityClass) {
@@ -35,11 +37,12 @@ public class ActivityClotheDetailTest
     setActivityInitialTouchMode(false);
     activityClotheDetail = getActivity();
     // Recup. du logo par exemple
-    this.textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    this.textViewModel = (TextView) activityClotheDetail.findViewById(R.id.LabelTxt);
+    this.textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
+    this.textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
     this.textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
     this.textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
-    this.textViewType = (TextView) activityClotheDetail.findViewById(R.id.TypeTxt);
+    this.textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
+    this.textViewBody=  (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
   }
 
   /*
