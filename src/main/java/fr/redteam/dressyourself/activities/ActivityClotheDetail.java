@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
@@ -30,6 +29,7 @@ public class ActivityClotheDetail extends FragmentActivity {
   private TextView textViewType;
   private TextView textViewWeather;
   private TextView textViewBody;
+  private Clothe myClothe;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +39,23 @@ public class ActivityClotheDetail extends FragmentActivity {
     // Show the Up button in the action bar.
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
+    // add onclick action for the button in order to put the object cloth and call the modification
+    // page.
     Button btnModify = (Button) findViewById(R.id.modifyBtn);
     btnModify.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
-        // TODO redirected to the 'filters page'
         Intent intent = new Intent(ActivityClotheDetail.this, ActivityClotheModify.class);
+        intent.putExtra("clothe", myClothe);
         startActivity(intent);
       }
     });
 
-    // savedInstanceState is non-null when there is fragment state
-    // saved from previous configurations of this activity
-    // (e.g. when rotating the screen from portrait to landscape).
-    // In this case, the fragment will automatically be re-added
-    // to its container so we don't need to manually add it.
-    // For more information, see the Fragments API guide at:
-    //
-    // http://developer.android.com/guide/components/fragments.html
-    //
+    this.initMyClothe();
+    this.initTextView();
+
+
     if (savedInstanceState == null) {
       // Create the detail fragment and add it to the activity
       // using a fragment transaction.
@@ -70,6 +67,20 @@ public class ActivityClotheDetail extends FragmentActivity {
       getSupportFragmentManager().beginTransaction().add(R.id.clothe_detail_container, fragment)
           .commit();
     }
+  }
+
+  /*
+   * init cloth object
+   */
+  public void initMyClothe() {
+    Intent MyIntent = getIntent();
+    if (MyIntent != null) this.myClothe = (Clothe) MyIntent.getSerializableExtra("clothe");
+  }
+
+  /*
+   * Init all textviews
+   */
+  public void initTextView() {
 
     /*
      * make reference on the activity object
@@ -80,48 +91,38 @@ public class ActivityClotheDetail extends FragmentActivity {
     this.textViewColor = (TextView) findViewById(R.id.colorTxt);
     this.textViewWeather = (TextView) findViewById(R.id.weatherTxt);
     this.textViewType = (TextView) findViewById(R.id.typeTxt);
-    this.textViewBody =  (TextView) findViewById(R.id.bodyTxt);
-
-    /*
-     * Créate new DBhelper in order to take some information in the DB.
-     */
-
-    DBHelper DB = new DBHelper(this);
-    Clothe MyClothes = DB.getClothe(Integer.parseInt(FragmentClotheDetail.ARG_ITEM_ID));
-
+    this.textViewBody = (TextView) findViewById(R.id.bodyTxt);
     /*
      * Put all information in the text field
      */
 
-    this.textViewBrand.setText(MyClothes.getBrand());
-    this.textViewLabel.setText(MyClothes.getModel());
-    this.textViewColor.setText(MyClothes.getColor());
-    this.textViewType.setText(MyClothes.getType());
-    this.textViewBody.setText(MyClothes.getType());
+    this.textViewBrand.setText(this.myClothe.getBrand());
+    this.textViewLabel.setText(this.myClothe.getModel());
+    this.textViewColor.setText(this.myClothe.getColor());
+    this.textViewType.setText(this.myClothe.getType());
+    this.textViewBody.setText(this.myClothe.getType());
+    this.textViewWeather.setText(this.getStringWeather());
+  }
 
+  /*
+   * Method which made the text of wather
+   */
+  public String getStringWeather() {
     /*
-     * List all weather information and contains with ';'
+     * List all weather information and contact with ';'
      */
-    List<String> TheWeather = MyClothes.getWeather();
+    List<String> TheWeather = this.myClothe.getWeather();
     String WeatherTxt = "";
     for (String weatherLine : TheWeather) {
       WeatherTxt += weatherLine + " ";
     }
-
-    this.textViewWeather.setText(WeatherTxt);
+    return WeatherTxt;
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        // This ID represents the Home or Up button. In the case of this
-        // activity, the Up button is shown. Use NavUtils to allow users
-        // to navigate up one level in the application structure. For
-        // more details, see the Navigation pattern on Android Design:
-        //
-        // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-        //
         NavUtils.navigateUpTo(this, new Intent(this, ActivityClotheList.class));
         return true;
     }
