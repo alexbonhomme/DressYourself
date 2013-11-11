@@ -73,11 +73,11 @@ public class ActivityClotheModify extends Activity {
         if (bdd.updateClothe(clotheToEdit) == 1) {
           toast =
               Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !",
-                  Toast.LENGTH_SHORT);
+                  Toast.LENGTH_LONG);
         } else {
           toast =
               Toast.makeText(ActivityClotheModify.this,
-                  "An error occured while saving modifications", Toast.LENGTH_SHORT);
+                  "An error occured while saving modifications", Toast.LENGTH_LONG);
         }
         // DEBUG display clothe informations
         Log.d("Clothe After Modification ", clotheToEdit.getModel() + " " + clotheToEdit.getBrand()
