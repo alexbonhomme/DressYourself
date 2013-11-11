@@ -44,9 +44,8 @@ public class ActivityClotheMail extends Activity {
 
   public void creationMail() {
     MailClothePlugin mail =
-        new MailClothePlugin(getIntent().getExtras().getInt("idClothe"),
-            "i want to share this Outfit", this.textContenu.getText().toString(),
-            this.textDestinataire.getText().toString(), this);
+        new MailClothePlugin(getIntent().getExtras().getInt("id"), "i want to share this Clothe",
+            this.textContenu.getText().toString(), this.textDestinataire.getText().toString(), this);
     mail.creationMail();
   }
 
