@@ -51,8 +51,12 @@ public class ActivityClotheDetailTest
 
 
   public void TestTextViewBodyNotNull() {
-    assertFalse(this.textViewBrand.getText() == null || this.textViewBrand.getText().equals(""));
+    assertFalse(this.textViewBrand.getText() == null);
   }
+
+  public void TestTextViewBodyNotEmpty() {
+	    assertFalse(this.textViewBrand.getText().equals(""));
+	  }
 
 
   /*
@@ -63,9 +67,14 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewLabelNotNull() {
-    assertFalse(this.textViewModel.getText() == null || this.textViewModel.getText().equals(""));
+    assertFalse(this.textViewModel.getText() == null);
   }
+  
+  public void TestTextViewLabelNotEmpty() {
+	    assertFalse(this.textViewModel.getText().equals(""));
+	  }
 
+  
   /*
    * Check the content of textViewLabel
    */
@@ -74,8 +83,12 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewColorNotNull() {
-    assertFalse(this.textViewColor.getText() == null || this.textViewColor.getText().equals(""));
+    assertFalse(this.textViewColor.getText() == null);
   }
+  
+  public void TestTextViewColorNotEmpty() {
+	    assertFalse(this.textViewColor.getText().equals(""));
+	  }
 
   /*
    * Check the content of textViewWeather
@@ -90,8 +103,11 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewWeatherNotNull() {
-    assertFalse(this.textViewWeather.getText() == null || this.textViewWeather.getText().equals(""));
+    assertFalse(this.textViewWeather.getText() == null);
   }
+  public void TestTextViewWeatherNotEmpty() {
+	    assertFalse(this.textViewWeather.getText().equals(""));
+	  }
 
   /*
    * Check the content of textViewType
@@ -101,8 +117,11 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewTypeNotNull() {
-    assertFalse(this.textViewType.getText() == null || this.textViewType.getText().equals(""));
+    assertFalse(this.textViewType.getText() == null);
   }
 
+  public void TestTextViewTypeNotEmpty() {
+	    assertFalse(this.textViewType.getText().equals(""));
+	  }
 
 }
