@@ -3,6 +3,8 @@ package fr.redteam.dressyourself.activities;
 import java.util.List;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -29,6 +32,7 @@ public class ActivityClotheDetail extends FragmentActivity {
   private TextView textViewType;
   private TextView textViewWeather;
   private TextView textViewBody;
+  private ImageView ImagePhoto;
   private Clothe myClothe;
 
   @Override
@@ -54,6 +58,7 @@ public class ActivityClotheDetail extends FragmentActivity {
 
     this.initMyClothe();
     this.initTextView();
+    this.initImageView();
 
 
     if (savedInstanceState == null) {
@@ -75,6 +80,17 @@ public class ActivityClotheDetail extends FragmentActivity {
   public void initMyClothe() {
     Intent MyIntent = getIntent();
     if (MyIntent != null) this.myClothe = (Clothe) MyIntent.getSerializableExtra("clothe");
+  }
+
+  public void initImageView() {
+    this.ImagePhoto = (ImageView) findViewById(R.id.photo);
+
+    String myJpgPath = this.myClothe.getImage().getAbsolutePath();
+
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inSampleSize = 2;
+    Bitmap bm = BitmapFactory.decodeFile(myJpgPath, options);
+    this.ImagePhoto.setImageBitmap(bm);
   }
 
   /*

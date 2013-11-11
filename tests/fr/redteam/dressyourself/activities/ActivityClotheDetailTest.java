@@ -20,7 +20,6 @@ public class ActivityClotheDetailTest
   private TextView textViewType;
   private TextView textViewWeather;
   private TextView textViewBody;
-
   private Clothe vetementTest;
 
   public ActivityClotheDetailTest(Class<ActivityClotheDetail> activityClass) {
@@ -36,8 +35,9 @@ public class ActivityClotheDetailTest
     super.setUp();
 
     setActivityInitialTouchMode(false);
-    activityClotheDetail = getActivity();
+
     this.createClothe();
+    this.activityClotheDetail = getActivity();
     // Recup. du logo par exemple
     this.textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
     this.textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
@@ -61,8 +61,10 @@ public class ActivityClotheDetailTest
     this.vetementTest.setColor("RED");
     this.vetementTest.setType("pull");
     this.vetementTest.setBodies("body");
-    Intent intent = new Intent(this.getActivity(), ActivityClotheDetail.class);
+
+    Intent intent = new Intent();
     intent.putExtra("clothe", vetementTest);
+    this.setActivityIntent(intent);
   }
 
   /*
