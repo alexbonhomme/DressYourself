@@ -1,5 +1,9 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,6 +22,7 @@ public class ActivityDebug extends Activity {
   private Button sendMailOutfit;
   private Button sendMailClothe;
   private Button modifyClothe;
+  private Button ClothDetail;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,7 @@ public class ActivityDebug extends Activity {
     sendMailOutfit = (Button) findViewById(R.id.btnSendOutfitMail);
     sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
     this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
+    this.ClothDetail = (Button) findViewById(R.id.buttonDetailClothe);
 
     sendMailOutfit.setOnClickListener(new OnClickListener() {
 
@@ -61,6 +67,26 @@ public class ActivityDebug extends Activity {
       }
     });
 
+    this.ClothDetail.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // TODO Auto-generated method stub
+        List<String> weather = new ArrayList<String>();
+        weather.add("Cloudy");
+        weather.add("Rainy");
+        Clothe clothe = new Clothe("Clothe test");
+        clothe.setImage(new File("../res/drawable/echarpe_peche.jpg"));
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        clothe.setBodies("body");
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheDetail.class);
+        intent.putExtra("clothe", clothe);
+        startActivity(intent);
+      }
+    });
 
     this.modifyClothe.setOnClickListener(new OnClickListener() {
 

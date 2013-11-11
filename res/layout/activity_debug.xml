@@ -34,4 +34,9 @@
         android:layout_height="wrap_content"
         android:text="ModifyClothe" />
 
+	<Button
+        android:id="@+id/buttonDetailClothe"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="DetailClothe" />
 </LinearLayout>
