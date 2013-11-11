@@ -42,22 +42,20 @@ public class ActivityDebug extends Activity {
       public void onClick(View v) {
 
         Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
-        intent.putExtra("idClothe", 1);
+        intent.putExtra("id", 1);
         startActivity(intent);
       }
     });
 
-    // NullPointerException
-    // sendMailClothe.setOnClickListener(new OnClickListener() {
-    //
-    // @Override
-    // public void onClick(View v) {
-    //
-    // Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
-    // intent.putExtra("idClothe", 1);
-    // startActivity(intent);
-    // }
-    // });
+
+    sendMailClothe.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        intent.putExtra("id", 1);
+        startActivity(intent);
+      }
+    });
 
 
     debugAPI.setOnClickListener(new OnClickListener() {
