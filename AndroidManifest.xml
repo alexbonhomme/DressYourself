@@ -9,10 +9,9 @@
         android:targetSdkVersion="18" />
 
     <instrumentation
-    	android:name="android.test.InstrumentationTestRunner"
-	    android:targetPackage="fr.redteam.dressyourself" />
-
-
+    android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="fr.redteam.dressyourself" />
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -72,17 +71,8 @@
             android:name="fr.redteam.dressyourself.activities.ActivityClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
-
+        
         <uses-library android:name="android.test.runner" />
-
-        <activity
-            android:name="fr.redteam.dressyourself.OutfitMail"
-            android:label="@string/title_activity_outfit_mail" >
-        </activity>
-        <activity
-            android:name="fr.redteam.dressyourself.OurfitMail"
-            android:label="@string/title_activity_ourfit_mail" >
-        </activity>
     </application>
 
 </manifest>
