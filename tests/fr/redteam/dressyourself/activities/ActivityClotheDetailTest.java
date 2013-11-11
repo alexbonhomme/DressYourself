@@ -1,11 +1,13 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class ActivityClotheDetailTest
@@ -23,7 +25,6 @@ public class ActivityClotheDetailTest
 
   public ActivityClotheDetailTest(Class<ActivityClotheDetail> activityClass) {
     super(ActivityClotheDetail.class);
-    this.vetementTest = new DBHelper(this.activityClotheDetail).getClothe(1);
   }
 
   public ActivityClotheDetailTest() {
@@ -36,13 +37,32 @@ public class ActivityClotheDetailTest
 
     setActivityInitialTouchMode(false);
     activityClotheDetail = getActivity();
+    this.createClothe();
     // Recup. du logo par exemple
     this.textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
     this.textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
     this.textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
     this.textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
     this.textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    this.textViewBody=  (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
+    this.textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
+  }
+
+  /**
+   * Made a clothe test
+   */
+  public void createClothe() {
+    List<String> weather = new ArrayList<String>();
+    weather.add("Cloudy");
+    weather.add("Rainy");
+    this.vetementTest = new Clothe("Clothe test");
+    this.vetementTest.setImage(new File("../res/drawable/echarpe_peche.jpg"));
+    this.vetementTest.setWeather(weather);
+    this.vetementTest.setBrand("Zara");
+    this.vetementTest.setColor("RED");
+    this.vetementTest.setType("pull");
+    this.vetementTest.setBodies("body");
+    Intent intent = new Intent(this.getActivity(), ActivityClotheDetail.class);
+    intent.putExtra("clothe", vetementTest);
   }
 
   /*
@@ -58,8 +78,8 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewBrandNotEmpty() {
-	    assertFalse(this.textViewBrand.getText().equals(""));
-	  }
+    assertFalse(this.textViewBrand.getText().equals(""));
+  }
 
 
   /*
@@ -72,12 +92,12 @@ public class ActivityClotheDetailTest
   public void TestTextViewLabelNotNull() {
     assertFalse(this.textViewModel.getText() == null);
   }
-  
-  public void TestTextViewLabelNotEmpty() {
-	    assertFalse(this.textViewModel.getText().equals(""));
-	  }
 
-  
+  public void TestTextViewLabelNotEmpty() {
+    assertFalse(this.textViewModel.getText().equals(""));
+  }
+
+
   /*
    * Check the content of textViewLabel
    */
@@ -88,10 +108,10 @@ public class ActivityClotheDetailTest
   public void TestTextViewColorNotNull() {
     assertFalse(this.textViewColor.getText() == null);
   }
-  
+
   public void TestTextViewColorNotEmpty() {
-	    assertFalse(this.textViewColor.getText().equals(""));
-	  }
+    assertFalse(this.textViewColor.getText().equals(""));
+  }
 
   /*
    * Check the content of textViewWeather
@@ -108,9 +128,10 @@ public class ActivityClotheDetailTest
   public void TestTextViewWeatherNotNull() {
     assertFalse(this.textViewWeather.getText() == null);
   }
+
   public void TestTextViewWeatherNotEmpty() {
-	    assertFalse(this.textViewWeather.getText().equals(""));
-	  }
+    assertFalse(this.textViewWeather.getText().equals(""));
+  }
 
   /*
    * Check the content of textViewType
@@ -124,8 +145,9 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewTypeNotEmpty() {
-	    assertFalse(this.textViewType.getText().equals(""));
-	  }
+    assertFalse(this.textViewType.getText().equals(""));
+  }
+
   /*
    * Check the content of textViewType
    */
@@ -138,6 +160,6 @@ public class ActivityClotheDetailTest
   }
 
   public void TestTextViewBodyNotEmpty() {
-	    assertFalse(this.textViewBody.getText().equals(""));
-	  }
+    assertFalse(this.textViewBody.getText().equals(""));
+  }
 }
