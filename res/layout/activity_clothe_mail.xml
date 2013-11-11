@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="22dp"
-        android:text="@string/Destinataire"
+        android:text="@string/receiver"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -39,7 +39,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/editDestinataireClothe"
         android:layout_marginTop="22dp"
-        android:text="@string/Saisie"
+        android:text="@string/write_mail_body"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -61,6 +61,6 @@
         android:layout_alignRight="@+id/editDestinataireClothe"
         android:layout_marginBottom="24dp"
         android:layout_marginRight="20dp"
-        android:text="@string/Envoyer" />
+        android:text="@string/send" />
 
 </RelativeLayout>
