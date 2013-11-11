@@ -48,16 +48,16 @@ public class ActivityClotheDetailTest
   /*
    * Check the content of textViewBody
    */
-  public void TestTextViewBodyValue() {
+  public void TestTextViewBrandValue() {
     assertEquals(textViewBrand.getText(), vetementTest.getBrand());
   }
 
 
-  public void TestTextViewBodyNotNull() {
+  public void TestTextViewBrandNotNull() {
     assertFalse(this.textViewBrand.getText() == null);
   }
 
-  public void TestTextViewBodyNotEmpty() {
+  public void TestTextViewBrandNotEmpty() {
 	    assertFalse(this.textViewBrand.getText().equals(""));
 	  }
 
@@ -126,5 +126,18 @@ public class ActivityClotheDetailTest
   public void TestTextViewTypeNotEmpty() {
 	    assertFalse(this.textViewType.getText().equals(""));
 	  }
+  /*
+   * Check the content of textViewType
+   */
+  public void TestTextViewBodyValue() {
+    assertEquals(textViewBody.getText(), vetementTest.getType());
+  }
 
+  public void TestTextViewBodyNotNull() {
+    assertFalse(this.textViewBody.getText() == null);
+  }
+
+  public void TestTextViewBodyNotEmpty() {
+	    assertFalse(this.textViewBody.getText().equals(""));
+	  }
 }
