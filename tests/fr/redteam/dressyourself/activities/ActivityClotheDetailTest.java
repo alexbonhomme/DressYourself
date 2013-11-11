@@ -45,12 +45,12 @@ public class ActivityClotheDetailTest
   /*
    * Check the content of textViewBody
    */
-  public void textViewBodyTestValue() {
+  public void TestTextViewBodyValue() {
     assertEquals(textViewBrand.getText(), vetementTest.getBrand());
   }
 
 
-  public void textViewBodyTestNotNull() {
+  public void TestTextViewBodyNotNull() {
     assertFalse(this.textViewBrand.getText() == null || this.textViewBrand.getText().equals(""));
   }
 
@@ -58,29 +58,29 @@ public class ActivityClotheDetailTest
   /*
    * Check the content of textViewLabel
    */
-  public void textViewLabelTestValue() {
+  public void TestTextViewLabelValue() {
     assertEquals(textViewModel.getText(), vetementTest.getModel());
   }
 
-  public void textViewLabelTestNotNull() {
+  public void TestTextViewLabelNotNull() {
     assertFalse(this.textViewModel.getText() == null || this.textViewModel.getText().equals(""));
   }
 
   /*
    * Check the content of textViewLabel
    */
-  public void textViewColorTestValue() {
+  public void TestTextViewColorValue() {
     assertEquals(textViewColor.getText(), vetementTest.getColor());
   }
 
-  public void textViewColorTestNotNull() {
+  public void TestTextViewColorNotNull() {
     assertFalse(this.textViewColor.getText() == null || this.textViewColor.getText().equals(""));
   }
 
   /*
    * Check the content of textViewWeather
    */
-  public void textViewWeatherTestValue() {
+  public void TestTextViewWeatherValue() {
     List<String> TheWeather = vetementTest.getWeather();
     String WeatherTxt = "";
     for (String weatherLine : TheWeather) {
@@ -89,18 +89,18 @@ public class ActivityClotheDetailTest
     assertEquals(this.textViewWeather.getText(), WeatherTxt);
   }
 
-  public void textViewWeatherTestNotNull() {
+  public void TestTextViewWeatherNotNull() {
     assertFalse(this.textViewWeather.getText() == null || this.textViewWeather.getText().equals(""));
   }
 
   /*
    * Check the content of textViewType
    */
-  public void textViewTypeTestValue() {
+  public void TestTextViewTypeValue() {
     assertEquals(textViewType.getText(), vetementTest.getType());
   }
 
-  public void textViewTypeTestNotNull() {
+  public void TestTextViewTypeNotNull() {
     assertFalse(this.textViewType.getText() == null || this.textViewType.getText().equals(""));
   }
 
