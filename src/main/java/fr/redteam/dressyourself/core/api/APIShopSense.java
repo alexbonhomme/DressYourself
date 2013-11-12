@@ -3,6 +3,7 @@ package fr.redteam.dressyourself.core.api;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,13 +66,13 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public ArrayList<Clothe> getClothesByCategory(String category) {
+  public List<Clothe> getClothesByType(String typeName) {
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
 
     try {
       URL url =
           new URL(API_BASE + "products?" + "pid=" + API_PID + "&format=" + API_FORMAT + "&cat="
-              + category);
+              + typeName);
 
       String content = getContent(url);
       JSONArray listClothesJSON = new JSONObject(content).getJSONArray("produts");
@@ -97,8 +98,14 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public Clothe getClothe(String id) {
+  public Clothe getClothe(int id) {
     // TODO Auto-generated method stub
     return new Clothe();
+  }
+
+  @Override
+  public List<Clothe> searchAll(String query) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

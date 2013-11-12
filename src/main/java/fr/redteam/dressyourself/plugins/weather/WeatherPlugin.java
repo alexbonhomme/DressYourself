@@ -42,9 +42,12 @@ public class WeatherPlugin implements YahooWeatherInfoListener {
   // methode lancé quand yahoo repond
   @Override
   public void gotWeatherInfo(WeatherInfo weatherInfo) {
+    String weather;
+
     if (weatherInfo != null) {
       Log.d("reponse", "reponse de yahoo!");
-      Weather.setWeather(weatherInfo.getCurrentWeather());
+      weather = Weather.process(weatherInfo.getCurrentWeather());
+      Weather.setWeather(weather);
       Weather.setTemperature(weatherInfo.getCurrentTempC());
     }
   }

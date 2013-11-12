@@ -2,6 +2,9 @@ package fr.redteam.dressyourself.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,11 +14,13 @@ import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
-public class ActivityMain extends Activity {
+public class ActivityMain extends Activity implements LocationListener {
 
   private Button buttonAddClothing;
   private Button buttonListClothes;
   private Button buttonFilters;
+  private LocationManager locationManager;
+  private String provider;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,25 @@ public class ActivityMain extends Activity {
      */
 
     // TODO recuperer coordonnees GPS puis recuperer le nom de la ville
+    // Get the location manager
+
+    /*
+     * LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE); boolean
+     * enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+     * 
+     * // check if enabled and if not send user to the GSP settings // Better solution would be to
+     * display a dialog and suggesting to // go to the settings if (!enabled) { Intent intent = new
+     * Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS); startActivity(intent); }
+     * 
+     * 
+     * locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); // Define the
+     * criteria how to select the locatioin provider -> use Criteria criteria = new Criteria();
+     * provider = locationManager.getBestProvider(criteria, false);
+     * locationManager.requestLocationUpdates(provider, 400, 1, this); Location location =
+     * locationManager.getLastKnownLocation(provider); Log.d("location", location.getLongitude() +
+     * " " + location.getLatitude());
+     */
+
     new WeatherPlugin("lille", getApplicationContext(), this);
 
     /* Open the page to add clothes */
@@ -44,7 +68,7 @@ public class ActivityMain extends Activity {
 
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(ActivityMain.this, ActivityClotheAdd.class);
+        Intent intent = new Intent(ActivityMain.this, ActivitySearchEngine.class);
         startActivity(intent);
       }
     });
@@ -89,6 +113,30 @@ public class ActivityMain extends Activity {
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.main, menu);
     return true;
+  }
+
+  @Override
+  public void onLocationChanged(Location location) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void onProviderDisabled(String provider) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void onProviderEnabled(String provider) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void onStatusChanged(String provider, int status, Bundle extras) {
+    // TODO Auto-generated method stub
+
   }
 
 }
