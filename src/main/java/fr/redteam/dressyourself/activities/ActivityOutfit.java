@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
 
@@ -23,6 +24,13 @@ public class ActivityOutfit extends Activity {
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
   private final DBHelper db = new DBHelper(this);
+  private ArrayList<Clothe> listTop = new ArrayList<Clothe>();
+  private ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
+  private ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
+  private Clothe currentTop;
+  private Clothe currentBottom;
+  private Clothe currentFeet;
+  private OutfitDecider decider = new OutfitDecider(false);
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -40,15 +48,12 @@ public class ActivityOutfit extends Activity {
     db.open();
 
     // recup top
-    ArrayList<Clothe> listTop = new ArrayList<Clothe>();
     listTop = db.getListTop();
 
     // recup bottom
-    ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
     listBottom = db.getListBottom();
 
     // recup feet
-    ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
     listFeet = db.getListFeet();
 
     // vetements statique TODO: récupérer en bdd
@@ -87,16 +92,25 @@ public class ActivityOutfit extends Activity {
 
   private void refreshTop() {
     // TODO recuperation en base
+    if (listTop.size() > 1) {
+      currentTop = decider.DecideTop(listTop);
+    }
     textViewTop.setText(textViewTop.getText() + " ");
   }
 
   private void refreshBottom() {
     // TODO recuperation en base
+    if (listBottom.size() > 1) {
+      currentBottom = decider.DecideTop(listBottom);
+    }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
 
   private void refreshFeet() {
     // TODO recuperation en base
+    if (listFeet.size() > 1) {
+      currentFeet = decider.DecideTop(listFeet);
+    }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
 }

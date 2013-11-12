@@ -15,6 +15,7 @@ public class ActivityClotheMail extends Activity {
   private Button buttonEnvoyer;
   private EditText textDestinataire;
   private EditText textContenu;
+  private MailClothePlugin mail;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,10 @@ public class ActivityClotheMail extends Activity {
       public void onClick(View v) {
         // TODO redirected to the 'filters page'
         ActivityClotheMail.this.creationMail();
-        Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
-        startActivity(intent);
+        if (ActivityClotheMail.this.mail.isValidMail()) {
+          Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
+          startActivity(intent);
+        }
       }
     });
   }
@@ -43,7 +46,7 @@ public class ActivityClotheMail extends Activity {
    */
 
   public void creationMail() {
-    MailClothePlugin mail =
+    this.mail =
         new MailClothePlugin(getIntent().getExtras().getInt("id"), "i want to share this Clothe",
             this.textContenu.getText().toString(), this.textDestinataire.getText().toString(), this);
     mail.creationMail();
