@@ -13,10 +13,12 @@ import org.mockito.internal.matchers.InstanceOf;
 import org.objenesis.instantiator.basic.NewInstanceInstantiator;
 
 import fr.redteam.dressyourself.activities.ActivityOutfit;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
+import android.util.Log;
 
 public class DBHelperTest extends AndroidTestCase  {
   DBHelper db;
@@ -40,30 +42,31 @@ public class DBHelperTest extends AndroidTestCase  {
   
   @Test
   public void testInsertColor() {
-    db.insertColor("Mauve");
-    int c = db.getIDColor("Mauve");
+    long c = db.insertColor("Mauve");
    assert c!=0;
     
   }
 
   @Test
   public void testInsertWeather() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertWeather("Mauve");
+   assert c!=-0;  }
 
   @Test
   public void testInsertBodies() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertBodies("Mauve");
+   assert c!=0;  }
 
   @Test
   public void testInsertType() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertType("Mauve",1);
+   assert c!=0;  }
 
   @Test
   public void testInsertClothes() {
-    fail("Not yet implemented");
+    Clothe clothe = new Clothe("toto");
+    long c = db.insertClothes(clothe);
+    assert c !=0;
   }
 
   @Test
@@ -73,28 +76,41 @@ public class DBHelperTest extends AndroidTestCase  {
 
   @Test
   public void testGetIDColor() {
-    fail("Not yet implemented");
+    long c = db.insertColor("Mauve");
+   
+    long l = db.getIDColor("mauve");
+    assert   c == l ;
   }
 
   @Test
   public void testGetIDWeather() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertWeather("Mauve");
+    
+    long l = db.getIDWeather("mauve");
+    assert  c == l ;  }
 
   @Test
   public void testGetIDBodies() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertBodies("Mauve");
+    
+    long l = db.getIDBodies("mauve");
+    assert   c == l ;  }
 
   @Test
   public void testGetIDType() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertType("Mauve",1);
+    
+    long l = db.getIDType("mauve");
+    assert   c == l ;  }
 
   @Test
   public void testGetIDClothes() {
-    fail("Not yet implemented");
-  }
+    Clothe clothe = new Clothe("toto");
+    long c = db.insertClothes(clothe);
+    long l = db.getIDClothes("toto");
+
+    assert c !=0;
+    }
 
   @Test
   public void testGetIDOutfit() {
@@ -103,33 +119,40 @@ public class DBHelperTest extends AndroidTestCase  {
 
   @Test
   public void testGetIDBrand() {
-    fail("Not yet implemented");
-  }
+    long c = db.insertBrand("Mauve");
+    
+    long l = db.getIDBrand("mauve");
+    assert   c == l ;  
+    }
 
   @Test
   public void testGetColor() {
-    fail("Not yet implemented");
+    long l = db.insertColor("mauve");
+    assert db.getColor(l).equals("mauve");
   }
 
   @Test
   public void testGetBodies() {
-    fail("Not yet implemented");
-  }
+    long l = db.insertBodies("mauve");
+    assert db.getBodies(l).equals("mauve");
+    }
 
   @Test
   public void testGetWeather() {
-    fail("Not yet implemented");
-  }
+    long l = db.insertWeather("mauve");
+    assert db.getWeather(l).equals("mauve");
+    }
 
   @Test
   public void testGetType() {
-    fail("Not yet implemented");
-  }
+    long l = db.insertType("mauve",0);
+    assert db.getType(l).equals("mauve");  }
 
   @Test
   public void testGetBrand() {
-    fail("Not yet implemented");
-  }
+    long l = db.insertBrand("mauve");
+    assert db.getBrand(l).equals("mauve");
+    }
 
   @Test
   public void testGetClothe() {
