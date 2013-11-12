@@ -67,22 +67,17 @@ public class ActivityClotheModify extends Activity {
       @Override
       public void onClick(View v) {
         // retrieves all fields and update the clothe then insert in BDD
-        clotheToEdit.setModel(modelEditText.getText().toString());
-        clotheToEdit.setBrand(brandEditText.getText().toString());
-        clotheToEdit.setColor(colorSpinner.getSelectedItem().toString());
-        clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
-        // !!!!!!!!!! Image à ajouter !!!!!!!!!!!
-
+        updateClotheValues(clotheToEdit);
         // update in DB
         Toast toast;
         if (bdd.updateClothe(clotheToEdit) == 1) {
           toast =
               Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !",
-                  Toast.LENGTH_SHORT);
+                  Toast.LENGTH_LONG);
         } else {
           toast =
               Toast.makeText(ActivityClotheModify.this,
-                  "An error occured while saving modifications", Toast.LENGTH_SHORT);
+                  "An error occured while saving modifications", Toast.LENGTH_LONG);
         }
         // DEBUG display clothe informations
         Log.d("Clothe After Modification ", clotheToEdit.getModel() + " " + clotheToEdit.getBrand()
@@ -136,6 +131,14 @@ public class ActivityClotheModify extends Activity {
     this.initSpinnersWithData();
   }
 
+  /* update clothe attributes with values of editable fields */
+  public void updateClotheValues(Clothe clotheToEdit) {
+    clotheToEdit.setModel(modelEditText.getText().toString());
+    clotheToEdit.setBrand(brandEditText.getText().toString());
+    clotheToEdit.setColor(colorSpinner.getSelectedItem().toString());
+    clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
+    // !!!!!!!!!! Image à ajouter !!!!!!!!!!!
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

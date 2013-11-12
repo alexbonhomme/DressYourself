@@ -16,21 +16,21 @@
         android:src="@drawable/bottines" />
 
     <TextView
-        android:id="@+id/NameLabel"
+        android:id="@+id/modelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/photo"
-        android:text="@string/label"
+        android:text="@string/model_string"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/TypeLabel"
+        android:id="@+id/brandLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:text="@string/type_string"
+        android:text="@string/brand_string"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TypeLabel"
+        android:layout_below="@+id/brandLabel"
         android:text="@string/weather_string"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -52,31 +52,22 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/BodyLabel"
+        android:id="@+id/modelTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ColorLabel"
-        android:text="@string/Body"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/LabelTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/NameLabel"
-        android:layout_alignBottom="@+id/NameLabel"
+        android:layout_alignBaseline="@+id/modelLabel"
+        android:layout_alignBottom="@+id/modelLabel"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/weatherLabel"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/TypeTxt"
+        android:id="@+id/brandTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/weatherLabel"
-        android:layout_alignLeft="@+id/LabelTxt"
+        android:layout_alignLeft="@+id/modelTxt"
         android:layout_alignParentRight="true"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -85,7 +76,7 @@
         android:id="@+id/colorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TypeTxt"
+        android:layout_alignLeft="@+id/brandTxt"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/weatherTxt"
         android:text=""
@@ -121,6 +112,35 @@
         android:layout_marginBottom="29dp"
         android:layout_marginRight="24dp"
         android:text="@string/modify" />
+
+    <TextView
+        android:id="@+id/BodyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ColorLabel"
+        android:layout_marginTop="22dp"
+        android:text="@string/Body"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/typelbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bodyTxt"
+        android:layout_alignParentLeft="true"
+        android:text="@string/type_string"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/typeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/typelbl"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/weatherLabel"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
 
