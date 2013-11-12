@@ -28,18 +28,26 @@
 			<version>LATEST</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.7.2</version>
+		</dependency>
+
 		<!-- TEMPORARY -->
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>support-v4</artifactId>
 			<version>r7</version>
 		</dependency>
+
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<version>4.11</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit-dep</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>

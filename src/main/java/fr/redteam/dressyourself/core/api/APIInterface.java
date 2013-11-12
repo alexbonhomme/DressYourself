@@ -1,6 +1,6 @@
 package fr.redteam.dressyourself.core.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
@@ -11,7 +11,9 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  */
 public interface APIInterface {
 
-  public ArrayList<Clothe> getClothesByCategory(String category);
+  public List<Clothe> getClothesByType(String typeName);
 
-  public Clothe getClothe(String id);
+  public Clothe getClothe(int id);
+
+  public List<Clothe> searchAll(String query);
 }

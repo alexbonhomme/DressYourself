@@ -333,15 +333,16 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public int updateClothe(Clothe clothe, int clotheID) {
+  public int updateClothe(Clothe clothe) {
     ContentValues values = new ContentValues();
     values.put("model", clothe.getModel());
     values.put("ID_t", getIDType(clothe.getType()));
     values.put("ID_c", getIDColor(clothe.getColor()));
-    values.put("ID_br", getIDBrand(clothe.getBrand()));
+    // values.put("ID_br", getIDBrand(clothe.getBrand()));
 
     int r =
-        bdd.update("CLOTHES", values, "ID_clothes = ?", new String[] {String.valueOf(clotheID)});
+        bdd.update("CLOTHES", values, "ID_clothes = ?",
+            new String[] {String.valueOf(clothe.getId())});
     return r;
   }
 

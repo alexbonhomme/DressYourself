@@ -9,9 +9,9 @@
         android:targetSdkVersion="18" />
 
     <instrumentation
-    android:name="android.test.InstrumentationTestRunner"
-    android:targetPackage="fr.redteam.dressyourself" />
-    
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="fr.redteam.dressyourself" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -24,6 +24,8 @@
         android:icon="@drawable/logo_2_2_1"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner" />
+
         <activity
             android:name="fr.redteam.dressyourself.activities.ActivityMain"
             android:label="@string/app_name" >
@@ -71,8 +73,18 @@
             android:name="fr.redteam.dressyourself.activities.ActivityClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
-        
-        <uses-library android:name="android.test.runner" />
+        <activity
+            android:name="fr.redteam.dressyourself.activities.ActivitySearchEngine"
+            android:label="@string/title_activity_search_engine"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
     </application>
 
 </manifest>
