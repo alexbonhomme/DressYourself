@@ -1,6 +1,8 @@
 package fr.redteam.dressyourself.activities;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +51,15 @@ public class ActivityClotheDetailTest
 
   /**
    * Made a clothe test
+   * 
+   * @throws FileNotFoundException
    */
-  public void createClothe() {
+  public void createClothe() throws FileNotFoundException {
     List<String> weather = new ArrayList<String>();
     weather.add("Cloudy");
     weather.add("Rainy");
     this.vetementTest = new Clothe("Clothe test");
-    this.vetementTest.setImage(new File("../res/drawable/echarpe_peche.jpg"));
+    this.vetementTest.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
     this.vetementTest.setWeather(weather);
     this.vetementTest.setBrand("Zara");
     this.vetementTest.setColor("RED");

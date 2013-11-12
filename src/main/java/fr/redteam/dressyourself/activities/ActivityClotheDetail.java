@@ -85,11 +85,9 @@ public class ActivityClotheDetail extends FragmentActivity {
   public void initImageView() {
     this.ImagePhoto = (ImageView) findViewById(R.id.photo);
 
-    String myJpgPath = this.myClothe.getImage().getAbsolutePath();
-
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inSampleSize = 2;
-    Bitmap bm = BitmapFactory.decodeFile(myJpgPath, options);
+    Bitmap bm = BitmapFactory.decodeStream(myClothe.getImage(), null, options);
     this.ImagePhoto.setImageBitmap(bm);
   }
 
