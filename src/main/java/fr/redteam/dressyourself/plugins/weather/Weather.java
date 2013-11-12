@@ -1,5 +1,7 @@
 package fr.redteam.dressyourself.plugins.weather;
 
+import java.util.Locale;
+
 
 
 public class Weather {
@@ -24,6 +26,6 @@ public class Weather {
 
   public static String process(String weather) {
     WeatherIdentifier.fillLists();
-    return WeatherIdentifier.identifyGroup(weather.toLowerCase()).toString();
+    return WeatherIdentifier.identifyGroup(weather.toLowerCase(Locale.US)).toString();
   }
 }
