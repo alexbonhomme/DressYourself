@@ -38,17 +38,17 @@ public interface IntDBHelper {
   public long getIDBrand(String brand);
 
   // les requetes de recupération des infos
-  public String getColor(int id);
+  public String getColor(long l);
 
-  public String getBodies(int id);
+  public String getBodies(long id);
 
-  public String getWeather(int id);
+  public String getWeather(long id);
 
-  public String getType(int id);
+  public String getType(long id);
 
-  public String getBrand(int id);
+  public String getBrand(long id);
 
-  public Clothe getClothe(int id);
+  public Clothe getClothe(long id);
 
   public ArrayList<Clothe> getListTop();
 
@@ -60,7 +60,7 @@ public interface IntDBHelper {
 
   public ArrayList<String> getAllTypes();
 
-  public int updateClothe(Clothe clothe, int clotheID);
+  public int updateClothe(Clothe clothe, long clotheID);
 
-  public Outfit getOutfit(int id);
+  public Outfit getOutfit(long id);
 }
