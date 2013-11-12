@@ -1,6 +1,8 @@
 package fr.redteam.dressyourself.activities;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,12 +92,17 @@ public class ActivityDebug extends Activity {
         weather.add("Cloudy");
         weather.add("Rainy");
         Clothe clothe = new Clothe("Clothe test");
-        clothe.setImage(new File("../res/drawable/echarpe_peche.jpg"));
         clothe.setWeather(weather);
         clothe.setBrand("Zara");
         clothe.setColor("RED");
         clothe.setType("pull");
         clothe.setBodies("body");
+
+        try {
+          clothe.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
+        } catch (FileNotFoundException e) {
+          throw new RuntimeException(e);
+        }
 
         Intent intent = new Intent(ActivityDebug.this, ActivityClotheDetail.class);
         intent.putExtra("clothe", clothe);
@@ -127,4 +134,13 @@ public class ActivityDebug extends Activity {
     }
   }
 
+  /**
+   * Méthode temporaire pour permettre l'avancement de Rémy et Antonia
+   * 
+   * @author Alexandre Bonhomme
+   * 
+   */
+  private void fillLocaleDataBaseWithFewClothes() {
+
+  }
 }

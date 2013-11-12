@@ -82,6 +82,8 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
         product.setBrand(resultSet.getString("brand"));
         product.setBodies(resultSet.getString("bodies"));
         product.setType(resultSet.getString("type"));
+
+        product.setImage(resultSet.getBlob("image").getBinaryStream());
       }
 
       connector.close();

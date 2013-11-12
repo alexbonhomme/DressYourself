@@ -13,7 +13,7 @@ public class MailClothePlugin extends MailPlugin {
     super(id, subject, textBody, textDestinataire, activity);
   }
 
-  public void Body() {
+  protected void Body() {
 
     Clothe vetement = new DBHelper(this.activity).getClothe(this.id);
     /* Add text */
