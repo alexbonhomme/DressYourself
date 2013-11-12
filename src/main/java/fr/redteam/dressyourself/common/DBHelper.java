@@ -31,6 +31,12 @@ public class DBHelper implements IntDBHelper {
     mbdd = new CreateSQLBase(context, "GYSBdd", null, 1);
 
   }
+  // pour pouvoir creer une bdd avec un nom particulier , mettre null pour en memoire
+  public DBHelper(Context context,String name) {
+    super();
+    mbdd = new CreateSQLBase(context, null, null, 1);
+
+  }
 
 
   public void open() {

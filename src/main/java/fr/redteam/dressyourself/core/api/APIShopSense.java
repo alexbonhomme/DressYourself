@@ -76,16 +76,18 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
 
       String content = getContent(url);
       JSONArray listClothesJSON = new JSONObject(content).getJSONArray("produts");
-/*
+
       for (int i = 0; i < listClothesJSON.length(); i++) {
         Clothe clothe = new Clothe();
 
         clothe.setModel(listClothesJSON.getJSONObject(i).getString("name"));
-        clothe.setImageUrl(listClothesJSON.getJSONObject(i).getJSONObject("image")
-            .getJSONObject("size").getJSONObject("Iphone").getString("url"));
+        /*
+         * clothe.setImage(listClothesJSON.getJSONObject(i).getJSONObject("image")
+         * .getJSONObject("size").getJSONObject("Iphone").getString("url"));
+         */
 
       }
-*/
+
     } catch (MalformedURLException e) {
       Log.e("MalformedURLException", e.getMessage());
     } catch (JSONException e) {
