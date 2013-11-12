@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public class APIZaraTest {
     assertEquals("Navy blue", product.getColor());
     assertEquals("Knitwears", product.getType());
     assertEquals("Top", product.getBodies());
+
+    assertFalse(product.getImage() == null);
   }
 
   @Test

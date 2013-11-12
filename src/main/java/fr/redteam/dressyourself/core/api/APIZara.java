@@ -1,5 +1,6 @@
 package fr.redteam.dressyourself.core.api;
 
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -62,13 +63,12 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
   public Clothe getClothe(int id) {
     Clothe product = new Clothe();
 
-
     try {
       connector = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
       Statement statement = connector.createStatement();
 
       ResultSet resultSet =
-          statement.executeQuery("SELECT model, " + "brand.brandName AS brand, "
+          statement.executeQuery("SELECT model, image, " + "brand.brandName AS brand, "
               + "color.colorName AS color, " + "type.typeName AS type, "
               + "bodies.bodiesName AS bodies " + "FROM clothes "
               + "JOIN brand ON clothes.ID_br=brand.ID_brand "
@@ -83,7 +83,7 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
         product.setBodies(resultSet.getString("bodies"));
         product.setType(resultSet.getString("type"));
 
-        product.setImage(resultSet.getBlob("image").getBinaryStream());
+        product.setImage(new ByteArrayInputStream(resultSet.getBytes("image")));
       }
 
       connector.close();

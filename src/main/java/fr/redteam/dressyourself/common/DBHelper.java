@@ -90,18 +90,24 @@ public class DBHelper implements IntDBHelper {
     values.put("ID_br", getIDBrand(clothe.getBrand()));
 
     long r = bdd.insert("CLOTHES", null, values);
-    values = new ContentValues();
-    for (int i = 0; i < clothe.getWeather().size(); i++) {
-      values.put("ID_c", r);
-      values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
-      bdd.insert("WEATHER_CLOTHES", null, values);
-    }
+    /*
+     * values = new ContentValues(); for (int i = 0; i < clothe.getWeather().size(); i++) {
+     * values.put("ID_c", r); values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
+     * bdd.insert("WEATHER_CLOTHES", null, values); }
+     */
     return r;
   }
 
   @Override
   public long insertOutfit(String name, Clothe[] clothes) {
-    return 0;
+    return 0; // TODO
+  }
+
+  @Override
+  public long insertBrand(String brand) {
+    ContentValues values = new ContentValues();
+    values.put("brandName", brand);
+    return bdd.insert("BRAND", null, values);
   }
 
   @Override

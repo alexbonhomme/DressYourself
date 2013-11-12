@@ -8,7 +8,9 @@ import fr.redteam.dressyourself.core.clothes.Outfit;
 
 public interface IntDBHelper {
   // les requete d'insertion
-  public long insertColor(String couleur);
+  public long insertBrand(String brand);
+  
+  public long insertColor(String color);
 
   public long insertWeather(String weather);
 

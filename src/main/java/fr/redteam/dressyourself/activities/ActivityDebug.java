@@ -15,13 +15,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.api.APIShopSense;
+import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 
 public class ActivityDebug extends Activity {
 
   private Button debugAPI;
+  private Button addClothesToDataBase;
   private Button sendMailOutfit;
   private Button sendMailClothe;
   private Button modifyClothe;
@@ -37,29 +40,23 @@ public class ActivityDebug extends Activity {
     sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
     this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
     this.ClothDetail = (Button) findViewById(R.id.buttonDetailClothe);
+    addClothesToDataBase = (Button) findViewById(R.id.buttonAddClotheClothesToDB);
+    /*
+     * sendMailOutfit.setOnClickListener(new OnClickListener() {
+     * 
+     * @Override public void onClick(View v) {
+     * 
+     * Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
+     * intent.putExtra("id", 1); startActivity(intent); } });
+     * 
+     * 
+     * sendMailClothe.setOnClickListener(new OnClickListener() {
+     * 
+     * @Override public void onClick(View v) { Intent intent = new Intent(ActivityDebug.this,
+     * ActivityClotheMail.class); intent.putExtra("id", 1); startActivity(intent); } });
+     */
 
-    sendMailOutfit.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-
-        Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
-        intent.putExtra("id", 1);
-        startActivity(intent);
-      }
-    });
-
-
-    sendMailClothe.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
-        intent.putExtra("id", 1);
-        startActivity(intent);
-      }
-    });
-
-
+    /* API */
     debugAPI.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -67,6 +64,14 @@ public class ActivityDebug extends Activity {
         new APITesting().execute(new String());
       }
     });
+    addClothesToDataBase.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        fillLocaleDataBaseWithFewClothes();
+      }
+    });
+
 
 
     this.modifyClothe.setOnClickListener(new OnClickListener() {
@@ -110,6 +115,7 @@ public class ActivityDebug extends Activity {
       }
     });
 
+    
   }
 
   @Override
@@ -141,6 +147,36 @@ public class ActivityDebug extends Activity {
    * 
    */
   private void fillLocaleDataBaseWithFewClothes() {
+    DBHelper db = new DBHelper(this);
+    APIZara api = new APIZara();
 
+    db.open();
+    long topId = db.insertBodies("Top");
+    long bottomId = db.insertBodies("Bottom");
+    long shoesId = db.insertBodies("Shoes");
+    
+    /* long brandId = */db.insertBrand("Zara");
+
+    /**
+     * Get 3 tops, 3 bottoms and 3 shoes (females)
+     */
+    for (int i = 0; i < 3; i++) {
+      Clothe bottom = api.getClothe(500 + i);
+      db.insertColor(bottom.getColor());
+      db.insertType(bottom.getType(), (int) bottomId);
+      db.insertClothes(bottom);
+
+      Clothe top = api.getClothe(750 + i);
+      db.insertColor(top.getColor());
+      db.insertType(top.getType(), (int) topId);
+      db.insertClothes(top);
+
+      Clothe shoes = api.getClothe(960 + i);
+      db.insertColor(shoes.getColor());
+      db.insertType(shoes.getType(), (int) shoesId);
+      db.insertClothes(shoes);
+    }
+
+    db.close();
   }
 }

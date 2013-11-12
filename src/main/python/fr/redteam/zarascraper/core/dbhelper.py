@@ -53,41 +53,41 @@ class DBHelper:
             log.exception('SQLite error({0}): {1}'.format(e.errno, e.strerror))
             raise
 
-    def _insertColor(self, colorName):
-        log.debug('Insert color (if not exist) "' + colorName + '" to COLOR table')
+    def _INSERTColor(self, colorName):
+        log.debug('INSERT color (if not exist) "' + colorName + '" to COLOR table')
         self.cursor.execute('INSERT OR IGNORE INTO color (colorName) VALUES (?)', (colorName,))
         self.cursor.execute('SELECT ID_color FROM color WHERE colorName = "' + colorName + '"')
 
         return self.cursor.fetchone()[0]
 
-    def _insertBrand(self, brandName):
-        log.debug('Insert color (if not exist) "' + brandName + '" to BRAND table')
+    def _INSERTBrand(self, brandName):
+        log.debug('INSERT color (if not exist) "' + brandName + '" to BRAND table')
         self.cursor.execute('INSERT OR IGNORE INTO brand (brandName) VALUES (?)', (brandName,))
         self.cursor.execute('SELECT ID_brand FROM brand WHERE brandName = "' + brandName + '"')
 
         return self.cursor.fetchone()[0]
 
-    def _insertType(self, typeName, bodiesId):
-        log.debug('Insert type (if not exist) "' + typeName + '" to TYPE table')
+    def _INSERTType(self, typeName, bodiesId):
+        log.debug('INSERT type (if not exist) "' + typeName + '" to TYPE table')
         self.cursor.execute('INSERT OR IGNORE INTO type (typeName, ID_b) VALUES (?, ?)', (typeName, bodiesId))
         self.cursor.execute('SELECT ID_type FROM type WHERE typeName = "' + typeName + '"')
 
         return self.cursor.fetchone()[0]
 
-    def _insertBodies(self, bodyPartName):
-        log.debug('Insert bodies (if not exist) "' + bodyPartName + '" to BODIES table')
+    def _INSERTBodies(self, bodyPartName):
+        log.debug('INSERT bodies (if not exist) "' + bodyPartName + '" to BODIES table')
         self.cursor.execute('INSERT OR IGNORE INTO bodies (bodiesName) VALUES (?)', (bodyPartName,))
         self.cursor.execute('SELECT ID_bodies FROM bodies WHERE bodiesName = "' + bodyPartName + '"')
 
         return self.cursor.fetchone()[0]
 
-    def insertProduct(self, product):
-        brandId = self._insertBrand(product.brand)
-        colorId = self._insertColor(product.color['name'])
-        bodiesId = self._insertBodies(product.bodies)
-        typeId = self._insertType(product.type, bodiesId)
+    def INSERTProduct(self, product):
+        brandId = self._INSERTBrand(product.brand)
+        colorId = self._INSERTColor(product.color['name'])
+        bodiesId = self._INSERTBodies(product.bodies)
+        typeId = self._INSERTType(product.type, bodiesId)
 
-        log.debug('Insert OR IGNORE product "' + product.model + '" to CLOTHES table')
+        log.debug('INSERT OR IGNORE product "' + product.model + '" to CLOTHES table')
         values = (product.model,
                   sqlite.Binary(product.getImage()),
                   colorId,

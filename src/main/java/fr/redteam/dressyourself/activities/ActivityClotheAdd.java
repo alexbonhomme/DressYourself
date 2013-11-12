@@ -16,7 +16,7 @@ public class ActivityClotheAdd extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.addclothes);
+    setContentView(R.layout.activity_addclothes);
 
     spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
 
