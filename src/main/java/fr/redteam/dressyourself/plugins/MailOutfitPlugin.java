@@ -16,7 +16,7 @@ public class MailOutfitPlugin extends MailPlugin {
     super(id, subject, textBody, textDestinataire, activity);
   }
 
-  public void Body() {
+  protected void Body() {
 
     List<Clothe> ListClothe = new ArrayList<Clothe>();
     Outfit Tenu = new DBHelper(this.activity).getOutfit(this.id);
