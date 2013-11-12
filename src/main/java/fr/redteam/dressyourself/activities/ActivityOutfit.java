@@ -47,7 +47,7 @@ public class ActivityOutfit extends Activity {
     ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
     listBottom = db.getListBottom();
 
-    // recup bottom
+    // recup feet
     ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
     listFeet = db.getListFeet();
 
