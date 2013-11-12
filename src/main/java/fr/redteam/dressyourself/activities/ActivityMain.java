@@ -40,7 +40,7 @@ public class ActivityMain extends Activity {
 
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(ActivityMain.this, ActivityClotheAdd.class);
+        Intent intent = new Intent(ActivityMain.this, ActivitySearchEngine.class);
         startActivity(intent);
       }
     });

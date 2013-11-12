@@ -64,5 +64,9 @@
     <string name="GetDressed">Get all \'dresses\' from the API</string>
     <string name="title_activity_clothe_mail">Mail an clothe</string>
     <string name="sendClothMail">Send Cloth by mail</string>
+    <string name="title_activity_search_engine">ActivitySearchEngine</string>
+    
+    <string name="action_search">Search</string>
+    <string name="search_hint">Search products</string>
 
 </resources>
