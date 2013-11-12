@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -43,7 +44,7 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
                   + typeName + "';");
       while (resultSet.next()) {
         Clothe product = new Clothe(resultSet.getString("model"));
-
+        // TODO Implement totaly
         clothesList.add(product);
       }
 
@@ -91,6 +92,12 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     }
 
     return product;
+  }
+
+  @Override
+  public List<Clothe> searchAll(String query) {
+    // TODO Implement
+    return Collections.emptyList();
   }
 
 }

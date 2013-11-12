@@ -14,4 +14,6 @@ public interface APIInterface {
   public List<Clothe> getClothesByType(String typeName);
 
   public Clothe getClothe(int id);
+
+  public List<Clothe> searchAll(String query);
 }

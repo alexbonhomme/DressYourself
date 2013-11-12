@@ -100,4 +100,10 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
     // TODO Auto-generated method stub
     return new Clothe();
   }
+
+  @Override
+  public List<Clothe> searchAll(String query) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }
