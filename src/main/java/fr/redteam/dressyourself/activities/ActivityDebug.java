@@ -1,5 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
