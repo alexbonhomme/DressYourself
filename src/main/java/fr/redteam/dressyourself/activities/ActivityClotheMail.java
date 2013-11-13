@@ -1,7 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,8 +36,7 @@ public class ActivityClotheMail extends Activity {
         // TODO redirected to the 'filters page'
         ActivityClotheMail.this.creationMail();
         if (ActivityClotheMail.this.mail.isValidMail()) {
-          Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
-          startActivity(intent);
+          ActivityClotheMail.this.finish();
         }
       }
     });
@@ -51,7 +49,7 @@ public class ActivityClotheMail extends Activity {
   public void creationMail() {
     this.mail =
         new MailClothePlugin(clothe, "i want to share this Clothe", this.textContenu.getText()
-            .toString(), this.textDestinataire.getText().toString(), this);
+            .toString(), this.textDestinataire.getText().toString(), ActivityClotheMail.this);
     mail.creationMail();
   }
 }

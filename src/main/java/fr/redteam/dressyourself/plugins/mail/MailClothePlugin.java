@@ -13,16 +13,13 @@ public class MailClothePlugin extends MailPlugin {
     this.clothe = clothe;
   }
 
-  protected void Body() {
-
+  protected void body() {
+    String txtBody =
+        this.textBody + "\n J'ai trouvé ce vetement et je pense qu'il va te plaire.\n C'est un(e)"
+            + this.clothe.getType() + " de la marque " + this.clothe.getBrand() + " et de couleur "
+            + this.clothe.getColor() + " " + this.clothe.getModel() + ".\n";
     /* Add text */
-    mailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-        "j'ai trouvé ce vetement et je pense qu'il va te plaire.\n");
-    /* Made the body of mail */
-    mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "un(e) " + this.clothe.getType()
-        + " de la marque " + this.clothe.getBrand() + " et de couleur " + this.clothe.getColor()
-        + " " + this.clothe.getModel() + ".\n");
+    mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
     // mailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + this.clothe.getImage()));
   }
-
 }

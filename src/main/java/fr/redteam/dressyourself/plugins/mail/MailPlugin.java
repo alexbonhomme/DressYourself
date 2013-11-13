@@ -35,7 +35,7 @@ public class MailPlugin {
     if (!m.matches()) this.AdresseValide = false;
   }
 
-  protected String[] ListDestinataire() {
+  protected String[] listDestinataire() {
     String txtDsc = this.textDestinataire;
     String[] DscList;
     int nbDst = 0;
@@ -64,7 +64,7 @@ public class MailPlugin {
     return DscList;
   }
 
-  protected void Body() {}
+  protected void body() {}
 
   /**
    * function which made an mail intent in order to send it.
@@ -75,13 +75,11 @@ public class MailPlugin {
     mailIntent.setType("image/png");
 
     /* add destinaire */
-    mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, this.ListDestinataire());
+    mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, this.listDestinataire());
     /* Add the subject for the mail */
     mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.subject);
-    mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, this.textBody + "\n");
-    this.Body();
+    this.body();
     if (this.AdresseValide) {
-      System.out.println("lancement intent");
       this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
     } else
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();

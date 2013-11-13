@@ -66,9 +66,10 @@ public class ActivityDebug extends Activity {
         Outfit outfit = new Outfit();
         outfit.addClothe(clothe);
         outfit.addClothe(clothe2);
-
         Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
         Bundle bundle = new Bundle();
+        Toast.makeText(ActivityDebug.this, " taille" + outfit.getClothes().size(),
+            Toast.LENGTH_SHORT).show();
         bundle.putSerializable("outfit", outfit);
         intent.putExtras(bundle);
         startActivity(intent);
