@@ -182,7 +182,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public String getColor(int id) {
+  public String getColor(long id) {
     String query = "SELECT colorName FROM BRAND WHERE ID_brand = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
@@ -192,8 +192,8 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public String getBodies(int id) {
-    String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = " + id;
+  public String getBodies(long l) {
+    String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = " + l;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
@@ -202,7 +202,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public String getWeather(int id) {
+  public String getWeather(long id) {
     String query = "SELECT weatherName FROM WEATHER WHERE ID_weather = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
@@ -212,7 +212,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public String getType(int id) {
+  public String getType(long id) {
     String query = "SELECT typeName FROM TYPE WHERE ID_type = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
@@ -222,7 +222,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public String getBrand(int id) {
+  public String getBrand(long id) {
     String query = "SELECT brandName FROM BRAND WHERE ID_brand = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
@@ -234,7 +234,7 @@ public class DBHelper implements IntDBHelper {
 
 
   @Override
-  public Clothe getClothe(int id) {
+  public Clothe getClothe(long id) {
     String query =
         "SELECT CLOTHES.id, CLOTHES.model, TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
@@ -339,21 +339,21 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public int updateClothe(Clothe clothe) {
+  public long updateClothe(Clothe clothe) {
     ContentValues values = new ContentValues();
     values.put("model", clothe.getModel());
     values.put("ID_t", getIDType(clothe.getType()));
     values.put("ID_c", getIDColor(clothe.getColor()));
     // values.put("ID_br", getIDBrand(clothe.getBrand()));
 
-    int r =
+    long r =
         bdd.update("CLOTHES", values, "ID_clothes = ?",
             new String[] {String.valueOf(clothe.getId())});
     return r;
   }
 
   @Override
-  public Outfit getOutfit(int id) {
+  public Outfit getOutfit(long id) {
     return null;
   }
 

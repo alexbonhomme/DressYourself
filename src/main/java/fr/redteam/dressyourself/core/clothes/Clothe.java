@@ -2,6 +2,7 @@ package fr.redteam.dressyourself.core.clothes;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,7 +10,7 @@ public class Clothe implements Serializable {
 
   final static long serialVersionUID = 1L;
   
-  private int id;
+  private long id;
 
   private String model;
 
@@ -32,9 +33,10 @@ public class Clothe implements Serializable {
 
   public Clothe(String model) {
     this.model = model;
+    weather = new ArrayList<String>();
   }
 
-  public int getId() {
+  public long getId() {
 		return id;
   }
 
