@@ -1,8 +1,5 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +16,7 @@ import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.api.APIShopSense;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.core.clothes.Outfit;
 
 
 public class ActivityDebug extends Activity {
@@ -37,24 +35,66 @@ public class ActivityDebug extends Activity {
 
     debugAPI = (Button) findViewById(R.id.buttonDebugAPI);
     sendMailOutfit = (Button) findViewById(R.id.btnSendOutfitMail);
-    sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
+    sendMailClothe = (Button) findViewById(R.id.btnClothMail);
     this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
     this.ClothDetail = (Button) findViewById(R.id.buttonDetailClothe);
     addClothesToDataBase = (Button) findViewById(R.id.buttonAddClotheClothesToDB);
-    /*
-     * sendMailOutfit.setOnClickListener(new OnClickListener() {
-     * 
-     * @Override public void onClick(View v) {
-     * 
-     * Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
-     * intent.putExtra("id", 1); startActivity(intent); } });
-     * 
-     * 
-     * sendMailClothe.setOnClickListener(new OnClickListener() {
-     * 
-     * @Override public void onClick(View v) { Intent intent = new Intent(ActivityDebug.this,
-     * ActivityClotheMail.class); intent.putExtra("id", 1); startActivity(intent); } });
-     */
+
+
+    sendMailOutfit.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        List<String> weather = new ArrayList<String>();
+        weather.add("Cloudy");
+        weather.add("Rainy");
+        Clothe clothe = new Clothe("Clothe test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        clothe.setBodies("body");
+
+        Clothe clothe2 = new Clothe("Clothe2 test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("boot");
+        clothe.setBodies("body");
+        Outfit outfit = new Outfit();
+        outfit.addClothe(clothe);
+        outfit.addClothe(clothe2);
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("outfit", outfit);
+        intent.putExtras(bundle);
+        startActivity(intent);
+      }
+    });
+
+
+    sendMailClothe.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        List<String> weather = new ArrayList<String>();
+        weather.add("Cloudy");
+        weather.add("Rainy");
+        Clothe clothe = new Clothe("Clothe test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        clothe.setBodies("body");
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("clothe", clothe);
+        intent.putExtras(bundle);
+        startActivity(intent);
+      }
+    });
+
 
     /* API */
     debugAPI.setOnClickListener(new OnClickListener() {
@@ -103,19 +143,18 @@ public class ActivityDebug extends Activity {
         clothe.setType("pull");
         clothe.setBodies("body");
 
-        try {
-          clothe.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-
+        // try {
+        // clothe.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
+        // } catch (FileNotFoundException e) {
+        // throw new RuntimeException(e);
+        // }
+        //
         Intent intent = new Intent(ActivityDebug.this, ActivityClotheDetail.class);
         intent.putExtra("clothe", clothe);
         startActivity(intent);
       }
     });
 
-    
   }
 
   @Override
@@ -154,7 +193,7 @@ public class ActivityDebug extends Activity {
     long topId = db.insertBodies("Top");
     long bottomId = db.insertBodies("Bottom");
     long shoesId = db.insertBodies("Shoes");
-    
+
     /* long brandId = */db.insertBrand("Zara");
 
     /**

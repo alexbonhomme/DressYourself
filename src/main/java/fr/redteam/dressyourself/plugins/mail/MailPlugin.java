@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.plugins;
+package fr.redteam.dressyourself.plugins.mail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +12,13 @@ import android.widget.Toast;
 public class MailPlugin {
 
   protected Intent mailIntent;
-  protected int id;
   protected String subject;
   protected String textBody;
   protected String textDestinataire;
   protected Activity activity;
   protected boolean AdresseValide;
 
-  public MailPlugin(int id, String subject, String textBody, String textDestinataire,
-      Activity activity) {
-    this.id = id;
+  public MailPlugin(String subject, String textBody, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
     this.subject = subject;
     this.textBody = textBody;
@@ -32,8 +29,8 @@ public class MailPlugin {
 
   protected void isValidEmailAddress(String email) {
     Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-    // On dÃ©clare un matcher, qui comparera le pattern avec la
-    // string passÃ©e en argument
+    // On déclare un matcher, qui comparera le pattern avec la
+    // string passée en argument
     Matcher m = p.matcher(email);
     if (!m.matches()) this.AdresseValide = false;
   }
@@ -83,9 +80,10 @@ public class MailPlugin {
     mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.subject);
     mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, this.textBody + "\n");
     this.Body();
-    if (this.AdresseValide)
+    if (this.AdresseValide) {
+      System.out.println("lancement intent");
       this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
-    else
+    } else
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();
   }
 
