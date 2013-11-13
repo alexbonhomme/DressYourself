@@ -10,17 +10,17 @@ public class CreateSQLBase extends SQLiteOpenHelper {
   private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
   private static final String PRIMARY_INTEGER_KEY = " INTEGER PRIMARY KEY AUTOINCREMENT";
   private static final String TABLE_COLOR = CREATE_TABLE_IFE + " COLOR" + "(" + "ID_color"
-      + PRIMARY_INTEGER_KEY + "," + "colorName TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "colorName TEXT UNIQUE)";
 
   private static final String TABLE_BODIES = CREATE_TABLE_IFE + " BODIES" + "(" + "ID_bodies"
-      + PRIMARY_INTEGER_KEY + "," + "bodiesName TEXT" + ")";
+      + PRIMARY_INTEGER_KEY + "," + "bodiesName TEXT UNIQUE" + ")";
 
   private static final String TABLE_TYPE = CREATE_TABLE_IFE + " TYPE" + "(" + "ID_type"
-      + PRIMARY_INTEGER_KEY + "," + "typeName TEXT" + "," + "ID_b INTEGER" + ","
+      + PRIMARY_INTEGER_KEY + "," + "typeName TEXT UNIQUE" + "," + "ID_b INTEGER" + ","
       + "FOREIGN KEY (ID_b) REFERENCES BODIES(ID_bodies))";
 
   private static final String TABLE_WEATHER = CREATE_TABLE_IFE + " WEATHER" + "(" + "ID_weather"
-      + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT UNIQUE)";
 
   private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes"
       + PRIMARY_INTEGER_KEY + "," + "model TEXT" + "," + "image BLOB" + "," + "ID_c INTEGER" + ","
@@ -35,7 +35,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
       + "FOREIGN KEY (ID_w)REFERENCES WEATHER (ID_weather))";
 
   private static final String TABLE_OUTFIT = CREATE_TABLE_IFE + " OUTFIT" + "(" + "ID_outfit"
-      + PRIMARY_INTEGER_KEY + "," + "outfitName TEXT)";
+      + PRIMARY_INTEGER_KEY + "," + "outfitName TEXT UNIQUE)";
 
   private static final String TABLE_OUTFIT_CLOTHES = CREATE_TABLE_IFE + " OUTFIT_CLOTHES"
       + "( ID_c INTEGER" + "," + "ID_o INTEGER" + "," + "PRIMARY KEY (ID_c,ID_o)" + ","
@@ -43,7 +43,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
       + "FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))";
 
   private static final String TABLE_BRAND = CREATE_TABLE_IFE + " BRAND" + "( ID_brand"
-      + PRIMARY_INTEGER_KEY + "," + "brandName TEXT" + ")";
+      + PRIMARY_INTEGER_KEY + "," + "brandName TEXT UNIQUE" + ")";
 
 
 
