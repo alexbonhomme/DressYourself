@@ -1,5 +1,9 @@
 package fr.redteam.dressyourself.common;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 import android.content.ContentValues;
@@ -63,39 +67,48 @@ public class DBHelper implements IntDBHelper {
   public long insertWeather(String weather) {
     ContentValues values = new ContentValues();
     values.put("weatherName", weather);
-    return bdd.insert("WEATHER", null, values);
+    return bdd.insertOrThrow("WEATHER", null, values);
   }
 
   @Override
   public long insertBodies(String bodies) {
     ContentValues values = new ContentValues();
     values.put("bodiesName", bodies);
-    return bdd.insert("BODIES", null, values);
+    return bdd.insertOrThrow("BODIES", null, values);
   }
 
-  @Override
-  public long insertType(String type, int id_bodies) {
+  public long insertType(String type, long l) {
     ContentValues values = new ContentValues();
     values.put("typeName", type);
-    values.put("ID_b", id_bodies);
-    return bdd.insert("TYPE", null, values);
+    values.put("ID_b", l);
+    return bdd.insertOrThrow("TYPE", null, values);
   }
 
   @Override
-  public long insertClothes(Clothe clothe) {
-    ContentValues values = new ContentValues();
-    values.put("model", clothe.getModel());
-    values.put("ID_t", getIDType(clothe.getType()));
-    values.put("ID_c", getIDColor(clothe.getColor()));
-    values.put("ID_br", getIDBrand(clothe.getBrand()));
-
-    long r = bdd.insert("CLOTHES", null, values);
+  public long insertClothes(Clothe clothe)  {
+    
+    
+    try {
+      ContentValues values = new ContentValues();
+      values.put("model", clothe.getModel());
+      values.put("ID_t", getIDType(clothe.getType()));
+      values.put("ID_c", getIDColor(clothe.getColor()));
+      values.put("ID_br", getIDBrand(clothe.getBrand()));
+      byte[] bytes = null;
+      clothe.getImage().read(bytes);
+      values.put("image", bytes);
+      long r = bdd.insertOrThrow("CLOTHES", null,values);
+      return r;
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     /*
      * values = new ContentValues(); for (int i = 0; i < clothe.getWeather().size(); i++) {
      * values.put("ID_c", r); values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
      * bdd.insert("WEATHER_CLOTHES", null, values); }
      */
-    return r;
+    return 0;
   }
 
   @Override
@@ -107,7 +120,7 @@ public class DBHelper implements IntDBHelper {
   public long insertBrand(String brand) {
     ContentValues values = new ContentValues();
     values.put("brandName", brand);
-    return bdd.insert("BRAND", null, values);
+    return bdd.insertOrThrow("BRAND", null, values);
   }
 
   @Override
@@ -258,20 +271,21 @@ public class DBHelper implements IntDBHelper {
   @Override
   public Clothe getClothe(long id) {
     String query =
-        "SELECT CLOTHES.id, CLOTHES.model, TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
+        "SELECT CLOTHES.id, CLOTHES.model, CLOTHE.image TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
     Clothe clothe = new Clothe();
     cursor.moveToFirst();
     ArrayList<String> weather = new ArrayList<String>();
     clothe.setId(cursor.getInt(0));
-    clothe.setModel(cursor.getString(1));;
-    clothe.setType(cursor.getString(2));
-    clothe.setBodies(cursor.getString(3));
-    clothe.setBrand(cursor.getString(4));
-    weather.add(cursor.getString(5));
-    clothe.setType(cursor.getString(6));
+    clothe.setModel(cursor.getString(1));
+    clothe.setImage(new ByteArrayInputStream(cursor.getBlob(2)));
+    clothe.setType(cursor.getString(3));
+    clothe.setBodies(cursor.getString(4));
+    clothe.setBrand(cursor.getString(5));
+    weather.add(cursor.getString(6));
+    clothe.setType(cursor.getString(7));
     while (cursor.moveToNext()) {
-      weather.add(cursor.getString(5));
+      weather.add(cursor.getString(6));
     }
     clothe.setWeather(weather);
     return clothe;
@@ -377,6 +391,17 @@ public class DBHelper implements IntDBHelper {
   @Override
   public Outfit getOutfit(long id) {
     return null;
+  }
+  @Override
+  public long insertAllClothes(Clothe clothe) {
+    long l =this.insertBodies(clothe.getBodies());
+    this.insertBrand(clothe.getBrand());
+    this.insertColor(clothe.getColor());
+    this.insertType(clothe.getType(), l);
+    for( int i = 0; i <clothe.getWeather().size(); i++)
+    this.insertWeather(clothe.getWeather().get(i));
+     l =insertClothes(clothe);
+    return 0;
   }
 
 }
