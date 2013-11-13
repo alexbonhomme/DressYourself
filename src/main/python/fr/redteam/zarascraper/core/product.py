@@ -22,3 +22,12 @@ class Product(object):
 
     def getImage(self):
         return Downloader().getFile(self.imgUrl)
+
+    def toString(self):
+        return str('<' +
+              self.brand + '><' +
+              self.model + '><' +
+              self.color['name'] + '><' +
+              self.type + '><' +
+              self.bodies + '><' +
+              self.imgUrl + '>')

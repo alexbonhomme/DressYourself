@@ -33,6 +33,7 @@ class Main(object):
     Run scraping and fills the database
     '''
     def run(self):
+        '''
         self.scraper.setConfig('man', 'jeans', 'Jean', 'Bottom')
         itemList = self.scraper.run();
         self.fillDataBase(itemList)
@@ -48,22 +49,22 @@ class Main(object):
         self.scraper.setConfig('man', 'shoes', 'Shoes', 'Shoes')
         itemList = self.scraper.run(usePlainImage = False);
         self.fillDataBase(itemList)
-
+        '''
         self.scraper.setConfig('woman', 'jeans', 'Jean', 'Bottom')
-        itemList = self.scraper.run();
-        self.fillDataBase(itemList)
-
+        itemList = self.scraper.run(download = True);
+        # self.fillDataBase(itemList)
+        '''
         self.scraper.setConfig('woman', 'skirts', 'Skirt', 'Bottom')
         itemList = self.scraper.run();
         self.fillDataBase(itemList)
-
+        '''
         self.scraper.setConfig('woman', 'knitwear', 'Knitwears', 'Top')
-        itemList = self.scraper.run();
-        self.fillDataBase(itemList)
+        itemList = self.scraper.run(download = True);
+        # self.fillDataBase(itemList)
 
         self.scraper.setConfig('woman', 'shoes', 'Shoes', 'Shoes')
-        itemList = self.scraper.run(usePlainImage = False);
-        self.fillDataBase(itemList)
+        itemList = self.scraper.run(usePlainImage = False, download = True);
+        # self.fillDataBase(itemList)
 
         log.info('\n-- Scraping DONE ! --')
 

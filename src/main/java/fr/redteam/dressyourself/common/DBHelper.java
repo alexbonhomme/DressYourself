@@ -2,9 +2,9 @@ package fr.redteam.dressyourself.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.util.ArrayList;
+
+import org.apache.commons.io.IOUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -77,6 +77,7 @@ public class DBHelper implements IntDBHelper {
     return bdd.insertOrThrow("BODIES", null, values);
   }
 
+  @Override
   public long insertType(String type, long l) {
     ContentValues values = new ContentValues();
     values.put("typeName", type);
@@ -86,19 +87,17 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public long insertClothes(Clothe clothe)  {
-    
-    
     try {
       ContentValues values = new ContentValues();
       values.put("model", clothe.getModel());
       values.put("ID_t", getIDType(clothe.getType()));
       values.put("ID_c", getIDColor(clothe.getColor()));
       values.put("ID_br", getIDBrand(clothe.getBrand()));
-      byte[] bytes = null;
-      clothe.getImage().read(bytes);
-      values.put("image", bytes);
+      values.put("image", IOUtils.toByteArray(clothe.getImage()));
       long r = bdd.insertOrThrow("CLOTHES", null,values);
+
       return r;
+
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
