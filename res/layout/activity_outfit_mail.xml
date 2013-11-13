@@ -9,7 +9,7 @@
     tools:context=".ActivityOutfitMail" >
 
     <TextView
-        android:id="@+id/txtDstClothe"
+        android:id="@+id/txtDstOutfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,45 +19,44 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/btnEnvoieMail"
+        android:id="@+id/btnEnvoieMailOutfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editDestinataire"
+        android:layout_alignRight="@+id/editDestinataireOutfit"
         android:layout_marginBottom="24dp"
         android:layout_marginRight="20dp"
         android:text="@string/send" />
 
     <EditText
-        android:id="@+id/editDestinataire"
+        android:id="@+id/editDestinataireOutfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/txtDstClothe"
-        android:layout_below="@+id/txtDstClothe"
+        android:layout_alignRight="@+id/txtDstOutfit"
+        android:layout_below="@+id/txtDstOutfit"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:inputType="textMultiLine" />
 
     <TextView
-        android:id="@+id/txtSaisieClothe"
+        android:id="@+id/txtSaisieOutfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDstClothe"
-        android:layout_below="@+id/editDestinataire"
+        android:layout_alignLeft="@+id/txtDstOutfit"
+        android:layout_below="@+id/editDestinataireOutfit"
         android:text="@string/write_mail_body"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/editMail"
+        android:id="@+id/editMailOutfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnEnvoieMail"
-        android:layout_alignLeft="@+id/editDestinataire"
-        android:layout_below="@+id/txtSaisieClothe"
+        android:layout_above="@+id/btnEnvoieMailOutfit"
+        android:layout_alignLeft="@+id/editDestinataireOutfit"
+        android:layout_below="@+id/txtSaisieOutfit"
         android:ems="10"
         android:inputType="textMultiLine" >
 
-        <requestFocus />
     </EditText>
 
 </RelativeLayout>
