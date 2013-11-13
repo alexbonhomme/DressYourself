@@ -1,8 +1,5 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,19 +100,18 @@ public class ActivityDebug extends Activity {
         clothe.setType("pull");
         clothe.setBodies("body");
 
-        try {
-          clothe.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException(e);
-        }
-
+        // try {
+        // clothe.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
+        // } catch (FileNotFoundException e) {
+        // throw new RuntimeException(e);
+        // }
+        //
         Intent intent = new Intent(ActivityDebug.this, ActivityClotheDetail.class);
         intent.putExtra("clothe", clothe);
         startActivity(intent);
       }
     });
 
-    
   }
 
   @Override
@@ -154,7 +150,7 @@ public class ActivityDebug extends Activity {
     long topId = db.insertBodies("Top");
     long bottomId = db.insertBodies("Bottom");
     long shoesId = db.insertBodies("Shoes");
-    
+
     /* long brandId = */db.insertBrand("Zara");
 
     /**

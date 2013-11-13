@@ -2,11 +2,11 @@ package fr.redteam.dressyourself.activities;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,15 +17,8 @@ import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
-/**
- * An activity representing a single Clothe detail screen. This activity is only used on handset
- * devices. On tablet-size devices, item details are presented side-by-side with a list of items in
- * a {@link ActivityClotheList}.
- * <p>
- * This activity is mostly just a 'shell' activity containing nothing more than a
- * {@link FragmentClotheDetail}.
- */
-public class ActivityClotheDetail extends FragmentActivity {
+public class ActivityClotheDetail extends Activity {
+
   private TextView textViewBrand;
   private TextView textViewLabel;
   private TextView textViewColor;
@@ -33,6 +26,7 @@ public class ActivityClotheDetail extends FragmentActivity {
   private TextView textViewWeather;
   private TextView textViewBody;
   private ImageView ImagePhoto;
+  private Button btnModify;
   private Clothe myClothe;
 
   @Override
@@ -41,11 +35,11 @@ public class ActivityClotheDetail extends FragmentActivity {
     setContentView(R.layout.activity_clothe_detail);
 
     // Show the Up button in the action bar.
-    getActionBar().setDisplayHomeAsUpEnabled(true);
+    // getActionBar().setDisplayHomeAsUpEnabled(true);
 
     // add onclick action for the button in order to put the object cloth and call the modification
     // page.
-    Button btnModify = (Button) findViewById(R.id.modifyBtn);
+    this.btnModify = (Button) findViewById(R.id.modifyBtn);
     btnModify.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -59,19 +53,6 @@ public class ActivityClotheDetail extends FragmentActivity {
     this.initMyClothe();
     this.initTextView();
     this.initImageView();
-
-
-    if (savedInstanceState == null) {
-      // Create the detail fragment and add it to the activity
-      // using a fragment transaction.
-      Bundle arguments = new Bundle();
-      arguments.putString(FragmentClotheDetail.ARG_ITEM_ID,
-          getIntent().getStringExtra(FragmentClotheDetail.ARG_ITEM_ID));
-      FragmentClotheDetail fragment = new FragmentClotheDetail();
-      fragment.setArguments(arguments);
-      getSupportFragmentManager().beginTransaction().add(R.id.clothe_detail_container, fragment)
-          .commit();
-    }
   }
 
   /*
@@ -114,7 +95,7 @@ public class ActivityClotheDetail extends FragmentActivity {
     this.textViewLabel.setText(this.myClothe.getModel());
     this.textViewColor.setText(this.myClothe.getColor());
     this.textViewType.setText(this.myClothe.getType());
-    this.textViewBody.setText(this.myClothe.getType());
+    this.textViewBody.setText(this.myClothe.getBodies());
     this.textViewWeather.setText(this.getStringWeather());
   }
 
