@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.plugins;
+package fr.redteam.dressyourself.plugins.mail;
 
 import java.util.ArrayList;
 import java.util.List;

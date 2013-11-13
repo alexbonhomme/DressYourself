@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.plugins.MailOutfitPlugin;
+import fr.redteam.dressyourself.plugins.mail.MailOutfitPlugin;
 
 /**
  * This activity is made in order to share by mail
