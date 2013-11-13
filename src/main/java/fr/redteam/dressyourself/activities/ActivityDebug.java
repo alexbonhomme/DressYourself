@@ -16,6 +16,7 @@ import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.api.APIShopSense;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.core.clothes.Outfit;
 
 
 public class ActivityDebug extends Activity {
@@ -34,10 +35,43 @@ public class ActivityDebug extends Activity {
 
     debugAPI = (Button) findViewById(R.id.buttonDebugAPI);
     sendMailOutfit = (Button) findViewById(R.id.btnSendOutfitMail);
-    sendMailClothe = (Button) findViewById(R.id.btnEnvoieMailClothe);
+    sendMailClothe = (Button) findViewById(R.id.btnClothMail);
     this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
     this.ClothDetail = (Button) findViewById(R.id.buttonDetailClothe);
     addClothesToDataBase = (Button) findViewById(R.id.buttonAddClotheClothesToDB);
+
+
+    sendMailOutfit.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        List<String> weather = new ArrayList<String>();
+        weather.add("Cloudy");
+        weather.add("Rainy");
+        Clothe clothe = new Clothe("Clothe test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        clothe.setBodies("body");
+
+        Clothe clothe2 = new Clothe("Clothe2 test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("boot");
+        clothe.setBodies("body");
+        Outfit outfit = new Outfit();
+        outfit.addClothe(clothe);
+        outfit.addClothe(clothe2);
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("outfit", outfit);
+        intent.putExtras(bundle);
+        startActivity(intent);
+      }
+    });
     /*
      * sendMailOutfit.setOnClickListener(new OnClickListener() {
      * 
