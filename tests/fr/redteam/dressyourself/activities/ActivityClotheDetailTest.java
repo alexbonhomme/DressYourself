@@ -1,7 +1,5 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +56,10 @@ public class ActivityClotheDetailTest
     List<String> weather = new ArrayList<String>();
     weather.add("Cloudy");
     weather.add("Rainy");
+    System.out.println();
     this.vetementTest = new Clothe("Clothe test");
-    this.vetementTest.setImage(new FileInputStream(new File("../res/drawable/echarpe_peche.jpg")));
+    // this.vetementTest.setImage(new FileInputStream(new
+    // File("../res/drawable/echarpe_peche.jpg")));
     this.vetementTest.setWeather(weather);
     this.vetementTest.setBrand("Zara");
     this.vetementTest.setColor("RED");
@@ -74,8 +74,8 @@ public class ActivityClotheDetailTest
   /*
    * Check the content of textViewBody
    */
-  public void TestTextViewBrandValue() {
-    assertEquals(textViewBrand.getText(), vetementTest.getBrand());
+  public void testTextViewBrandValue() {
+    assertEquals(textViewBrand.getText().toString(), vetementTest.getBrand());
   }
 
 
@@ -84,15 +84,14 @@ public class ActivityClotheDetailTest
   }
 
   public void testTextViewBrandNotEmpty() {
-    assertFalse(this.textViewBrand.getText().equals(""));
+    assertFalse(this.textViewBrand.getText().toString().equals(""));
   }
-
 
   /*
    * Check the content of textViewLabel
    */
   public void testTextViewLabelValue() {
-    assertEquals(textViewModel.getText(), vetementTest.getModel());
+    assertEquals(textViewModel.getText().toString(), vetementTest.getModel());
   }
 
   public void testTextViewLabelNotNull() {
@@ -100,7 +99,7 @@ public class ActivityClotheDetailTest
   }
 
   public void testTextViewLabelNotEmpty() {
-    assertFalse(this.textViewModel.getText().equals(""));
+    assertFalse(this.textViewModel.getText().toString().equals(""));
   }
 
 
@@ -108,7 +107,7 @@ public class ActivityClotheDetailTest
    * Check the content of textViewLabel
    */
   public void testTextViewColorValue() {
-    assertEquals(textViewColor.getText(), vetementTest.getColor());
+    assertEquals(textViewColor.getText().toString(), vetementTest.getColor());
   }
 
   public void testTextViewColorNotNull() {
@@ -116,7 +115,7 @@ public class ActivityClotheDetailTest
   }
 
   public void testTextViewColorNotEmpty() {
-    assertFalse(this.textViewColor.getText().equals(""));
+    assertFalse(this.textViewColor.getText().toString().equals(""));
   }
 
   /*
@@ -128,7 +127,7 @@ public class ActivityClotheDetailTest
     for (String weatherLine : TheWeather) {
       WeatherTxt += weatherLine + " ";
     }
-    assertEquals(this.textViewWeather.getText(), WeatherTxt);
+    assertEquals(this.textViewWeather.getText().toString(), WeatherTxt);
   }
 
   public void testTextViewWeatherNotNull() {
@@ -136,36 +135,36 @@ public class ActivityClotheDetailTest
   }
 
   public void testTextViewWeatherNotEmpty() {
-    assertFalse(this.textViewWeather.getText().equals(""));
+    assertFalse(this.textViewWeather.getText().toString().equals(""));
   }
 
   /*
    * Check the content of textViewType
    */
-  public void testTextViewTypeValue() {
-    assertEquals(textViewType.getText(), vetementTest.getType());
+  public void TestTextViewTypeValue() {
+    assertEquals(textViewType.getText().toString(), vetementTest.getType());
   }
 
-  public void testTextViewTypeNotNull() {
+  public void TestTextViewTypeNotNull() {
     assertFalse(this.textViewType.getText() == null);
   }
 
-  public void testTextViewTypeNotEmpty() {
-    assertFalse(this.textViewType.getText().equals(""));
+  public void TestTextViewTypeNotEmpty() {
+    assertFalse(this.textViewType.getText().toString().equals(""));
   }
 
   /*
    * Check the content of textViewType
    */
-  public void testTextViewBodyValue() {
-    assertEquals(textViewBody.getText(), vetementTest.getType());
+  public void TestTextViewBodyValue() {
+    assertEquals(textViewBody.getText().toString(), vetementTest.getType());
   }
 
-  public void testTextViewBodyNotNull() {
+  public void TestTextViewBodyNotNull() {
     assertFalse(this.textViewBody.getText() == null);
   }
 
-  public void testTextViewBodyNotEmpty() {
-    assertFalse(this.textViewBody.getText().equals(""));
+  public void TestTextViewBodyNotEmpty() {
+    assertFalse(this.textViewBody.getText().toString().equals(""));
   }
 }
