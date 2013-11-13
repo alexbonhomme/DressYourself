@@ -72,20 +72,29 @@ public class ActivityDebug extends Activity {
         startActivity(intent);
       }
     });
-    /*
-     * sendMailOutfit.setOnClickListener(new OnClickListener() {
-     * 
-     * @Override public void onClick(View v) {
-     * 
-     * Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
-     * intent.putExtra("id", 1); startActivity(intent); } });
-     * 
-     * 
-     * sendMailClothe.setOnClickListener(new OnClickListener() {
-     * 
-     * @Override public void onClick(View v) { Intent intent = new Intent(ActivityDebug.this,
-     * ActivityClotheMail.class); intent.putExtra("id", 1); startActivity(intent); } });
-     */
+
+
+    sendMailClothe.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        List<String> weather = new ArrayList<String>();
+        weather.add("Cloudy");
+        weather.add("Rainy");
+        Clothe clothe = new Clothe("Clothe test");
+        clothe.setWeather(weather);
+        clothe.setBrand("Zara");
+        clothe.setColor("RED");
+        clothe.setType("pull");
+        clothe.setBodies("body");
+
+        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("clothe", clothe);
+        intent.putExtras(bundle);
+        startActivity(intent);
+      }
+    });
+
 
     /* API */
     debugAPI.setOnClickListener(new OnClickListener() {
