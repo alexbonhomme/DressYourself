@@ -1,5 +1,6 @@
 package fr.redteam.dressyourself.core.clothes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @generated
  */
 
-public class Outfit {
+public class Outfit implements Serializable {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
