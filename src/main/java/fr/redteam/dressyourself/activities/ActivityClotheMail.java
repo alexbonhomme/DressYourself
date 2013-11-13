@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.mail.MailClothePlugin;
 
 public class ActivityClotheMail extends Activity {
@@ -16,7 +17,7 @@ public class ActivityClotheMail extends Activity {
   private EditText textDestinataire;
   private EditText textContenu;
   private MailClothePlugin mail;
-  private int id;
+  private Clothe clothe;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class ActivityClotheMail extends Activity {
     this.buttonEnvoyer = (Button) findViewById(R.id.btnEnvoieMailClothe);
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireClothe);
     this.textContenu = (EditText) findViewById(R.id.editMailClothe);
-    this.id = (Integer) this.getIntent().getExtras().get("clothe");
+    this.clothe = (Clothe) this.getIntent().getExtras().get("clothe");
     /**
      * define the click listener
      */
@@ -49,7 +50,7 @@ public class ActivityClotheMail extends Activity {
 
   public void creationMail() {
     this.mail =
-        new MailClothePlugin(id, "i want to share this Clothe", this.textContenu.getText()
+        new MailClothePlugin(clothe, "i want to share this Clothe", this.textContenu.getText()
             .toString(), this.textDestinataire.getText().toString(), this);
     mail.creationMail();
   }
