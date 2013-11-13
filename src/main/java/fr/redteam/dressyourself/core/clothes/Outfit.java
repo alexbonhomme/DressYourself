@@ -13,6 +13,10 @@ import java.util.List;
 
 public class Outfit implements Serializable {
   /**
+   * 
+   */
+  private static final long serialVersionUID = 8706175620359487087L;
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
