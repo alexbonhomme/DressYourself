@@ -34,30 +34,30 @@ public class DBHelperTest extends AndroidTestCase  {
   @Test
   public void testInsertColor() {
     long c = db.insertColor("Mauve");
-   assert c!=0;
+   assert c!=-1;
     
   }
 
   @Test
   public void testInsertWeather() {
     long c = db.insertWeather("Mauve");
-   assert c!=-0;  }
+   assert c!=-1;  }
 
   @Test
   public void testInsertBodies() {
     long c = db.insertBodies("Mauve");
-   assert c!=0;  }
+   assert c!=-1;  }
 
   @Test
   public void testInsertType() {
     long c = db.insertType("Mauve",1);
-   assert c!=0;  }
+   assert c!=-1;  }
 
   @Test
   public void testInsertClothes() {
     Clothe clothe = new Clothe("toto");
     long c = db.insertClothes(clothe);
-    assert c !=0;
+    assert c !=-1;
   }
 
   @Test
