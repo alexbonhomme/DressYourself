@@ -16,10 +16,12 @@ public interface IntDBHelper {
 
   public long insertBodies(String bodies);
 
-  public long insertType(String type, int id_bodies);
+  public long insertType(String type, long id_bodies);
 
   public long insertClothes(Clothe clothe);
-
+  
+  public long insertAllClothes(Clothe clothe);
+  
   public long insertOutfit(String name, Clothe[] clothes);
 
   // les requetes de recupération des id
