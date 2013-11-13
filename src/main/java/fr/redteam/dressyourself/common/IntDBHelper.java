@@ -23,19 +23,19 @@ public interface IntDBHelper {
   public long insertOutfit(String name, Clothe[] clothes);
 
   // les requetes de recupération des id
-  public int getIDColor(String color);
+  public long getIDColor(String color);
 
-  public int getIDWeather(String weather);
+  public long getIDWeather(String weather);
 
-  public int getIDBodies(String bodies);
+  public long getIDBodies(String bodies);
 
-  public int getIDType(String type);
+  public long getIDType(String type);
 
-  public int getIDClothes(String clothes);
+  public long getIDClothes(String clothes);
 
-  public int getIDOutfit(String outfit);
+  public long getIDOutfit(String outfit);
 
-  public int getIDBrand(String brand);
+  public long getIDBrand(String brand);
 
   // les requetes de recupération des infos
   public String getColor(long id);

@@ -111,74 +111,96 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public int getIDColor(String color) {
+  public long getIDColor(String color) {
     String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
 
   }
 
   @Override
-  public int getIDWeather(String weather) {
+  public long getIDWeather(String weather) {
     String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \"" + weather + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
+    if (c.getCount()>0){
     c.moveToFirst();
 
-    return c.getInt(0);
+    return c.getLong(0);
+    }
+    return -1;
   }
 
   @Override
-  public int getIDBodies(String bodies) {
+  public long getIDBodies(String bodies) {
     String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \"" + bodies + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
   }
 
   @Override
-  public int getIDType(String type) {
+  public long getIDType(String type) {
     String query = "SELECT ID_type FROM TYPE WHERE typeName = \"" + type + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
   }
 
   @Override
-  public int getIDClothes(String clothes) {
-    String query = "SELECT ID_clothes FROM CLOTHES WHERE clothesName = \"" + clothes + "\"";
+  public long getIDClothes(String clothes) {
+    String query = "SELECT ID_clothes FROM CLOTHES WHERE model = \"" + clothes + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
   }
 
   @Override
-  public int getIDOutfit(String outfit) {
+  public long getIDOutfit(String outfit) {
     String query = "SELECT ID_outfit FROM OUTFIT WHERE outfitName = \"" + outfit + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
   }
 
   @Override
-  public int getIDBrand(String brand) {
+  public long getIDBrand(String brand) {
     String query = "SELECT ID_brand FROM BRAND WHERE brandName = \"" + brand + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
+    
+    if (c.getCount()>0){
+      c.moveToFirst();
 
-    return c.getInt(0);
+      return c.getLong(0);
+      }
+      return -1;
   }
 
   @Override
