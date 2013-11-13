@@ -264,7 +264,7 @@ public class ActivityDebug extends Activity {
     top.setImage(getResources().openRawResource(R.raw.high_neck_sweater_with_strass));
 
     db.insertColor(top.getColor());
-    db.insertType(top.getType(), (int) topId);
+    // db.insertType(top.getType(), (int) topId);
     db.insertClothes(top);
 
     top = new Clothe("sweater with loose turtle neck");
@@ -275,7 +275,7 @@ public class ActivityDebug extends Activity {
     top.setImage(getResources().openRawResource(R.raw.sweater_with_loose_turtle_neck));
 
     db.insertColor(top.getColor());
-    db.insertType(top.getType(), (int) topId);
+    // db.insertType(top.getType(), (int) topId);
     db.insertClothes(top);
 
     /* Bottoms */
@@ -287,7 +287,7 @@ public class ActivityDebug extends Activity {
     bottom.setImage(getResources().openRawResource(R.raw.skinny_cropped_jeans));
 
     db.insertColor(bottom.getColor());
-    db.insertType(bottom.getType(), (int) topId);
+    db.insertType(bottom.getType(), (int) bottomId);
     db.insertClothes(bottom);
 
     bottom = new Clothe("medium wash jeans");
@@ -298,7 +298,7 @@ public class ActivityDebug extends Activity {
     bottom.setImage(getResources().openRawResource(R.raw.medium_wash_jeans));
 
     db.insertColor(bottom.getColor());
-    db.insertType(bottom.getType(), (int) topId);
+    // db.insertType(bottom.getType(), (int) topId);
     db.insertClothes(bottom);
 
     bottom = new Clothe("skinny jeans");
@@ -309,7 +309,7 @@ public class ActivityDebug extends Activity {
     bottom.setImage(getResources().openRawResource(R.raw.skinny_jeans));
 
     db.insertColor(bottom.getColor());
-    db.insertType(bottom.getType(), (int) topId);
+    // db.insertType(bottom.getType(), (int) topId);
     db.insertClothes(bottom);
 
     /* Shoes */
@@ -321,7 +321,7 @@ public class ActivityDebug extends Activity {
     shoes.setImage(getResources().openRawResource(R.raw.embossed_leather_high_heel_ankle_boot));
 
     db.insertColor(shoes.getColor());
-    db.insertType(shoes.getType(), (int) topId);
+    db.insertType(shoes.getType(), (int) shoesId);
     db.insertClothes(shoes);
 
     shoes = new Clothe("high heel leather ankle boot with zips");
@@ -332,7 +332,7 @@ public class ActivityDebug extends Activity {
     shoes.setImage(getResources().openRawResource(R.raw.high_heel_leather_ankle_boot_with_zips));
 
     db.insertColor(shoes.getColor());
-    db.insertType(shoes.getType(), (int) topId);
+    // db.insertType(shoes.getType(), (int) topId);
     db.insertClothes(shoes);
 
     shoes = new Clothe("leather ankle boot with zip");
@@ -343,7 +343,7 @@ public class ActivityDebug extends Activity {
     shoes.setImage(getResources().openRawResource(R.raw.leather_ankle_boot_with_zip));
 
     db.insertColor(shoes.getColor());
-    db.insertType(shoes.getType(), (int) topId);
+    // db.insertType(shoes.getType(), (int) topId);
     db.insertClothes(shoes);
 
     Toast.makeText(this, "Products added to local database !", Toast.LENGTH_SHORT).show();
