@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.database.sqlite.SQLiteDatabase;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class APIZara extends APIAbstractHelper implements APIInterface {
 
   private static final String DB_PATH = "res/raw/zara_20131110.sqlite";
   private Connection connector;
+  private SQLiteDatabase db;
 
   /**
    * 
@@ -101,5 +103,4 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     // TODO Implement
     return Collections.emptyList();
   }
-
 }

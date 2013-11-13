@@ -77,15 +77,20 @@ class ZaraScrape(Scraper):
                 continue
 
             if download:
-                imgFilename = str(i) + '-' + item['name']
+                imgFilename = str(i) + '-' + item['name'].replace(' ', '_')
                 log.info('Downloading ' + imgFilename + '...')
                 self.downloader.writeFile(imgUrl, self.dl_folder + imgFilename)
 
             color = browser.getProductColor()
 
-            log.info('SUCCES : Product "' + item['name'] + '" scraping done.')
-            itemList.append(Product(item['name'], self.BRAND_NAME, color, imgUrl, self.type, self.bodies))
+            # log.info('SUCCES : Product "' + item['name'] + '" scraping done.')
+            product = Product(item['name'], self.BRAND_NAME, color, imgUrl, self.type, self.bodies)
+            log.info(product.toString())
+            itemList.append(product)
             i += 1
+
+            if i > 3:
+                break
 
         log.info('-- Ending scraping --')
         log.info('-- ' + str(i) + ' images was scraped --')

@@ -64,7 +64,7 @@ class ZaraBrowser(Browser):
         for product in product_list_info:
             product_link = product.find('a')
 
-            dummy.append({'name': product_link.get_text(),
+            dummy.append({'name': product_link.get_text().lower(),
                           'url': product_link.get('href')})
 
         return dummy
