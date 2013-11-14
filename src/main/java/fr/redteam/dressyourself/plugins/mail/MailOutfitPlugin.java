@@ -14,9 +14,10 @@ public class MailOutfitPlugin extends MailPlugin {
   public MailOutfitPlugin(Outfit outfit, String subject, String textBody, String textDestinataire,
       Activity activity) {
     super(subject, textBody, textDestinataire, activity);
+    this.outfit = outfit;
   }
 
-  protected void Body() {
+  protected void body() {
 
     List<Clothe> ListClothe = new ArrayList<Clothe>();
 
@@ -31,11 +32,14 @@ public class MailOutfitPlugin extends MailPlugin {
         "Ma tenue contient les pieces suivantes.\n");
     /* Made the body of mail */
     for (Clothe vetement : ListClothe) {
-      mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "un(e) " + vetement.getType()
-          + " de la marque " + vetement.getBrand() + " et de couleur " + vetement.getColor() + " "
-          + vetement.getModel() + ".\n");
-      // emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + vetement.getImageUrl()));
-
+      String txtBody =
+          this.textBody
+              + "\n j'ai trouvé ce vetement et je pense qu'il va te plaire.\n C'est un(e)"
+              + vetement.getType() + " de la marque " + vetement.getBrand() + " et de couleur "
+              + vetement.getColor() + " " + vetement.getModel() + ".\n";
+      /* Add text */
+      mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
+      // mailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + vetement.getImage()));
     }
 
   }

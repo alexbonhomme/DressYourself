@@ -2,6 +2,7 @@ package fr.redteam.dressyourself.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -295,7 +296,7 @@ public class DBHelper implements IntDBHelper {
   @Override
   public ArrayList<Clothe> getListTop() {
     String query =
-        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='TOP'";
+        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='Top'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listTop = new ArrayList<Clothe>();
 
@@ -309,7 +310,7 @@ public class DBHelper implements IntDBHelper {
 
   public ArrayList<Clothe> getListBottom() {
     String query =
-        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='BOTTOM'";
+        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='Bottom'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
 
@@ -324,7 +325,7 @@ public class DBHelper implements IntDBHelper {
   @Override
   public ArrayList<Clothe> getListFeet() {
     String query =
-        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='FEET'";
+        "SELECT model FROM CLOTHES INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies AND bodiesName='Shoes'";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
 
@@ -339,12 +340,13 @@ public class DBHelper implements IntDBHelper {
   @Override
   public ArrayList<Clothe> getListClothes() {
     String query =
-        "SELECT clothesName FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
+        "SELECT clothesName, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
 
     while (cursor.moveToNext()) {
-      Clothe clothe = new Clothe(cursor.getString(0));
+      Clothe clothe =
+          new Clothe(cursor.getString(0), (InputStream) new ByteArrayInputStream(cursor.getBlob(1)));
       listClothes.add(clothe);
     }
 

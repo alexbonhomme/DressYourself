@@ -3,11 +3,13 @@ package fr.redteam.dressyourself.activities;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
@@ -23,6 +25,9 @@ public class ActivityOutfit extends Activity {
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
+  private ImageView imageTop;
+  private ImageView imageBottom;
+  private ImageView imageFeet;
   private final DBHelper db = new DBHelper(this);
   private ArrayList<Clothe> listTop = new ArrayList<Clothe>();
   private ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
@@ -39,6 +44,9 @@ public class ActivityOutfit extends Activity {
     textViewTop = (TextView) findViewById(R.id.top_text);
     textViewBottom = (TextView) findViewById(R.id.bottom_text);
     textViewFeet = (TextView) findViewById(R.id.feet_text);
+    imageTop = (ImageView) findViewById(R.id.top_image);
+    imageBottom = (ImageView) findViewById(R.id.bottom_image);
+    imageFeet = (ImageView) findViewById(R.id.feet_image);
     
     if (Weather.getWeather() != null) {
       Log.d("weather", Weather.getWeather());
@@ -94,14 +102,19 @@ public class ActivityOutfit extends Activity {
     // TODO recuperation en base
     if (listTop.size() > 1) {
       currentTop = decider.DecideTop(listTop);
+      textViewTop.setText(currentTop.getModel());
+      imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImage(),
+          currentTop.getModel()));
     }
     textViewTop.setText(textViewTop.getText() + " ");
+
   }
 
   private void refreshBottom() {
     // TODO recuperation en base
     if (listBottom.size() > 1) {
       currentBottom = decider.DecideTop(listBottom);
+      textViewBottom.setText(currentBottom.getModel());
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
@@ -110,6 +123,7 @@ public class ActivityOutfit extends Activity {
     // TODO recuperation en base
     if (listFeet.size() > 1) {
       currentFeet = decider.DecideTop(listFeet);
+      textViewFeet.setText(currentFeet.getModel());
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }

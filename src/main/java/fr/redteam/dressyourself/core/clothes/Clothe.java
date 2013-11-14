@@ -36,6 +36,11 @@ public class Clothe implements Serializable {
     weather = new ArrayList<String>();
   }
 
+  public Clothe(String model, InputStream image) {
+    this.model = model;
+    this.image = image;
+  }
+
   public long getId() {
 		return id;
   }

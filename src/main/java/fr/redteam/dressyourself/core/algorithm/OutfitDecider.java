@@ -41,7 +41,8 @@ public class OutfitDecider
       while (randomInt == currentTop) {
         randomInt = randomGenerator.nextInt(listTop.size());
       }
-      return listTop.get(randomInt);
+      currentTop = randomInt;
+      return listTop.get(currentTop);
     }
 
     // TODO prendre en compte la météo
@@ -58,7 +59,8 @@ public class OutfitDecider
       while (randomInt == currentBottom) {
         randomInt = randomGenerator.nextInt(listBottom.size());
       }
-      return listBottom.get(randomInt);
+      currentBottom = randomInt;
+      return listBottom.get(currentBottom);
     }
 
     // TODO prendre en compte la météo
@@ -75,7 +77,8 @@ public class OutfitDecider
       while (randomInt == currentFeet) {
         randomInt = randomGenerator.nextInt(listFeet.size());
       }
-      return listFeet.get(randomInt);
+      currentFeet = randomInt;
+      return listFeet.get(currentFeet);
     }
 
     // TODO prendre en compte la météo
