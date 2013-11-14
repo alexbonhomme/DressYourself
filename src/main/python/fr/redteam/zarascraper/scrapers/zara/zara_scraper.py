@@ -89,6 +89,7 @@ class ZaraScrape(Scraper):
             itemList.append(product)
             i += 1
 
+            # TODO : delete this shit
             if i > 3:
                 break
 

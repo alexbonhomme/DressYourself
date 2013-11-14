@@ -7,6 +7,7 @@ import org.junit.Test;
 import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
+import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class DBHelperTest extends AndroidTestCase  {
@@ -56,6 +57,8 @@ public class DBHelperTest extends AndroidTestCase  {
   @Test
   public void testInsertClothes() {
     Clothe clothe = new Clothe("toto");
+    clothe.setImage(context.getResources().openRawResource(
+        R.raw.embossed_leather_high_heel_ankle_boot));
     long c = db.insertClothes(clothe);
     assert c !=-1;
   }
