@@ -11,9 +11,9 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  */
 public interface APIInterface {
 
-  public List<Clothe> getClothesByType(String typeName);
+  List<Clothe> getClothesByType(String typeName);
 
-  public Clothe getClothe(int id);
+  Clothe getClothe(int id);
 
-  public List<Clothe> searchAll(String query);
+  List<Clothe> searchAll(String query);
 }
