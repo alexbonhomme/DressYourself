@@ -53,8 +53,10 @@ public class ActivityClotheModify extends Activity {
     this.typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
     this.saveButton = (Button) findViewById(R.id.save);
 
-    // add listeners
+    // init all the dynamic fields (spinners and editable fields)
+    this.initFieldsWithValues();
 
+    // add listeners
     this.image.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -70,6 +72,7 @@ public class ActivityClotheModify extends Activity {
         updateClotheValues(clotheToEdit);
         // update in DB
         Toast toast;
+        bdd.open();
         if (bdd.updateClothe(clotheToEdit) == 1) {
           toast =
               Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !",
@@ -91,17 +94,17 @@ public class ActivityClotheModify extends Activity {
       }
     });
 
-    // init all the dynamic fields (spinners and editable fields)
-    this.initFieldsWithValues();
   }
 
   /**
    * Init the spinners with the values stored in database
    */
   public void initSpinnersWithData() {
+    /* retrieve informations from database */
+    this.bdd.open();
     ArrayList<String> colors = this.bdd.getAllColors();
     ArrayList<String> types = this.bdd.getAllTypes();
-
+    this.bdd.close();
     /* create colorSpinnerAdapter and initialising the corresponding spinner with */
     ArrayAdapter<String> colorAdapter =
         new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
@@ -143,7 +146,8 @@ public class ActivityClotheModify extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.modify_clothe);
-
+    // get DBHelper
+    bdd = new DBHelper(ActivityClotheModify.this);
     // retrieve the clothe object passed in the intent
     Intent intent = getIntent();
     if (intent != null) {
@@ -153,9 +157,7 @@ public class ActivityClotheModify extends Activity {
         throw new RuntimeException(new Exception("Error while retrieving information from intent"));
       }
     }
-    // open BDD
-    bdd = new DBHelper(ActivityClotheModify.this);
-    bdd.open();
+
     // init the components of the page
     this.initComponents();
   }
