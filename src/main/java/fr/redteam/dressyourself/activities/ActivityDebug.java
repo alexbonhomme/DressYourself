@@ -29,6 +29,7 @@ public class ActivityDebug extends Activity {
   private Button sendMailClothe;
   private Button modifyClothe;
   private Button ClothDetail;
+  private DBHelper db;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class ActivityDebug extends Activity {
     this.modifyClothe = (Button) findViewById(R.id.buttonClotheModify);
     this.ClothDetail = (Button) findViewById(R.id.buttonDetailClothe);
     addClothesToDataBase = (Button) findViewById(R.id.buttonAddClotheClothesToDB);
-
+    this.db = new DBHelper(this);
 
     sendMailOutfit.setOnClickListener(new OnClickListener() {
 
@@ -68,8 +69,7 @@ public class ActivityDebug extends Activity {
         outfit.addClothe(clothe2);
         Intent intent = new Intent(ActivityDebug.this, ActivityOutfitMail.class);
         Bundle bundle = new Bundle();
-        Toast.makeText(ActivityDebug.this, " taille" + outfit.getClothes().size(),
-            Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityDebug.this, " taille" + outfit.getClothes().size(), Toast.LENGTH_SHORT).show();
         bundle.putSerializable("outfit", outfit);
         intent.putExtras(bundle);
         startActivity(intent);
@@ -133,7 +133,10 @@ public class ActivityDebug extends Activity {
         clothe.setType("pull");
         Intent intent = new Intent(ActivityDebug.this, ActivityClotheModify.class);
         intent.putExtra("clothe", clothe);
+        // intent.putExtra("image",
+        // "/mnt/shared/unreal/git/dressyourself/res/drawable/bottines.jpg");
         startActivity(intent);
+
       }
     });
 
