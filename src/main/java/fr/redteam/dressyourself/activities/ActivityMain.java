@@ -41,26 +41,8 @@ public class ActivityMain extends Activity implements LocationListener {
      */
 
     // TODO recuperer coordonnees GPS puis recuperer le nom de la ville
-    // Get the location manager
 
-    /*
-     * LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE); boolean
-     * enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
-     * 
-     * // check if enabled and if not send user to the GSP settings // Better solution would be to
-     * display a dialog and suggesting to // go to the settings if (!enabled) { Intent intent = new
-     * Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS); startActivity(intent); }
-     * 
-     * 
-     * locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); // Define the
-     * criteria how to select the locatioin provider -> use Criteria criteria = new Criteria();
-     * provider = locationManager.getBestProvider(criteria, false);
-     * locationManager.requestLocationUpdates(provider, 400, 1, this); Location location =
-     * locationManager.getLastKnownLocation(provider); Log.d("location", location.getLongitude() +
-     * " " + location.getLatitude());
-     */
-
-    new WeatherPlugin("lille", getApplicationContext(), this);
+    new WeatherPlugin("lille", getApplicationContext());
 
     /* Open the page to add clothes */
     buttonAddClothing = (Button) findViewById(R.id.btAddClothing);

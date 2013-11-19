@@ -7,27 +7,26 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 
-public class OutfitDecider
-{
+public class OutfitDecider {
   private boolean weather;
   private int currentTop = 0;
   private int currentBottom = 0;
   private int currentFeet = 0;
   private Random randomGenerator = new Random();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public OutfitDecider(){
-		super();
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public OutfitDecider() {
+    super();
+  }
 
   public OutfitDecider(boolean weather) {
     this.weather = weather;
@@ -43,10 +42,8 @@ public class OutfitDecider
       }
       currentTop = randomInt;
       return listTop.get(currentTop);
-    }
-
-    // TODO prendre en compte la météo
-    else {
+    } else {
+      // TODO prendre en compte la météo
       return listTop.get(0);
     }
   }
@@ -61,10 +58,8 @@ public class OutfitDecider
       }
       currentBottom = randomInt;
       return listBottom.get(currentBottom);
-    }
-
-    // TODO prendre en compte la météo
-    else {
+    } else {
+      // TODO prendre en compte la météo
       return listBottom.get(0);
     }
   }
@@ -79,12 +74,9 @@ public class OutfitDecider
       }
       currentFeet = randomInt;
       return listFeet.get(currentFeet);
-    }
-
-    // TODO prendre en compte la météo
-    else {
+    } else {
+      // TODO prendre en compte la météo
       return listFeet.get(0);
     }
   }
 }
-

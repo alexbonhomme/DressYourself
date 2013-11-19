@@ -33,7 +33,7 @@ public class WeatherIdentifier {
 
   static weatherGroup identifyGroup(String weather) {
 
-	weatherGroup result = weatherGroup.NOTFOUND;
+    weatherGroup result = weatherGroup.NOTFOUND;
     for (String s : listHardcore) {
       if (weather.contains(s)) {
         result = weatherGroup.HARDCORE;
