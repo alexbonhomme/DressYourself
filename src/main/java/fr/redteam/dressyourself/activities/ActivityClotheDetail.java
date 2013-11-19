@@ -45,7 +45,9 @@ public class ActivityClotheDetail extends Activity {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(ActivityClotheDetail.this, ActivityClotheModify.class);
-        intent.putExtra("clothe", myClothe);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("clothe", myClothe);
+        intent.putExtras(bundle);
         startActivity(intent);
       }
     });
