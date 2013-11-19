@@ -1,6 +1,6 @@
 package fr.redteam.dressyourself.core.algorithm;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -33,7 +33,7 @@ public class OutfitDecider
     this.weather = weather;
   }
 
-  public Clothe DecideTop(ArrayList<Clothe> listTop) {
+  public Clothe decideTop(List<Clothe> listTop) {
     int randomInt;
 
     if (!weather) {
@@ -51,7 +51,7 @@ public class OutfitDecider
     }
   }
 
-  public Clothe DecideBottom(ArrayList<Clothe> listBottom) {
+  public Clothe decideBottom(List<Clothe> listBottom) {
     int randomInt;
 
     if (!weather) {
@@ -69,7 +69,7 @@ public class OutfitDecider
     }
   }
 
-  public Clothe DecideFeet(ArrayList<Clothe> listFeet) {
+  public Clothe decideFeet(List<Clothe> listFeet) {
     int randomInt;
 
     if (!weather) {

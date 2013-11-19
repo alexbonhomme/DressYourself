@@ -9,10 +9,10 @@ public class WeatherIdentifier {
     HARDCORE, HOT, TEMPERATE, COLD, NOTFOUND
   }
 
-  static List<String> listHardcore;
-  static List<String> listHot;
-  static List<String> listTemperate;
-  static List<String> listCold;
+  private static List<String> listHardcore;
+  private static List<String> listHot;
+  private static List<String> listTemperate;
+  private static List<String> listCold;
 
   static void fillLists() {
     String[] arrayHardcore =
