@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
 public class ActivityMain extends Activity implements LocationListener {

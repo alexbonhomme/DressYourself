@@ -52,7 +52,7 @@
     <string name="modify">modify</string>
     <string name="description">Description :</string>
     <string name="label_generate_main">Get dressed!</string>
-    <string name="label_list_clothes">See my closets</string>
+    <string name="label_list_clothes">See my closes</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_activity_debug">/!\\ Debug Zone /!\\</string>
     <string name="title_activity_outfit_mail">Mail an outfit</string>

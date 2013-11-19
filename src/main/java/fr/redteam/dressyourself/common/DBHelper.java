@@ -340,7 +340,7 @@ public class DBHelper implements IntDBHelper {
   @Override
   public ArrayList<Clothe> getListClothes() {
     String query =
-        "SELECT clothesName, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
+        "SELECT model, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
 
