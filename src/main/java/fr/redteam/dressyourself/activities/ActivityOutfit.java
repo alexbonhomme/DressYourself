@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -29,9 +30,9 @@ public class ActivityOutfit extends Activity {
   private ImageView imageBottom;
   private ImageView imageFeet;
   private final DBHelper db = new DBHelper(this);
-  private ArrayList<Clothe> listTop = new ArrayList<Clothe>();
-  private ArrayList<Clothe> listBottom = new ArrayList<Clothe>();
-  private ArrayList<Clothe> listFeet = new ArrayList<Clothe>();
+  private List<Clothe> listTop = new ArrayList<Clothe>();
+  private List<Clothe> listBottom = new ArrayList<Clothe>();
+  private List<Clothe> listFeet = new ArrayList<Clothe>();
   private Clothe currentTop;
   private Clothe currentBottom;
   private Clothe currentFeet;
@@ -101,7 +102,7 @@ public class ActivityOutfit extends Activity {
   private void refreshTop() {
     // TODO recuperation en base
     if (listTop.size() > 1) {
-      currentTop = decider.DecideTop(listTop);
+      currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
       imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImage(),
           currentTop.getModel()));
@@ -113,7 +114,7 @@ public class ActivityOutfit extends Activity {
   private void refreshBottom() {
     // TODO recuperation en base
     if (listBottom.size() > 1) {
-      currentBottom = decider.DecideTop(listBottom);
+      currentBottom = decider.decideTop(listBottom);
       textViewBottom.setText(currentBottom.getModel());
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
@@ -122,7 +123,7 @@ public class ActivityOutfit extends Activity {
   private void refreshFeet() {
     // TODO recuperation en base
     if (listFeet.size() > 1) {
-      currentFeet = decider.DecideTop(listFeet);
+      currentFeet = decider.decideTop(listFeet);
       textViewFeet.setText(currentFeet.getModel());
     }
     textViewFeet.setText(textViewFeet.getText() + " ");

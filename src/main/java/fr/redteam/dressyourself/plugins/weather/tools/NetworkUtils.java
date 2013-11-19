@@ -5,12 +5,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class NetworkUtils {
-		public static boolean isConnected(final Context context) {
-			ConnectivityManager connManager = (ConnectivityManager) context
-					.getSystemService(Context.CONNECTIVITY_SERVICE);
+  public static boolean isConnected(final Context context) {
+    ConnectivityManager connManager =
+        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-			final NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+    final NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
 
-			return (networkInfo != null && networkInfo.isConnected());
-		}
+    return networkInfo != null && networkInfo.isConnected();
+  }
 }
