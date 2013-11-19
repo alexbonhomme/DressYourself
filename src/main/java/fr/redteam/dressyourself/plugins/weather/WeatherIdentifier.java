@@ -33,31 +33,36 @@ public class WeatherIdentifier {
 
   static weatherGroup identifyGroup(String weather) {
 
+	weatherGroup result = weatherGroup.NOTFOUND;
     for (String s : listHardcore) {
       if (weather.contains(s)) {
-        return weatherGroup.HARDCORE;
+        result = weatherGroup.HARDCORE;
+        break;
       }
     }
 
     for (String s : listHot) {
       if (weather.contains(s)) {
-        return weatherGroup.HOT;
+        result = weatherGroup.HOT;
+        break;
       }
     }
 
     for (String s : listTemperate) {
       if (weather.contains(s)) {
-        return weatherGroup.TEMPERATE;
+        result = weatherGroup.TEMPERATE;
+        break;
       }
     }
 
     for (String s : listCold) {
       if (weather.contains(s)) {
-        return weatherGroup.COLD;
+        result = weatherGroup.COLD;
+        break;
       }
     }
 
-    return weatherGroup.NOTFOUND;
+    return result;
   }
 
 }
