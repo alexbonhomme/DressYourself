@@ -11,11 +11,12 @@ import java.util.List;
  * @generated
  */
 
+
 public class Outfit implements Serializable {
   /**
    * 
    */
-  private static final long serialVersionUID = 8706175620359487087L;
+  private static final long serialVersionUID = 1L;
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
@@ -70,5 +71,14 @@ public class Outfit implements Serializable {
    */
   public void setClothes(List<Clothe> list) {
     this.clothesList = list;
+  }
+
+  /**
+   * get the number of clothes which compose an outfit.
+   * 
+   * @return
+   */
+  public int nbClothes() {
+    return this.getClothes().size();
   }
 }
