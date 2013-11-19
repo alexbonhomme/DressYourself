@@ -25,7 +25,7 @@ public class ActivityClotheDetail extends Activity {
   private TextView textViewType;
   private TextView textViewWeather;
   private TextView textViewBody;
-  private ImageView ImagePhoto;
+  private ImageView imagePhoto;
   private Button btnModify;
   private Clothe myClothe;
 
@@ -64,12 +64,12 @@ public class ActivityClotheDetail extends Activity {
   }
 
   public void initImageView() {
-    this.ImagePhoto = (ImageView) findViewById(R.id.photo);
+    this.imagePhoto = (ImageView) findViewById(R.id.photo);
 
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inSampleSize = 2;
     Bitmap bm = BitmapFactory.decodeStream(myClothe.getImage(), null, options);
-    this.ImagePhoto.setImageBitmap(bm);
+    this.imagePhoto.setImageBitmap(bm);
   }
 
   /*

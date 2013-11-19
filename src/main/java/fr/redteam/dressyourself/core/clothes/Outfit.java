@@ -23,7 +23,7 @@ public class Outfit implements Serializable {
    * @ordered
    */
 
-  public List<Clothe> clothesList;
+  private List<Clothe> clothesList;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -63,4 +63,12 @@ public class Outfit implements Serializable {
     return this.getClothes();
   }
 
+  /**
+   * set the list of clothes
+   * 
+   * @return ClothesList
+   */
+  public void setClothes(List<Clothe> list) {
+    this.clothesList = list;
+  }
 }
