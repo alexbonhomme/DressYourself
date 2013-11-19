@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -116,13 +114,4 @@ public class ActivityClotheDetail extends Activity {
     return WeatherTxt;
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        NavUtils.navigateUpTo(this, new Intent(this, ActivityClotheList.class));
-        return true;
-    }
-    return super.onOptionsItemSelected(item);
-  }
 }

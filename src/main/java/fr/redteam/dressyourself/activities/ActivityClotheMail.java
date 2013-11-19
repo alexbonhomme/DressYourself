@@ -26,9 +26,11 @@ public class ActivityClotheMail extends Activity {
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireClothe);
     this.textContenu = (EditText) findViewById(R.id.editMailClothe);
     this.clothe = (Clothe) this.getIntent().getExtras().get("clothe");
+
     /**
      * define the click listener
      */
+
     this.buttonEnvoyer.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -45,6 +47,7 @@ public class ActivityClotheMail extends Activity {
   /**
    * function which made an mail intent in order to send it.
    */
+
 
   public void creationMail() {
     this.mail =

@@ -29,8 +29,8 @@ public class MailPlugin {
 
   protected void isValidEmailAddress(String email) {
     Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-    // On déclare un matcher, qui comparera le pattern avec la
-    // string passée en argument
+    // On dï¿½clare un matcher, qui comparera le pattern avec la
+    // string passï¿½e en argument
     Matcher m = p.matcher(email);
     if (!m.matches()) this.adresseValide = false;
   }

@@ -55,8 +55,6 @@
         android:layout_alignLeft="@+id/editDestinataireOutfit"
         android:layout_below="@+id/txtSaisieOutfit"
         android:ems="10"
-        android:inputType="textMultiLine" >
-
-    </EditText>
+        android:inputType="textMultiLine" />
 
 </RelativeLayout>
