@@ -16,7 +16,6 @@ import fr.redteam.dressyourself.plugins.mail.MailOutfitPlugin;
  */
 public class ActivityOutfitMail extends Activity {
 
-  private Button buttonEnvoyer;
   private EditText textDestinataire;
   private EditText textContenu;
   private MailOutfitPlugin mail;
@@ -27,7 +26,7 @@ public class ActivityOutfitMail extends Activity {
     setContentView(R.layout.activity_outfit_mail);
     super.onCreate(savedInstanceState);
 
-    this.buttonEnvoyer = (Button) findViewById(R.id.btnEnvoieMailOutfit);
+    Button buttonEnvoyer = (Button) findViewById(R.id.btnEnvoieMailOutfit);
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireOutfit);
     this.textContenu = (EditText) findViewById(R.id.editMailOutfit);
     this.outfit = (Outfit) this.getIntent().getExtras().get("outfit");
@@ -35,7 +34,7 @@ public class ActivityOutfitMail extends Activity {
     /**
      * define the click listener
      */
-    this.buttonEnvoyer.setOnClickListener(new OnClickListener() {
+    buttonEnvoyer.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
