@@ -6,11 +6,13 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 public class MailClothePlugin extends MailPlugin {
 
   private Clothe clothe;
+  private String textBody;
 
   public MailClothePlugin(Clothe clothe, String subject, String textBody, String textDestinataire,
       Activity activity) {
-    super(subject, textBody, textDestinataire, activity);
+    super(subject, textDestinataire, activity);
     this.clothe = clothe;
+    this.textBody = textBody;
   }
 
   protected void body() {
@@ -19,6 +21,5 @@ public class MailClothePlugin extends MailPlugin {
             + " and it's " + clothe.getColor() + " " + clothe.getModel() + ".\n";
     /* Add text */
     mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
-    // mailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + this.clothe.getImage()));
   }
 }

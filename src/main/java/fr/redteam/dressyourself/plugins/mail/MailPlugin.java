@@ -12,16 +12,14 @@ import android.widget.Toast;
 public class MailPlugin {
 
   protected Intent mailIntent;
-  protected String subject;
-  protected String textBody;
-  protected String textDestinataire;
+  private String subject;
+  private String textDestinataire;
   protected Activity activity;
-  protected boolean adresseValide;
+  private boolean adresseValide;
 
-  public MailPlugin(String subject, String textBody, String textDestinataire, Activity activity) {
+  public MailPlugin(String subject, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
     this.subject = subject;
-    this.textBody = textBody;
     this.textDestinataire = textDestinataire;
     this.activity = activity;
     this.adresseValide = true;
@@ -29,15 +27,17 @@ public class MailPlugin {
 
   protected void isValidEmailAddress(String email) {
     Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-    // On d�clare un matcher, qui comparera le pattern avec la
-    // string pass�e en argument
+    // On declare un matcher, qui comparera le pattern avec la
+    // string passee en argument
     Matcher m = p.matcher(email);
-    if (!m.matches()) this.adresseValide = false;
+    if (!m.matches()) {
+      this.adresseValide = false;
+    }
   }
 
   protected String[] listDestinataire() {
     String txtDsc = this.textDestinataire;
-    String[] DscList;
+    String[] dscList;
     int nbDst = 0;
     List<Integer> positionSeparateur = new ArrayList<Integer>();
     for (int i = 0; i < txtDsc.length(); i++) {
@@ -49,19 +49,19 @@ public class MailPlugin {
 
     if (nbDst > 0) {
       int depart = 0;
-      DscList = new String[nbDst + 1];
+      dscList = new String[nbDst + 1];
       for (int i = 0; i < nbDst; i++) {
-        DscList[i] = txtDsc.substring(depart, positionSeparateur.get(i));
-        isValidEmailAddress(DscList[i]);
+        dscList[i] = txtDsc.substring(depart, positionSeparateur.get(i));
+        isValidEmailAddress(dscList[i]);
         depart = positionSeparateur.get(i) + 1;
       }
-      DscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
-      isValidEmailAddress(DscList[nbDst]);
+      dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
+      isValidEmailAddress(dscList[nbDst]);
     } else {
-      DscList = new String[1];
-      DscList[0] = txtDsc;
+      dscList = new String[1];
+      dscList[0] = txtDsc;
     }
-    return DscList;
+    return dscList;
   }
 
   protected void body() {}
@@ -81,8 +81,9 @@ public class MailPlugin {
     this.body();
     if (this.adresseValide) {
       this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
-    } else
+    } else {
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();
+    }
   }
 
   public boolean isValidMail() {

@@ -4,17 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.widget.Toast;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
 
 public class MailOutfitPlugin extends MailPlugin {
 
   private Outfit outfit;
+  private String textBody;
 
   public MailOutfitPlugin(Outfit outfit, String subject, String textBody, String textDestinataire,
       Activity activity) {
-    super(subject, textBody, textDestinataire, activity);
+    super(subject, textDestinataire, activity);
     this.outfit = outfit;
+    this.textBody = textBody;
   }
 
   protected void body() {
@@ -25,7 +28,7 @@ public class MailOutfitPlugin extends MailPlugin {
     /**
      * get the key of outfit which was passed in parameter.
      */
-
+    Toast.makeText(this.activity, " taille" + ListClothe.size(), Toast.LENGTH_SHORT).show();
     this.mailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
         "I found this outfit and I think it'll like.\n");
     mailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
@@ -38,7 +41,6 @@ public class MailOutfitPlugin extends MailPlugin {
               + vetement.getModel() + ".\n";
       /* Add text */
       mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
-      // mailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + vetement.getImage()));
     }
 
   }
