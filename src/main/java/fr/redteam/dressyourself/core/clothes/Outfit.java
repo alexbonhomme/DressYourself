@@ -61,7 +61,7 @@ public class Outfit implements Serializable {
    * @return ClothesList
    */
   public List<Clothe> getClothes() {
-    return this.getClothes();
+    return this.clothesList;
   }
 
   /**
