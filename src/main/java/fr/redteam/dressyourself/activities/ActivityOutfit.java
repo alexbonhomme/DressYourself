@@ -18,7 +18,7 @@ import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
 
-public class ActivityOutfit extends Activity {
+public class ActivityOutfit extends Activity implements OnClickListener {
 
   private TextView textViewTop;
   private TextView textViewBottom;
@@ -72,30 +72,13 @@ public class ActivityOutfit extends Activity {
     textViewFeet.setText("Basket camel");
 
     buttonRefreshTop = (Button) findViewById(R.id.top_refresh_button);
-    buttonRefreshTop.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        refreshTop();
-      }
-    });
+    buttonRefreshTop.setOnClickListener(this);
 
     buttonRefreshBottom = (Button) findViewById(R.id.bottom_refresh_button);
-    buttonRefreshBottom.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        refreshBottom();
-      }
-    });
+    buttonRefreshBottom.setOnClickListener(this);
 
     buttonRefreshFeet = (Button) findViewById(R.id.feet_refresh_button);
-    buttonRefreshFeet.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        refreshFeet();
-      }
-    });
+    buttonRefreshFeet.setOnClickListener(this);
     db.close();
   }
 
@@ -128,4 +111,23 @@ public class ActivityOutfit extends Activity {
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
+
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.top_refresh_button:
+        refreshTop();
+        break;
+      case R.id.bottom_refresh_button:
+        refreshBottom();
+        break;
+      case R.id.feet_refresh_button:
+        refreshFeet();
+        break;
+      default:
+        break;
+      }
+  }
+
 }
