@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import fr.redteam.dressyourself.common.StreamTools;
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 /**
  * 
@@ -29,7 +30,7 @@ public abstract class APIAbstractHelper {
       content = StreamTools.convertStreamToString(in);
       urlConnection.disconnect();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new DressyourselfRuntimeException(e);
     } finally {
       if (urlConnection != null) {
         urlConnection.disconnect();
