@@ -12,6 +12,7 @@ import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 public class APIZara extends APIAbstractHelper implements APIInterface {
 
@@ -28,7 +29,7 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     try {
       Class.forName("org.sqlite.JDBC");
     } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
+      throw new DressyourselfRuntimeException(e);
     }
 
   }
