@@ -89,10 +89,6 @@ class ZaraScrape(Scraper):
             itemList.append(product)
             i += 1
 
-            # TODO : delete this shit
-            if i > 3:
-                break
-
         log.info('-- Ending scraping --')
         log.info('-- ' + str(i) + ' images was scraped --')
 

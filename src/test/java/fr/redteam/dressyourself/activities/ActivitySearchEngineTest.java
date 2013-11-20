@@ -32,9 +32,5 @@ public class ActivitySearchEngineTest {
   public void testSearchManager() throws Exception {
     SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
     assertNotNull(searchManager);
-
-    searchManager.startSearch("test search string", true, searchActivity.getComponentName(), null,
-        false);
-    searchManager.stopSearch();
   }
 }
