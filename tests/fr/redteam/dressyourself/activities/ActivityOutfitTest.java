@@ -10,7 +10,6 @@ import fr.redteam.dressyourself.R;
 public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<ActivityOutfit> {
 
   private ActivityOutfit mActivity;
-  private Button buttonGenerate;
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
@@ -34,43 +33,16 @@ public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<Activit
     super.setUp();
     setActivityInitialTouchMode(false);
     mActivity = getActivity();
-    buttonGenerate =
- (Button) mActivity.findViewById(R.id.button_generate);
-    buttonRefreshTop =
- (Button) mActivity.findViewById(R.id.button_refresh_top);
-    buttonRefreshBottom =
- (Button) mActivity.findViewById(R.id.button_refresh_bottom);
-    buttonRefreshFeet =
- (Button) mActivity.findViewById(R.id.button_refresh_feet);
-    imageViewTop =
- (ImageView) mActivity.findViewById(R.id.imageview_top);
-    imageViewBottom =
- (ImageView) mActivity.findViewById(R.id.imageview_bottom);
-    imageViewFeet =
- (ImageView) mActivity.findViewById(R.id.imageview_feet);
-    textViewTop =
- (TextView) mActivity.findViewById(R.id.textview_top);
-    textViewBottom =
- (TextView) mActivity.findViewById(R.id.textview_bottom);
-    textViewFeet =
- (TextView) mActivity.findViewById(R.id.textview_feet);
-  }
-
-  public void testPreConditions() {
-    assertTrue(buttonGenerate != null);
-    assertTrue(buttonRefreshTop != null);
-    assertTrue(buttonRefreshBottom != null);
-    assertTrue(buttonRefreshFeet != null);
-    assertTrue(imageViewTop != null);
-    assertTrue(imageViewBottom != null);
-    assertTrue(imageViewFeet != null);
-    assertTrue(textViewTop != null);
-    assertTrue(textViewBottom != null);
-    assertTrue(textViewFeet != null);
   }
 
   @UiThreadTest
   public void testButtonRefreshTop() {
+    buttonRefreshTop = (Button) mActivity.findViewById(R.id.button_refresh_top);
+    imageViewTop = (ImageView) mActivity.findViewById(R.id.imageview_top);
+    textViewTop = (TextView) mActivity.findViewById(R.id.textview_top);
+    assertTrue(buttonRefreshTop != null);
+    assertTrue(imageViewTop != null);
+    assertTrue(textViewTop != null);
     String oldTextTop = (String) textViewTop.getText();
     this.buttonRefreshTop.performClick();
     assertFalse(textViewTop.getText().equals(oldTextTop));
@@ -78,6 +50,12 @@ public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<Activit
 
   @UiThreadTest
   public void testButtonRefreshBottom() {
+    buttonRefreshBottom = (Button) mActivity.findViewById(R.id.button_refresh_bottom);
+    imageViewBottom = (ImageView) mActivity.findViewById(R.id.imageview_bottom);
+    textViewBottom = (TextView) mActivity.findViewById(R.id.textview_bottom);
+    assertTrue(buttonRefreshBottom != null);
+    assertTrue(imageViewBottom != null);
+    assertTrue(textViewBottom != null);
     String oldTextBottom = (String) textViewBottom.getText();
     this.buttonRefreshBottom.performClick();
     assertFalse(textViewBottom.getText().equals(oldTextBottom));
@@ -85,6 +63,12 @@ public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<Activit
 
   @UiThreadTest
   public void testButtonRefreshFeet() {
+    buttonRefreshFeet = (Button) mActivity.findViewById(R.id.button_refresh_feet);
+    imageViewFeet = (ImageView) mActivity.findViewById(R.id.imageview_feet);
+    textViewFeet = (TextView) mActivity.findViewById(R.id.textview_feet);
+    assertTrue(buttonRefreshFeet != null);
+    assertTrue(imageViewFeet != null);
+    assertTrue(textViewFeet != null);
     String oldTextFeet = (String) textViewFeet.getText();
     this.buttonRefreshFeet.performClick();
     assertFalse(textViewFeet.getText().equals(oldTextFeet));
