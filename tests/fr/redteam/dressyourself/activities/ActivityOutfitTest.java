@@ -35,25 +35,25 @@ public class ActivityOutfitTest extends ActivityInstrumentationTestCase2<Activit
     setActivityInitialTouchMode(false);
     mActivity = getActivity();
     buttonGenerate =
- (Button) mActivity.findViewById(R.id.generate_button);
+ (Button) mActivity.findViewById(R.id.button_generate);
     buttonRefreshTop =
- (Button) mActivity.findViewById(R.id.top_refresh_button);
+ (Button) mActivity.findViewById(R.id.button_refresh_top);
     buttonRefreshBottom =
- (Button) mActivity.findViewById(R.id.bottom_refresh_button);
+ (Button) mActivity.findViewById(R.id.button_refresh_bottom);
     buttonRefreshFeet =
- (Button) mActivity.findViewById(R.id.feet_refresh_button);
+ (Button) mActivity.findViewById(R.id.button_refresh_feet);
     imageViewTop =
- (ImageView) mActivity.findViewById(R.id.top_image);
+ (ImageView) mActivity.findViewById(R.id.imageview_top);
     imageViewBottom =
- (ImageView) mActivity.findViewById(R.id.bottom_image);
+ (ImageView) mActivity.findViewById(R.id.imageview_bottom);
     imageViewFeet =
- (ImageView) mActivity.findViewById(R.id.feet_image);
+ (ImageView) mActivity.findViewById(R.id.imageview_feet);
     textViewTop =
- (TextView) mActivity.findViewById(R.id.top_text);
+ (TextView) mActivity.findViewById(R.id.textview_top);
     textViewBottom =
- (TextView) mActivity.findViewById(R.id.bottom_text);
+ (TextView) mActivity.findViewById(R.id.textview_bottom);
     textViewFeet =
- (TextView) mActivity.findViewById(R.id.feet_text);
+ (TextView) mActivity.findViewById(R.id.textview_feet);
   }
 
   public void testPreConditions() {

@@ -41,13 +41,13 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.outfit_layout);
-    textViewTop = (TextView) findViewById(R.id.top_text);
-    textViewBottom = (TextView) findViewById(R.id.bottom_text);
-    textViewFeet = (TextView) findViewById(R.id.feet_text);
-    imageTop = (ImageView) findViewById(R.id.top_image);
-    imageBottom = (ImageView) findViewById(R.id.bottom_image);
-    imageFeet = (ImageView) findViewById(R.id.feet_image);
+    setContentView(R.layout.activity_outfit_layout);
+    textViewTop = (TextView) findViewById(R.id.textview_top);
+    textViewBottom = (TextView) findViewById(R.id.textview_bottom);
+    textViewFeet = (TextView) findViewById(R.id.textview_feet);
+    imageTop = (ImageView) findViewById(R.id.imageview_top);
+    imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
+    imageFeet = (ImageView) findViewById(R.id.imageview_feet);
     
     if (Weather.getWeather() != null) {
       Log.d("weather", Weather.getWeather());
@@ -71,13 +71,13 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     textViewBottom.setText("slim bleu fonce");
     textViewFeet.setText("Basket camel");
 
-    buttonRefreshTop = (Button) findViewById(R.id.top_refresh_button);
+    buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
     buttonRefreshTop.setOnClickListener(this);
 
-    buttonRefreshBottom = (Button) findViewById(R.id.bottom_refresh_button);
+    buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
     buttonRefreshBottom.setOnClickListener(this);
 
-    buttonRefreshFeet = (Button) findViewById(R.id.feet_refresh_button);
+    buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
     buttonRefreshFeet.setOnClickListener(this);
     db.close();
   }
@@ -116,13 +116,13 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.top_refresh_button:
+      case R.id.button_refresh_top:
         refreshTop();
         break;
-      case R.id.bottom_refresh_button:
+      case R.id.button_refresh_bottom:
         refreshBottom();
         break;
-      case R.id.feet_refresh_button:
+      case R.id.button_refresh_feet:
         refreshFeet();
         break;
       default:
