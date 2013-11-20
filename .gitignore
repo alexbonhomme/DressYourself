@@ -2,3 +2,7 @@ bin/
 gen/
 .settings
 target/
+
+# IntelliJ settings
+.idea/
+*.iml
