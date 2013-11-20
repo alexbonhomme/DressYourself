@@ -9,12 +9,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
+/**
+ * this class was made to enable to share your clothe or outfit
+ */
 public class MailPlugin {
 
-  protected Intent mailIntent;
+  private Intent mailIntent;
   private String subject;
   private String textDestinataire;
-  protected Activity activity;
+  private Activity activity;
   private boolean adresseValide;
 
   public MailPlugin(String subject, String textDestinataire, Activity activity) {
@@ -25,6 +28,11 @@ public class MailPlugin {
     this.adresseValide = true;
   }
 
+  /**
+   * Check if mailAdress is valid
+   * 
+   * @param email the mail to check
+   */
   protected void isValidEmailAddress(String email) {
     Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
     // On declare un matcher, qui comparera le pattern avec la
@@ -35,10 +43,18 @@ public class MailPlugin {
     }
   }
 
+  /**
+   * Make a list of receiver
+   * 
+   * @return list of receiver
+   */
   protected String[] listDestinataire() {
     String txtDsc = this.textDestinataire;
     String[] dscList;
     int nbDst = 0;
+    /*
+     * Detect the number and the begin of mail adresse
+     */
     List<Integer> positionSeparateur = new ArrayList<Integer>();
     for (int i = 0; i < txtDsc.length(); i++) {
       if (txtDsc.charAt(i) == ';') {
@@ -46,7 +62,9 @@ public class MailPlugin {
         positionSeparateur.add(i);
       }
     }
-
+    /*
+     * Make the list of receiver
+     */
     if (nbDst > 0) {
       int depart = 0;
       dscList = new String[nbDst + 1];
@@ -86,7 +104,21 @@ public class MailPlugin {
     }
   }
 
+  /**
+   * the mail si valide
+   * 
+   * @return mail Valid
+   */
   public boolean isValidMail() {
     return this.adresseValide;
+  }
+
+  /**
+   * get intent mail
+   * 
+   * @return mailintent
+   */
+  protected Intent getMailIntent() {
+    return this.mailIntent;
   }
 }

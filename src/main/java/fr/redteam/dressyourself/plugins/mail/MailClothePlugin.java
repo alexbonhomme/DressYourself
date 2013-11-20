@@ -3,6 +3,9 @@ package fr.redteam.dressyourself.plugins.mail;
 import android.app.Activity;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
+/**
+ * class spécialized to mail a clothe
+ */
 public class MailClothePlugin extends MailPlugin {
 
   private Clothe clothe;
@@ -15,11 +18,14 @@ public class MailClothePlugin extends MailPlugin {
     this.textBody = textBody;
   }
 
+  /**
+   * Write the body of mail
+   */
   protected void body() {
     String txtBody =
         this.textBody + "\n - a\\an " + clothe.getType() + " from the brand " + clothe.getBrand()
             + " and it's " + clothe.getColor() + " " + clothe.getModel() + ".\n";
     /* Add text */
-    mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
+    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
   }
 }
