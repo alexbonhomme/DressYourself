@@ -3,6 +3,7 @@ package fr.redteam.dressyourself.plugins.weather;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO Modify the entire class
 public class WeatherIdentifier {
 
   public enum weatherGroup {
