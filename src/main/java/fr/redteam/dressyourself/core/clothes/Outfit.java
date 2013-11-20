@@ -33,17 +33,17 @@ public class Outfit implements Serializable {
    */
   public Outfit() {
     this.clothesList = new ArrayList<Clothe>();
-    // super();
   }
 
   /**
    * add clothe from list of clothes
    * 
-   * @param Clothes
+   * @param clothes
    */
-  public void addClothes(List<Clothe> Clothes) {
-    for (Clothe clothe : Clothes)
+  public void addClothes(List<Clothe> clothes) {
+    for (Clothe clothe : clothes) {
       this.clothesList.add(clothe);
+    }
   }
 
   /**
