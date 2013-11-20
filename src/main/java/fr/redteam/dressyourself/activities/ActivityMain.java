@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
 public class ActivityMain extends Activity implements LocationListener {
@@ -43,7 +42,8 @@ public class ActivityMain extends Activity implements LocationListener {
 
     // TODO recuperer coordonnees GPS puis recuperer le nom de la ville
 
-    new WeatherPlugin("lille", getApplicationContext());
+    WeatherPlugin weather = new WeatherPlugin("lille", getApplicationContext());
+    weather.sendYahooQuery();
 
     /* Open the page to add clothes */
     buttonAddClothing = (Button) findViewById(R.id.btAddClothing);

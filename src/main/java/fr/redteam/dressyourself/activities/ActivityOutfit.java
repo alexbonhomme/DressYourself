@@ -18,7 +18,7 @@ import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
 
-public class ActivityOutfit extends Activity {
+public class ActivityOutfit extends Activity implements OnClickListener {
 
   private TextView textViewTop;
   private TextView textViewBottom;
@@ -41,13 +41,13 @@ public class ActivityOutfit extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.outfit_layout);
-    textViewTop = (TextView) findViewById(R.id.top_text);
-    textViewBottom = (TextView) findViewById(R.id.bottom_text);
-    textViewFeet = (TextView) findViewById(R.id.feet_text);
-    imageTop = (ImageView) findViewById(R.id.top_image);
-    imageBottom = (ImageView) findViewById(R.id.bottom_image);
-    imageFeet = (ImageView) findViewById(R.id.feet_image);
+    setContentView(R.layout.activity_outfit_layout);
+    textViewTop = (TextView) findViewById(R.id.textview_top);
+    textViewBottom = (TextView) findViewById(R.id.textview_bottom);
+    textViewFeet = (TextView) findViewById(R.id.textview_feet);
+    imageTop = (ImageView) findViewById(R.id.imageview_top);
+    imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
+    imageFeet = (ImageView) findViewById(R.id.imageview_feet);
     
     if (Weather.getWeather() != null) {
       Log.d("weather", Weather.getWeather());
@@ -71,31 +71,14 @@ public class ActivityOutfit extends Activity {
     textViewBottom.setText("slim bleu fonce");
     textViewFeet.setText("Basket camel");
 
-    buttonRefreshTop = (Button) findViewById(R.id.top_refresh_button);
-    buttonRefreshTop.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        refreshTop();
-      }
-    });
+    buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
+    buttonRefreshTop.setOnClickListener(this);
 
-    buttonRefreshBottom = (Button) findViewById(R.id.bottom_refresh_button);
-    buttonRefreshBottom.setOnClickListener(new OnClickListener() {
+    buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
+    buttonRefreshBottom.setOnClickListener(this);
 
-      @Override
-      public void onClick(View v) {
-        refreshBottom();
-      }
-    });
-
-    buttonRefreshFeet = (Button) findViewById(R.id.feet_refresh_button);
-    buttonRefreshFeet.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        refreshFeet();
-      }
-    });
+    buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
+    buttonRefreshFeet.setOnClickListener(this);
     db.close();
   }
 
@@ -128,4 +111,23 @@ public class ActivityOutfit extends Activity {
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
+
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.button_refresh_top:
+        refreshTop();
+        break;
+      case R.id.button_refresh_bottom:
+        refreshBottom();
+        break;
+      case R.id.button_refresh_feet:
+        refreshFeet();
+        break;
+      default:
+        break;
+      }
+  }
+
 }

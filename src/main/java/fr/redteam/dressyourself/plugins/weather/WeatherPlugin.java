@@ -25,23 +25,33 @@ import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.YahooWeatherUtils
 
 public class WeatherPlugin implements YahooWeatherInfoListener {
 
-  public WeatherPlugin(String location, Context appContext) {
+  private String location;
 
-    if (!NetworkUtils.isConnected(appContext)) {
-      Toast.makeText(appContext, "Network connection is unavailable!!", Toast.LENGTH_SHORT).show();
+  private Context appContext;
+
+  public WeatherPlugin(String location, Context appContext) {
+    this.location = location;
+    this.appContext = appContext;
+  }
+
+  public void sendYahooQuery() {
+
+    if (!NetworkUtils.isConnected(this.appContext)) {
+      Toast.makeText(this.appContext, "Network connection is unavailable!!", Toast.LENGTH_SHORT)
+          .show();
       return;
     }
 
-    String convertedlocation = AsciiUtils.convertNonAscii(location);
+    String convertedlocation = AsciiUtils.convertNonAscii(this.location);
     YahooWeatherUtils weatherUtils = new YahooWeatherUtils();
-    weatherUtils.queryYahooWeather(appContext, convertedlocation, this);
+    weatherUtils.queryYahooWeather(this.appContext, convertedlocation, this);
   }
 
   // methode lancé quand yahoo repond
   @Override
   public void gotWeatherInfo(WeatherInfo weatherInfo) {
-    String weather;
 
+    String weather;
     if (weatherInfo != null) {
       Log.d("reponse", "reponse de yahoo!");
       weather = Weather.process(weatherInfo.getCurrentWeather());
