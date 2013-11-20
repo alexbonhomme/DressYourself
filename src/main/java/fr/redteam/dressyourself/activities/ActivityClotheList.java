@@ -1,78 +1,46 @@
 package fr.redteam.dressyourself.activities;
 
+
+import java.util.ArrayList;
+
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import fr.redteam.dressyourself.R;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+//import fr.redteam.dressyourself.R;
+import android.widget.Toast;
 
-/**
- * An activity representing a list of Clothes. This activity has different
- * presentations for handset and tablet-size devices. On handsets, the activity
- * presents a list of items, which when touched, lead to a
- * {@link ActivityClotheDetail} representing item details. On tablets, the
- * activity presents the list of items and item details side-by-side using two
- * vertical panes.
- * <p>
- * The activity makes heavy use of fragments. The list of items is a
- * {@link FragmentClotheList} and the item details (if present) is a
- * {@link FragmentClotheDetail}.
- * <p>
- * This activity also implements the required
- * {@link FragmentClotheList.Callbacks} interface to listen for item selections.
- */
-public class ActivityClotheList extends FragmentActivity implements
-		FragmentClotheList.Callbacks {
+public class ActivityClotheList extends ListActivity {
 
-	/**
-	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-	 * device.
-	 */
-	private boolean bTwoPane;
+	private ArrayList<Clothe> clotheList;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_clothe_list);
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		DBHelper db = new DBHelper(this);
+		db.open();
+		this.clotheList = db.getListClothes();
+		String[] values = new String[this.clotheList.size()];
+		int index = 0;
+		db.close();
 
-		if (findViewById(R.id.clothe_detail_container) != null) {
-			// The detail container view will be present only in the
-			// large-screen layouts (res/values-large and
-			// res/values-sw600dp). If this view is present, then the
-			// activity should be in two-pane mode.
-			bTwoPane = true;
-
-			// In two-pane mode, list items should be given the
-			// 'activated' state when touched.
-			((FragmentClotheList) getSupportFragmentManager().findFragmentById(
-					R.id.clothe_list)).setActivateOnItemClick(true);
+		for(Clothe clothe : this.clotheList){
+			values[index] = clothe.getModel();
+			index++;
 		}
-
-		// TODO: If exposing deep links into your app, handle intents here.
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, values);
+		setListAdapter(adapter);
 	}
 
-	/**
-	 * Callback method from {@link FragmentClotheList.Callbacks} indicating that
-	 * the item with the given ID was selected.
-	 */
 	@Override
-	public void onItemSelected(String id) {
-		if (bTwoPane) {
-			// In two-pane mode, show the detail view in this activity by
-			// adding or replacing the detail fragment using a
-			// fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(FragmentClotheDetail.ARG_ITEM_ID, id);
-			FragmentClotheDetail fragment = new FragmentClotheDetail();
-			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.clothe_detail_container, fragment).commit();
-
-		} else {
-			// In single-pane mode, simply start the detail activity
-			// for the selected item ID.
-			Intent detailIntent = new Intent(this, ActivityClotheDetail.class);
-			detailIntent.putExtra(FragmentClotheDetail.ARG_ITEM_ID, id);
-			startActivity(detailIntent);
-		}
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Intent intent = new Intent(ActivityClotheList.this, ActivityClotheDetail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("clothe", this.clotheList.get(position));
+        intent.putExtras(bundle);
+        startActivity(intent);
 	}
-}
+} 

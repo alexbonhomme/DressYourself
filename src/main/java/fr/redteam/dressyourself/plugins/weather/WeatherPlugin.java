@@ -17,7 +17,6 @@ package fr.redteam.dressyourself.plugins.weather;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-import fr.redteam.dressyourself.activities.ActivityMain;
 import fr.redteam.dressyourself.plugins.weather.tools.AsciiUtils;
 import fr.redteam.dressyourself.plugins.weather.tools.NetworkUtils;
 import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.WeatherInfo;
@@ -26,8 +25,7 @@ import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.YahooWeatherUtils
 
 public class WeatherPlugin implements YahooWeatherInfoListener {
 
-  public WeatherPlugin(String location, Context appContext, ActivityMain activityMain) {
-
+  public WeatherPlugin(String location, Context appContext) {
 
     if (!NetworkUtils.isConnected(appContext)) {
       Toast.makeText(appContext, "Network connection is unavailable!!", Toast.LENGTH_SHORT).show();

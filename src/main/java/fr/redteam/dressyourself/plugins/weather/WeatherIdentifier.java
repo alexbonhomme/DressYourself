@@ -9,10 +9,10 @@ public class WeatherIdentifier {
     HARDCORE, HOT, TEMPERATE, COLD, NOTFOUND
   }
 
-  static List<String> listHardcore;
-  static List<String> listHot;
-  static List<String> listTemperate;
-  static List<String> listCold;
+  private static List<String> listHardcore;
+  private static List<String> listHot;
+  private static List<String> listTemperate;
+  private static List<String> listCold;
 
   static void fillLists() {
     String[] arrayHardcore =
@@ -33,31 +33,36 @@ public class WeatherIdentifier {
 
   static weatherGroup identifyGroup(String weather) {
 
+    weatherGroup result = weatherGroup.NOTFOUND;
     for (String s : listHardcore) {
       if (weather.contains(s)) {
-        return weatherGroup.HARDCORE;
+        result = weatherGroup.HARDCORE;
+        break;
       }
     }
 
     for (String s : listHot) {
       if (weather.contains(s)) {
-        return weatherGroup.HOT;
+        result = weatherGroup.HOT;
+        break;
       }
     }
 
     for (String s : listTemperate) {
       if (weather.contains(s)) {
-        return weatherGroup.TEMPERATE;
+        result = weatherGroup.TEMPERATE;
+        break;
       }
     }
 
     for (String s : listCold) {
       if (weather.contains(s)) {
-        return weatherGroup.COLD;
+        result = weatherGroup.COLD;
+        break;
       }
     }
 
-    return weatherGroup.NOTFOUND;
+    return result;
   }
 
 }

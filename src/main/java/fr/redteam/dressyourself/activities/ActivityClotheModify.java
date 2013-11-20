@@ -176,7 +176,9 @@ public class ActivityClotheModify extends Activity {
 
     /* just to test */
     try {
-      this.clotheToEdit.setImage(new FileInputStream(intent.getStringExtra("image")));
+      if (intent.getStringExtra("image") != null) {
+        this.clotheToEdit.setImage(new FileInputStream(intent.getStringExtra("image")));
+      }
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }

@@ -31,6 +31,7 @@ public class ActivityOutfitMail extends Activity {
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireOutfit);
     this.textContenu = (EditText) findViewById(R.id.editMailOutfit);
     this.outfit = (Outfit) this.getIntent().getExtras().get("outfit");
+
     /**
      * define the click listener
      */

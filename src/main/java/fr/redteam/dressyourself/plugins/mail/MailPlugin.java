@@ -16,7 +16,7 @@ public class MailPlugin {
   protected String textBody;
   protected String textDestinataire;
   protected Activity activity;
-  protected boolean AdresseValide;
+  protected boolean adresseValide;
 
   public MailPlugin(String subject, String textBody, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -24,15 +24,15 @@ public class MailPlugin {
     this.textBody = textBody;
     this.textDestinataire = textDestinataire;
     this.activity = activity;
-    this.AdresseValide = true;
+    this.adresseValide = true;
   }
 
   protected void isValidEmailAddress(String email) {
     Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-    // On déclare un matcher, qui comparera le pattern avec la
-    // string passée en argument
+    // On dï¿½clare un matcher, qui comparera le pattern avec la
+    // string passï¿½e en argument
     Matcher m = p.matcher(email);
-    if (!m.matches()) this.AdresseValide = false;
+    if (!m.matches()) this.adresseValide = false;
   }
 
   protected String[] listDestinataire() {
@@ -79,13 +79,13 @@ public class MailPlugin {
     /* Add the subject for the mail */
     mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.subject);
     this.body();
-    if (this.AdresseValide) {
+    if (this.adresseValide) {
       this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
     } else
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();
   }
 
   public boolean isValidMail() {
-    return this.AdresseValide;
+    return this.adresseValide;
   }
 }

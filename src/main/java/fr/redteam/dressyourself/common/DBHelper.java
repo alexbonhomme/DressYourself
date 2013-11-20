@@ -1,11 +1,7 @@
 package fr.redteam.dressyourself.common;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-
-import org.apache.commons.io.IOUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -88,27 +84,22 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public long insertClothes(Clothe clothe)  {
-    try {
+
       ContentValues values = new ContentValues();
       values.put("model", clothe.getModel());
       values.put("ID_t", getIDType(clothe.getType()));
       values.put("ID_c", getIDColor(clothe.getColor()));
       values.put("ID_br", getIDBrand(clothe.getBrand()));
-      values.put("image", IOUtils.toByteArray(clothe.getImage()));
       long r = bdd.insertOrThrow("CLOTHES", null,values);
 
       return r;
 
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
     /*
      * values = new ContentValues(); for (int i = 0; i < clothe.getWeather().size(); i++) {
      * values.put("ID_c", r); values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
      * bdd.insert("WEATHER_CLOTHES", null, values); }
      */
-    return 0;
+
   }
 
   @Override
@@ -340,13 +331,13 @@ public class DBHelper implements IntDBHelper {
   @Override
   public ArrayList<Clothe> getListClothes() {
     String query =
-        "SELECT clothesName, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
+        "SELECT model, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
 
     while (cursor.moveToNext()) {
       Clothe clothe =
-          new Clothe(cursor.getString(0), (InputStream) new ByteArrayInputStream(cursor.getBlob(1)));
+          new Clothe(cursor.getString(0), new ByteArrayInputStream(cursor.getBlob(1)));
       listClothes.add(clothe);
     }
 

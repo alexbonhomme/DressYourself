@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,7 +23,7 @@ public class ActivityClotheDetail extends Activity {
   private TextView textViewType;
   private TextView textViewWeather;
   private TextView textViewBody;
-  private ImageView ImagePhoto;
+  private ImageView imagePhoto;
   private Button btnModify;
   private Clothe myClothe;
 
@@ -45,7 +43,9 @@ public class ActivityClotheDetail extends Activity {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(ActivityClotheDetail.this, ActivityClotheModify.class);
-        intent.putExtra("clothe", myClothe);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("clothe", myClothe);
+        intent.putExtras(bundle);
         startActivity(intent);
       }
     });
@@ -64,12 +64,12 @@ public class ActivityClotheDetail extends Activity {
   }
 
   public void initImageView() {
-    this.ImagePhoto = (ImageView) findViewById(R.id.photo);
+    this.imagePhoto = (ImageView) findViewById(R.id.photo);
 
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inSampleSize = 2;
     Bitmap bm = BitmapFactory.decodeStream(myClothe.getImage(), null, options);
-    this.ImagePhoto.setImageBitmap(bm);
+    this.imagePhoto.setImageBitmap(bm);
   }
 
   /*
@@ -114,13 +114,4 @@ public class ActivityClotheDetail extends Activity {
     return WeatherTxt;
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        NavUtils.navigateUpTo(this, new Intent(this, ActivityClotheList.class));
-        return true;
-    }
-    return super.onOptionsItemSelected(item);
-  }
 }

@@ -141,6 +141,5 @@
         android:layout_toRightOf="@+id/weatherLabel"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
 </RelativeLayout>
 
