@@ -8,7 +8,7 @@
 require('dbhelper.php');
 
 if (isset($_GET['model'])) {
-	$db = new DBHelper('zara_20131110.sqlite');
+	$db = new DBHelper('zara_20131121.sqlite');
 
 	exit($db->findClothesByModel($_GET['model']));
 }
