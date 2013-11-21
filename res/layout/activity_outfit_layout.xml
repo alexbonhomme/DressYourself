@@ -123,6 +123,8 @@
       android:layout_alignParentBottom="true"
       android:layout_centerInParent="true"
       android:text="@string/outfit_generate"
-      android:textAppearance="?android:attr/textAppearanceLarge" /> 
+      android:textColor="#ffffff"
+	  android:textAppearance="@style/btnStyleGenoa"
+	  android:background="@drawable/button_dressyourself_style" />
 
 </RelativeLayout>

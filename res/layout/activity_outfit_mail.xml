@@ -26,7 +26,10 @@
         android:layout_alignRight="@+id/editDestinataireOutfit"
         android:layout_marginBottom="24dp"
         android:layout_marginRight="20dp"
-        android:text="@string/send" />
+        android:text="@string/send" 
+		android:textColor="#ffffff"
+		android:textAppearance="@style/btnStyleGenoa"
+		android:background="@drawable/button_dressyourself_style" />
 
     <EditText
         android:id="@+id/editDestinataireOutfit"

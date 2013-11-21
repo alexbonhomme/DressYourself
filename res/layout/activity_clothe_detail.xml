@@ -111,7 +111,10 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="29dp"
         android:layout_marginRight="24dp"
-        android:text="@string/modify" />
+        android:text="@string/modify" 
+		android:textColor="#ffffff"
+		android:textAppearance="@style/btnStyleGenoa"
+		android:background="@drawable/button_dressyourself_style" />
 
     <TextView
         android:id="@+id/BodyLabel"
