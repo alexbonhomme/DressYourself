@@ -48,7 +48,7 @@
         android:layout_alignRight="@+id/event_spinner"
         android:layout_alignTop="@+id/temps_label"
         android:entries="@array/weather_array" />
-
+    
     <Button
         android:id="@+id/validationFiltre"
         android:layout_width="match_parent"
@@ -56,6 +56,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/validation_string"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style" />
 
 </RelativeLayout>
