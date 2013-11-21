@@ -37,7 +37,6 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.util.Log;
-import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 public class WOEIDUtils {
 
@@ -100,9 +99,9 @@ public class WOEIDUtils {
       }
 
     } catch (ClientProtocolException e) {
-      throw new DressyourselfRuntimeException(e.getMessage());
+      Log.d("erreurMeteo", e.getMessage());
     } catch (IOException e) {
-      throw new DressyourselfRuntimeException(e.getMessage());
+      Log.d("erreurMeteo", e.getMessage());
     }
     return qResult;
   }
@@ -118,11 +117,11 @@ public class WOEIDUtils {
       parser = dbFactory.newDocumentBuilder();
       dest = parser.parse(new ByteArrayInputStream(src.getBytes()));
     } catch (ParserConfigurationException e) {
-      throw new DressyourselfRuntimeException(e.getMessage());
+      Log.d("erreurMeteo", e.getMessage());
     } catch (SAXException e) {
-      throw new DressyourselfRuntimeException(e.getMessage());
+      Log.d("erreurMeteo", e.getMessage());
     } catch (IOException e) {
-      throw new DressyourselfRuntimeException(e.getMessage());
+      Log.d("erreurMeteo", e.getMessage());
     }
 
     return dest;
