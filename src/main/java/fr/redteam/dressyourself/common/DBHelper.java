@@ -57,21 +57,21 @@ public class DBHelper implements IntDBHelper {
   public long insertColor(String couleur) {
     ContentValues values = new ContentValues();
     values.put("colorName", couleur);
-    return bdd.insert("COLOR", null, values);
+    return bdd.insertWithOnConflict("COLOR", null, values,SQLiteDatabase.CONFLICT_IGNORE);
   }
 
   @Override
   public long insertWeather(String weather) {
     ContentValues values = new ContentValues();
     values.put("weatherName", weather);
-    return bdd.insertOrThrow("WEATHER", null, values);
+    return bdd.insertWithOnConflict("WEATHER", null, values,SQLiteDatabase.CONFLICT_IGNORE);
   }
 
   @Override
   public long insertBodies(String bodies) {
     ContentValues values = new ContentValues();
     values.put("bodiesName", bodies);
-    return bdd.insertOrThrow("BODIES", null, values);
+    return bdd.insertWithOnConflict("BODIES", null, values,SQLiteDatabase.CONFLICT_IGNORE);
   }
 
   @Override
@@ -79,7 +79,7 @@ public class DBHelper implements IntDBHelper {
     ContentValues values = new ContentValues();
     values.put("typeName", type);
     values.put("ID_b", l);
-    return bdd.insertOrThrow("TYPE", null, values);
+    return bdd.insertWithOnConflict("TYPE", null, values,SQLiteDatabase.CONFLICT_IGNORE);
   }
 
   @Override
@@ -90,7 +90,7 @@ public class DBHelper implements IntDBHelper {
       values.put("ID_t", getIDType(clothe.getType()));
       values.put("ID_c", getIDColor(clothe.getColor()));
       values.put("ID_br", getIDBrand(clothe.getBrand()));
-      long r = bdd.insertOrThrow("CLOTHES", null,values);
+      long r = bdd.insertWithOnConflict("CLOTHES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
       return r;
 
@@ -111,7 +111,7 @@ public class DBHelper implements IntDBHelper {
   public long insertBrand(String brand) {
     ContentValues values = new ContentValues();
     values.put("brandName", brand);
-    return bdd.insertOrThrow("BRAND", null, values);
+    return bdd.insertWithOnConflict("BRAND", null, values,SQLiteDatabase.CONFLICT_IGNORE);
   }
 
   @Override
