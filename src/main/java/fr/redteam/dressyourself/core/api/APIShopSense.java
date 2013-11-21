@@ -66,7 +66,7 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public List<Clothe> getClothesByType(String typeName) {
+  public List<Clothe> findClothesByType(String typeName) {
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
 
     try {
@@ -98,13 +98,19 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public Clothe getClothe(int id) {
+  public Clothe findClotheById(int id) {
     // TODO Auto-generated method stub
     return new Clothe();
   }
 
   @Override
-  public List<Clothe> searchAll(String query) {
+  public List<Clothe> findAll(String query) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Clothe> findClothesByModelName(String modelName) {
     // TODO Auto-generated method stub
     return null;
   }

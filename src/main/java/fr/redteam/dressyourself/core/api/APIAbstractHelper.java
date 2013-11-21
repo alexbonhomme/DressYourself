@@ -6,7 +6,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import fr.redteam.dressyourself.common.StreamTools;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 /**
@@ -38,5 +42,26 @@ public abstract class APIAbstractHelper {
     }
 
     return content;
+  }
+  
+  /**
+   * Forge un objet Clothe à partir d'une représentation JSON des informations
+   * 
+   * @param json
+   * @return
+   * @throws JSONException
+   */
+  public Clothe buildClotheFromJSON(JSONObject json) throws JSONException {
+    Clothe product = new Clothe();
+
+    product.setId(json.getInt("id"));
+    product.setModel(json.getString("model"));
+    // TODO : clothe.setImage()
+    product.setBrand(json.getString("brand"));
+    product.setColor(json.getString("color"));
+    product.setType(json.getString("type"));
+    product.setBodies(json.getString("bodies"));
+
+    return product;
   }
 }

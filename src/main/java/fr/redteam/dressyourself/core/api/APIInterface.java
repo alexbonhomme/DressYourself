@@ -11,9 +11,35 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  */
 public interface APIInterface {
 
-  List<Clothe> getClothesByType(String typeName);
+  /**
+   * TODO do!
+   * 
+   * @param id
+   * @return un objet Clothe
+   */
+  Clothe findClotheById(int id);
 
-  Clothe getClothe(int id);
+  /**
+   * TODO do!
+   * 
+   * @param modelName
+   * @return une liste d'objects Clothe
+   */
+  List<Clothe> findClothesByModelName(String modelName);
 
-  List<Clothe> searchAll(String query);
+  /**
+   * TODO do!
+   * 
+   * @param typeName
+   * @return une liste d'objects Clothe
+   */
+  List<Clothe> findClothesByType(String typeName);
+
+  /**
+   * Effectue une recherche sur tout les champs de la base de donnée
+   * 
+   * @param query
+   * @return une liste d'objects Clothe
+   */
+  List<Clothe> findAll(String query);
 }
