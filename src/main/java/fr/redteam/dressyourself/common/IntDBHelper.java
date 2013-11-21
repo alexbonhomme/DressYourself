@@ -7,7 +7,7 @@ import fr.redteam.dressyourself.core.clothes.Outfit;
 
 
 public interface IntDBHelper {
-  // les requete d'insertion
+  // Les requetes d'insertion dans la table de labse de données, retourne l'id de l'element inserer
   public long insertBrand(String brand);
   
   public long insertColor(String color);
@@ -24,7 +24,7 @@ public interface IntDBHelper {
   
   public long insertOutfit(String name, Clothe[] clothes);
 
-  // les requetes de recupération des id
+  // les requetes de recupération des id, retourne l'id de l'ement sinon -1
   public long getIDColor(String color);
 
   public long getIDWeather(String weather);
@@ -39,7 +39,7 @@ public interface IntDBHelper {
 
   public long getIDBrand(String brand);
 
-  // les requetes de recupération des infos
+  // les requetes de recupération des infos, retourne l'element sinon null
   public String getColor(long id);
 
   public String getBodies(long id);
