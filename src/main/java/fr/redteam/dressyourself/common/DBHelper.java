@@ -119,12 +119,9 @@ public class DBHelper implements IntDBHelper {
     String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
-      c.moveToFirst();
-
-      return c.getLong(0);
-      }
-      return -1;
+    c.moveToFirst();
+    return c.getLong(0);
+   
 
   }
 
@@ -262,14 +259,13 @@ public class DBHelper implements IntDBHelper {
   @Override
   public Clothe getClothe(long id) {
     String query =
-        "SELECT CLOTHES.id, CLOTHES.model, CLOTHE.image TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
+        "SELECT CLOTHES.ID_CLOTHES, CLOTHES.model, CLOTHE.image TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WHEATHE.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies AND CLOTHES.ID_clothes = "+id;
     Cursor cursor = bdd.rawQuery(query, null);
     Clothe clothe = new Clothe();
     cursor.moveToFirst();
     ArrayList<String> weather = new ArrayList<String>();
     clothe.setId(cursor.getInt(0));
     clothe.setModel(cursor.getString(1));
-    clothe.setImage(new ByteArrayInputStream(cursor.getBlob(2)));
     clothe.setType(cursor.getString(3));
     clothe.setBodies(cursor.getString(4));
     clothe.setBrand(cursor.getString(5));
@@ -330,17 +326,34 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public ArrayList<Clothe> getListClothes() {
-    String query =
-        "SELECT model, image FROM clothes INNER JOIN type ON ID_t=ID_type INNER JOIN bodies ON ID_b=ID_bodies";
+      //"SELECT CLOTHES._clothes, CLOTHES.model, CLOTHES.image, TYPE.typeName, BODIES.bodiesName, BRAND.brandName, WEATHER.weatherName, COLOR.colorName FROM CLOTHES, TYPE, BODIES , BRAND ,WEATHER, WEATHER_CLOTHES,COLOR WHERE CLOTHES.ID_t = TYPE.ID_type AND CLOTHES.ID_br = BRAND.ID_brand AND CLOTHES.ID_c=COLOR.ID_color AND CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c AND WEATHER.ID_weather = WEATHER_CLOTHES.ID_w AND TYPE.ID_b = BODIES.ID_bodies";
+
+	  String query =
+    	  "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName "
+    	  + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
+    	  + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+    	  + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
+    	  + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
+    	  + "AND CLOTHES.ID_c = COLOR.ID_color "
+    	  + "AND CLOTHES.ID_t = TYPE.ID_type "
+    	  + "AND TYPE.ID_b = BODIES.ID_bodies";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
-
+    Clothe clothe;
     while (cursor.moveToNext()) {
-      Clothe clothe =
-          new Clothe(cursor.getString(0));
-      listClothes.add(clothe);
+    	clothe = new Clothe();
+        ArrayList<String> weather = new ArrayList<String>();
+        clothe.setId(cursor.getInt(0));
+        clothe.setModel(cursor.getString(1));
+        clothe.setType(cursor.getString(2));
+        clothe.setBodies(cursor.getString(3));
+        clothe.setBrand(cursor.getString(4));
+        clothe.setColor(cursor.getString(5));
+        weather.add(cursor.getString(6));
+        clothe.setWeather(weather);
+        listClothes.add(clothe);
     }
-
+   
     return listClothes;
   }
 
