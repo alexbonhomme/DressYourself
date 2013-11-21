@@ -337,7 +337,7 @@ public class DBHelper implements IntDBHelper {
 
     while (cursor.moveToNext()) {
       Clothe clothe =
-          new Clothe(cursor.getString(0), new ByteArrayInputStream(cursor.getBlob(1)));
+          new Clothe(cursor.getString(0));
       listClothes.add(clothe);
     }
 
