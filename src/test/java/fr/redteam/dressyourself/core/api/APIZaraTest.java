@@ -16,33 +16,41 @@ public class APIZaraTest {
   private APIZara api;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     api = new APIZara();
   }
 
   @Test
-  public void testGetClothesByType() {
-    List<Clothe> list = api.getClothesByType("jean");
+  public void testfindClotheById() {
+    Clothe product = api.findClotheById(97);
 
-    assertEquals(88, list.size());
-  }
+    assertFalse(product == null);
 
-  @Test
-  public void testGetClothe() {
-    Clothe product = api.getClothe(97);
-
-    assertEquals("JACQUARD CARDIGAN WITH FUR TRIM", product.getModel());
+    assertEquals(97, product.getId());
+    assertEquals("crossover cape jacket", product.getModel());
     assertEquals("Zara", product.getBrand());
-    assertEquals("Navy blue", product.getColor());
-    assertEquals("Knitwears", product.getType());
+    assertEquals("Black", product.getColor());
+    assertEquals("Sweat-shirt", product.getType());
     assertEquals("Top", product.getBodies());
 
-    assertFalse(product.getImage() == null);
+    // TODO
+    // assertFalse(product.getImage() == null);
   }
 
   @Test
-  public void testSearchAll() {
+  public void testFindClothesByModel() {
+    List<Clothe> listProducts = api.findClothesByModelName("jeans");
+
+    assertEquals(92, listProducts.size());
+  }
+
+  @Test
+  public void testFindClothesByType() {
     fail("Not implemented yet.");
   }
 
+  @Test
+  public void testFindAll() {
+    fail("Not implemented yet.");
+  }
 }

@@ -213,17 +213,17 @@ public class ActivityDebug extends Activity {
      */
 
     for (int i = 0; i < 3; i++) {
-      Clothe bottom = api.getClothe(500 + i);
+      Clothe bottom = api.findClotheById(500 + i);
       db.insertColor(bottom.getColor());
       db.insertType(bottom.getType(), (int) bottomId);
       db.insertClothes(bottom);
 
-      Clothe top = api.getClothe(750 + i);
+      Clothe top = api.findClotheById(750 + i);
       db.insertColor(top.getColor());
       db.insertType(top.getType(), (int) topId);
       db.insertClothes(top);
 
-      Clothe shoes = api.getClothe(960 + i);
+      Clothe shoes = api.findClotheById(960 + i);
       db.insertColor(shoes.getColor());
       db.insertType(shoes.getType(), (int) shoesId);
       db.insertClothes(shoes);
