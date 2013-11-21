@@ -17,14 +17,12 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-    <style name="btnStyleGenoa" parent="@android:style/Widget.Button">
-       <item name="android:textSize">20sp</item>
+	<style name="btnStyle" parent="@android:style/Widget.Button">
+       <item name="android:textSize">25sp</item>
+       <item name="android:textColor">#5d6153</item>
        <item name="android:gravity">center</item>
-       <item name="android:shadowColor">#000000</item>
-       <item name="android:shadowDx">1</item>
-       <item name="android:shadowDy">1</item>
-       <item name="android:shadowRadius">0.6</item>
        <item name="android:background">@drawable/button_dressyourself_style</item>
+       <item name="android:padding">10dip</item>
    </style>
    
 </resources>

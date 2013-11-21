@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/GetDressed" 
         android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
     
     <Button
@@ -26,8 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Ajouter des vêtements à la DB" 
         android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
 
     <Button
@@ -36,8 +34,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sendOutfitByMail" 
         android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
 
     <Button
@@ -46,8 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sendClothMail" 
 		android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
     
     <Button
@@ -56,8 +52,7 @@
         android:layout_height="wrap_content"
         android:text="ModifyClothe" 
         android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
 	<Button
         android:id="@+id/buttonDetailClothe"
@@ -65,8 +60,7 @@
         android:layout_height="wrap_content"
         android:text="DetailClothe" 
         android:layout_margin="8dp"
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
     
 </LinearLayout>

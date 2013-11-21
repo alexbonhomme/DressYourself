@@ -112,8 +112,7 @@
         android:layout_marginBottom="29dp"
         android:layout_marginRight="24dp"
         android:text="@string/modify" 
-		android:textColor="#ffffff"
-		android:textAppearance="@style/btnStyleGenoa"
+		android:textAppearance="@style/btnStyle"
 		android:background="@drawable/button_dressyourself_style" />
 
     <TextView

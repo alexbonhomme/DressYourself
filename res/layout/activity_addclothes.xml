@@ -136,8 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add"
-                android:textColor="#ffffff"
-	 			android:textAppearance="@style/btnStyleGenoa"
+	 			android:textAppearance="@style/btnStyle"
 				android:background="@drawable/button_dressyourself_style" />
         </LinearLayout>
     </RelativeLayout>
