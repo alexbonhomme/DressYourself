@@ -40,8 +40,8 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     ArrayList<Clothe> listProducts = new ArrayList<Clothe>();
 
     try {
-      String jsonContent =
-          getContent(new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?model=" + modelName));
+      URL url = new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?model=" + modelName);
+      String jsonContent = getContent(url);
 
       JSONArray arrayOfProducts = new JSONArray(jsonContent);
       for (int i = 0; i < arrayOfProducts.length(); i++) {
