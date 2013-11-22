@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -61,6 +62,7 @@ public class ActivitySearchEngine extends ListActivity {
       return;
     }
 
+    // Vérification de la connectivité
     ConnectivityManager cm =
         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -68,13 +70,12 @@ public class ActivitySearchEngine extends ListActivity {
     boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
     if (!isConnected) {
+      Toast.makeText(context, "No Internet connexion", Toast.LENGTH_SHORT).show();
       return;
     }
 
     String query = intent.getStringExtra(SearchManager.QUERY);
-
-    // On lance la recherche
-    new WebApiTask().execute(query);
+    new WebApiTask().execute(query); // Lance la recherche sur l'API distante
   }
 
   /**
@@ -85,6 +86,8 @@ public class ActivitySearchEngine extends ListActivity {
   private class WebApiTask extends AsyncTask<String, Void, List<Clothe>> {
     @Override
     protected List<Clothe> doInBackground(String... queries) {
+      System.err.println("Query: " + queries[0]);
+
       APIZara api = new APIZara();
       List<Clothe> listClothes = api.findClothesByModelName(queries[0]);
 
@@ -99,6 +102,7 @@ public class ActivitySearchEngine extends ListActivity {
         listProductModels.add(clothe.getModel());
       }
 
+      // TODO : better adapter with picture
       ArrayAdapter<String> adapter =
           new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
               listProductModels);
