@@ -340,18 +340,34 @@ public class DBHelper implements IntDBHelper {
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
     Clothe clothe;
+    int id=-1;
+	clothe = new Clothe();
+    ArrayList<String> weather = new ArrayList<String>();
+
     while (cursor.moveToNext()) {
-    	clothe = new Clothe();
-        ArrayList<String> weather = new ArrayList<String>();
-        clothe.setId(cursor.getInt(0));
-        clothe.setModel(cursor.getString(1));
-        clothe.setType(cursor.getString(2));
-        clothe.setBodies(cursor.getString(3));
-        clothe.setBrand(cursor.getString(4));
-        clothe.setColor(cursor.getString(5));
-        weather.add(cursor.getString(6));
-        clothe.setWeather(weather);
-        listClothes.add(clothe);
+    	Log.v("BDD", Integer.toString(cursor.getInt(0)));
+    	if(cursor.getInt(0)!=id){
+    		if(id!=-1){
+    			listClothes.add(clothe);
+    		}
+	    	clothe = new Clothe();
+	        weather = new ArrayList<String>();
+	        id = cursor.getInt(0);
+	        clothe.setId(cursor.getInt(0));
+	        clothe.setModel(cursor.getString(1));
+	        clothe.setType(cursor.getString(2));
+	        clothe.setBodies(cursor.getString(3));
+	        clothe.setBrand(cursor.getString(4));
+	        clothe.setColor(cursor.getString(5));
+	        weather.add(cursor.getString(6));
+	        clothe.setWeather(weather);
+    	}
+    	else{
+	        weather.add(cursor.getString(6));
+    	}
+    	
+    	
+    	
     }
    
     return listClothes;
