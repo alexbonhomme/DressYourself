@@ -63,9 +63,7 @@
 					<version>2.16</version>
 					<configuration>
 						<testFailureIgnore>true</testFailureIgnore>
-						<systemPropertyVariables>
-						    <argLine>-Dhttp.proxyHost=cache-etu.univ-lille1.fr -Dhttp.proxyPort=3128</argLine>
-						</systemPropertyVariables>
+						<argLine>-Dhttp.proxyHost=cache-etu.univ-lille1.fr -Dhttp.proxyPort=3128</argLine>
 					</configuration>
 				</plugin>
 			</plugins>
