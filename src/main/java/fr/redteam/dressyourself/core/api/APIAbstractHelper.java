@@ -28,16 +28,19 @@ public abstract class APIAbstractHelper {
   public String getContent(URL url) {
     String content = "";
     HttpURLConnection urlConnection = null;
+
     try {
       urlConnection = (HttpURLConnection) url.openConnection();
       InputStream in = new BufferedInputStream(urlConnection.getInputStream());
       content = StreamTools.convertStreamToString(in);
-      urlConnection.disconnect();
+
     } catch (IOException e) {
-      throw new DressyourselfRuntimeException(e);
+      throw new DressyourselfRuntimeException("IOException", e);
     } finally {
-      if (urlConnection != null) {
+      try {
         urlConnection.disconnect();
+      } catch (NullPointerException _) {
+        ;
       }
     }
 

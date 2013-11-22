@@ -23,6 +23,7 @@ import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 /**
  * 
@@ -134,8 +135,8 @@ public class ActivityClotheModify extends Activity {
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
     this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImage(), clotheToEdit.getModel()));
-    this.modelEditText.append(clotheToEdit.getModel());
-    this.brandEditText.append(clotheToEdit.getBrand());
+    this.modelEditText.append(clotheToEdit.getModel() + "");
+    this.brandEditText.append(clotheToEdit.getBrand() + "");
     this.initSpinnersWithData();
   }
 
@@ -151,7 +152,7 @@ public class ActivityClotheModify extends Activity {
       clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
-      throw new RuntimeException(e);
+      throw new DressyourselfRuntimeException(e);
     }
 
   }
@@ -170,7 +171,7 @@ public class ActivityClotheModify extends Activity {
       this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
 
       if (this.clotheToEdit == null) {
-        throw new RuntimeException(new Exception("Error while retrieving information from intent"));
+        throw new DressyourselfRuntimeException("ModifyClothe : Error while retrieving information from intent");
       }
     }
 

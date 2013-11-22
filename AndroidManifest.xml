@@ -78,7 +78,7 @@
         </activity>
         <activity
             android:name="fr.redteam.dressyourself.activities.ActivitySearchEngine"
-            android:label="@string/title_activity_search_engine"
+            android:label=""
             android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
