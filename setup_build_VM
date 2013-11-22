@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# This script SHOULD BE executed BEFORE run `mvn clean test`
+#
+
+PROXY_TAG="<!-- DO NOT REMOVE proxy config tag -->"
+PROXY_SUREFIRE="<argLine>-Dhttp.proxyHost=cache-etu.univ-lille1.fr -Dhttp.proxyPort=3128</argLine>"
+
+JUNIT_TAG="<!-- DO NOT REMOVE junit dependency tag -->"
+JUNIT_MVN_DEPENDENCY="<dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.11</version><scope>test</scope></dependency>"
+
+# substitutions
+sed -i 's,'"${PROXY_TAG}"','"${PROXY_SUREFIRE}"',' pom.xml
+sed -i 's,'"${JUNIT_TAG}"','"${JUNIT_MVN_DEPENDENCY}"',' pom.xml
