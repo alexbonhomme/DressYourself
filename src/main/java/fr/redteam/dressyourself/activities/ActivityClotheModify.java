@@ -1,12 +1,10 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,7 +31,7 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 public class ActivityClotheModify extends Activity {
 
   /* constant */
-  private final int SELECT_IMAGE = 1;
+  private static final int SELECT_IMAGE = 1;
 
   /* the clothe to Edit */
   private Clothe clotheToEdit;
@@ -62,13 +60,6 @@ public class ActivityClotheModify extends Activity {
     this.typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
     this.saveButton = (Button) findViewById(R.id.save);
 
-    /*
-     * trick to hide the image scaling by setting the button background color with the value of the
-     * activity background color
-     */
-    TypedArray array = this.getTheme().obtainStyledAttributes(new int[] {android.R.attr.colorBackground});
-    this.image.setBackgroundColor(array.getColor(0, 0xFFFFFF));
-
     /* init all the dynamic fields (spinners and editable fields) */
     this.initFieldsWithValues(this.clotheToEdit);
 
@@ -87,9 +78,8 @@ public class ActivityClotheModify extends Activity {
     this.saveButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        /* retrieves all fields and update the clothe then insert in BDD */
+        /* retrieves all editable fields value and update the clothe then update in BDD */
         updateClotheValues(clotheToEdit);
-        /* update in DB */
         Toast toast;
         bdd.open();
         if (bdd.updateClothe(clotheToEdit) == 1) {
@@ -97,13 +87,8 @@ public class ActivityClotheModify extends Activity {
         } else {
           toast = Toast.makeText(ActivityClotheModify.this, "An error occured while saving modifications", Toast.LENGTH_LONG);
         }
-        /* DEBUG display clothe informations */
-        Log.d("Clothe After Modification ", clotheToEdit.getModel() + " " + clotheToEdit.getBrand() + " " + clotheToEdit.getColor() + " " + clotheToEdit.getType());
-        /* print feedback message */
         toast.show();
-        /* close DB */
         bdd.close();
-        /* close Window */
         finish();
       }
     });
@@ -175,15 +160,6 @@ public class ActivityClotheModify extends Activity {
       }
     }
 
-    /* just to test */
-    try {
-      if (intent.getStringExtra("image") != null) {
-        this.clotheToEdit.setImage(new FileInputStream(intent.getStringExtra("image")));
-      }
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-
     /* init the components of the page */
     this.initComponents();
   }
@@ -198,13 +174,14 @@ public class ActivityClotheModify extends Activity {
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == SELECT_IMAGE) {
-      if (resultCode == Activity.RESULT_OK) {
-        this.selectedImageUri = data.getData();
-        this.image.setImageURI(this.selectedImageUri);
-        Log.d("path", this.selectedImageUri.getPath());
-      }
+    if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
+      /* hide background color of the imageButton */
+      this.image.setBackgroundColor(android.R.attr.colorBackground);
+      this.selectedImageUri = data.getData();
+      this.image.setImageURI(this.selectedImageUri);
+      Log.d("path", this.selectedImageUri.getPath());
     }
   }
+
 
 }
