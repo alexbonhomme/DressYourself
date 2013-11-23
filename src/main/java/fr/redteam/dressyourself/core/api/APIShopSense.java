@@ -3,6 +3,7 @@ package fr.redteam.dressyourself.core.api;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -17,6 +18,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  * @author Alexandre Bonhomme
  * 
  */
+@Deprecated
 public class APIShopSense extends APIAbstractHelper implements APIInterface {
 
   private static final String API_BASE = "http://api.shopstyle.com/api/";
@@ -106,12 +108,30 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   @Override
   public List<Clothe> findAll(String query) {
     // TODO Auto-generated method stub
-    return null;
+    return Collections.emptyList();
   }
 
   @Override
-  public List<Clothe> findClothesByModelName(String modelName) {
+  public List<Clothe> findClothesByModel(String modelName) {
     // TODO Auto-generated method stub
-    return null;
+    return Collections.emptyList();
+  }
+
+  @Override
+  public List<Clothe> findClothesByBrand(String brandName) {
+    // TODO Auto-generated method stub
+    return Collections.emptyList();
+  }
+
+  @Override
+  public List<Clothe> findClothesByColor(String colorName) {
+    // TODO Auto-generated method stub
+    return Collections.emptyList();
+  }
+
+  @Override
+  public List<Clothe> findClothesByBodyPart(String bodyPart) {
+    // TODO Auto-generated method stub
+    return Collections.emptyList();
   }
 }

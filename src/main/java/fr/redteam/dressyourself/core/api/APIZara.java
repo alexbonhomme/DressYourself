@@ -3,7 +3,6 @@ package fr.redteam.dressyourself.core.api;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -35,12 +34,16 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     return product;
   }
 
-  @Override
-  public List<Clothe> findClothesByModelName(String modelName) {
+  /**
+   * 
+   * @param filters Liste de filtres séparés par des virgules
+   * @return Une liste d'objets Clothe
+   */
+  private List<Clothe> findClothesWithFilters(String filters, String query) {
     ArrayList<Clothe> listProducts = new ArrayList<Clothe>();
 
     try {
-      URL url = new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?model=" + modelName);
+      URL url = new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?filters=" + filters + "&q=" + query);
       String jsonContent = getContent(url);
 
       JSONArray arrayOfProducts = new JSONArray(jsonContent);
@@ -54,19 +57,37 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
     } catch (JSONException e) {
       throw new DressyourselfRuntimeException(e);
     }
-    
+
     return listProducts;
   }
 
   @Override
+  public List<Clothe> findClothesByModel(String modelName) {
+    return findClothesWithFilters("model", modelName);
+  }
+
+  @Override
+  public List<Clothe> findClothesByBrand(String brandName) {
+    return findClothesWithFilters("brand", brandName);
+  }
+
+  @Override
+  public List<Clothe> findClothesByColor(String colorName) {
+    return findClothesWithFilters("color", colorName);
+  }
+
+  @Override
   public List<Clothe> findClothesByType(String typeName) {
-    // TODO Implement
-    return Collections.emptyList();
+    return findClothesWithFilters("type", typeName);
+  }
+
+  @Override
+  public List<Clothe> findClothesByBodyPart(String bodyPart) {
+    return findClothesWithFilters("bodies", bodyPart);
   }
 
   @Override
   public List<Clothe> findAll(String query) {
-    // TODO Implement
-    return Collections.emptyList();
+    return findClothesWithFilters("model,brand,color,type,bodies", query);
   }
 }

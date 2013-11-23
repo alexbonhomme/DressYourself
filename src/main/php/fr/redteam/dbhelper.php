@@ -5,9 +5,19 @@
 class DBHelper {
 	
 	private $dbFileName;
+	private $filters;
 	
 	function __construct($filename) {
 		$this->dbFileName = $filename;
+		$this->filters = array();
+	}
+	
+	public function addFilter($filter) {
+		$this->filters[] = $filter;
+	}
+	
+	public function addFilters($filters) {
+		$this->filters += $filters;
 	}
 	
 	private function SQLite2JSON($result) {
@@ -19,7 +29,36 @@ class DBHelper {
 		return $arrayData;
 	}
 	
-	function findClothesByModel($modelName) {
+	
+	public function findAll($query)	{
+		if (empty($this->filters)) {
+			return json_encode(array());
+		}
+		
+		$sqlQuery = 
+			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
+			 FROM clothes 
+			 JOIN brand ON clothes.ID_br=brand.ID_brand 
+			 JOIN color ON clothes.ID_c=color.ID_color 
+			 JOIN type ON clothes.ID_t=type.ID_type 
+             JOIN bodies ON type.ID_b=bodies.ID_bodies 
+			 WHERE 0';
+			 
+		foreach ($this->filters as $filter) {
+			$sqlQuery .= ' OR ' . $filter . ' LIKE "%' . $query . '%"';
+		}
+		
+		$db = new SQLite3($this->dbFileName);
+		$data = $db->query($sqlQuery);
+
+		$arrayData = $this->SQLite2JSON($data);
+
+		$db->close();
+
+   		return json_encode($arrayData);
+	}
+	
+	public function findClothesByModel($modelName) {
 		$db = new SQLite3($this->dbFileName);
 		$data = $db->query(
 			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
@@ -38,7 +77,7 @@ class DBHelper {
    		return json_encode($arrayData);
 	}
 	
-	function findClotheById($id) {
+	public function findClotheById($id) {
 		$db = new SQLite3($this->dbFileName);
 		$data = $db->query(
 			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 

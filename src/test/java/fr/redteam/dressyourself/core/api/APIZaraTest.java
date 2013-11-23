@@ -2,7 +2,6 @@ package fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -39,18 +38,43 @@ public class APIZaraTest {
 
   @Test
   public void testFindClothesByModel() {
-    List<Clothe> listProducts = api.findClothesByModelName("jeans");
+    List<Clothe> listProducts = api.findClothesByModel("jeans");
 
     assertEquals(92, listProducts.size());
   }
 
   @Test
   public void testFindClothesByType() {
-    fail("Not implemented yet.");
+    List<Clothe> listProducts = api.findClothesByType("sweat-shirt");
+
+    assertEquals(32, listProducts.size());
+  }
+
+  @Test
+  public void testFindClothesByBodyPart() {
+    List<Clothe> listProducts = api.findClothesByBodyPart("bottom");
+
+    assertEquals(181, listProducts.size());
+  }
+
+  @Test
+  public void testFindClothesByBrand() {
+    List<Clothe> listProducts = api.findClothesByBrand("zara");
+
+    assertEquals(1008, listProducts.size());
+  }
+
+  @Test
+  public void testFindClothesByColor() {
+    List<Clothe> listProducts = api.findClothesByColor("red");
+
+    assertEquals(17, listProducts.size());
   }
 
   @Test
   public void testFindAll() {
-    fail("Not implemented yet.");
+    List<Clothe> listProducts = api.findAll("zip");
+
+    assertEquals(27, listProducts.size());
   }
 }

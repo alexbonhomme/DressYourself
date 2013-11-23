@@ -86,10 +86,8 @@ public class ActivitySearchEngine extends ListActivity {
   private class WebApiTask extends AsyncTask<String, Void, List<Clothe>> {
     @Override
     protected List<Clothe> doInBackground(String... queries) {
-      System.err.println("Query: " + queries[0]);
-
       APIZara api = new APIZara();
-      List<Clothe> listClothes = api.findClothesByModelName(queries[0]);
+      List<Clothe> listClothes = api.findClothesByModel(queries[0]);
 
       return listClothes;
     }
