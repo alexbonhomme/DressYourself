@@ -32,7 +32,12 @@ public class ActivitySearchEngineTest {
   }
 
   @Test
-  public void testSearchManager() throws Exception {
+  public void testOnCreateOptionsMenu() {
+    controler.create().visible();
+  }
+
+  @Test
+  public void testSearchManager() {
     controler.create();
 
     SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
