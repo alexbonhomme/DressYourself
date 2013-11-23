@@ -32,11 +32,6 @@ public class ActivitySearchEngineTest {
   }
 
   @Test
-  public void testOnCreateOptionsMenu() {
-    controler.create().visible();
-  }
-
-  @Test
   public void testSearchManager() {
     controler.create();
 
