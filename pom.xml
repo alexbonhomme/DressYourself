@@ -56,6 +56,8 @@
 					<version>2.16</version>
 					<configuration>
 						<testFailureIgnore>true</testFailureIgnore>
+						<parallel>methods</parallel>
+          				<threadCount>10</threadCount>
 						<!-- DO NOT REMOVE proxy config tag -->
 					</configuration>
 				</plugin>
