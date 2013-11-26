@@ -48,7 +48,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     }
     // connexion bdd
     db.open();
-    getData();
+    loadData();
     bindToLayout();
     setListener();
     db.close();
@@ -66,7 +66,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
   }
   
-  private void getData() {
+  private void loadData() {
 	  // recup top
 	    listTop = db.getListTop();
 
