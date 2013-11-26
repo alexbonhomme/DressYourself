@@ -11,6 +11,11 @@ import org.json.JSONException;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
+/**
+ * 
+ * @author Alexandre Bonhomme
+ * 
+ */
 public class APIZara extends APIAbstractHelper implements APIInterface {
 
   private static final String DB_PROTOCOL = "http";
@@ -23,7 +28,7 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
 
     try {
       String jsonContent = getContent(new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?id=" + id));
-      product = buildClotheFromJSON(new JSONArray(jsonContent).getJSONObject(0));
+      product = buildClotheFromJSONArray(new JSONArray(jsonContent).getJSONObject(0));
 
     } catch (MalformedURLException e) {
       throw new DressyourselfRuntimeException(e);
@@ -48,7 +53,7 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
 
       JSONArray arrayOfProducts = new JSONArray(jsonContent);
       for (int i = 0; i < arrayOfProducts.length(); i++) {
-        Clothe product = buildClotheFromJSON(arrayOfProducts.getJSONObject(i));
+        Clothe product = buildClotheFromJSONArray(arrayOfProducts.getJSONObject(i));
         listProducts.add(product);
       }
 
