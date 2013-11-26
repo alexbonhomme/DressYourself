@@ -71,7 +71,7 @@ public class ActivityMain extends Activity implements LocationListener {
 
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(ActivityMain.this, ActivityFilter.class);
+        Intent intent = new Intent(ActivityMain.this, ActivityOutfit.class);
         startActivity(intent);
       }
     });
