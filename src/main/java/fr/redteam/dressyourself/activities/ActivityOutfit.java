@@ -26,6 +26,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
+  private Button buttonGenerate;
   private ImageView imageTop;
   private ImageView imageBottom;
   private ImageView imageFeet;
@@ -64,6 +65,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
 	   buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
+    buttonGenerate = (Button) findViewById(R.id.button_generate);
   }
   
   private void loadData() {
@@ -89,6 +91,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	  buttonRefreshTop.setOnClickListener(this); 
 	  buttonRefreshBottom.setOnClickListener(this);
 	  buttonRefreshFeet.setOnClickListener(this);
+    buttonGenerate.setOnClickListener(this);
   }
 
   private void refreshTop() {
@@ -121,6 +124,12 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
 
+  private void generate() {
+    refreshTop();
+    refreshBottom();
+    refreshFeet();
+  }
+
 
   @Override
   public void onClick(View v) {
@@ -133,6 +142,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
         break;
       case R.id.button_refresh_feet:
         refreshFeet();
+        break;
+      case R.id.button_generate:
+        generate();
         break;
       default:
         break;
