@@ -1,0 +1,64 @@
+package fr.redteam.dressyourself.views;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.core.clothes.Clothe;
+
+/**
+ * 
+ * @author Alexandre Bonhomme
+ * 
+ */
+public class ListViewClothes extends LinearLayout {
+
+  private ImageView imageViewProduct;
+  private TextView textViewProductBrand;
+  private TextView textViewProductModel;
+
+  public ListViewClothes(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+    initComponent();
+  }
+
+  public ListViewClothes(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    initComponent();
+  }
+
+  public ListViewClothes(Context context) {
+    super(context);
+    initComponent();
+  }
+
+  /**
+   * Initialisation des composants
+   */
+  private void initComponent() {
+    inflate(getContext(), R.layout.listview_clothes, this);
+
+    imageViewProduct = (ImageView) findViewById(R.id.imageViewAdapter);
+    textViewProductModel = (TextView) findViewById(R.id.textViewModelAdapter);
+    textViewProductBrand = (TextView) findViewById(R.id.textViewBrandAdapter);
+
+  }
+
+  /**
+   * Cette méthode "remplit" les élements de la vue avec les données issues d'un objet Clothe
+   * 
+   * @param product
+   */
+  public void bind(Clothe product) {
+    // TODO change for real image
+    imageViewProduct.setImageResource(R.raw.medium_wash_jeans);
+
+    // XXX le contenu n'aparait pas dans le bon ordre (cf. layout)
+    textViewProductModel.setText(product.getModel());
+    textViewProductBrand.setText(product.getBrand());
+
+  }
+
+}
