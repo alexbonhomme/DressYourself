@@ -14,7 +14,7 @@
       android:id="@+id/imageview_weather"
       android:layout_width="40dp"
       android:layout_height="40dp"
-      android:layout_weight="20"
+      android:layout_weight="10"
       android:layout_gravity="right"
       />
 
@@ -22,8 +22,7 @@
         android:id="@+id/relativelayout_body_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_weight="60"
+        android:layout_weight="22"
         android:orientation="vertical" >
         
         <TextView 
@@ -57,7 +56,8 @@
         android:id="@+id/relativelayout_body_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_weight="22"
+        android:layout_marginTop="10dp"
         android:orientation="vertical" >
         
         <TextView 
@@ -90,7 +90,8 @@
         android:id="@+id/relativelayout_body_feet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="22"
         android:orientation="vertical" >
         
         
@@ -125,7 +126,7 @@
       android:id="@+id/button_generate"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_weight="20"
+      android:layout_weight="24"
       android:layout_marginTop="10dp"
       android:layout_gravity="bottom"
       android:gravity="center"
