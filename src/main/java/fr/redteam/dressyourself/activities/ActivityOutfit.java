@@ -17,6 +17,8 @@ import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
+import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier;
+import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier.WeatherGroup;
 
 public class ActivityOutfit extends Activity implements OnClickListener {
 
@@ -29,6 +31,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private ImageView imageTop;
   private ImageView imageBottom;
   private ImageView imageFeet;
+  private ImageView imageWeather;
   private final DBHelper db = new DBHelper(this);
   private List<Clothe> listTop = new ArrayList<Clothe>();
   private List<Clothe> listBottom = new ArrayList<Clothe>();
@@ -64,6 +67,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
 	   buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
+	   imageWeather = (ImageView) findViewById(R.id.imageview_weather);
   }
   
   private void loadData() {
@@ -82,7 +86,26 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	 Clothe clothe = new Clothe("Pull beige");
 	 textViewTop.setText(clothe.getModel());
 	 textViewBottom.setText("slim bleu fonce");
-	 textViewFeet.setText("Basket camel");	
+	 textViewFeet.setText("Basket camel");
+	 WeatherIdentifier.fillLists();
+	 switch (WeatherGroup.valueOf(Weather.getWeather())) {
+	 case HOT:
+		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
+		 break;
+	 case TEMPERATE:
+		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
+		 break;
+	 case HARDCORE:
+		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
+		 break;
+	 case COLD:
+		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+	 case NOTFOUND:
+		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+		 break;
+      default:
+    	  break;
+	 }
   }
    
   private void setListener() {
@@ -108,6 +131,8 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listBottom.size() > 1) {
       currentBottom = decider.decideTop(listBottom);
       textViewBottom.setText(currentBottom.getModel());
+      imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImage(),
+              currentBottom.getModel()));
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
@@ -117,6 +142,8 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listFeet.size() > 1) {
       currentFeet = decider.decideTop(listFeet);
       textViewFeet.setText(currentFeet.getModel());
+      imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImage(),
+              currentFeet.getModel()));
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }

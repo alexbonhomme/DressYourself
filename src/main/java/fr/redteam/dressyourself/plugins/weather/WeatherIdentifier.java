@@ -6,7 +6,7 @@ import java.util.List;
 // TODO Modify the entire class
 public class WeatherIdentifier {
 
-  public enum weatherGroup {
+  public enum WeatherGroup {
     HARDCORE, HOT, TEMPERATE, COLD, NOTFOUND
   }
 
@@ -15,7 +15,7 @@ public class WeatherIdentifier {
   private static List<String> listTemperate;
   private static List<String> listCold;
 
-  static void fillLists() {
+  public static void fillLists() {
     String[] arrayHardcore =
         {"tornado", "storm", "hurricane", "thunderstorms", "rain", "snow", "sleet", "showers",
             "flurries", "hail", "dust", "blustery", "thundershowers"};
@@ -32,33 +32,33 @@ public class WeatherIdentifier {
     listCold = Arrays.asList(arrayCold);
   }
 
-  static weatherGroup identifyGroup(String weather) {
+  public static WeatherGroup identifyGroup(String weather) {
 
-    weatherGroup result = weatherGroup.NOTFOUND;
+    WeatherGroup result = WeatherGroup.NOTFOUND;
     for (String s : listHardcore) {
       if (weather.contains(s)) {
-        result = weatherGroup.HARDCORE;
+        result = WeatherGroup.HARDCORE;
         break;
       }
     }
 
     for (String s : listHot) {
       if (weather.contains(s)) {
-        result = weatherGroup.HOT;
+        result = WeatherGroup.HOT;
         break;
       }
     }
 
     for (String s : listTemperate) {
       if (weather.contains(s)) {
-        result = weatherGroup.TEMPERATE;
+        result = WeatherGroup.TEMPERATE;
         break;
       }
     }
 
     for (String s : listCold) {
       if (weather.contains(s)) {
-        result = weatherGroup.COLD;
+        result = WeatherGroup.COLD;
         break;
       }
     }
