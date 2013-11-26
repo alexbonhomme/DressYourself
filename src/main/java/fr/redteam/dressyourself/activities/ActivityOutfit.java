@@ -95,7 +95,6 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshTop() {
-    // TODO recuperation en base
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
@@ -107,18 +106,16 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshBottom() {
-    // TODO recuperation en base
     if (listBottom.size() > 1) {
-      currentBottom = decider.decideTop(listBottom);
+      currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
 
   private void refreshFeet() {
-    // TODO recuperation en base
     if (listFeet.size() > 1) {
-      currentFeet = decider.decideTop(listFeet);
+      currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
