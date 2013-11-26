@@ -28,6 +28,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
+  private Button buttonGenerate;
   private ImageView imageTop;
   private ImageView imageBottom;
   private ImageView imageFeet;
@@ -68,6 +69,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
 	   imageWeather = (ImageView) findViewById(R.id.imageview_weather);
+	   buttonGenerate = (Button) findViewById(R.id.button_generate);
   }
   
   private void loadData() {
@@ -112,10 +114,10 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	  buttonRefreshTop.setOnClickListener(this); 
 	  buttonRefreshBottom.setOnClickListener(this);
 	  buttonRefreshFeet.setOnClickListener(this);
+    buttonGenerate.setOnClickListener(this);
   }
 
   private void refreshTop() {
-    // TODO recuperation en base
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
@@ -127,9 +129,8 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshBottom() {
-    // TODO recuperation en base
     if (listBottom.size() > 1) {
-      currentBottom = decider.decideTop(listBottom);
+      currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
       imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImage(),
               currentBottom.getModel()));
@@ -138,14 +139,19 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshFeet() {
-    // TODO recuperation en base
     if (listFeet.size() > 1) {
-      currentFeet = decider.decideTop(listFeet);
+      currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
       imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImage(),
               currentFeet.getModel()));
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
+  }
+
+  private void generate() {
+    refreshTop();
+    refreshBottom();
+    refreshFeet();
   }
 
 
@@ -160,6 +166,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
         break;
       case R.id.button_refresh_feet:
         refreshFeet();
+        break;
+      case R.id.button_generate:
+        generate();
         break;
       default:
         break;

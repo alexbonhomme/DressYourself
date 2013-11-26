@@ -67,5 +67,8 @@
     
     <string name="action_search">Search</string>
     <string name="search_hint">Search products</string>
+    <string name="no_description">No description for this product.</string>
+    <string name="picture_of_product">Picture of product.</string>
+    <string name="empty_list">No product found.</string>
 
 </resources>

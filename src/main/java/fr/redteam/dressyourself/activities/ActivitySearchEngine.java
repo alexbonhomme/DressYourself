@@ -12,10 +12,10 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.adapters.AdapterClothes;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
@@ -101,9 +101,10 @@ public class ActivitySearchEngine extends ListActivity {
       }
 
       // TODO : better adapter with picture
-      ArrayAdapter<String> adapter =
-          new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
-              listProductModels);
+      // ArrayAdapter<String> adapter =
+      // new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
+      // listProductModels);
+      AdapterClothes adapter = new AdapterClothes(context, listClothes);
       setListAdapter(adapter);
     }
   }
