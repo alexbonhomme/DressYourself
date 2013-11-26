@@ -26,6 +26,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
+  private Button buttonGenerate;
   private ImageView imageTop;
   private ImageView imageBottom;
   private ImageView imageFeet;
@@ -41,45 +42,56 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_outfit_layout);
-    textViewTop = (TextView) findViewById(R.id.textview_top);
-    textViewBottom = (TextView) findViewById(R.id.textview_bottom);
-    textViewFeet = (TextView) findViewById(R.id.textview_feet);
-    imageTop = (ImageView) findViewById(R.id.imageview_top);
-    imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
-    imageFeet = (ImageView) findViewById(R.id.imageview_feet);
-    
+    setContentView(R.layout.activity_outfit_layout); 
+    initComponent();
     if (Weather.getWeather() != null) {
       Log.d("weather", Weather.getWeather());
     }
-
     // connexion bdd
     db.open();
-
-    // recup top
-    listTop = db.getListTop();
-
-    // recup bottom
-    listBottom = db.getListBottom();
-
-    // recup feet
-    listFeet = db.getListFeet();
-
-    // vetements statique TODO: récupérer en bdd
-    Clothe clothe = new Clothe("Pull beige");
-    textViewTop.setText(clothe.getModel());
-    textViewBottom.setText("slim bleu fonce");
-    textViewFeet.setText("Basket camel");
-
-    buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
-    buttonRefreshTop.setOnClickListener(this);
-
-    buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
-    buttonRefreshBottom.setOnClickListener(this);
-
-    buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
-    buttonRefreshFeet.setOnClickListener(this);
+    loadData();
+    bindToLayout();
+    setListener();
     db.close();
+  }
+  
+  private void initComponent() {
+	   textViewTop = (TextView) findViewById(R.id.textview_top);
+	   textViewBottom = (TextView) findViewById(R.id.textview_bottom);
+	   textViewFeet = (TextView) findViewById(R.id.textview_feet);
+	   imageTop = (ImageView) findViewById(R.id.imageview_top);
+	   imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
+	   imageFeet = (ImageView) findViewById(R.id.imageview_feet);
+	   buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
+	   buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
+	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
+    buttonGenerate = (Button) findViewById(R.id.button_generate);
+  }
+  
+  private void loadData() {
+	  // recup top
+	    listTop = db.getListTop();
+
+	    // recup bottom
+	    listBottom = db.getListBottom();
+
+	    // recup feet
+	    listFeet = db.getListFeet(); 
+  }
+  
+  private void bindToLayout() {
+	 // vetements statique TODO: récupérer en bdd
+	 Clothe clothe = new Clothe("Pull beige");
+	 textViewTop.setText(clothe.getModel());
+	 textViewBottom.setText("slim bleu fonce");
+	 textViewFeet.setText("Basket camel");	
+  }
+   
+  private void setListener() {
+	  buttonRefreshTop.setOnClickListener(this); 
+	  buttonRefreshBottom.setOnClickListener(this);
+	  buttonRefreshFeet.setOnClickListener(this);
+    buttonGenerate.setOnClickListener(this);
   }
 
   private void refreshTop() {
@@ -112,6 +124,12 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
 
+  private void generate() {
+    refreshTop();
+    refreshBottom();
+    refreshFeet();
+  }
+
 
   @Override
   public void onClick(View v) {
@@ -124,6 +142,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
         break;
       case R.id.button_refresh_feet:
         refreshFeet();
+        break;
+      case R.id.button_generate:
+        generate();
         break;
       default:
         break;

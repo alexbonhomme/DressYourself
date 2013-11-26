@@ -38,6 +38,7 @@ public class ActivityClotheDetail extends Activity {
         bundle.putSerializable("clothe", myClothe);
         intent.putExtras(bundle);
         startActivity(intent);
+        ActivityClotheDetail.this.finish();
       }
     });
 
