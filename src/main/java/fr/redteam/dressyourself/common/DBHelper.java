@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
+import fr.redteam.dressyourself.exceptions.DressyourselfDatabaseException;
 
 
 /**
@@ -55,53 +56,87 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public long insertColor(String couleur) {
+	try{
     ContentValues values = new ContentValues();
     values.put("colorName", couleur);
     return bdd.insertWithOnConflict("COLOR", null, values,SQLiteDatabase.CONFLICT_IGNORE);
+	}
+    catch(Exception e){
+    	 throw new DressyourselfDatabaseException("Erreur insertion color: " + e.getMessage() );
+    }
   }
 
   @Override
   public long insertWeather(String weather) {
+	try{
     ContentValues values = new ContentValues();
     values.put("weatherName", weather);
     return bdd.insertWithOnConflict("WEATHER", null, values,SQLiteDatabase.CONFLICT_IGNORE);
+	}
+	catch(Exception e){
+   	 throw new DressyourselfDatabaseException("Erreur insertion weather: " + e.getMessage());
+   }
   }
 
   @Override
   public long insertBodies(String bodies) {
+	try{
     ContentValues values = new ContentValues();
     values.put("bodiesName", bodies);
     return bdd.insertWithOnConflict("BODIES", null, values,SQLiteDatabase.CONFLICT_IGNORE);
-  }
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur insertion weather: " + e.getMessage());
+	   }
+	}
+  
 
   @Override
   public long insertType(String type, long l) {
+	try{
     ContentValues values = new ContentValues();
     values.put("typeName", type);
     values.put("ID_b", l);
     return bdd.insertWithOnConflict("TYPE", null, values,SQLiteDatabase.CONFLICT_IGNORE);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur insertion Type: " + e.getMessage());
+	}
+	
   }
 
   @Override
   public long insertClothes(Clothe clothe)  {
+		  ContentValues values = new ContentValues();
+		  values.put("model", clothe.getModel());
+      	  if(clothe.getType()!=null)
+      		  values.put("ID_t", getIDType(clothe.getType())); 
+      	  else
+      		  values.put("ID_t", 0); 
 
-      ContentValues values = new ContentValues();
-      values.put("model", clothe.getModel());
-      values.put("ID_t", getIDType(clothe.getType()));
-      values.put("ID_c", getIDColor(clothe.getColor()));
-      values.put("ID_br", getIDBrand(clothe.getBrand()));
-      long r = bdd.insertWithOnConflict("CLOTHES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
+      	  if(clothe.getColor() != null)
+      		  values.put("ID_c", getIDColor(clothe.getColor()));
+      	  else
+      		  values.put("ID_c", 0);
+
+      	  if(clothe.getBrand()!=null)
+      		  values.put("ID_br", getIDBrand(clothe.getBrand()));
+      	  else
+      	      values.put("ID_c", 0);
+
+      	  long r = bdd.insertWithOnConflict("CLOTHES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
       return r;
-
+	  }
+	  
+	  
     /*
      * values = new ContentValues(); for (int i = 0; i < clothe.getWeather().size(); i++) {
      * values.put("ID_c", r); values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
      * bdd.insert("WEATHER_CLOTHES", null, values); }
      */
 
-  }
-
+  
   @Override
   public long insertOutfit(String name, Clothe[] clothes) {
     return 0; // TODO
@@ -109,153 +144,193 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public long insertBrand(String brand) {
-    ContentValues values = new ContentValues();
-    values.put("brandName", brand);
-    return bdd.insertWithOnConflict("BRAND", null, values,SQLiteDatabase.CONFLICT_IGNORE);
+	try{
+	    ContentValues values = new ContentValues();
+	    values.put("brandName", brand);
+	    return bdd.insertWithOnConflict("BRAND", null, values,SQLiteDatabase.CONFLICT_IGNORE);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur insertion Brand: " + e.getMessage());
+	}
   }
 
   @Override
   public long getIDColor(String color) {
-    String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
-    Log.v("BDD", query);
-    Cursor c = bdd.rawQuery(query, null);
-    c.moveToFirst();
-    return c.getLong(0);
-   
+	try{
+	    String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
+	    Log.v("BDD", query);
+	    Cursor c = bdd.rawQuery(query, null);
+	    c.moveToFirst();
+	    return c.getLong(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDColor: " + e.getMessage());
+	}
 
   }
 
   @Override
   public long getIDWeather(String weather) {
-    String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \"" + weather + "\"";
-    Log.v("BDD", query);
-    Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
-    c.moveToFirst();
-
-    return c.getLong(0);
+	try{
+	    String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \"" + weather + "\"";
+	    Log.v("BDD", query);
+	    Cursor c = bdd.rawQuery(query, null);
+	    c.moveToFirst();
+	    return c.getLong(0);
     }
-    return -1;
+	catch(Exception e){
+			 throw new DressyourselfDatabaseException("Erreur getIDWeather: " + e.getMessage());
+	}
   }
 
   @Override
   public long getIDBodies(String bodies) {
+	try{
     String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \"" + bodies + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
-      c.moveToFirst();
-
-      return c.getLong(0);
-      }
-      return -1;
+    c.moveToFirst();
+    return c.getLong(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDBodies:" + e.getMessage());
+	}
+      
   }
 
   @Override
   public long getIDType(String type) {
+	try{
     String query = "SELECT ID_type FROM TYPE WHERE typeName = \"" + type + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
       c.moveToFirst();
-
       return c.getLong(0);
-      }
-      return -1;
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDType: " + e.getMessage());
+	}
   }
 
   @Override
   public long getIDClothes(String clothes) {
+	try{
     String query = "SELECT ID_clothes FROM CLOTHES WHERE model = \"" + clothes + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
-      c.moveToFirst();
-
-      return c.getLong(0);
-      }
-      return -1;
+    c.moveToFirst();
+    return c.getLong(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDClothe: " + e.getMessage());
+	}
+    
   }
 
   @Override
   public long getIDOutfit(String outfit) {
+	try{
     String query = "SELECT ID_outfit FROM OUTFIT WHERE outfitName = \"" + outfit + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    if (c.getCount()>0){
-      c.moveToFirst();
-
-      return c.getLong(0);
-      }
-      return -1;
-  }
+    c.moveToFirst();
+    return c.getLong(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDOutfit: " + e.getMessage());
+	}
+	}
 
   @Override
   public long getIDBrand(String brand) {
+	try{
     String query = "SELECT ID_brand FROM BRAND WHERE brandName = \"" + brand + "\"";
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
-    
-    if (c.getCount()>0){
-      c.moveToFirst();
-
-      return c.getLong(0);
-      }
-      return -1;
+    c.moveToFirst();
+    return c.getLong(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getIDBrand: " + e.getMessage());
+	}
   }
 
   @Override
   public String getColor(long id) {
-    String query = "SELECT colorName FROM BRAND WHERE ID_brand = " + id;
+	try{
+    String query = "SELECT colorName FROM COLOR WHERE ID_color = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
-
     return c.getString(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getColor: " + e.getMessage());
+	}
   }
 
   @Override
   public String getBodies(long l) {
+	try{
     String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = " + l;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
 
     return c.getString(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getBodies: " + e.getMessage());
+	}
   }
 
   @Override
   public String getWeather(long id) {
+	try{
     String query = "SELECT weatherName FROM WEATHER WHERE ID_weather = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
 
     return c.getString(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getWeather: " + e.getMessage());
+	}
   }
 
   @Override
   public String getType(long id) {
+	try{
     String query = "SELECT typeName FROM TYPE WHERE ID_type = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
 
     return c.getString(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getType: " + e.getMessage());
+	}
   }
 
   @Override
   public String getBrand(long id) {
+	try{
     String query = "SELECT brandName FROM BRAND WHERE ID_brand = " + id;
     Log.v("BDD", query);
     Cursor c = bdd.rawQuery(query, null);
     c.moveToFirst();
 
     return c.getString(0);
+	}
+	catch(Exception e){
+		 throw new DressyourselfDatabaseException("Erreur getBrand: " + e.getMessage());
+	}
 
   }
 
-
+  //a refaire
   @Override
   public Clothe getClothe(long id) {
     String query =
