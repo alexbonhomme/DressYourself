@@ -86,12 +86,12 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
   
   private void bindToLayout() {
-	 // vetements statique TODO: récupérer en bdd
+    // vetements statique TODO: récupérer en bdd
 	 Clothe clothe = new Clothe("Pull beige");
 	 textViewTop.setText(clothe.getModel());
 	 textViewBottom.setText("slim bleu fonce");
 	 textViewFeet.setText("Basket camel");
-	 textViewWeather.setText("" + Weather.getTemperature() + " °C");
+    textViewWeather.setText("" + Weather.getTemperature() + " °C");
 	 WeatherIdentifier.fillLists();
 	 switch (WeatherGroup.valueOf(Weather.getWeather())) {
 	 case HOT:
@@ -105,6 +105,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 		 break;
 	 case COLD:
 		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+        break;
 	 case NOTFOUND:
      default:
 		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
