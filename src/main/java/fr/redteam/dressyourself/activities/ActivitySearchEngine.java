@@ -12,12 +12,16 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
+import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.views.ListViewClothes;
 
 /**
  * 
@@ -54,6 +58,20 @@ public class ActivitySearchEngine extends ListActivity {
   @Override
   protected void onNewIntent(Intent intent) {
     handleIntent(intent);
+  }
+
+  @Override
+  protected void onListItemClick(ListView l, View v, int position, long id) {
+    ListViewClothes productView = (ListViewClothes) v;
+    Clothe product = productView.getProduct();
+    
+    DBHelper db = new DBHelper(context);
+    db.open();
+    db.insertAllClothes(product);
+    db.close();
+    
+    Toast.makeText(context, product.getModel() + " was added to your closet !", Toast.LENGTH_SHORT)
+        .show();
   }
 
   private void handleIntent(Intent intent) {

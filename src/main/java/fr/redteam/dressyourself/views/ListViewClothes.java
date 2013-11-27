@@ -15,6 +15,8 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  */
 public class ListViewClothes extends LinearLayout {
 
+  private Clothe product;
+
   private ImageView imageViewProduct;
   private TextView textViewProductBrand;
   private TextView textViewProductModel;
@@ -52,13 +54,21 @@ public class ListViewClothes extends LinearLayout {
    * @param product
    */
   public void bind(Clothe product) {
+    this.product = product;
+
     // TODO change for real image
     imageViewProduct.setImageResource(R.raw.medium_wash_jeans);
-
-    // XXX le contenu n'aparait pas dans le bon ordre (cf. layout)
     textViewProductModel.setText(product.getModel());
     textViewProductBrand.setText(product.getBrand());
+  }
 
+  /**
+   * Retourn l'id du vêtement associé a cette élément
+   * 
+   * @return
+   */
+  public Clothe getProduct() {
+    return product;
   }
 
 }

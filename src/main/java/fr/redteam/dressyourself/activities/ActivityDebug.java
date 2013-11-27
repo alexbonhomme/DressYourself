@@ -59,11 +59,11 @@ public class ActivityDebug extends Activity {
         clothe.setBodies("body");
 
         Clothe clothe2 = new Clothe("Clothe2 test");
-        clothe.setWeather(weather);
-        clothe.setBrand("Zara");
-        clothe.setColor("RED");
-        clothe.setType("boot");
-        clothe.setBodies("body");
+        clothe2.setWeather(weather);
+        clothe2.setBrand("Zara");
+        clothe2.setColor("RED");
+        clothe2.setType("boot");
+        clothe2.setBodies("body");
         Outfit outfit = new Outfit();
         outfit.addClothe(clothe);
         outfit.addClothe(clothe2);
@@ -253,7 +253,7 @@ public class ActivityDebug extends Activity {
     top.setBrand("Zara");
     top.setColor("Ecru / Black");
     top.setType("Knitwears");
-    top.setImage(getResources().openRawResource(R.raw.twotone_wrap_around_jacket));
+    top.setImageRelativePath(getResources().openRawResource(R.raw.twotone_wrap_around_jacket));
 
     db.insertColor(top.getColor());
     db.insertType(top.getType(), (int) topId);
@@ -264,7 +264,7 @@ public class ActivityDebug extends Activity {
     top.setBrand("Zara");
     top.setColor("Grey");
     top.setType("Knitwears");
-    top.setImage(getResources().openRawResource(R.raw.high_neck_sweater_with_strass));
+    top.setImageRelativePath(getResources().openRawResource(R.raw.high_neck_sweater_with_strass));
 
     db.insertColor(top.getColor());
     // db.insertType(top.getType(), (int) topId);
@@ -275,7 +275,7 @@ public class ActivityDebug extends Activity {
     top.setBrand("Zara");
     top.setColor("Ecru / Black");
     top.setType("Knitwears");
-    top.setImage(getResources().openRawResource(R.raw.sweater_with_loose_turtle_neck));
+    top.setImageRelativePath(getResources().openRawResource(R.raw.sweater_with_loose_turtle_neck));
 
     db.insertColor(top.getColor());
     // db.insertType(top.getType(), (int) topId);
@@ -287,7 +287,7 @@ public class ActivityDebug extends Activity {
     bottom.setBrand("Zara");
     bottom.setColor("Blue");
     bottom.setType("Jean");
-    bottom.setImage(getResources().openRawResource(R.raw.skinny_cropped_jeans));
+    bottom.setImageRelativePath(getResources().openRawResource(R.raw.skinny_cropped_jeans));
 
     db.insertColor(bottom.getColor());
     db.insertType(bottom.getType(), (int) bottomId);
@@ -298,7 +298,7 @@ public class ActivityDebug extends Activity {
     bottom.setBrand("Zara");
     bottom.setColor("Indigo");
     bottom.setType("Jean");
-    bottom.setImage(getResources().openRawResource(R.raw.medium_wash_jeans));
+    bottom.setImageRelativePath(getResources().openRawResource(R.raw.medium_wash_jeans));
 
     db.insertColor(bottom.getColor());
     // db.insertType(bottom.getType(), (int) topId);
@@ -309,7 +309,7 @@ public class ActivityDebug extends Activity {
     bottom.setBrand("Zara");
     bottom.setColor("Black");
     bottom.setType("Jean");
-    bottom.setImage(getResources().openRawResource(R.raw.skinny_jeans));
+    bottom.setImageRelativePath(getResources().openRawResource(R.raw.skinny_jeans));
 
     db.insertColor(bottom.getColor());
     // db.insertType(bottom.getType(), (int) topId);
@@ -321,7 +321,7 @@ public class ActivityDebug extends Activity {
     shoes.setBrand("Zara");
     shoes.setColor("Black");
     shoes.setType("Shoes");
-    shoes.setImage(getResources().openRawResource(R.raw.embossed_leather_high_heel_ankle_boot));
+    shoes.setImageRelativePath(getResources().openRawResource(R.raw.embossed_leather_high_heel_ankle_boot));
 
     db.insertColor(shoes.getColor());
     db.insertType(shoes.getType(), (int) shoesId);
@@ -332,7 +332,7 @@ public class ActivityDebug extends Activity {
     shoes.setBrand("Zara");
     shoes.setColor("Black");
     shoes.setType("Shoes");
-    shoes.setImage(getResources().openRawResource(R.raw.high_heel_leather_ankle_boot_with_zips));
+    shoes.setImageRelativePath(getResources().openRawResource(R.raw.high_heel_leather_ankle_boot_with_zips));
 
     db.insertColor(shoes.getColor());
     // db.insertType(shoes.getType(), (int) topId);
@@ -343,7 +343,7 @@ public class ActivityDebug extends Activity {
     shoes.setBrand("Zara");
     shoes.setColor("Black");
     shoes.setType("Shoes");
-    shoes.setImage(getResources().openRawResource(R.raw.leather_ankle_boot_with_zip));
+    shoes.setImageRelativePath(getResources().openRawResource(R.raw.leather_ankle_boot_with_zip));
 
     db.insertColor(shoes.getColor());
     // db.insertType(shoes.getType(), (int) topId);
