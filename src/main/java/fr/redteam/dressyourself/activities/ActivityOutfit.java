@@ -43,7 +43,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Clothe currentBottom;
   private Clothe currentFeet;
   private static boolean gotWeatherInfo;
-  private OutfitDecider decider = new OutfitDecider(false);
+  private final OutfitDecider decider = new OutfitDecider(false);
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -132,7 +132,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
-      fileImageTop = ClothesManager.loadClotheImage(currentTop.getImageRelativePath());
+      fileImageTop =
+          ClothesManager
+              .loadClotheImage(getApplicationContext(), currentTop.getImageRelativePath());
       Uri uri = Uri.fromFile(fileImageTop);
       imageTop.setImageURI(uri);
     }
@@ -146,7 +148,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listBottom.size() > 1) {
       currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
-      fileImageBottom = ClothesManager.loadClotheImage(currentBottom.getImageRelativePath());
+      fileImageBottom =
+          ClothesManager.loadClotheImage(getApplicationContext(),
+              currentBottom.getImageRelativePath());
       Uri uri = Uri.fromFile(fileImageBottom);
       imageBottom.setImageURI(uri);
     }
@@ -159,7 +163,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listFeet.size() > 1) {
       currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
-      fileImageFeet = ClothesManager.loadClotheImage(currentFeet.getImageRelativePath());
+      fileImageFeet =
+          ClothesManager.loadClotheImage(getApplicationContext(),
+              currentFeet.getImageRelativePath());
       Uri uri = Uri.fromFile(fileImageFeet);
       imageFeet.setImageURI(uri);
     }

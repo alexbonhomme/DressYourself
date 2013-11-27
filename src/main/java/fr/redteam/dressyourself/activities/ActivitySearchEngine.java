@@ -67,7 +67,7 @@ public class ActivitySearchEngine extends ListActivity {
     
     DBHelper db = new DBHelper(context);
     db.open();
-    db.insertAllClothes(product);
+    db.insertClothes(product);
     db.close();
     
     Toast.makeText(context, product.getModel() + " was added to your closet !", Toast.LENGTH_SHORT)
