@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -119,8 +120,8 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImageRelativePath(),
-        clotheToEdit.getModel()));
+	this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(this.clotheToEdit.getImageRelativePath())));
+    //this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImageRelativePath(),clotheToEdit.getModel()));
     this.modelEditText.append(clotheToEdit.getModel() + "");
     this.brandEditText.append(clotheToEdit.getBrand() + "");
     this.initSpinnersWithData();
@@ -128,18 +129,15 @@ public class ActivityClotheModify extends Activity {
 
   /** update clothe attributes with values of editable fields */
   public void updateClotheValues(Clothe clotheToEdit) {
-    try {
-      if (this.selectedImageUri != null) {
-        clotheToEdit.setImageRelativePath(getContentResolver().openInputStream(this.selectedImageUri));
+    if (this.selectedImageUri != null) {
+        //clotheToEdit.setImageRelativePath(getContentResolver().openInputStream(this.selectedImageUri));
+    	clotheToEdit.setImageRelativePath(selectedImageUri.getPath());
+    	Log.d("ImagePath", selectedImageUri.getPath());
       }
       clotheToEdit.setModel(modelEditText.getText().toString());
       clotheToEdit.setBrand(brandEditText.getText().toString());
       clotheToEdit.setColor(colorSpinner.getSelectedItem().toString());
       clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      throw new DressyourselfRuntimeException(e);
-    }
 
   }
 
