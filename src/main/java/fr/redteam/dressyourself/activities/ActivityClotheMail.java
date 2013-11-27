@@ -25,7 +25,6 @@ public class ActivityClotheMail extends Activity {
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireClothe);
     this.textContenu = (EditText) findViewById(R.id.editMailClothe);
     this.clothe = (Clothe) this.getIntent().getExtras().get("clothe");
-
     /**
      * define the click listener
      */
@@ -48,7 +47,7 @@ public class ActivityClotheMail extends Activity {
    */
   public void creationMail() {
     this.mail =
-        new MailClothePlugin(clothe, "i want to share this Clothe", this.textContenu.getText()
+        new MailClothePlugin(this.clothe, "i want to share this Clothe", this.textContenu.getText()
             .toString(), this.textDestinataire.getText().toString(), ActivityClotheMail.this);
     mail.creationMail();
   }

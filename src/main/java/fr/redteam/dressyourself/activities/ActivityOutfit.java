@@ -6,7 +6,6 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,6 +24,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private TextView textViewTop;
   private TextView textViewBottom;
   private TextView textViewFeet;
+  private TextView textViewWeather;
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
@@ -40,6 +40,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Clothe currentTop;
   private Clothe currentBottom;
   private Clothe currentFeet;
+  private static boolean gotWeatherInfo;
   private OutfitDecider decider = new OutfitDecider(false);
 
   @Override
@@ -48,7 +49,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     setContentView(R.layout.activity_outfit_layout); 
     initComponent();
     if (Weather.getWeather() != null) {
-      Log.d("weather", Weather.getWeather());
+      gotWeatherInfo = true;
     }
     // connexion bdd
     db.open();
@@ -70,6 +71,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
 	   imageWeather = (ImageView) findViewById(R.id.imageview_weather);
 	   buttonGenerate = (Button) findViewById(R.id.button_generate);
+	   textViewWeather = (TextView) findViewById(R.id.textview_weather);
   }
   
   private void loadData() {
@@ -84,30 +86,35 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
   
   private void bindToLayout() {
-	 // vetements statique TODO: récupérer en bdd
-	 Clothe clothe = new Clothe("Pull beige");
-	 textViewTop.setText(clothe.getModel());
-	 textViewBottom.setText("slim bleu fonce");
-	 textViewFeet.setText("Basket camel");
-	 WeatherIdentifier.fillLists();
-	 switch (WeatherGroup.valueOf(Weather.getWeather())) {
-	 case HOT:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
-		 break;
-	 case TEMPERATE:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
-		 break;
-	 case HARDCORE:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
-		 break;
-	 case COLD:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
-	 case NOTFOUND:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
-		 break;
-      default:
-    	  break;
-	 }
+    // vetements statique TODO: récupérer en bdd
+    Clothe clothe = new Clothe("Pull beige");
+    textViewTop.setText(clothe.getModel());
+    textViewBottom.setText("slim bleu fonce");
+    textViewFeet.setText("Basket camel");
+    textViewWeather.setText("" + Weather.getTemperature() + " °C");
+    WeatherIdentifier.fillLists();
+    if (gotWeatherInfo) {
+      switch (WeatherGroup.valueOf(Weather.getWeather())) {
+        case HOT:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
+          break;
+        case TEMPERATE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
+          break;
+        case HARDCORE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
+          break;
+        case COLD:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+        case NOTFOUND:
+        default:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+          break;
+      }
+    } else {
+      imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+      textViewWeather.setText("");
+    }
   }
    
   private void setListener() {
@@ -173,6 +180,10 @@ public class ActivityOutfit extends Activity implements OnClickListener {
       default:
         break;
       }
+  }
+
+  public static void updateWeatherBoolean(boolean gotWeather) {
+    gotWeatherInfo = gotWeather;
   }
 
 }

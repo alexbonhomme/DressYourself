@@ -1,21 +1,20 @@
 package fr.redteam.dressyourself.activities;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
-import fr.redteam.dressyourself.common.DBHelper;
-import fr.redteam.dressyourself.core.clothes.Clothe;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-//import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
-public class ActivityClotheList extends ListActivity {
+public class ActivityClotheList extends ListActivity{
 
-	private ArrayList<Clothe> clotheList;
+	private List<Clothe> clotheList;
 	private boolean listIsEmpty = false;
 
 	public void onCreate(Bundle bundle) {
@@ -40,7 +39,6 @@ public class ActivityClotheList extends ListActivity {
 		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, values);
 		setListAdapter(adapter);
-
 	}
 
 	@Override
