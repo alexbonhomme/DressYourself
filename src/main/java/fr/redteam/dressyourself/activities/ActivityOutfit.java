@@ -25,6 +25,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private TextView textViewTop;
   private TextView textViewBottom;
   private TextView textViewFeet;
+  private TextView textViewWeather;
   private Button buttonRefreshTop;
   private Button buttonRefreshBottom;
   private Button buttonRefreshFeet;
@@ -70,6 +71,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
 	   imageWeather = (ImageView) findViewById(R.id.imageview_weather);
 	   buttonGenerate = (Button) findViewById(R.id.button_generate);
+	   textViewWeather = (TextView) findViewById(R.id.textview_weather);
   }
   
   private void loadData() {
@@ -89,6 +91,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 	 textViewTop.setText(clothe.getModel());
 	 textViewBottom.setText("slim bleu fonce");
 	 textViewFeet.setText("Basket camel");
+	 textViewWeather.setText("" + Weather.getTemperature() + " °C");
 	 WeatherIdentifier.fillLists();
 	 switch (WeatherGroup.valueOf(Weather.getWeather())) {
 	 case HOT:
