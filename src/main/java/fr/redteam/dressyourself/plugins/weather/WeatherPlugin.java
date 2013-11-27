@@ -17,6 +17,7 @@ package fr.redteam.dressyourself.plugins.weather;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+import fr.redteam.dressyourself.activities.ActivityOutfit;
 import fr.redteam.dressyourself.plugins.weather.tools.AsciiUtils;
 import fr.redteam.dressyourself.plugins.weather.tools.NetworkUtils;
 import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.WeatherInfo;
@@ -57,6 +58,7 @@ public class WeatherPlugin implements YahooWeatherInfoListener {
       weather = Weather.process(weatherInfo.getCurrentWeather());
       Weather.setWeather(weather);
       Weather.setTemperature(weatherInfo.getCurrentTempC());
+      ActivityOutfit.updateWeatherBoolean(true);
     }
   }
 }

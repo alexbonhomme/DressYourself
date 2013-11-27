@@ -1,12 +1,12 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
@@ -41,7 +42,8 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Clothe currentTop;
   private Clothe currentBottom;
   private Clothe currentFeet;
-  private OutfitDecider decider = new OutfitDecider(false);
+  private static boolean gotWeatherInfo;
+  private final OutfitDecider decider = new OutfitDecider(false);
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     setContentView(R.layout.activity_outfit_layout); 
     initComponent();
     if (Weather.getWeather() != null) {
-      Log.d("weather", Weather.getWeather());
+      gotWeatherInfo = true;
     }
     // connexion bdd
     db.open();
@@ -86,30 +88,35 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
   
   private void bindToLayout() {
-	 // vetements statique TODO: récupérer en bdd
-	 Clothe clothe = new Clothe("Pull beige");
-	 textViewTop.setText(clothe.getModel());
-	 textViewBottom.setText("slim bleu fonce");
-	 textViewFeet.setText("Basket camel");
-	 textViewWeather.setText("" + Weather.getTemperature() + " °C");
-	 WeatherIdentifier.fillLists();
-	 switch (WeatherGroup.valueOf(Weather.getWeather())) {
-	 case HOT:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
-		 break;
-	 case TEMPERATE:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
-		 break;
-	 case HARDCORE:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
-		 break;
-	 case COLD:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
-	 case NOTFOUND:
-     default:
-		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
-		 break;
-	 }
+    // vetements statique TODO: récupérer en bdd
+    Clothe clothe = new Clothe("Pull beige");
+    textViewTop.setText(clothe.getModel());
+    textViewBottom.setText("slim bleu fonce");
+    textViewFeet.setText("Basket camel");
+    textViewWeather.setText("" + Weather.getTemperature() + " °C");
+    WeatherIdentifier.fillLists();
+    if (gotWeatherInfo) {
+      switch (WeatherGroup.valueOf(Weather.getWeather())) {
+        case HOT:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
+          break;
+        case TEMPERATE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
+          break;
+        case HARDCORE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
+          break;
+        case COLD:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+        case NOTFOUND:
+        default:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+          break;
+      }
+    } else {
+      imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+      textViewWeather.setText("");
+    }
   }
    
   private void setListener() {
@@ -120,32 +127,47 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshTop() {
+    File fileImageTop;
+
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
-      imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImage(),
-          currentTop.getModel()));
+      fileImageTop =
+          ClothesManager
+              .loadClotheImage(getApplicationContext(), currentTop.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageTop);
+      imageTop.setImageURI(uri);
     }
     textViewTop.setText(textViewTop.getText() + " ");
 
   }
 
   private void refreshBottom() {
+    File fileImageBottom;
+
     if (listBottom.size() > 1) {
       currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
-      imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImage(),
-              currentBottom.getModel()));
+      fileImageBottom =
+          ClothesManager.loadClotheImage(getApplicationContext(),
+              currentBottom.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageBottom);
+      imageBottom.setImageURI(uri);
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
 
   private void refreshFeet() {
+    File fileImageFeet;
+
     if (listFeet.size() > 1) {
       currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
-      imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImage(),
-              currentFeet.getModel()));
+      fileImageFeet =
+          ClothesManager.loadClotheImage(getApplicationContext(),
+              currentFeet.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageFeet);
+      imageFeet.setImageURI(uri);
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
@@ -175,6 +197,10 @@ public class ActivityOutfit extends Activity implements OnClickListener {
       default:
         break;
       }
+  }
+
+  public static void updateWeatherBoolean(boolean gotWeather) {
+    gotWeatherInfo = gotWeather;
   }
 
 }

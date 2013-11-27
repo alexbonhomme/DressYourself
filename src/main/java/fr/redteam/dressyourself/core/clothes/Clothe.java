@@ -1,15 +1,16 @@
 package fr.redteam.dressyourself.core.clothes;
 
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.redteam.dressyourself.core.ClothesManager;
+
 
 public class Clothe implements Serializable {
 
-  final static long serialVersionUID = 1L;
-  
+  private static final long serialVersionUID = 1L;
+
   private long id;
 
   private String model;
@@ -18,10 +19,10 @@ public class Clothe implements Serializable {
 
   private String color;
 
-  private InputStream image;
+  private String imageRelativePath;
 
   private String type;
-  
+
   private String bodies;
 
   private List<String> weather;
@@ -36,13 +37,13 @@ public class Clothe implements Serializable {
     weather = new ArrayList<String>();
   }
 
-  public Clothe(String model, InputStream image) {
+  public Clothe(String model, String image) {
     this.model = model;
-    this.image = image;
+    this.imageRelativePath = image;
   }
 
   public long getId() {
-		return id;
+    return id;
   }
 
   public String getModel() {
@@ -50,9 +51,9 @@ public class Clothe implements Serializable {
   }
 
   public void setId(int id) {
-		this.id = id;
+    this.id = id;
   }
-  
+
   public void setModel(String model) {
     this.model = model;
   }
@@ -73,12 +74,16 @@ public class Clothe implements Serializable {
     this.color = color;
   }
 
-  public InputStream getImage() {
-    return image;
+  public String getImageRelativePath() {
+    return imageRelativePath;
+  }
+  
+  public String getImageFullPath() {
+    return ClothesManager.STORAGE_PATH + imageRelativePath;
   }
 
-  public void setImage(InputStream imageUrl) {
-    this.image = imageUrl;
+  public void setImageRelativePath(String imagePath) {
+    this.imageRelativePath = imagePath;
   }
 
   public String getType() {
@@ -89,14 +94,14 @@ public class Clothe implements Serializable {
     this.type = type;
   }
 
-  
+
   public String getBodies() {
-	return bodies;
+    return bodies;
   }
 
 
   public void setBodies(String bodies) {
-	this.bodies = bodies;
+    this.bodies = bodies;
   }
 
   public List<String> getWeather() {

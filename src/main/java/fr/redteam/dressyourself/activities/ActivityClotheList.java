@@ -1,21 +1,21 @@
 package fr.redteam.dressyourself.activities;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
-import fr.redteam.dressyourself.common.DBHelper;
-import fr.redteam.dressyourself.core.clothes.Clothe;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-//import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.adapters.AdapterClothes;
+import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
-public class ActivityClotheList extends ListActivity {
+public class ActivityClotheList extends ListActivity{
 
-	private ArrayList<Clothe> clotheList;
+	private List<Clothe> clotheList;
 	private boolean listIsEmpty = false;
 
 	public void onCreate(Bundle bundle) {
@@ -28,19 +28,11 @@ public class ActivityClotheList extends ListActivity {
 
 		if(this.clotheList.size() == 0){
 			this.listIsEmpty = true; 
-			values = new String[]{"You don't have any clothe"};
-		}else{
-			values = new String[this.clotheList.size()];
-			int index = 0;
-
-			for(Clothe clothe : this.clotheList){
-				values[index] = clothe.getModel();
-				index++;
-			}
+			//a retirer si ce n'est pas dans l'adapter
+			//this.clotheList.add(new Clothe("There is no clothe"));
 		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, values);
+		AdapterClothes adapter = new AdapterClothes(this, this.clotheList);
 		setListAdapter(adapter);
-
 	}
 
 	@Override

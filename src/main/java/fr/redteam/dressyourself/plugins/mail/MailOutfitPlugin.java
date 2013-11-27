@@ -27,23 +27,19 @@ public class MailOutfitPlugin extends MailPlugin {
   protected void body() {
 
     List<Clothe> listClothe = outfit.getClothes();
-
     /*
      * get the key of outfit which was passed in parameter.
      */
-    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT,
-        "I found this outfit and I think it'll like.\n");
-    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT,
-        "this outfit contains the following parts.\n");
+    this.textBody +=
+        "I found this outfit and I think it'll like.\nthis outfit contains the following parts.\n";
     /* Made the body of mail */
     for (Clothe vetement : listClothe) {
-      String txtBody =
-          this.textBody + "\n - a\\an " + vetement.getType() + " from the brand "
-              + vetement.getBrand() + " and it's " + vetement.getColor() + " "
-              + vetement.getModel() + ".\n";
+      this.textBody +=
+          "- a\\an " + vetement.getType() + " from the brand " + vetement.getBrand() + " and it's "
+              + vetement.getColor() + " " + vetement.getModel() + ".\n";
       /* Add text */
-      this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
-    }
 
+    }
+    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, this.textBody);
   }
 }
