@@ -1,33 +1,36 @@
 package fr.redteam.dressyourself.core;
 
 import java.io.File;
+import java.io.InputStream;
 
+import android.content.Context;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class ClothesManager {
-
+public class ClothesManager extends AndroidFileManager {
   public final static String STORAGE_PATH = "";
 
   /**
    * 
    * @param imageRelativePath
    */
-  public static void storeClotheImage(String imageRelativePath) {
-    // TODO : to implement
+  public static void storeClotheImage(Context context, String imageRelativePath,
+      InputStream imageStream) {
+      writeFileToExternalStorage(context, imageRelativePath, imageStream);
+
   }
 
   /**
    * 
    * @param imageRelativePath
    */
-  public static File loadClotheImage(String imageRelativePath) {
-    // TODO : to verify
-    return new File(STORAGE_PATH + imageRelativePath);
+  public static File loadClotheImage(Context context, String imageRelativePath) {
+    return loadFileFromExternalStorage(context, imageRelativePath);
+  }
+
+  /**
+   * 
+   * @param imageRelativePath
+   */
+  public static void removeClotheImage(Context context, String imageRelativePath) {
+    deleteFileFromExternalStorage(context, imageRelativePath);
   }
 }
-
