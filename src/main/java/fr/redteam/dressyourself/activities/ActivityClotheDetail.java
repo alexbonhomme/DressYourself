@@ -62,7 +62,7 @@ public class ActivityClotheDetail extends Activity {
 
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inSampleSize = 2;
-    Bitmap bm = BitmapFactory.decodeStream(myClothe.getImage(), null, options);
+    Bitmap bm = BitmapFactory.decodeFile(myClothe.getImageRelativePath(), options);
     this.imagePhoto.setImageBitmap(bm);
   }
 

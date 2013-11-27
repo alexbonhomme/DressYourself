@@ -121,7 +121,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
-      imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImage(),
+      imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImageRelativePath(),
           currentTop.getModel()));
     }
     textViewTop.setText(textViewTop.getText() + " ");
@@ -132,7 +132,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listBottom.size() > 1) {
       currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
-      imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImage(),
+      imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImageRelativePath(),
               currentBottom.getModel()));
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
@@ -142,7 +142,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listFeet.size() > 1) {
       currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
-      imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImage(),
+      imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImageRelativePath(),
               currentFeet.getModel()));
     }
     textViewFeet.setText(textViewFeet.getText() + " ");

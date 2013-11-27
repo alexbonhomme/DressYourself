@@ -119,7 +119,8 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImage(), clotheToEdit.getModel()));
+    this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImageRelativePath(),
+        clotheToEdit.getModel()));
     this.modelEditText.append(clotheToEdit.getModel() + "");
     this.brandEditText.append(clotheToEdit.getBrand() + "");
     this.initSpinnersWithData();
@@ -129,7 +130,7 @@ public class ActivityClotheModify extends Activity {
   public void updateClotheValues(Clothe clotheToEdit) {
     try {
       if (this.selectedImageUri != null) {
-        clotheToEdit.setImage(getContentResolver().openInputStream(this.selectedImageUri));
+        clotheToEdit.setImageRelativePath(getContentResolver().openInputStream(this.selectedImageUri));
       }
       clotheToEdit.setModel(modelEditText.getText().toString());
       clotheToEdit.setBrand(brandEditText.getText().toString());

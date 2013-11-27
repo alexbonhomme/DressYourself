@@ -1,6 +1,5 @@
 package fr.redteam.dressyourself.adapters;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -13,7 +12,7 @@ import fr.redteam.dressyourself.views.ListViewClothes;
 public class AdapterClothes extends BaseAdapter {
 
   private final Context context;
-  private List<Clothe> listClothes = new ArrayList<Clothe>();
+  private final List<Clothe> listClothes;
   
   /**
    * @param context

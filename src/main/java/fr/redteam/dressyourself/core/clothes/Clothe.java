@@ -1,9 +1,10 @@
 package fr.redteam.dressyourself.core.clothes;
 
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.redteam.dressyourself.core.ClothesManager;
 
 
 public class Clothe implements Serializable {
@@ -18,7 +19,7 @@ public class Clothe implements Serializable {
 
   private String color;
 
-  private InputStream image;
+  private String imageRelativePath;
 
   private String type;
   
@@ -36,9 +37,9 @@ public class Clothe implements Serializable {
     weather = new ArrayList<String>();
   }
 
-  public Clothe(String model, InputStream image) {
+  public Clothe(String model, String image) {
     this.model = model;
-    this.image = image;
+    this.imageRelativePath = image;
   }
 
   public long getId() {
@@ -73,12 +74,16 @@ public class Clothe implements Serializable {
     this.color = color;
   }
 
-  public InputStream getImage() {
-    return image;
+  public String getImageRelativePath() {
+    return imageRelativePath;
+  }
+  
+  public String getImageFullPath() {
+    return ClothesManager.STORAGE_PATH + imageRelativePath;
   }
 
-  public void setImage(InputStream imageUrl) {
-    this.image = imageUrl;
+  public void setImageRelativePath(String imagePath) {
+    this.imageRelativePath = imagePath;
   }
 
   public String getType() {
