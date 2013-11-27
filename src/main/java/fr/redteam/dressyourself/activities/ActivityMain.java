@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.adapters.AdapterImage;
 import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
 public class ActivityMain extends Activity implements LocationListener {
@@ -45,28 +49,8 @@ public class ActivityMain extends Activity implements LocationListener {
     WeatherPlugin weather = new WeatherPlugin("lille", getApplicationContext());
     weather.sendYahooQuery();
 
-    /* Open the page to add clothes */
-    buttonAddClothing = (Button) findViewById(R.id.btAddClothing);
-    buttonAddClothing.setOnClickListener(new OnClickListener() {
 
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(ActivityMain.this, ActivitySearchEngine.class);
-        startActivity(intent);
-      }
-    });
-
-    buttonListClothes = (Button) findViewById(R.id.btListClothes);
-    buttonListClothes.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(ActivityMain.this, ActivityClotheList.class);
-        startActivity(intent);
-      }
-    });
-
-    buttonFilters = (Button) findViewById(R.id.btFilters);
+    buttonFilters = (Button) findViewById(R.id.btoutfit);
     buttonFilters.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -88,6 +72,28 @@ public class ActivityMain extends Activity implements LocationListener {
         startActivity(intent);
       }
     });
+    
+    /* Grid view */
+    /* To optimize */
+    GridView gridview = (GridView) findViewById(R.id.gridview);
+    gridview.setAdapter(new AdapterImage(this));
+    
+    gridview.setOnItemClickListener(new OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        switch (position) {
+          case 0:
+            Intent intent2 = new Intent(ActivityMain.this, ActivitySearchEngine.class);
+            startActivity(intent2);
+            break;
+          case 1:
+            Intent intent3 = new Intent(ActivityMain.this, ActivityClotheList.class);
+            startActivity(intent3);
+            break;
+        }
+      }
+    });
+
 
   }
 
