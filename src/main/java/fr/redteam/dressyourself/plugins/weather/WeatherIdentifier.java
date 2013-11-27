@@ -24,7 +24,7 @@ public class WeatherIdentifier {
 
     String[] arrayTemperate = {"cloudy", "clear", "fair"};
 
-    String[] arrayCold = {"drizzle", "foggy", "haze", "cold", "windy", "smoky"};
+    String[] arrayCold = {"drizzle", "foggy", "haze", "cold", "windy", "smoky", "fog"};
 
     listHardcore = Arrays.asList(arrayHardcore);
     listHot = Arrays.asList(arrayHot);
