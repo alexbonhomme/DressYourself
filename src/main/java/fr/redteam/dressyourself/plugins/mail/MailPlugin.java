@@ -19,6 +19,7 @@ public class MailPlugin {
   private String textDestinataire;
   private Activity activity;
   private boolean adresseValide;
+  private static final int REQUEST_CODE_MAILINTENT = 1234;
 
   public MailPlugin(String subject, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -86,12 +87,11 @@ public class MailPlugin {
     return dscList;
   }
 
-  protected void body() {}
 
   /**
    * function which made an mail intent in order to send it.
    */
-  public void creationMail() {
+  public void createMail() {
 
     /* Set the type of the mail */
     mailIntent.setType("image/png");
@@ -100,9 +100,15 @@ public class MailPlugin {
     mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, this.listDestinataire());
     /* Add the subject for the mail */
     mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.subject);
-    this.body();
+  }
+
+  /**
+   * create mail client chooser intent
+   */
+  public void launchMailAgent() {
     if (this.adresseValide) {
-      this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
+      this.activity.startActivityForResult(
+          Intent.createChooser(mailIntent, "Choose an mail client"), REQUEST_CODE_MAILINTENT);
     } else {
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();
     }

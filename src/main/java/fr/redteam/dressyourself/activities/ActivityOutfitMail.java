@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,7 @@ public class ActivityOutfitMail extends Activity {
   private EditText textContenu;
   private MailOutfitPlugin mail;
   private Outfit outfit;
+  private static final int REQUEST_CODE_MAILINTENT = 1234;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,23 @@ public class ActivityOutfitMail extends Activity {
 
       @Override
       public void onClick(View v) {
-        // TODO redirected to the 'filters page'
         ActivityOutfitMail.this.creationMail();
-        if (ActivityOutfitMail.this.mail.isValidMail()) {
-          ActivityOutfitMail.this.finish();
-        }
       }
     });
+  }
+
+  /**
+   * check if mailIntentActivity is finish and close this activity before redirect on filter page.
+   */
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == REQUEST_CODE_MAILINTENT) {
+      Intent intent = new Intent(ActivityOutfitMail.this, ActivityFilter.class);
+      if (ActivityOutfitMail.this.mail.isValidMail()) {
+        ActivityOutfitMail.this.finish();
+      }
+      startActivity(intent);
+    }
   }
 
   /**
@@ -56,6 +68,6 @@ public class ActivityOutfitMail extends Activity {
     this.mail =
         new MailOutfitPlugin(outfit, "i want to share this Outfit", this.textContenu.getText()
             .toString(), this.textDestinataire.getText().toString(), this);
-    this.mail.creationMail();
+    this.mail.createMail();
   }
 }
