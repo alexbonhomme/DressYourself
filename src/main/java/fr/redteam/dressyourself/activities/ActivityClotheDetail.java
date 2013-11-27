@@ -27,9 +27,10 @@ public class ActivityClotheDetail extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_clothe_detail);
 
-    // Show the Up button in the action bar.
-    // add onclick action for the button in order to put the object cloth and call the modification
-    // page.
+    /*
+     * Show the Up button in the action bar. add onclick action for the button in order to put the
+     * object cloth and call the modification page.
+     */
     Button btnModify = (Button) findViewById(R.id.modifyBtn);
     btnModify.setOnClickListener(new OnClickListener() {
 
