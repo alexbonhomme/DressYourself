@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_weight="2"
         android:text="@string/label_generate_main"
         android:textAppearance="@style/btnStyle"
         android:background="@drawable/button_dressyourself_style" />
@@ -36,7 +35,7 @@
     <GridView
 	    android:id="@+id/gridview"
 	    android:layout_width="fill_parent" 
-	    android:layout_height="wrap_content"
+	    android:layout_height="60dp"
 	    android:columnWidth="90dp"
 	    android:numColumns="2"
 	    android:verticalSpacing="0dp"
@@ -44,6 +43,7 @@
 	    android:layout_margin="0dp"
 	    android:stretchMode="columnWidth"
 	    android:gravity="center"
+	    android:padding="10dp"
 	    android:background="#3F9396"
 	/>
     
