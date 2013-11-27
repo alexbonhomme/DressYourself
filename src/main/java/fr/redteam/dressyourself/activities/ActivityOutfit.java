@@ -1,10 +1,11 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
@@ -125,32 +127,41 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void refreshTop() {
+    File fileImageTop;
+
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
-      imageTop.setImageDrawable(Drawable.createFromStream(currentTop.getImageRelativePath(),
-          currentTop.getModel()));
+      fileImageTop = ClothesManager.loadClotheImage(currentTop.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageTop);
+      imageTop.setImageURI(uri);
     }
     textViewTop.setText(textViewTop.getText() + " ");
 
   }
 
   private void refreshBottom() {
+    File fileImageBottom;
+
     if (listBottom.size() > 1) {
       currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
-      imageBottom.setImageDrawable(Drawable.createFromStream(currentBottom.getImageRelativePath(),
-              currentBottom.getModel()));
+      fileImageBottom = ClothesManager.loadClotheImage(currentBottom.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageBottom);
+      imageBottom.setImageURI(uri);
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
 
   private void refreshFeet() {
+    File fileImageFeet;
+
     if (listFeet.size() > 1) {
       currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
-      imageFeet.setImageDrawable(Drawable.createFromStream(currentFeet.getImageRelativePath(),
-              currentFeet.getModel()));
+      fileImageFeet = ClothesManager.loadClotheImage(currentFeet.getImageRelativePath());
+      Uri uri = Uri.fromFile(fileImageFeet);
+      imageFeet.setImageURI(uri);
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }
