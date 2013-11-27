@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -33,14 +34,14 @@ public class MailPlugin {
    * 
    * @param email the mail to check
    */
-  protected void isValidEmailAddress(String email) {
-    Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+  protected boolean isValidEmailAddress(String email) {
+    //ajout du patterne de validation de l'adresse mail.
+    Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     // On declare un matcher, qui comparera le pattern avec la
     // string passee en argument
     Matcher m = p.matcher(email);
-    if (!m.matches()) {
-      this.adresseValide = false;
-    }
+    return m.matches();
   }
 
   /**
@@ -74,7 +75,11 @@ public class MailPlugin {
         depart = positionSeparateur.get(i) + 1;
       }
       dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
-      isValidEmailAddress(dscList[nbDst]);
+      if(this.adresseValide == true)
+      {
+       this.adresseValide= isValidEmailAddress(dscList[nbDst]);
+       Log.d("test adresse mail","this.adresseValide = "+this.adresseValide);
+      }
     } else {
       dscList = new String[1];
       dscList[0] = txtDsc;
