@@ -19,13 +19,22 @@ public class MailClothePlugin extends MailPlugin {
   }
 
   /**
+   * redefine the method Create Mail
+   */
+  public void createMail() {
+    super.createMail();
+    this.body();
+    this.launchMailAgent();
+  }
+
+  /**
    * Write the body of mail
    */
   protected void body() {
-    String txtBody =
-        this.textBody + "\n - a\\an " + clothe.getType() + " from the brand " + clothe.getBrand()
-            + " and it's " + clothe.getColor() + " " + clothe.getModel() + ".\n";
+    this.textBody +=
+        "\n - a\\an " + clothe.getType() + " from the brand " + clothe.getBrand() + " and it's "
+            + clothe.getColor() + " " + clothe.getModel() + ".\n";
     /* Add text */
-    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, txtBody);
+    this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, this.textBody);
   }
 }
