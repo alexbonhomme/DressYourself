@@ -53,6 +53,8 @@ public interface IntDBHelper {
 
   public ArrayList<Clothe> getListTop();
 
+  public ArrayList<Clothe> getListBottom();
+
   public ArrayList<Clothe> getListFeet();
 
   public ArrayList<Clothe> getListClothes();
