@@ -108,6 +108,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
           break;
         case COLD:
           imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+          break;
         case NOTFOUND:
         default:
           imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
