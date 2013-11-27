@@ -31,6 +31,6 @@ public class ClothesManager extends AndroidFileManager {
    * @param imageRelativePath
    */
   public static void removeClotheImage(Context context, String imageRelativePath) {
-    // TODO implement
+    deleteFileFromExternalStorage(context, imageRelativePath);
   }
 }

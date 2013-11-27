@@ -21,6 +21,29 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 public class AndroidFileManager {
 
   /**
+   * Cette méthode indique si la mémoire interne du device est accessible AU MOINS en lecture
+   * 
+   * @return
+   */
+  private static boolean isExternalStorageReadAccess() {
+    String state = Environment.getExternalStorageState();
+
+    return Environment.MEDIA_MOUNTED.equals(state)
+        || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+  }
+
+  /**
+   * Cette méthode indique si la mémoire interne du device est accessible en lecture ET en écriture
+   * 
+   * @return
+   */
+  private static boolean isExternalStorageReadWriteAccess() {
+    String state = Environment.getExternalStorageState();
+
+    return Environment.MEDIA_MOUNTED.equals(state);
+  }
+
+  /**
    * 
    * @param context
    * @param imagePath
@@ -29,10 +52,8 @@ public class AndroidFileManager {
    */
   protected static void writeFileToExternalStorage(Context context, String imagePath,
       InputStream imageStream) {
-    String state = Environment.getExternalStorageState();
-
-    if (!Environment.MEDIA_MOUNTED.equals(state)) {
-      throw new DressyourselfIOException("External storage need to be in READ & WRITE access");
+    if (!isExternalStorageReadWriteAccess()) {
+      throw new DressyourselfIOException("External storage need to be in READ/WRITE access");
     }
 
     // writing image to external storage (local to us application)
@@ -68,10 +89,7 @@ public class AndroidFileManager {
    * @return
    */
   protected static File loadFileFromExternalStorage(Context context, String imagePath) {
-    String state = Environment.getExternalStorageState();
-
-    if (!Environment.MEDIA_MOUNTED.equals(state)
-        && !Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+    if (!isExternalStorageReadAccess()) {
       throw new DressyourselfIOException("External storage need to be in READ (minimum) access");
     }
 
@@ -86,6 +104,27 @@ public class AndroidFileManager {
     }
     
     return file;
+  }
+
+  /**
+   * 
+   * @param context
+   * @param imagePath
+   */
+  protected static void deleteFileFromExternalStorage(Context context, String imagePath) {
+    if (!isExternalStorageReadWriteAccess()) {
+      throw new DressyourselfIOException("External storage need to be in READ & WRITE access");
+    }
+
+    // writing image to external storage (local to us application)
+    File file = new File(context.getExternalFilesDir(null), imagePath);
+
+    // delete if the file exists
+    try {
+      file.delete();
+    } catch (NullPointerException e) {
+      throw new DressyourselfIOException(e);
+    }
   }
 }
 
