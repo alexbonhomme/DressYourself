@@ -59,11 +59,11 @@ public class ActivityDebug extends Activity {
         clothe.setBodies("body");
 
         Clothe clothe2 = new Clothe("Clothe2 test");
-        clothe.setWeather(weather);
-        clothe.setBrand("Zara");
-        clothe.setColor("RED");
-        clothe.setType("boot");
-        clothe.setBodies("body");
+        clothe2.setWeather(weather);
+        clothe2.setBrand("Zara");
+        clothe2.setColor("RED");
+        clothe2.setType("boot");
+        clothe2.setBodies("body");
         Outfit outfit = new Outfit();
         outfit.addClothe(clothe);
         outfit.addClothe(clothe2);
