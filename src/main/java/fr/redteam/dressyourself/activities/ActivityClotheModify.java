@@ -1,11 +1,9 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -120,7 +118,8 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-	this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(this.clotheToEdit.getImageRelativePath())));
+    this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(getApplicationContext(),
+        this.clotheToEdit.getImageRelativePath())));
     //this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImageRelativePath(),clotheToEdit.getModel()));
     this.modelEditText.append(clotheToEdit.getModel() + "");
     this.brandEditText.append(clotheToEdit.getBrand() + "");

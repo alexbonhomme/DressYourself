@@ -18,9 +18,8 @@ public interface IntDBHelper {
 
   public long insertType(String type, long id_bodies);
 
-  public long insertClothes(Clothe clothe);
   
-  public long insertAllClothes(Clothe clothe);
+  public long insertClothes(Clothe clothe);
   
   public long insertOutfit(String name, Clothe[] clothes);
 

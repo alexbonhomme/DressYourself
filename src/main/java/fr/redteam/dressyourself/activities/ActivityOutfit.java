@@ -112,6 +112,29 @@ public class ActivityOutfit extends Activity implements OnClickListener {
 		 imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
 		 break;
 	 }
+    WeatherIdentifier.fillLists();
+    if (gotWeatherInfo) {
+      switch (WeatherGroup.valueOf(Weather.getWeather())) {
+        case HOT:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.sunny));
+          break;
+        case TEMPERATE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloudy_sun));
+          break;
+        case HARDCORE:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.rain_snow));
+          break;
+        case COLD:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+        case NOTFOUND:
+        default:
+          imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+          break;
+      }
+    } else {
+      imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
+      textViewWeather.setText("");
+    }
   }
    
   private void setListener() {
