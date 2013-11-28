@@ -2,8 +2,6 @@ package fr.redteam.dressyourself.plugins.mail;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,14 +33,8 @@ public class MailPlugin {
    * @param email the mail to check
    */
   protected boolean isValidEmailAddress(String email) {
-    // ajout du patterne de validation de l'adresse mail.
-    Pattern p =
-        Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-    // On declare un matcher, qui comparera le pattern avec la
-    // string passee en argument
-    Matcher m = p.matcher(email);
-    return m.matches();
+      //utilisation du pattern d'android pour vérifier l'adresse mail
+      return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
   }
 
   /**
@@ -77,12 +69,15 @@ public class MailPlugin {
       }
       dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
       if (this.adresseValide) {
-
         this.adresseValide = isValidEmailAddress(dscList[nbDst]);
       }
     } else {
+
       dscList = new String[1];
       dscList[0] = txtDsc;
+      if (this.adresseValide) {
+	  this.adresseValide = isValidEmailAddress(dscList[0]);
+      }
     }
     return dscList;
   }
