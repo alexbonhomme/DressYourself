@@ -13,8 +13,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -22,56 +22,48 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 @RunWith(RobolectricTestRunner.class)
 public class ActivityClotheDetailTest {
   private ActivityClotheDetail activityClotheDetail;
-  private TextView textViewBrand;
-  private TextView textViewModel;
-  private TextView textViewColor;
-  private TextView textViewType;
-  private TextView textViewWeather;
-  private TextView textViewBody;
   private Clothe clotheTest;
 
   @Before
-  protected void setUp() throws Exception {
+  public void setUp() throws Exception {
 
-    /* getting context */
-    Context context = Robolectric.getShadowApplication().getApplicationContext();
-
-
-    Intent intent = this.createClothe();
+    this.createClothe();
+    Intent intent = this.createIntent();
     this.activityClotheDetail =
-        Robolectric.buildActivity(ActivityClotheDetail.class).withIntent(intent).create().get();
-    // Recup. du logo par exemple
-    this.textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
-    this.textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
-    this.textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
-    this.textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
-    this.textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    this.textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    this.clotheTest = (Clothe) intent.getSerializableExtra("clothe");
+        Robolectric.buildActivity(ActivityClotheDetail.class).withIntent(intent).create().visible()
+            .get();
   }
 
-  /**
-   * Made a clothe test
+  /*
+   * Made a intent of class
    * 
    * @throws FileNotFoundException
    */
-  public Intent createClothe() throws FileNotFoundException {
+  public Intent createIntent() throws FileNotFoundException {
+    Intent intent =
+        new Intent(Robolectric.getShadowApplication().getApplicationContext(),
+            ActivityClotheDetail.class);
+    Bundle bundle = new Bundle();
+    bundle.putSerializable("clothe", this.clotheTest);
+    intent.putExtras(bundle);
+    return intent;
+  }
+
+  /*
+   * Made a the clothe
+   */
+  public void createClothe() throws FileNotFoundException {
+
     List<String> weather = new ArrayList<String>();
     weather.add("Cloudy");
     weather.add("Rainy");
-    System.out.println();
-    this.clotheTest = new Clothe("Clothe test");
-    // this.vetementTest.setImage(new FileInputStream(new
-    // File("../res/drawable/echarpe_peche.jpg")));
-    this.clotheTest.setWeather(weather);
-    this.clotheTest.setBrand("Zara");
-    this.clotheTest.setColor("RED");
-    this.clotheTest.setType("pull");
-    this.clotheTest.setBodies("body");
-
-    Intent intent = new Intent();
-    intent.putExtra("clothe", clotheTest);
-    return intent;
+    Clothe myClotheTest = new Clothe("Clothe test");
+    myClotheTest.setWeather(weather);
+    myClotheTest.setBrand("Zara");
+    myClotheTest.setColor("RED");
+    myClotheTest.setType("pull");
+    myClotheTest.setBodies("body");
+    this.clotheTest = myClotheTest;
   }
 
   /*
@@ -79,17 +71,20 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void testTextViewBrandValue() {
+    TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
     assertEquals(textViewBrand.getText().toString(), clotheTest.getBrand());
   }
 
   @Test
   public void testTextViewBrandNotNull() {
-    assertFalse(this.textViewBrand.getText() == null);
+    TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
+    assertFalse(textViewBrand.getText() == null);
   }
 
   @Test
   public void testTextViewBrandNotEmpty() {
-    assertFalse(this.textViewBrand.getText().toString().equals(""));
+    TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
+    assertFalse(textViewBrand.getText().toString().equals(""));
   }
 
   /*
@@ -97,17 +92,20 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void testTextViewLabelValue() {
+    TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
     assertEquals(textViewModel.getText().toString(), clotheTest.getModel());
   }
 
   @Test
   public void testTextViewLabelNotNull() {
-    assertFalse(this.textViewModel.getText() == null);
+    TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
+    assertFalse(textViewModel.getText() == null);
   }
 
   @Test
   public void testTextViewLabelNotEmpty() {
-    assertFalse(this.textViewModel.getText().toString().equals(""));
+    TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
+    assertFalse(textViewModel.getText().toString().equals(""));
   }
 
 
@@ -116,17 +114,20 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void testTextViewColorValue() {
+    TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
     assertEquals(textViewColor.getText().toString(), clotheTest.getColor());
   }
 
   @Test
   public void testTextViewColorNotNull() {
-    assertFalse(this.textViewColor.getText() == null);
+    TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
+    assertFalse(textViewColor.getText() == null);
   }
 
   @Test
   public void testTextViewColorNotEmpty() {
-    assertFalse(this.textViewColor.getText().toString().equals(""));
+    TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
+    assertFalse(textViewColor.getText().toString().equals(""));
   }
 
   /*
@@ -134,22 +135,25 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void testTextViewWeatherValue() {
+    TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
     List<String> TheWeather = clotheTest.getWeather();
     String WeatherTxt = "";
     for (String weatherLine : TheWeather) {
       WeatherTxt += weatherLine + " ";
     }
-    assertEquals(this.textViewWeather.getText().toString(), WeatherTxt);
+    assertEquals(textViewWeather.getText().toString(), WeatherTxt);
   }
 
   @Test
   public void testTextViewWeatherNotNull() {
-    assertFalse(this.textViewWeather.getText() == null);
+    TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
+    assertFalse(textViewWeather.getText() == null);
   }
 
   @Test
   public void testTextViewWeatherNotEmpty() {
-    assertFalse(this.textViewWeather.getText().toString().equals(""));
+    TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
+    assertFalse(textViewWeather.getText().toString().equals(""));
   }
 
   /*
@@ -157,17 +161,20 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void TestTextViewTypeValue() {
+    TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
     assertEquals(textViewType.getText().toString(), clotheTest.getType());
   }
 
   @Test
   public void TestTextViewTypeNotNull() {
-    assertFalse(this.textViewType.getText() == null);
+    TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
+    assertFalse(textViewType.getText() == null);
   }
 
   @Test
   public void TestTextViewTypeNotEmpty() {
-    assertFalse(this.textViewType.getText().toString().equals(""));
+    TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
+    assertFalse(textViewType.getText().toString().equals(""));
   }
 
   /*
@@ -175,16 +182,19 @@ public class ActivityClotheDetailTest {
    */
   @Test
   public void TestTextViewBodyValue() {
-    assertEquals(textViewBody.getText().toString(), clotheTest.getType());
+    TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
+    assertEquals(textViewBody.getText().toString(), clotheTest.getBodies());
   }
 
   @Test
   public void TestTextViewBodyNotNull() {
-    assertFalse(this.textViewBody.getText() == null);
+    TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
+    assertFalse(textViewBody.getText() == null);
   }
 
   @Test
   public void TestTextViewBodyNotEmpty() {
-    assertFalse(this.textViewBody.getText().toString().equals(""));
+    TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
+    assertFalse(textViewBody.getText().toString().equals(""));
   }
 }
