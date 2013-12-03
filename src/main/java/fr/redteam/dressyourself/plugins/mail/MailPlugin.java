@@ -11,7 +11,6 @@ import android.widget.Toast;
  * this class was made to enable to share your clothe or outfit
  */
 public class MailPlugin {
-
   private Intent mailIntent;
   private String subject;
   private String textDestinataire;
@@ -33,8 +32,8 @@ public class MailPlugin {
    * @param email the mail to check
    */
   protected boolean isValidEmailAddress(String email) {
-      //utilisation du pattern d'android pour vérifier l'adresse mail
-      return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    // utilisation du pattern d'android pour vérifier l'adresse mail
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
   }
 
   /**
@@ -76,18 +75,16 @@ public class MailPlugin {
       dscList = new String[1];
       dscList[0] = txtDsc;
       if (this.adresseValide) {
-	  this.adresseValide = isValidEmailAddress(dscList[0]);
+        this.adresseValide = isValidEmailAddress(dscList[0]);
       }
     }
     return dscList;
   }
 
-
   /**
    * function which made an mail intent in order to send it.
    */
   public void createMail() {
-
     /* Set the type of the mail */
     mailIntent.setType("image/png");
 
