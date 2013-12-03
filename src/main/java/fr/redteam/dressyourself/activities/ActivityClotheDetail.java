@@ -62,10 +62,12 @@ public class ActivityClotheDetail extends Activity {
 
   public void initImageView() {
     this.imagePhoto = (ImageView) findViewById(R.id.photo);
-    File imgFile = ClothesManager.loadClotheImage(this, myClothe.getImageRelativePath());
-    if (imgFile.exists()) {
-      Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-      this.imagePhoto.setImageBitmap(myBitmap);
+    if (!(myClothe.getImageRelativePath() == null)) {
+      File imgFile = ClothesManager.loadClotheImage(this, myClothe.getImageRelativePath());
+      if (imgFile.exists()) {
+        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        this.imagePhoto.setImageBitmap(myBitmap);
+      }
     }
   }
 
