@@ -24,7 +24,9 @@
     <string name="Desc">Description</string>
     <string name="enter_description">Enter your description</string>
     <string name="save">save modifications</string>
-
+    <string name="addClothesButton">Add a new clothes from Zara</string>
+	<string name="listClothesButton">List all clothes</string>
+	
     <string-array name="weather_array">
         <item>Sunny</item>
         <item>Rainy</item>

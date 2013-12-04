@@ -9,19 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.adapters.AdapterImage;
 import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
 public class ActivityMain extends Activity implements LocationListener {
 
-  private Button buttonAddClothing;
-  private Button buttonListClothes;
   private Button buttonFilters;
   private LocationManager locationManager;
   private String provider;
@@ -75,26 +70,26 @@ public class ActivityMain extends Activity implements LocationListener {
     
     /* Grid view */
     /* To optimize */
-    GridView gridview = (GridView) findViewById(R.id.gridview);
-    gridview.setAdapter(new AdapterImage(this));
-    
-    gridview.setOnItemClickListener(new OnItemClickListener() {
+    ImageButton buttonAdd = (ImageButton) findViewById(R.id.button_add);
+    ImageButton buttonList = (ImageButton) findViewById(R.id.button_list);
+
+    buttonAdd.setOnClickListener(new OnClickListener() {
+
       @Override
-      public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-        switch (position) {
-          case 0:
-            Intent intent2 = new Intent(ActivityMain.this, ActivitySearchEngine.class);
-            startActivity(intent2);
-            break;
-          case 1:
-            Intent intent3 = new Intent(ActivityMain.this, ActivityClotheList.class);
-            startActivity(intent3);
-            break;
-        }
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivitySearchEngine.class);
+        startActivity(intent);
       }
     });
+    
+    buttonList.setOnClickListener(new OnClickListener() {
 
-
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ActivityMain.this, ActivityClotheList.class);
+        startActivity(intent);
+      }
+    });
   }
 
   @Override
