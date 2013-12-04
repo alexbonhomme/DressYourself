@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -93,6 +94,11 @@ public class ActivityClotheModify extends Activity {
 
   }
 
+  /** Transform a null String in an empty String */
+  public String nullStringToEmptyString(String s){
+	  return (s == null? s+"":s);
+  }
+  
   /** Init the spinners with the values stored in database */
   public void initSpinnersWithData() {
     /* retrieve informations from database */
@@ -117,19 +123,16 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    // this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(getApplicationContext(),
-    // this.clotheToEdit.getImageRelativePath())));
-    // this.image.setImageDrawable(Drawable.createFromStream(clotheToEdit.getImageRelativePath(),clotheToEdit.getModel()));
-    this.modelEditText.append(clotheToEdit.getModel() + "");
-    this.brandEditText.append(clotheToEdit.getBrand() + "");
+    this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(getApplicationContext(),nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
+    this.modelEditText.append(nullStringToEmptyString(clotheToEdit.getModel()));
+    this.brandEditText.append(nullStringToEmptyString(clotheToEdit.getBrand()));
     this.initSpinnersWithData();
   }
 
   /** update clothe attributes with values of editable fields */
   public void updateClotheValues(Clothe clotheToEdit) {
     if (this.selectedImageUri != null) {
-      // clotheToEdit.setImageRelativePath(getContentResolver().openInputStream(this.selectedImageUri));
-      // clotheToEdit.setImageRelativePath(selectedImageUri.getPath());
+      clotheToEdit.setImageRelativePath(selectedImageUri.getPath());
       Log.d("ImagePath", selectedImageUri.getPath());
     }
     clotheToEdit.setModel(modelEditText.getText().toString());

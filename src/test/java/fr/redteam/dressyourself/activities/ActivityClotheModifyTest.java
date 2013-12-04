@@ -7,9 +7,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.shadows.ShadowApplication;
+import org.robolectric.shadows.ShadowEnvironment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -39,7 +42,7 @@ public class ActivityClotheModifyTest {
 
     /* getting context */
     this.context = Robolectric.getShadowApplication().getApplicationContext();
-
+    ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
     /* passing the clothe through intent */
     Intent intent = new Intent(this.context, ActivityClotheModify.class);
     intent.putExtra("clothe", this.clotheToEdit);
