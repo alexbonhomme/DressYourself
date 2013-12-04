@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.shadows.ShadowEnvironment;
 
 import android.content.Context;
+import android.os.Environment;
 import fr.redteam.dressyourself.R;
 
 /**
@@ -27,6 +29,8 @@ public class AndroidFileManagerTest {
   @Before
   public void setUp() throws Exception {
     context = Robolectric.getShadowApplication().getApplicationContext();
+    ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
+
     imageStream = context.getResources().openRawResource(R.raw.twotone_wrap_around_jacket);
   }
 
