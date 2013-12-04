@@ -75,7 +75,6 @@ public class ActivitySearchEngine extends ListActivity {
   }
 
   private void handleIntent(Intent intent) {
-
     if (!Intent.ACTION_SEARCH.equals(intent.getAction())) {
       return;
     }

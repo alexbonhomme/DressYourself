@@ -256,7 +256,7 @@ public class ActivityDebug extends Activity {
     // top.setImageRelativePath(getResources().openRawResource(R.raw.twotone_wrap_around_jacket));
 
     db.insertColor(top.getColor());
-    db.insertType(top.getType(), (int) topId);
+    db.insertType(top.getType(), topId);
     db.insertClothes(top);
 
     top = new Clothe("high neck sweater with strass");
@@ -290,7 +290,7 @@ public class ActivityDebug extends Activity {
     // bottom.setImageRelativePath(getResources().openRawResource(R.raw.skinny_cropped_jeans));
 
     db.insertColor(bottom.getColor());
-    db.insertType(bottom.getType(), (int) bottomId);
+    db.insertType(bottom.getType(), bottomId);
     db.insertClothes(bottom);
 
     bottom = new Clothe("medium wash jeans");
@@ -324,7 +324,7 @@ public class ActivityDebug extends Activity {
     // shoes.setImageRelativePath(getResources().openRawResource(R.raw.embossed_leather_high_heel_ankle_boot));
 
     db.insertColor(shoes.getColor());
-    db.insertType(shoes.getType(), (int) shoesId);
+    db.insertType(shoes.getType(), shoesId);
     db.insertClothes(shoes);
 
     shoes = new Clothe("high heel leather ankle boot with zips");
