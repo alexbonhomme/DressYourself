@@ -48,7 +48,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_outfit_layout); 
+    setContentView(R.layout.activity_outfit_layout);
     initComponent();
     if (Weather.getWeather() != null) {
       gotWeatherInfo = true;
@@ -60,33 +60,33 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     setListener();
     db.close();
   }
-  
+
   private void initComponent() {
-	   textViewTop = (TextView) findViewById(R.id.textview_top);
-	   textViewBottom = (TextView) findViewById(R.id.textview_bottom);
-	   textViewFeet = (TextView) findViewById(R.id.textview_feet);
-	   imageTop = (ImageView) findViewById(R.id.imageview_top);
-	   imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
-	   imageFeet = (ImageView) findViewById(R.id.imageview_feet);
-	   buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
-	   buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
-	   buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
-	   imageWeather = (ImageView) findViewById(R.id.imageview_weather);
-	   buttonGenerate = (Button) findViewById(R.id.button_generate);
-	   textViewWeather = (TextView) findViewById(R.id.textview_weather);
+    textViewTop = (TextView) findViewById(R.id.textview_top);
+    textViewBottom = (TextView) findViewById(R.id.textview_bottom);
+    textViewFeet = (TextView) findViewById(R.id.textview_feet);
+    imageTop = (ImageView) findViewById(R.id.imageview_top);
+    imageBottom = (ImageView) findViewById(R.id.imageview_bottom);
+    imageFeet = (ImageView) findViewById(R.id.imageview_feet);
+    buttonRefreshTop = (Button) findViewById(R.id.button_refresh_top);
+    buttonRefreshBottom = (Button) findViewById(R.id.button_refresh_bottom);
+    buttonRefreshFeet = (Button) findViewById(R.id.button_refresh_feet);
+    imageWeather = (ImageView) findViewById(R.id.imageview_weather);
+    buttonGenerate = (Button) findViewById(R.id.button_generate);
+    textViewWeather = (TextView) findViewById(R.id.textview_weather);
   }
-  
+
   private void loadData() {
-	  // recup top
-	    listTop = db.getListTop();
+    // recup top
+    listTop = db.getListTop();
 
-	    // recup bottom
-	    listBottom = db.getListBottom();
+    // recup bottom
+    listBottom = db.getListBottom();
 
-	    // recup feet
-	    listFeet = db.getListFeet(); 
+    // recup feet
+    listFeet = db.getListFeet();
   }
-  
+
   private void bindToLayout() {
     // vetements statique TODO: récupérer en bdd
     Clothe clothe = new Clothe("Pull beige");
@@ -108,6 +108,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
           break;
         case COLD:
           imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.cloud));
+          break;
         case NOTFOUND:
         default:
           imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
@@ -118,11 +119,11 @@ public class ActivityOutfit extends Activity implements OnClickListener {
       textViewWeather.setText("");
     }
   }
-   
+
   private void setListener() {
-	  buttonRefreshTop.setOnClickListener(this); 
-	  buttonRefreshBottom.setOnClickListener(this);
-	  buttonRefreshFeet.setOnClickListener(this);
+    buttonRefreshTop.setOnClickListener(this);
+    buttonRefreshBottom.setOnClickListener(this);
+    buttonRefreshFeet.setOnClickListener(this);
     buttonGenerate.setOnClickListener(this);
   }
 

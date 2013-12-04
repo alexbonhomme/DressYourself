@@ -22,6 +22,15 @@ public class MailOutfitPlugin extends MailPlugin {
   }
 
   /**
+   * redefine the method Create Mail
+   */
+  public void createMail() {
+    super.createMail();
+    this.body();
+    this.launchMailAgent();
+  }
+
+  /**
    * Write the body of mail
    */
   protected void body() {
@@ -37,9 +46,8 @@ public class MailOutfitPlugin extends MailPlugin {
       this.textBody +=
           "- a\\an " + vetement.getType() + " from the brand " + vetement.getBrand() + " and it's "
               + vetement.getColor() + " " + vetement.getModel() + ".\n";
-      /* Add text */
-
     }
+    /* Add text */
     this.getMailIntent().putExtra(android.content.Intent.EXTRA_TEXT, this.textBody);
   }
 }

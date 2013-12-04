@@ -2,8 +2,6 @@ package fr.redteam.dressyourself.plugins.mail;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,12 +11,12 @@ import android.widget.Toast;
  * this class was made to enable to share your clothe or outfit
  */
 public class MailPlugin {
-
   private Intent mailIntent;
   private String subject;
   private String textDestinataire;
   private Activity activity;
   private boolean adresseValide;
+  private static final int REQUEST_CODE_MAILINTENT = 1234;
 
   public MailPlugin(String subject, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -34,14 +32,8 @@ public class MailPlugin {
    * @param email the mail to check
    */
   protected boolean isValidEmailAddress(String email) {
-    // ajout du patterne de validation de l'adresse mail.
-    Pattern p =
-        Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-    // On declare un matcher, qui comparera le pattern avec la
-    // string passee en argument
-    Matcher m = p.matcher(email);
-    return m.matches();
+    // utilisation du pattern d'android pour vérifier l'adresse mail
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
   }
 
   /**
@@ -76,23 +68,23 @@ public class MailPlugin {
       }
       dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
       if (this.adresseValide) {
-
         this.adresseValide = isValidEmailAddress(dscList[nbDst]);
       }
     } else {
+
       dscList = new String[1];
       dscList[0] = txtDsc;
+      if (this.adresseValide) {
+        this.adresseValide = isValidEmailAddress(dscList[0]);
+      }
     }
     return dscList;
   }
 
-  protected void body() {}
-
   /**
    * function which made an mail intent in order to send it.
    */
-  public void creationMail() {
-
+  public void createMail() {
     /* Set the type of the mail */
     mailIntent.setType("image/png");
 
@@ -100,9 +92,15 @@ public class MailPlugin {
     mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, this.listDestinataire());
     /* Add the subject for the mail */
     mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.subject);
-    this.body();
+  }
+
+  /**
+   * create mail client chooser intent
+   */
+  public void launchMailAgent() {
     if (this.adresseValide) {
-      this.activity.startActivity(Intent.createChooser(mailIntent, "Choose an mail client"));
+      this.activity.startActivityForResult(
+          Intent.createChooser(mailIntent, "Choose an mail client"), REQUEST_CODE_MAILINTENT);
     } else {
       Toast.makeText(this.activity, "Check mail adress.", Toast.LENGTH_SHORT).show();
     }
