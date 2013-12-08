@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class APIZaraTest {
@@ -52,7 +53,7 @@ public class APIZaraTest {
 
   @Test
   public void testFindClothesByBodyPart() {
-    List<Clothe> listProducts = api.findClothesByBodyPart("bottom");
+    List<Clothe> listProducts = api.findClothesByBodyPart(Bodypart.BOTTOM);
 
     assertEquals(181, listProducts.size());
   }

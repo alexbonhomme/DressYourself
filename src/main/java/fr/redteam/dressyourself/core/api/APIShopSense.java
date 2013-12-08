@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
@@ -130,7 +131,7 @@ public class APIShopSense extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public List<Clothe> findClothesByBodyPart(String bodyPart) {
+  public List<Clothe> findClothesByBodyPart(Bodypart bodyPart) {
     // TODO Auto-generated method stub
     return Collections.emptyList();
   }

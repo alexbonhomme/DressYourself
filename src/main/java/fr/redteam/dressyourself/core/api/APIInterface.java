@@ -2,6 +2,7 @@ package fr.redteam.dressyourself.core.api;
 
 import java.util.List;
 
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
@@ -57,7 +58,7 @@ public interface APIInterface {
    * @param bodyPart
    * @return une liste d'objets Clothe
    */
-  List<Clothe> findClothesByBodyPart(String bodyPart);
+  List<Clothe> findClothesByBodyPart(Bodypart bodyPart);
 
   /**
    * Récupère tout les articles qui contiennent `query` dans un moins un des attributs suivants :

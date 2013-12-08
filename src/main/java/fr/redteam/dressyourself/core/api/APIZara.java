@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -87,8 +88,8 @@ public class APIZara extends APIAbstractHelper implements APIInterface {
   }
 
   @Override
-  public List<Clothe> findClothesByBodyPart(String bodyPart) {
-    return findClothesWithFilters("bodies", bodyPart);
+  public List<Clothe> findClothesByBodyPart(Bodypart bodyPart) {
+    return findClothesWithFilters("bodies", bodyPart.toString());
   }
 
   @Override
