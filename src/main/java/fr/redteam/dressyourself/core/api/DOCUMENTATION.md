@@ -3,7 +3,7 @@
 ## Schema
 All API access is over HTTP, and accessed from the `dev.alexandrebonhomme.fr` domain. All data is received as JSON format.
 
-In case of empty result you'll receive an empty array `[]`.
+In case of empty result you will receive an empty array `[]`.
 
 ## Usage
 
@@ -59,7 +59,7 @@ _Note: This is a classic research using the `LIKE` SQL key word._
 
 ### Get by ID
 
-To get a specific product with his `ID`, it's possible to use the `id` parameter :
+To get a specific product with his _ID_, it's possible to use the `id` parameter :
 ```
 $ curl -i "http://dev.alexandrebonhomme.fr/api.php?id=42"
 HTTP/1.1 200 OK
