@@ -11,15 +11,6 @@
     tools:context=".ActivityDebug" >
 
     <Button
-        android:id="@+id/buttonDebugAPI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/GetDressed" 
-        android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
-    
-    <Button
         android:id="@+id/buttonAddClotheClothesToDB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
