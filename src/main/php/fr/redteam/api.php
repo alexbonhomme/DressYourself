@@ -1,10 +1,4 @@
 <?php
-/**
- * API usage (examples):
- * 
- *   api.php?model='jeans'
- */
-
 require('dbhelper.php');
 
 if (isset($_GET['q'])) {
