@@ -6,6 +6,9 @@ import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
+ * Implementation available :
+ * 
+ * new APIZara()
  * 
  * @author Alexandre Bonhomme
  * 

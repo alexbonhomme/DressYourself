@@ -14,6 +14,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 /**
+ * This abstract class grouped some commons methods to brands APIs.
  * 
  * @author Alexandre Bonhomme
  * 
@@ -21,9 +22,7 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 public abstract class APIAbstractHelper {
 
   /**
-   * 
-   * @param url
-   * @return the content of the page `url`
+   * Get a plain text content from an `url`
    */
   public String getContent(URL url) {
     String content = "";
@@ -48,10 +47,8 @@ public abstract class APIAbstractHelper {
   }
   
   /**
-   * Forge un objet Clothe à partir d'une représentation JSON des informations
+   * Build a `Clothe` object from a JSON representation
    * 
-   * @param json
-   * @return
    * @throws JSONException
    */
   public Clothe buildClotheFromJSONArray(JSONObject json) throws JSONException {
