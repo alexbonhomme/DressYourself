@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import android.content.Context;
 import android.os.Environment;
@@ -46,7 +45,7 @@ public class AndroidFileManager {
   /**
    * 
    * @param context
-   * @param imagePath
+   * @param imageDirectory
    * @param imageStream
    * @throws AndroidException
    */
@@ -56,10 +55,22 @@ public class AndroidFileManager {
       throw new DressyourselfIOException("External storage need to be in READ/WRITE access");
     }
 
-    // writing image to external storage (local to us application)
-    File file = new File(context.getExternalFilesDir(null), imagePath);
-    OutputStream outStream = null;
+    if (imagePath.endsWith("/")) {
+      throw new DressyourselfRuntimeException("imageRelitivePath should not be ended by a '/'");
+    }
+
+    // HACK: used a temporary File object to slip path and file name
+    File fullPath = new File(imagePath);
+
+    // relative directory from the root of the storage
+    File dir = new File(context.getExternalFilesDir(null), fullPath.getParent());
+    dir.mkdirs();
+
+    File file = new File(dir, fullPath.getName());
+    FileOutputStream outStream = null;
+
     try {
+      file.createNewFile();
       outStream = new FileOutputStream(file);
       byte[] data = new byte[imageStream.available()];
 
@@ -78,6 +89,7 @@ public class AndroidFileManager {
       } catch (NullPointerException e) {
         throw new DressyourselfRuntimeException(e);
       }
+
     }
   }
 

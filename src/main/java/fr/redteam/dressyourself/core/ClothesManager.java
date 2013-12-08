@@ -14,8 +14,7 @@ public class ClothesManager extends AndroidFileManager {
    */
   public static void storeClotheImage(Context context, String imageRelativePath,
       InputStream imageStream) {
-      writeFileToExternalStorage(context, imageRelativePath, imageStream);
-
+    writeFileToExternalStorage(context, imageRelativePath, imageStream);
   }
 
   /**

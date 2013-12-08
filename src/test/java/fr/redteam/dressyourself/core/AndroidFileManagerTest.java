@@ -1,7 +1,9 @@
 package fr.redteam.dressyourself.core;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.InputStream;
 
 import org.junit.Before;
@@ -37,6 +39,10 @@ public class AndroidFileManagerTest {
   @Test
   public void testWriteFileToExternalStorage() {
     AndroidFileManager.writeFileToExternalStorage(context, "test/image.png", imageStream);
+
+    File newFile = new File(context.getExternalFilesDir(null), "test/image.png");
+    assertTrue(newFile.exists());
+    assertTrue(newFile.isFile());
   }
 
   @Test
