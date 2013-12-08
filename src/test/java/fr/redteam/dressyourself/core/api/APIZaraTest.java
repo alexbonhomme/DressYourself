@@ -1,7 +1,7 @@
 package fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class APIZaraTest {
   public void testfindClotheById() {
     Clothe product = api.findClotheById(97);
 
-    assertFalse(product == null);
+    assertTrue(product != null);
 
     assertEquals(97, product.getId());
     assertEquals("crossover cape jacket", product.getModel());
