@@ -13,59 +13,42 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 public interface APIInterface {
 
   /**
-   * Récupére un object Clothe directement a partir de son ID dans la base de donnée distante.
+   * Return a `Clothe` object from is ID in the database API
    * 
-   * @param id
-   * @return un objet Clothe
+   * @param id ID of the product in the remote database
    */
   Clothe findClotheById(int id);
 
   /**
-   * Recupère tout les articles qui contiennent `modelName` dans leur nom de modèle.
-   * 
-   * @param modelName
-   * @return une liste d'objets Clothe
+   * Return a list of `Clothe` objects when their names contains `model`
    */
-  List<Clothe> findClothesByModel(String modelName);
+  List<Clothe> findClothesByModel(String model);
 
   /**
-   * Récupère tout les articles qui contiennent `brandName` dans leur marque.
-   * 
-   * @param brandName
-   * @return
+   * Return a list of `Clothe` objects when their brand contains `brand`
    */
-  List<Clothe> findClothesByBrand(String brandName);
+  List<Clothe> findClothesByBrand(String brand);
 
   /**
-   * Récupère tout les articles qui contiennent `colorName` dans leur couleur.
-   * 
-   * @param colorName
-   * @return
+   * Return a list of `Clothe` objects when their color contains `color`
    */
-  List<Clothe> findClothesByColor(String colorName);
+  List<Clothe> findClothesByColor(String color);
 
   /**
-   * Récupère tout les articles qui contiennent `typeName` dans leur type.
-   * 
-   * @param typeName
-   * @return une liste d'objets Clothe
+   * Return a list of `Clothe` objects when their types contains `type`
    */
-  List<Clothe> findClothesByType(String typeName);
+  List<Clothe> findClothesByType(String type);
 
   /**
-   * Récupère tout les articles qui contiennent `bodyPart` dans leur attribut `bodies`.
+   * Return a list of `Clothe` objects when their `bodies` attribute contains `bodyPart`
    * 
-   * @param bodyPart
-   * @return une liste d'objets Clothe
+   * @param bodyPart Bodypart is an Enum type which list all parts of the body available in the API
    */
   List<Clothe> findClothesByBodyPart(Bodypart bodyPart);
 
   /**
-   * Récupère tout les articles qui contiennent `query` dans un moins un des attributs suivants :
-   * model, brand, color, type, bodies
-   * 
-   * @param query
-   * @return une liste d'objets Clothe
+   * Return a list of `Clothe` objects which contains `query` in at least one of the following
+   * attributes : model - brand - color - type - bodies
    */
   List<Clothe> findAll(String query);
 }
