@@ -17,24 +17,35 @@ public class ActivityClotheList extends ListActivity{
 
 	private List<Clothe> clotheList;
 	private boolean listIsEmpty = false;
-
+	private DBHelper db;
+	private AdapterClothes adapter;
+	
+	private void setClotheList(){
+		this.db.open();
+		this.clotheList = this.db.getListClothes();
+		this.db.close();
+	}
+	
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		String[] values;
-		DBHelper db = new DBHelper(this);
-		db.open();
-		this.clotheList = db.getListClothes();
-		db.close();
+		this.db = new DBHelper(this);
+		this.setClotheList();
 
 		if(this.clotheList.size() == 0){
 			this.listIsEmpty = true; 
-			//a retirer si ce n'est pas dans l'adapter
-			//this.clotheList.add(new Clothe("There is no clothe"));
+			this.clotheList.add(new Clothe("There is no clothe"));
 		}
-		AdapterClothes adapter = new AdapterClothes(this, this.clotheList);
-		setListAdapter(adapter);
+		this.adapter = new AdapterClothes(this, this.clotheList);
+		this.setListAdapter(adapter);
 	}
 
+	public void onResume(){
+		super.onResume();
+		this.setClotheList();
+		this.adapter = new AdapterClothes(this, this.clotheList);
+		setListAdapter(adapter);
+	}
+	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		if(!this.listIsEmpty){
