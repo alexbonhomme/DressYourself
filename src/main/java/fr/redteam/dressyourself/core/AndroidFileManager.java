@@ -19,6 +19,8 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
  */
 public class AndroidFileManager {
 
+  protected AndroidFileManager() {}
+
   /**
    * Cette méthode indique si la mémoire interne du device est accessible AU MOINS en lecture
    * 
