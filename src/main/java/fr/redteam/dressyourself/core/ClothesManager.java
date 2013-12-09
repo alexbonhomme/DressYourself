@@ -6,7 +6,8 @@ import java.io.InputStream;
 import android.content.Context;
 
 public class ClothesManager extends AndroidFileManager {
-  public final static String STORAGE_PATH = "";
+
+  private ClothesManager() {}
 
   /**
    * 

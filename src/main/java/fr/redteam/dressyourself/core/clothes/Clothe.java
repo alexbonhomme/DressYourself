@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.redteam.dressyourself.core.ClothesManager;
-
 
 public class Clothe implements Serializable {
 
@@ -76,10 +74,6 @@ public class Clothe implements Serializable {
 
   public String getImageRelativePath() {
     return imageRelativePath;
-  }
-  
-  public String getImageFullPath() {
-    return ClothesManager.STORAGE_PATH + imageRelativePath;
   }
 
   public void setImageRelativePath(String imagePath) {
