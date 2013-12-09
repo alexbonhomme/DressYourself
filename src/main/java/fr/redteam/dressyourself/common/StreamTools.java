@@ -4,6 +4,8 @@ import java.io.InputStream;
 
 
 public class StreamTools {
+
+  private StreamTools() {}
 	
   /**
    * Convert an InputStream into a String object
