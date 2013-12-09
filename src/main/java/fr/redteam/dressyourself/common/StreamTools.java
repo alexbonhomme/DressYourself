@@ -3,7 +3,7 @@ package fr.redteam.dressyourself.common;
 import java.io.InputStream;
 
 
-public class StreamTools {
+public final class StreamTools {
 
   private StreamTools() {}
 	

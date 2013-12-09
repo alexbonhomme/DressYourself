@@ -17,7 +17,7 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
  * @author Alexandre Bonhomme
  * 
  */
-public class APIZara extends APIAbstractHelper implements APIInterface {
+public final class APIZara extends APIAbstractHelper implements APIInterface {
 
   private static APIZara apiSingleton = null;
 
