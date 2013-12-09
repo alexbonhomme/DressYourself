@@ -92,7 +92,9 @@ public class ActivitySearchEngine extends ListActivity {
     }
 
     String query = intent.getStringExtra(SearchManager.QUERY);
-    new WebApiTask().execute(query); // Lance la recherche sur l'API distante
+
+    // Run the research with the remote API
+    new WebApiTask().execute(query);
   }
 
   /**

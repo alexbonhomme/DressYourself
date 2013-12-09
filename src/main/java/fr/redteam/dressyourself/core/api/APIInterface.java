@@ -8,7 +8,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 /**
  * Implementation available :
  * 
- * new APIZara()
+ * APIZara.getInstance()
  * 
  * @author Alexandre Bonhomme
  * 
