@@ -108,9 +108,11 @@ public class AndroidFileManager {
     // writing image to external storage (local to us application)
     File file = new File(context.getExternalFilesDir(null), imagePath);
     
-    // verify if the file really exists
     try {
-      file.exists();
+      // verify if the file really exists
+      if (!file.exists()) {
+        throw new DressyourselfIOException("File '"+ imagePath +"' not found.");
+      }
     } catch(NullPointerException e) {
       throw new DressyourselfIOException(e);
     }
