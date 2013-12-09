@@ -13,7 +13,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
  * @author Alexandre Bonhomme
  * 
  */
-public interface APIInterface {
+public interface API {
 
   /**
    * Return a {@link Clothe Clothe} object from is ID in the database API

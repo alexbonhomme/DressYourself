@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.InputStream;
 
 import android.content.Context;
+import fr.redteam.dressyourself.common.AndroidFileManager;
+import fr.redteam.dressyourself.common.FileManager;
 
-public class ClothesManager extends AndroidFileManager {
+public class ClothesManager {
 
   private ClothesManager() {}
 
@@ -15,7 +17,8 @@ public class ClothesManager extends AndroidFileManager {
    */
   public static void storeClotheImage(Context context, String imageRelativePath,
       InputStream imageStream) {
-    writeFileToExternalStorage(context, imageRelativePath, imageStream);
+    FileManager manager = new AndroidFileManager(context);
+    manager.writeFileToStorage(imageRelativePath, imageStream);
   }
 
   /**
@@ -23,7 +26,9 @@ public class ClothesManager extends AndroidFileManager {
    * @param imageRelativePath
    */
   public static File loadClotheImage(Context context, String imageRelativePath) {
-    return loadFileFromExternalStorage(context, imageRelativePath);
+    FileManager manager = new AndroidFileManager(context);
+
+    return manager.loadFileFromStorage(imageRelativePath);
   }
 
   /**
@@ -31,6 +36,7 @@ public class ClothesManager extends AndroidFileManager {
    * @param imageRelativePath
    */
   public static void removeClotheImage(Context context, String imageRelativePath) {
-    deleteFileFromExternalStorage(context, imageRelativePath);
+    FileManager manager = new AndroidFileManager(context);
+    manager.deleteFileFromStorage(imageRelativePath);
   }
 }

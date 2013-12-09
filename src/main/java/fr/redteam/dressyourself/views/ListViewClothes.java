@@ -1,17 +1,11 @@
 package fr.redteam.dressyourself.views;
 
-import java.io.File;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**

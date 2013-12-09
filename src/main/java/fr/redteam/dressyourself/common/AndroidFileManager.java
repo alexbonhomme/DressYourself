@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.core;
+package fr.redteam.dressyourself.common;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,7 +7,6 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.AndroidException;
 import fr.redteam.dressyourself.exceptions.DressyourselfIOException;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -17,9 +16,16 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
  * @author Alexandre Bonhomme
  * 
  */
-public class AndroidFileManager {
+public class AndroidFileManager implements FileManager {
 
-  protected AndroidFileManager() {}
+  private final Context context;
+
+  /**
+   * @param context
+   */
+  public AndroidFileManager(Context context) {
+    this.context = context;
+  }
 
   /**
    * Cette méthode indique si la mémoire interne du device est accessible AU MOINS en lecture
@@ -44,14 +50,12 @@ public class AndroidFileManager {
     return Environment.MEDIA_MOUNTED.equals(state);
   }
 
-  /**
-   * 
-   * @param context
-   * @param imageDirectory
-   * @param imageStream
-   * @throws AndroidException
-   */
-  protected static void writeFileToExternalStorage(Context context, String imagePath,
+  @Override
+  public void writeFileToStorage(String imagePath, InputStream imageStream) {
+    writeFileToExternalStorage(context, imagePath, imageStream);
+  }
+
+  private void writeFileToExternalStorage(Context context, String imagePath,
       InputStream imageStream) {
     if (!isExternalStorageReadWriteAccess()) {
       throw new DressyourselfIOException("External storage need to be in READ/WRITE access");
@@ -95,14 +99,13 @@ public class AndroidFileManager {
     }
   }
 
-  /**
-   * 
-   * @param context
-   * @param imagePath
-   * @param imageStream
-   * @return
-   */
-  protected static File loadFileFromExternalStorage(Context context, String imagePath) {
+
+  @Override
+  public File loadFileFromStorage(String imagePath) {
+    return loadFileFromExternalStorage(context, imagePath);
+  }
+
+  private File loadFileFromExternalStorage(Context context, String imagePath) {
     if (!isExternalStorageReadAccess()) {
       throw new DressyourselfIOException("External storage need to be in READ (minimum) access");
     }
@@ -122,12 +125,12 @@ public class AndroidFileManager {
     return file;
   }
 
-  /**
-   * 
-   * @param context
-   * @param imagePath
-   */
-  protected static void deleteFileFromExternalStorage(Context context, String imagePath) {
+  @Override
+  public void deleteFileFromStorage(String imagePath) {
+    deleteFileFromExternalStorage(context, imagePath);
+  }
+
+  private void deleteFileFromExternalStorage(Context context, String imagePath) {
     if (!isExternalStorageReadWriteAccess()) {
       throw new DressyourselfIOException("External storage need to be in READ & WRITE access");
     }

@@ -22,7 +22,7 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 public abstract class APIAbstractHelper {
 
   /**
-   * Get a plain text content from an `url`
+   * Get a plain text content from an {@link java.net.URL url}
    */
   public String getContent(URL url) {
     String content = "";
@@ -47,7 +47,7 @@ public abstract class APIAbstractHelper {
   }
   
   /**
-   * Build a `Clothe` object from a JSON representation
+   * Build a {@link Clothe Clothe} object from a JSON representation
    * 
    * @throws JSONException
    */
@@ -61,6 +61,8 @@ public abstract class APIAbstractHelper {
     product.setColor(json.getString("color"));
     product.setType(json.getString("type"));
     product.setBodies(json.getString("bodies"));
+    
+
 
     return product;
   }

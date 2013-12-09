@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.core;
+package fr.redteam.dressyourself.common;
 
 import static org.junit.Assert.assertTrue;
 
@@ -37,7 +37,8 @@ public class AndroidFileManagerTest {
 
   @Test
   public void testWriteFileToExternalStorage() {
-    AndroidFileManager.writeFileToExternalStorage(context, "test/image.png", imageStream);
+    FileManager manager = new AndroidFileManager(context);
+    manager.writeFileToStorage("test/image.png", imageStream);
 
     File newFile = new File(context.getExternalFilesDir(null), "test/image.png");
     assertTrue(newFile.exists());
@@ -48,9 +49,10 @@ public class AndroidFileManagerTest {
   public void testLoadFileFromExternalStorage() {
     // WARN This is the simplest solution to test the loading, but if the following code failed the
     // test failed too... This isn't a durable solution
-    AndroidFileManager.writeFileToExternalStorage(context, "test/image.png", imageStream);
+    FileManager manager = new AndroidFileManager(context);
+    manager.writeFileToStorage("test/image.png", imageStream);
 
-    File loadFile = AndroidFileManager.loadFileFromExternalStorage(context, "test/image.png");
+    File loadFile = manager.loadFileFromStorage("test/image.png");
     assertTrue(loadFile.exists());
     assertTrue(loadFile.isFile());
   }
@@ -59,9 +61,10 @@ public class AndroidFileManagerTest {
   public void testDeleteFileFromExternalStorage() {
     // WARN This is the simplest solution to test the loading, but if the following code failed the
     // test failed too... This isn't a durable solution
-    AndroidFileManager.writeFileToExternalStorage(context, "test/image.png", imageStream);
+    FileManager manager = new AndroidFileManager(context);
+    manager.writeFileToStorage("test/image.png", imageStream);
 
-    AndroidFileManager.deleteFileFromExternalStorage(context, "test/image.png");
+    manager.deleteFileFromStorage("test/image.png");
 
     File deleteFile = new File(context.getExternalFilesDir(null), "test/image.png");
     assertTrue(!deleteFile.exists());
