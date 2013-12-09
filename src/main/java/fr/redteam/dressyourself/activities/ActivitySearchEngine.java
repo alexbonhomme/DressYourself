@@ -103,7 +103,7 @@ public class ActivitySearchEngine extends ListActivity {
   private class WebApiTask extends AsyncTask<String, Void, List<Clothe>> {
     @Override
     protected List<Clothe> doInBackground(String... queries) {
-      APIZara api = new APIZara();
+      APIZara api = APIZara.getInstance();
       List<Clothe> listClothes = api.findClothesByModel(queries[0]);
 
       return listClothes;
@@ -117,10 +117,6 @@ public class ActivitySearchEngine extends ListActivity {
         listProductModels.add(clothe.getModel());
       }
 
-      // TODO : better adapter with picture
-      // ArrayAdapter<String> adapter =
-      // new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
-      // listProductModels);
       AdapterClothes adapter = new AdapterClothes(context, listClothes);
       setListAdapter(adapter);
     }

@@ -19,9 +19,24 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
  */
 public class APIZara extends APIAbstractHelper implements APIInterface {
 
+  private static APIZara apiSingleton = null;
+
   private static final String DB_PROTOCOL = "http";
   private static final String DB_HOST = "dev.alexandrebonhomme.fr";
   private static final String DB_PAGE = "/api.php";
+
+  private APIZara() {}
+
+  /**
+   * Return a singleton of APIZara
+   */
+  public static APIZara getInstance() {
+    if (apiSingleton == null) {
+      apiSingleton = new APIZara();
+    }
+
+    return apiSingleton;
+  }
 
   @Override
   public Clothe findClotheById(int id) {

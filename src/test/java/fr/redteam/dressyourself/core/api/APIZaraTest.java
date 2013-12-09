@@ -17,7 +17,7 @@ public class APIZaraTest {
 
   @Before
   public void setUp() {
-    api = new APIZara();
+    api = APIZara.getInstance();
   }
 
   @Test

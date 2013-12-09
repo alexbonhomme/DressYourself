@@ -173,7 +173,7 @@ public class ActivityDebug extends Activity {
    */
   private void fillLocaleDataBaseWithFewClothes() {
     DBHelper db = new DBHelper(this);
-    APIZara api = new APIZara();
+    APIZara api = APIZara.getInstance();
 
     db.open();
     long topId = db.insertBodies("Top");
