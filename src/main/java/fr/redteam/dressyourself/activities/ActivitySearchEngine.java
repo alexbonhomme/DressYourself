@@ -25,6 +25,8 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.views.ListViewClothes;
 
 /**
+ * This class is in charge of the download and the adding of Clothes from the API to the local
+ * database.
  * 
  * @author Alexandre Bonhomme
  * 
@@ -39,7 +41,7 @@ public class ActivitySearchEngine extends ListActivity {
 
     context = getApplicationContext();
 
-    // Capture de la recherche
+    // Capture of the research
     handleIntent(getIntent());
   }
 
@@ -80,7 +82,7 @@ public class ActivitySearchEngine extends ListActivity {
       return;
     }
 
-    // Vérification de la connectivité
+    // Verification of connectivity
     ConnectivityManager cm =
         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -99,9 +101,7 @@ public class ActivitySearchEngine extends ListActivity {
   }
 
   /**
-   * 
-   * @author Alexandre Bonhomme
-   * 
+   * This class has the responsibility of getting Clothes from the API
    */
   private class WebApiTask extends AsyncTask<String, Void, List<Clothe>> {
     @Override
