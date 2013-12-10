@@ -18,8 +18,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
-import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
-import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -78,7 +76,7 @@ public class ActivityClotheModify extends Activity {
     this.saveButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        /* retrieves all editable fields value and update the clothe then update in BDD */
+        /* retrieves all editable fields values and update the clothe then update in BDD */
         updateClotheValues(clotheToEdit);
         Toast toast;
         bdd.open();
@@ -96,10 +94,10 @@ public class ActivityClotheModify extends Activity {
   }
 
   /** Transform a null String in an empty String */
-  public String nullStringToEmptyString(String s){
-	  return (s == null? s+"":s);
+  public String nullStringToEmptyString(String s) {
+    return (s == null ? s + " " : s);
   }
-  
+
   /** Init the spinners with the values stored in database */
   public void initSpinnersWithData() {
     /* retrieve informations from database */
@@ -107,25 +105,28 @@ public class ActivityClotheModify extends Activity {
     ArrayList<String> colors = this.bdd.getAllColors();
     ArrayList<String> types = this.bdd.getAllTypes();
     this.bdd.close();
-    /* create colorSpinnerAdapter and initialising the corresponding spinner with */
+
+    /* create colorSpinnerAdapter and initialize the corresponding spinner with */
     ArrayAdapter<String> colorAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, colors);
     colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.colorSpinner.setAdapter(colorAdapter);
+
     /* get the clotheToEdit color and put it as default value */
     this.colorSpinner.setSelection(colorAdapter.getPosition(this.clotheToEdit.getColor()));
 
-    /* create typeSpinnerAdapter and initialising the corresponding spinner with */
+    /* create typeSpinnerAdapter and initialize the corresponding spinner with */
     ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
     typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     this.typeSpinner.setAdapter(typeAdapter);
+
     /* get the clotheToEdit color and put it as default value */
     this.typeSpinner.setSelection(typeAdapter.getPosition(this.clotheToEdit.getType()));
   }
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    this.image.setImageURI(Uri.fromFile(new ClothesManager(new AndroidFileManager(this))
-        .loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
+    // this.image.setImageURI(Uri.fromFile(new ClothesManager(new
+    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clotheToEdit.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clotheToEdit.getBrand()));
     this.initSpinnersWithData();
@@ -149,7 +150,6 @@ public class ActivityClotheModify extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.modify_clothe);
 
-    /* get DBHelper */
     bdd = new DBHelper(ActivityClotheModify.this);
 
     /* retrieve the clothe object passed in the intent */
