@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.AndroidFileManager;
 import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
@@ -63,7 +64,9 @@ public class ActivityClotheDetail extends Activity {
   public void initImageView() {
     this.imagePhoto = (ImageView) findViewById(R.id.photo);
     if (!(myClothe.getImageRelativePath() == null)) {
-      File imgFile = ClothesManager.loadClotheImage(this, myClothe.getImageRelativePath());
+      File imgFile =
+          new ClothesManager(new AndroidFileManager(this)).loadClotheImage(myClothe
+              .getImageRelativePath());
       if (imgFile.exists()) {
         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         this.imagePhoto.setImageBitmap(myBitmap);

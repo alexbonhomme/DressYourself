@@ -3,21 +3,21 @@ package fr.redteam.dressyourself.core;
 import java.io.File;
 import java.io.InputStream;
 
-import android.content.Context;
-import fr.redteam.dressyourself.common.AndroidFileManager;
 import fr.redteam.dressyourself.common.FileManager;
 
 public class ClothesManager {
 
-  private ClothesManager() {}
+  private final FileManager manager;
+
+  public ClothesManager(FileManager manager) {
+    this.manager = manager;
+  }
 
   /**
    * 
    * @param imageRelativePath
    */
-  public static void storeClotheImage(Context context, String imageRelativePath,
-      InputStream imageStream) {
-    FileManager manager = new AndroidFileManager(context);
+  public void storeClotheImage(String imageRelativePath, InputStream imageStream) {
     manager.writeFileToStorage(imageRelativePath, imageStream);
   }
 
@@ -25,9 +25,7 @@ public class ClothesManager {
    * 
    * @param imageRelativePath
    */
-  public static File loadClotheImage(Context context, String imageRelativePath) {
-    FileManager manager = new AndroidFileManager(context);
-
+  public File loadClotheImage(String imageRelativePath) {
     return manager.loadFileFromStorage(imageRelativePath);
   }
 
@@ -35,8 +33,7 @@ public class ClothesManager {
    * 
    * @param imageRelativePath
    */
-  public static void removeClotheImage(Context context, String imageRelativePath) {
-    FileManager manager = new AndroidFileManager(context);
+  public void removeClotheImage(String imageRelativePath) {
     manager.deleteFileFromStorage(imageRelativePath);
   }
 }

@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.AndroidFileManager;
 import fr.redteam.dressyourself.common.DBHelper;
 import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -123,7 +124,8 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    this.image.setImageURI(Uri.fromFile(ClothesManager.loadClotheImage(getApplicationContext(),nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
+    this.image.setImageURI(Uri.fromFile(new ClothesManager(new AndroidFileManager(this))
+        .loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clotheToEdit.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clotheToEdit.getBrand()));
     this.initSpinnersWithData();

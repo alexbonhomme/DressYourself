@@ -52,11 +52,6 @@ public class AndroidFileManager implements FileManager {
 
   @Override
   public void writeFileToStorage(String imagePath, InputStream imageStream) {
-    writeFileToExternalStorage(context, imagePath, imageStream);
-  }
-
-  private void writeFileToExternalStorage(Context context, String imagePath,
-      InputStream imageStream) {
     if (!isExternalStorageReadWriteAccess()) {
       throw new DressyourselfIOException("External storage need to be in READ/WRITE access");
     }
@@ -64,6 +59,11 @@ public class AndroidFileManager implements FileManager {
     if (imagePath.endsWith("/")) {
       throw new DressyourselfRuntimeException("imageRelitivePath should not be ended by a '/'");
     }
+
+    writeFileToExternalStorage(context, imagePath, imageStream);
+  }
+
+  private void writeFileToExternalStorage(Context context, String imagePath, InputStream imageStream) {
 
     // HACK: used a temporary File object to slip path and file name
     File fullPath = new File(imagePath);
@@ -95,20 +95,20 @@ public class AndroidFileManager implements FileManager {
       } catch (NullPointerException e) {
         throw new DressyourselfRuntimeException(e);
       }
-
     }
   }
 
 
   @Override
   public File loadFileFromStorage(String imagePath) {
+    if (!isExternalStorageReadAccess()) {
+      throw new DressyourselfIOException("External storage need to be in READ (minimum) access");
+    }
+
     return loadFileFromExternalStorage(context, imagePath);
   }
 
   private File loadFileFromExternalStorage(Context context, String imagePath) {
-    if (!isExternalStorageReadAccess()) {
-      throw new DressyourselfIOException("External storage need to be in READ (minimum) access");
-    }
 
     // writing image to external storage (local to us application)
     File file = new File(context.getExternalFilesDir(null), imagePath);
@@ -127,13 +127,14 @@ public class AndroidFileManager implements FileManager {
 
   @Override
   public void deleteFileFromStorage(String imagePath) {
+    if (!isExternalStorageReadWriteAccess()) {
+      throw new DressyourselfIOException("External storage need to be in READ & WRITE access");
+    }
+
     deleteFileFromExternalStorage(context, imagePath);
   }
 
   private void deleteFileFromExternalStorage(Context context, String imagePath) {
-    if (!isExternalStorageReadWriteAccess()) {
-      throw new DressyourselfIOException("External storage need to be in READ & WRITE access");
-    }
 
     // writing image to external storage (local to us application)
     File file = new File(context.getExternalFilesDir(null), imagePath);
