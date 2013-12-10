@@ -14,6 +14,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 /**
+ * This class give an access to an homemade database of products from www.zara.fr
  * 
  * @author Alexandre Bonhomme
  * 
@@ -25,7 +26,6 @@ public final class APIZara extends APIAbstractHelper implements API {
   private static final String DB_PAGE = "/api.php";
 
   /**
-   * 
    * @param manager This {@link FileManager FileManager} object is used to write image on the device
    */
   public APIZara(FileManager manager) {
@@ -50,6 +50,9 @@ public final class APIZara extends APIAbstractHelper implements API {
   }
 
   /**
+   * This method return a list of {@link Clothe Clothe} objects from the online API. The research is
+   * performed with the <code>query</code> only on the selected columns by the <code>filters</code>
+   * argument
    * 
    * @param filters Liste de filtres séparés par des virgules
    * @return Une liste d'objets Clothe
