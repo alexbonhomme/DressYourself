@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.shadows.ShadowApplication;
 import org.robolectric.shadows.ShadowEnvironment;
 
 import android.content.Context;
@@ -50,7 +49,7 @@ public class ActivityClotheModifyTest {
     /* retrieving the activity */
     this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
 
-    /* retrieving some components from the activity */
+    /* retrieving the editable components */
     this.modelEditText = (EditText) this.myActivity.findViewById(R.id.modelEdit);
     this.brandEditText = (EditText) this.myActivity.findViewById(R.id.brandEdit);
     this.colorSpinner = (Spinner) this.myActivity.findViewById(R.id.colorSpinner);
