@@ -80,20 +80,27 @@ class ZaraScrape(Scraper):
                 log.info('FAIL : Unable to get product image for "' + item['name'] + '". Omitting.')
                 continue
 
-            # Downloading file if flag is True
-            if download:
-                imgFilename = str(i) + '-' + item['name'].replace(' ', '_')
-                log.info('Downloading ' + imgFilename + '...')
-                self.downloader.writeFile(imgUrl, self.dl_folder + imgFilename)
-
             color = browser.getProductColor()
-            imgPath = self.BRAND_NAME + '/' + self.lang + '/' + self.section + '/' + self.subsection + '/'
 
+            imgFilename = str(i) + '-' + item['name'].replace(' ', '_')
+            imgPath = self.BRAND_NAME + '/' + \
+                self.lang + '/' + \
+                self.section + '/' + \
+                self.subsection + '/' + \
+                imgFilename + '.jpg'
+
+            # build a product object
             product = Product(item['name'], self.BRAND_NAME, color, imgUrl, imgPath, self.type, self.bodies)
             itemList.append(product)
 
             log.info(product.toString())
 
+            # Downloading file if flag is True
+            if download:
+                log.info('Downloading ' + imgFilename + '...')
+                self.downloader.writeFile(imgUrl, self.dl_folder + imgFilename)
+
+            # count the number of object
             i += 1
 
         log.info('-- Ending scraping --')
