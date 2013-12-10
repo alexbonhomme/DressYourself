@@ -19,8 +19,11 @@ public class APIZaraTest {
 
   @Before
   public void setUp() {
-    // TODO check
-    api = new APIZara(mock(FileManager.class));
+    // Let's mock our FileManager interface
+    FileManager mockedFileManager = mock(FileManager.class);
+
+    // API using the mocked object
+    api = new APIZara(mockedFileManager);
   }
 
   @Test
@@ -35,9 +38,7 @@ public class APIZaraTest {
     assertEquals("Yellow", product.getColor());
     assertEquals("Knitwears", product.getType());
     assertEquals("Top", product.getBodies());
-
-    // TODO
-    // assertFalse(product.getImage() == null);
+    assertEquals("Zara/en/man/knitwear/", product.getImageRelativePath());
   }
 
   @Test

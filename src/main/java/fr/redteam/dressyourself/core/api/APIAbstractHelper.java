@@ -69,13 +69,12 @@ public abstract class APIAbstractHelper {
     product.setColor(json.getString("color"));
     product.setType(json.getString("type"));
     product.setBodies(json.getString("bodies"));
+    product.setImageRelativePath(json.getString("imagePath"));
     
+    // Writing image into the device storage from a web stream
     try {
       URL imageUrl = new URL(json.getString("imageUrl"));
-
-      // TODO set path
-      // product.setImageRelativePath("/path/to/file");
-      // manager.writeFileToStorage("/path/to/file", imageUrl.openStream());
+      manager.writeFileToStorage(product.getImageRelativePath(), imageUrl.openStream());
 
     } catch (MalformedURLException e) {
       throw new DressyourselfRuntimeException(e);
