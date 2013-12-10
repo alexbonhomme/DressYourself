@@ -38,11 +38,11 @@ class DBHelper:
     def createDataBaseTablesIfNotExists(self):
         log.info('-- Creating tables --')
         try:
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS CLOTHES (ID_clothes INTEGER PRIMARY KEY AUTOINCREMENT, model TEXT, imageUrl TEXT, imagePath TEXT, ID_c INTEGER, ID_t INTEGER, ID_br INTEGER, FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color), FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type), FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand))")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS COLOR (ID_color INTEGER PRIMARY KEY AUTOINCREMENT, colorName TEXT UNIQUE)")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS BODIES (ID_bodies INTEGER PRIMARY KEY AUTOINCREMENT, bodiesName TEXT UNIQUE)")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS TYPE (ID_type INTEGER PRIMARY KEY AUTOINCREMENT, typeName TEXT UNIQUE, ID_b INTEGER, FOREIGN KEY (ID_b) REFERENCES BODIES(ID_bodies))")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS WEATHER (ID_weather INTEGER PRIMARY KEY AUTOINCREMENT, weatherName TEXT UNIQUE)")
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS CLOTHES (ID_clothes INTEGER PRIMARY KEY AUTOINCREMENT, model TEXT, image TEXT, ID_c INTEGER, ID_t INTEGER, ID_br INTEGER, FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color), FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type), FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand))")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS WEATHER_CLOTHES (ID_c INTEGER, ID_w INTEGER, PRIMARY KEY (ID_c, ID_w), FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes), FOREIGN KEY (ID_w)REFERENCES WEATHER (ID_weather))")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS OUTFIT (ID_outfit INTEGER PRIMARY KEY AUTOINCREMENT, outfitName TEXT UNIQUE)")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS OUTFIT_CLOTHES (ID_c INTEGER, ID_o INTEGER, PRIMARY KEY (ID_c, ID_o), FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes), FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))")
@@ -89,8 +89,9 @@ class DBHelper:
 
         log.debug('INSERT OR IGNORE product "' + product.model + '" to CLOTHES table')
         values = (product.model,
-                  product.imgUrl, # sqlite.Binary(product.getImage()),
+                  product.imgUrl,
+                  product.imgPath,
                   colorId,
                   typeId,
                   brandId)
-        self.cursor.execute('INSERT INTO clothes (model, image, ID_c, ID_t, ID_br) VALUES (?, ?, ?, ?, ?)', values)
+        self.cursor.execute('INSERT INTO clothes (model, imageUrl, imagePath, ID_c, ID_t, ID_br) VALUES (?, ?, ?, ?, ?, ?)', values)

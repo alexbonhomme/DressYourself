@@ -1,8 +1,16 @@
 <?php
 /**
- * This class perfom some queries on the database
+ * This class performs some queries on the database
  */
 class DBHelper {
+	
+	const QUERY_BASE = 
+		'SELECT ID_clothes AS id, model, imageUrl, imagePath, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
+		 FROM clothes 
+		 JOIN brand ON clothes.ID_br=brand.ID_brand 
+		 JOIN color ON clothes.ID_c=color.ID_color 
+		 JOIN type ON clothes.ID_t=type.ID_type 
+         JOIN bodies ON type.ID_b=bodies.ID_bodies';
 	
 	private $dbFileName;
 	private $filters;
@@ -29,28 +37,19 @@ class DBHelper {
 		return $arrayData;
 	}
 	
-	
 	public function findAll($query)	{
 		if (empty($this->filters)) {
 			return json_encode(array());
 		}
 		
-		$sqlQuery = 
-			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
-			 FROM clothes 
-			 JOIN brand ON clothes.ID_br=brand.ID_brand 
-			 JOIN color ON clothes.ID_c=color.ID_color 
-			 JOIN type ON clothes.ID_t=type.ID_type 
-             JOIN bodies ON type.ID_b=bodies.ID_bodies 
-			 WHERE 0';
-			 
+		$sqlQuery = self::QUERY_BASE + ' WHERE 0';
+
 		foreach ($this->filters as $filter) {
 			$sqlQuery .= ' OR ' . $filter . ' LIKE "%' . $query . '%"';
 		}
 		
 		$db = new SQLite3($this->dbFileName);
 		$data = $db->query($sqlQuery);
-
 		$arrayData = $this->SQLite2JSON($data);
 
 		$db->close();
@@ -60,16 +59,8 @@ class DBHelper {
 	
 	public function findClothesByModel($modelName) {
 		$db = new SQLite3($this->dbFileName);
-		$data = $db->query(
-			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
-			 FROM clothes 
-			 JOIN brand ON clothes.ID_br=brand.ID_brand 
-			 JOIN color ON clothes.ID_c=color.ID_color 
-			 JOIN type ON clothes.ID_t=type.ID_type 
-             JOIN bodies ON type.ID_b=bodies.ID_bodies 
-			 WHERE model LIKE "%'. $modelName . '%"'
-		);
-
+		
+		$data = $db->query(self::QUERY_BASE + ' WHERE model LIKE "%'. $modelName . '%"');
 		$arrayData = $this->SQLite2JSON($data);
 
 		$db->close();
@@ -79,16 +70,8 @@ class DBHelper {
 	
 	public function findClotheById($id) {
 		$db = new SQLite3($this->dbFileName);
-		$data = $db->query(
-			'SELECT ID_clothes AS id, model, image AS imageUrl, brand.brandName AS brand, color.colorName AS color, type.typeName AS type, bodies.bodiesName AS bodies 
-			 FROM clothes 
-			 JOIN brand ON clothes.ID_br=brand.ID_brand 
-			 JOIN color ON clothes.ID_c=color.ID_color 
-			 JOIN type ON clothes.ID_t=type.ID_type 
-             JOIN bodies ON type.ID_b=bodies.ID_bodies 
-			 WHERE ID_clothes = '. $id
-		);
-
+		
+		$data = $db->query(self::QUERY_BASE + ' WHERE ID_clothes = '. $id);
 		$arrayData = $this->SQLite2JSON($data);
 
 		$db->close();

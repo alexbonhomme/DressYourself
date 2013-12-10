@@ -45,6 +45,7 @@ class ZaraScrape(Scraper):
         home = self.downloader.getFile(self.PAGE_BASE + self.lang + '/')
         browser = ZaraBrowser(home)
 
+        # Goto first menu level
         url = browser.getMenuLinkFromName(self.section)
         try:
             browser.goTo(url, 5)
@@ -52,6 +53,7 @@ class ZaraScrape(Scraper):
             log.warning("Unable to get the page '" + url + "'. Omitting.")
             return []
 
+        # Goto second menu level
         url = browser.getMenuLinkFromName(self.subsection)
         try:
             browser.goTo(url, 5)
@@ -59,12 +61,14 @@ class ZaraScrape(Scraper):
             log.warning("Unable to get the page '" + url + "'. Omitting.")
             return []
 
+        # Start items parsing
         i = 0
         itemList = []
         for item in browser.getProductsList():
             log.debug('zzZZZZzzz')
             time.sleep(3) # let's do it cool
 
+            # Goto the product page
             try:
                 browser.goTo(item['url'])
             except:
@@ -76,17 +80,20 @@ class ZaraScrape(Scraper):
                 log.info('FAIL : Unable to get product image for "' + item['name'] + '". Omitting.')
                 continue
 
+            # Downloading file if flag is True
             if download:
                 imgFilename = str(i) + '-' + item['name'].replace(' ', '_')
                 log.info('Downloading ' + imgFilename + '...')
                 self.downloader.writeFile(imgUrl, self.dl_folder + imgFilename)
 
             color = browser.getProductColor()
+            imgPath = self.BRAND_NAME + '/' + self.lang + '/' + self.section + '/' + self.subsection + '/'
 
-            # log.info('SUCCES : Product "' + item['name'] + '" scraping done.')
-            product = Product(item['name'], self.BRAND_NAME, color, imgUrl, self.type, self.bodies)
-            log.info(product.toString())
+            product = Product(item['name'], self.BRAND_NAME, color, imgUrl, imgPath, self.type, self.bodies)
             itemList.append(product)
+
+            log.info(product.toString())
+
             i += 1
 
         log.info('-- Ending scraping --')
