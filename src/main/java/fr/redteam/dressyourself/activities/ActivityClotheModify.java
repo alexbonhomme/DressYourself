@@ -18,8 +18,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
-import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
-import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -97,7 +95,7 @@ public class ActivityClotheModify extends Activity {
 
   /** Transform a null String in an empty String */
   public String nullStringToEmptyString(String s) {
-    return (s == null ? s + "" : s);
+    return (s == null ? s + " " : s);
   }
 
   /** Init the spinners with the values stored in database */
@@ -127,7 +125,8 @@ public class ActivityClotheModify extends Activity {
 
   /** fill the editable fields with the caracteristics of the clothe in order to edit them */
   public void initFieldsWithValues(Clothe clotheToEdit) {
-    this.image.setImageURI(Uri.fromFile(new ClothesManager(new AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
+    // this.image.setImageURI(Uri.fromFile(new ClothesManager(new
+    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clotheToEdit.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clotheToEdit.getBrand()));
     this.initSpinnersWithData();
