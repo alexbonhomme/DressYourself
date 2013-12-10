@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
-import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class ActivityClotheList extends ListActivity{

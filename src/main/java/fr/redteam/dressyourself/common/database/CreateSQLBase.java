@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.common;
+package fr.redteam.dressyourself.common.database;
 
 import android.content.ContentValues;
 import android.content.Context;

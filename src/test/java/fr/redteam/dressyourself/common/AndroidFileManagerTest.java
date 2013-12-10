@@ -15,6 +15,8 @@ import org.robolectric.shadows.ShadowEnvironment;
 import android.content.Context;
 import android.os.Environment;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
+import fr.redteam.dressyourself.common.filemanager.FileManager;
 
 /**
  * 

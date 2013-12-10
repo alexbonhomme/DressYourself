@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.plugins.weather.tools;
+package fr.redteam.dressyourself.utils;
 
 public class AsciiUtils {
   private static final String PLAIN_ASCII = "AaEeIiOoUu" // grave

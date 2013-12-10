@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.AndroidFileManager;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
 import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 

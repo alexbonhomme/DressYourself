@@ -9,9 +9,9 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.redteam.dressyourself.common.StreamTools;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
+import fr.redteam.dressyourself.utils.StreamTools;
 
 /**
  * This abstract class grouped some commons methods to brands APIs.

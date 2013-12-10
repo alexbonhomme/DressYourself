@@ -8,6 +8,8 @@ import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
+import fr.redteam.dressyourself.utils.StreamTools;
+
 public class StreamToolsTest {
 
   @Test

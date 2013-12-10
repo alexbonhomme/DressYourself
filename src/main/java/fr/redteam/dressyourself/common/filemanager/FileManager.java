@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.common;
+package fr.redteam.dressyourself.common.filemanager;
 
 import java.io.File;
 import java.io.InputStream;

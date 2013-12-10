@@ -3,7 +3,7 @@ package fr.redteam.dressyourself.core;
 import java.io.File;
 import java.io.InputStream;
 
-import fr.redteam.dressyourself.common.FileManager;
+import fr.redteam.dressyourself.common.filemanager.FileManager;
 
 public class ClothesManager {
 

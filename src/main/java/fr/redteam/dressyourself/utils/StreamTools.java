@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.common;
+package fr.redteam.dressyourself.utils;
 
 import java.io.InputStream;
 

@@ -18,7 +18,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
-import fr.redteam.dressyourself.common.DBHelper;
+import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.views.ListViewClothes;

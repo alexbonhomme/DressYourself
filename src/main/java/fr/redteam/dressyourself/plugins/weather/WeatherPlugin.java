@@ -18,11 +18,11 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 import fr.redteam.dressyourself.activities.ActivityOutfit;
-import fr.redteam.dressyourself.plugins.weather.tools.AsciiUtils;
-import fr.redteam.dressyourself.plugins.weather.tools.NetworkUtils;
 import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.WeatherInfo;
 import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.YahooWeatherInfoListener;
 import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.YahooWeatherUtils;
+import fr.redteam.dressyourself.utils.AsciiUtils;
+import fr.redteam.dressyourself.utils.NetworkUtils;
 
 public class WeatherPlugin implements YahooWeatherInfoListener {
 

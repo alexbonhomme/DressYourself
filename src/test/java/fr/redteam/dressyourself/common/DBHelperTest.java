@@ -17,6 +17,7 @@ import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 @RunWith(RobolectricTestRunner.class)
 public class DBHelperTest  {
