@@ -3,7 +3,7 @@ require('dbhelper.php');
 
 if (isset($_GET['q'])) {
 	$query = $_GET['q'];
-	$db = new DBHelper('zara_20131121.sqlite');
+	$db = new DBHelper('zara_20131210.sqlite');
 	
 	if (isset($_GET['filters']) && !empty($_GET['filters'])) {
 		$filters = explode(",", $_GET['filters']);

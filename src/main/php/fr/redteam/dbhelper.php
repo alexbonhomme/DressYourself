@@ -42,7 +42,7 @@ class DBHelper {
 			return json_encode(array());
 		}
 		
-		$sqlQuery = self::QUERY_BASE + ' WHERE 0';
+		$sqlQuery = self::QUERY_BASE .' WHERE 0';
 
 		foreach ($this->filters as $filter) {
 			$sqlQuery .= ' OR ' . $filter . ' LIKE "%' . $query . '%"';
@@ -60,7 +60,7 @@ class DBHelper {
 	public function findClothesByModel($modelName) {
 		$db = new SQLite3($this->dbFileName);
 		
-		$data = $db->query(self::QUERY_BASE + ' WHERE model LIKE "%'. $modelName . '%"');
+		$data = $db->query(self::QUERY_BASE .' WHERE model LIKE "%'. $modelName .'%"');
 		$arrayData = $this->SQLite2JSON($data);
 
 		$db->close();
@@ -71,7 +71,7 @@ class DBHelper {
 	public function findClotheById($id) {
 		$db = new SQLite3($this->dbFileName);
 		
-		$data = $db->query(self::QUERY_BASE + ' WHERE ID_clothes = '. $id);
+		$data = $db->query(self::QUERY_BASE .' WHERE ID_clothes = '. $id);
 		$arrayData = $this->SQLite2JSON($data);
 
 		$db->close();
