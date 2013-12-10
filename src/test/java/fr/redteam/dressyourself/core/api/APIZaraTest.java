@@ -2,12 +2,14 @@ package fr.redteam.dressyourself.core.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.redteam.dressyourself.common.filemanager.FileManager;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
@@ -17,7 +19,8 @@ public class APIZaraTest {
 
   @Before
   public void setUp() {
-    api = APIZara.getInstance();
+    // TODO check
+    api = new APIZara(mock(FileManager.class));
   }
 
   @Test

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
@@ -173,7 +174,7 @@ public class ActivityDebug extends Activity {
    */
   private void fillLocaleDataBaseWithFewClothes() {
     DBHelper db = new DBHelper(this);
-    APIZara api = APIZara.getInstance();
+    APIZara api = new APIZara(new AndroidFileManager(getApplicationContext()));
 
     db.open();
     long topId = db.insertBodies("Top");

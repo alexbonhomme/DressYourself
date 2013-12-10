@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import fr.redteam.dressyourself.common.filemanager.FileManager;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
@@ -19,23 +20,16 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
  */
 public final class APIZara extends APIAbstractHelper implements API {
 
-  private static APIZara apiSingleton = null;
-
   private static final String DB_PROTOCOL = "http";
   private static final String DB_HOST = "dev.alexandrebonhomme.fr";
   private static final String DB_PAGE = "/api.php";
 
-  private APIZara() {}
-
   /**
-   * Return a singleton of APIZara
+   * 
+   * @param manager This {@link FileManager FileManager} object is used to write image on the device
    */
-  public static APIZara getInstance() {
-    if (apiSingleton == null) {
-      apiSingleton = new APIZara();
-    }
-
-    return apiSingleton;
+  public APIZara(FileManager manager) {
+    super(manager);
   }
 
   @Override

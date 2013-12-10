@@ -4,12 +4,15 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import fr.redteam.dressyourself.common.filemanager.FileManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.exceptions.DressyourselfIOException;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 import fr.redteam.dressyourself.utils.StreamTools;
 
@@ -20,6 +23,12 @@ import fr.redteam.dressyourself.utils.StreamTools;
  * 
  */
 public abstract class APIAbstractHelper {
+
+  private final FileManager manager;
+
+  protected APIAbstractHelper(FileManager manager) {
+    this.manager = manager;
+  }
 
   /**
    * Get a plain text content from an {@link java.net.URL url}
@@ -56,13 +65,23 @@ public abstract class APIAbstractHelper {
 
     product.setId(json.getInt("id"));
     product.setModel(json.getString("model"));
-    // TODO : clothe.setImage()
     product.setBrand(json.getString("brand"));
     product.setColor(json.getString("color"));
     product.setType(json.getString("type"));
     product.setBodies(json.getString("bodies"));
     
+    try {
+      URL imageUrl = new URL(json.getString("imageUrl"));
 
+      // TODO set path
+      // product.setImageRelativePath("/path/to/file");
+      // manager.writeFileToStorage("/path/to/file", imageUrl.openStream());
+
+    } catch (MalformedURLException e) {
+      throw new DressyourselfRuntimeException(e);
+    } catch (IOException e) {
+      throw new DressyourselfIOException(e);
+    }
 
     return product;
   }

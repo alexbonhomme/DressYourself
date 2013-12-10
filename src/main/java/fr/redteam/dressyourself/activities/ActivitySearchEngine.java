@@ -19,6 +19,7 @@ import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
 import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
 import fr.redteam.dressyourself.core.api.APIZara;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.views.ListViewClothes;
@@ -105,7 +106,7 @@ public class ActivitySearchEngine extends ListActivity {
   private class WebApiTask extends AsyncTask<String, Void, List<Clothe>> {
     @Override
     protected List<Clothe> doInBackground(String... queries) {
-      APIZara api = APIZara.getInstance();
+      APIZara api = new APIZara(new AndroidFileManager(context));
       List<Clothe> listClothes = api.findClothesByModel(queries[0]);
 
       return listClothes;
