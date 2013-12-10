@@ -16,7 +16,7 @@ if (isset($_GET['q'])) {
 }
 
 if (isset($_GET['id'])) {
-	$db = new DBHelper('zara_20131121.sqlite');
+	$db = new DBHelper('zara_20131210.sqlite');
 	$json = $db->findClotheById($_GET['id']);
 	
 	exit($json);
