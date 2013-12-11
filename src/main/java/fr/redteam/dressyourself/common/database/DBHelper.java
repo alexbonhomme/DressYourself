@@ -610,4 +610,15 @@ public class DBHelper implements IntDBHelper {
     return 0;
   }
 
+  @Override
+  public void removeClothes(String Clothes) {
+    try {
+      String query = "DELETE FROM CLOTHES" + "WHERE CLOTHES.model = " + Clothes;
+      bdd.rawQuery(query, null);
+
+    } catch (Exception e) {
+      throw new DressyourselfDatabaseException("Erreur suppression Clothes: " + e.getMessage());
+    }
+  }
+
 }
