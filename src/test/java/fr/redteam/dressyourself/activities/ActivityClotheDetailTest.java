@@ -72,13 +72,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewBrandValue() {
     TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
-    assertEquals(textViewBrand.getText().toString(), clotheTest.getBrand());
+    assertEquals(clotheTest.getBrand(), textViewBrand.getText().toString());
   }
 
   @Test
   public void testTextViewBrandNotNull() {
     TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
-    assertFalse(textViewBrand.getText() == null);
+    assertFalse(null == textViewBrand.getText());
   }
 
   @Test
@@ -93,13 +93,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewLabelValue() {
     TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
-    assertEquals(textViewModel.getText().toString(), clotheTest.getModel());
+    assertEquals(clotheTest.getModel(), textViewModel.getText().toString());
   }
 
   @Test
   public void testTextViewLabelNotNull() {
     TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
-    assertFalse(textViewModel.getText() == null);
+    assertFalse(null == textViewModel.getText());
   }
 
   @Test
@@ -115,13 +115,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewColorValue() {
     TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
-    assertEquals(textViewColor.getText().toString(), clotheTest.getColor());
+    assertEquals(clotheTest.getColor(), textViewColor.getText().toString());
   }
 
   @Test
   public void testTextViewColorNotNull() {
     TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
-    assertFalse(textViewColor.getText() == null);
+    assertFalse(null == textViewColor.getText());
   }
 
   @Test
@@ -141,13 +141,13 @@ public class ActivityClotheDetailTest {
     for (String weatherLine : TheWeather) {
       WeatherTxt += weatherLine + " ";
     }
-    assertEquals(textViewWeather.getText().toString(), WeatherTxt);
+    assertEquals(WeatherTxt, textViewWeather.getText().toString());
   }
 
   @Test
   public void testTextViewWeatherNotNull() {
     TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
-    assertFalse(textViewWeather.getText() == null);
+    assertFalse(null == textViewWeather.getText());
   }
 
   @Test
@@ -162,13 +162,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void TestTextViewTypeValue() {
     TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    assertEquals(textViewType.getText().toString(), clotheTest.getType());
+    assertEquals(clotheTest.getType(), textViewType.getText().toString());
   }
 
   @Test
   public void TestTextViewTypeNotNull() {
     TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    assertFalse(textViewType.getText() == null);
+    assertFalse(null == textViewType.getText());
   }
 
   @Test
@@ -183,13 +183,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void TestTextViewBodyValue() {
     TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    assertEquals(textViewBody.getText().toString(), clotheTest.getBodies());
+    assertEquals(clotheTest.getBodies(), textViewBody.getText().toString());
   }
 
   @Test
   public void TestTextViewBodyNotNull() {
     TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    assertFalse(textViewBody.getText() == null);
+    assertFalse(null == textViewBody.getText());
   }
 
   @Test
