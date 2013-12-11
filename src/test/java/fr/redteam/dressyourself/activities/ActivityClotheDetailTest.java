@@ -1,7 +1,7 @@
 package fr.redteam.dressyourself.activities;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -78,13 +78,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewBrandNotNull() {
     TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
-    assertFalse(null == textViewBrand.getText());
+    assertTrue(null != textViewBrand.getText());
   }
 
   @Test
   public void testTextViewBrandNotEmpty() {
     TextView textViewBrand = (TextView) activityClotheDetail.findViewById(R.id.brandTxt);
-    assertFalse(textViewBrand.getText().toString().equals(""));
+    assertTrue(!textViewBrand.getText().toString().equals(""));
   }
 
   /*
@@ -99,13 +99,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewLabelNotNull() {
     TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
-    assertFalse(null == textViewModel.getText());
+    assertTrue(null != textViewModel.getText());
   }
 
   @Test
   public void testTextViewLabelNotEmpty() {
     TextView textViewModel = (TextView) activityClotheDetail.findViewById(R.id.modelTxt);
-    assertFalse(textViewModel.getText().toString().equals(""));
+    assertTrue(!textViewModel.getText().toString().equals(""));
   }
 
 
@@ -121,13 +121,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewColorNotNull() {
     TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
-    assertFalse(null == textViewColor.getText());
+    assertTrue(null != textViewColor.getText());
   }
 
   @Test
   public void testTextViewColorNotEmpty() {
     TextView textViewColor = (TextView) activityClotheDetail.findViewById(R.id.colorTxt);
-    assertFalse(textViewColor.getText().toString().equals(""));
+    assertTrue(!textViewColor.getText().toString().equals(""));
   }
 
   /*
@@ -147,13 +147,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void testTextViewWeatherNotNull() {
     TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
-    assertFalse(null == textViewWeather.getText());
+    assertTrue(null != textViewWeather.getText());
   }
 
   @Test
   public void testTextViewWeatherNotEmpty() {
     TextView textViewWeather = (TextView) activityClotheDetail.findViewById(R.id.weatherTxt);
-    assertFalse(textViewWeather.getText().toString().equals(""));
+    assertTrue(!textViewWeather.getText().toString().equals(""));
   }
 
   /*
@@ -168,13 +168,13 @@ public class ActivityClotheDetailTest {
   @Test
   public void TestTextViewTypeNotNull() {
     TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    assertFalse(null == textViewType.getText());
+    assertTrue(null != textViewType.getText());
   }
 
   @Test
   public void TestTextViewTypeNotEmpty() {
     TextView textViewType = (TextView) activityClotheDetail.findViewById(R.id.typeTxt);
-    assertFalse(textViewType.getText().toString().equals(""));
+    assertTrue(!textViewType.getText().toString().equals(""));
   }
 
   /*
@@ -189,12 +189,12 @@ public class ActivityClotheDetailTest {
   @Test
   public void TestTextViewBodyNotNull() {
     TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    assertFalse(null == textViewBody.getText());
+    assertTrue(null != textViewBody.getText());
   }
 
   @Test
   public void TestTextViewBodyNotEmpty() {
     TextView textViewBody = (TextView) activityClotheDetail.findViewById(R.id.bodyTxt);
-    assertFalse(textViewBody.getText().toString().equals(""));
+    assertTrue(!textViewBody.getText().toString().equals(""));
   }
 }
