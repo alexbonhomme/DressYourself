@@ -43,7 +43,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Clothe currentTop;
   private Clothe currentBottom;
   private Clothe currentFeet;
-  private static boolean gotWeatherInfo;
+  public static boolean gotWeatherInfo;
   private final OutfitDecider decider = new OutfitDecider(false);
 
   @Override
