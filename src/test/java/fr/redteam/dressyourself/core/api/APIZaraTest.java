@@ -38,7 +38,7 @@ public class APIZaraTest {
     assertEquals("Yellow", product.getColor());
     assertEquals("Knitwears", product.getType());
     assertEquals("Top", product.getBodies());
-    assertEquals("Zara/en/man/knitwear/", product.getImageRelativePath());
+    assertEquals("Zara/en/man/knitwear/10-structured_sweater.jpg", product.getImageRelativePath());
   }
 
   @Test
