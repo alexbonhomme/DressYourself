@@ -1,16 +1,21 @@
 package fr.redteam.dressyourself.activities;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
+import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
 
@@ -65,5 +70,35 @@ public class ActivityOutfitMailTest {
     return intent;
   }
 
+  /* check if the clothe's brand value is properly loaded into brand EditText */
+  @Test
+  public void testDestinataireInitialValue() {
+    EditText textDestinataire =
+        (EditText) activityOutfitMail.findViewById(R.id.editDestinataireOutfit);
+    assertTrue(textDestinataire.getText().equals(""));
+  }
 
+  /* check if the modifications on model have been saved */
+  @Test
+  public void testDestinataireChangeValue() {
+    EditText textDestinataire =
+        (EditText) activityOutfitMail.findViewById(R.id.editDestinataireOutfit);
+    textDestinataire.setText("toto@free.fr");
+    assertTrue(textDestinataire.getText().equals("toto@free.fr"));
+  }
+
+  /* check if the clothe's brand value is properly loaded into brand EditText */
+  @Test
+  public void testContenueInitialValue() {
+    EditText textContenu = (EditText) activityOutfitMail.findViewById(R.id.editMailOutfit);
+    assertTrue(textContenu.getText().equals(""));
+  }
+
+  /* check if the modifications on model have been saved */
+  @Test
+  public void testContenuChangeValue() {
+    EditText textContenu = (EditText) activityOutfitMail.findViewById(R.id.editMailOutfit);
+    textContenu.setText("Blabla");
+    assertTrue(textContenu.getText().equals("Blabla"));
+  }
 }
