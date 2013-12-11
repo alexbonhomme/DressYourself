@@ -58,7 +58,7 @@ public class WeatherPlugin implements YahooWeatherInfoListener {
       weather = Weather.process(weatherInfo.getCurrentWeather());
       Weather.setWeather(weather);
       Weather.setTemperature(weatherInfo.getCurrentTempC());
-      ActivityOutfit.updateWeatherBoolean(true);
+      ActivityOutfit.setGotWeatherInfo(true);
     }
   }
 }

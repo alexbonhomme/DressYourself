@@ -201,8 +201,12 @@ public class ActivityOutfit extends Activity implements OnClickListener {
       }
   }
 
-  public static void updateWeatherBoolean(boolean gotWeather) {
+  public static void setGotWeatherInfo(boolean gotWeather) {
     gotWeatherInfo = gotWeather;
+  }
+
+  public static boolean getGotWeatherInfo() {
+    return gotWeatherInfo;
   }
 
 }
