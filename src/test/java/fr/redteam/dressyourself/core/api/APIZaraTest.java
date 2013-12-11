@@ -66,7 +66,7 @@ public class APIZaraTest {
   public void testFindClothesByBrand() {
     List<Clothe> listProducts = api.findClothesByBrand("zara");
 
-    assertEquals(1020, listProducts.size());
+    assertEquals(1017, listProducts.size());
   }
 
   @Test
