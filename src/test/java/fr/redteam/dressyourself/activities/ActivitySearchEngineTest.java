@@ -42,7 +42,7 @@ public class ActivitySearchEngineTest {
     searchIntent.putExtra(SearchManager.QUERY, "jeans");
 
     controler.newIntent(searchIntent);
-    assertEquals(92, controler.get().getListView().getCount());
+    assertEquals(93, controler.get().getListView().getCount());
 
     controler.destroy();
   }
