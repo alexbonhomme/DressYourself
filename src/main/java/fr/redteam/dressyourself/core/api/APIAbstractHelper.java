@@ -74,7 +74,9 @@ public abstract class APIAbstractHelper {
     // Writing image into the device storage from a web stream
     try {
       URL imageUrl = new URL(json.getString("imageUrl"));
-      manager.writeFileToStorage(product.getImageRelativePath(), imageUrl.openStream());
+      InputStream imageStream = imageUrl.openStream();
+      manager.writeFileToStorage(product.getImageRelativePath(), imageStream);
+      imageStream.close();
 
     } catch (MalformedURLException e) {
       throw new DressyourselfRuntimeException(e);

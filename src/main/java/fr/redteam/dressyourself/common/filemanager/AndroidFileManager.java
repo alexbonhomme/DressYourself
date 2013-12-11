@@ -98,7 +98,6 @@ public class AndroidFileManager implements FileManager {
     }
   }
 
-
   @Override
   public File loadFileFromStorage(String imagePath) {
     if (!isExternalStorageReadAccess()) {
