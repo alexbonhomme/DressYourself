@@ -62,4 +62,25 @@ public class ActivityOutfitTest {
     buttonRefreshFeet.performClick();
     assertFalse(textViewFeet.getText().equals(oldTextFeet));
   }
+
+  @Test
+  public void testButtonGenerate() {
+    Button buttongenerate = (Button) activityOutfit.findViewById(R.id.button_generate);
+    ImageView imageViewTop = (ImageView) activityOutfit.findViewById(R.id.imageview_top);
+    TextView textViewTop = (TextView) activityOutfit.findViewById(R.id.textview_top);
+    ImageView imageViewBottom = (ImageView) activityOutfit.findViewById(R.id.imageview_bottom);
+    TextView textViewBottom = (TextView) activityOutfit.findViewById(R.id.textview_bottom);
+    ImageView imageViewFeet = (ImageView) activityOutfit.findViewById(R.id.imageview_feet);
+    TextView textViewFeet = (TextView) activityOutfit.findViewById(R.id.textview_feet);
+    assertTrue(buttongenerate != null);
+    assertTrue(imageViewTop != null && imageViewBottom != null && imageViewFeet != null);
+    assertTrue(textViewTop != null && textViewBottom != null && textViewFeet != null);
+    String oldTextTop = (String) textViewTop.getText();
+    String oldTextBottom = (String) textViewBottom.getText();
+    String oldTextFeet = (String) textViewFeet.getText();
+    buttongenerate.performClick();
+    assertFalse(textViewTop.getText().equals(oldTextTop)
+        && textViewBottom.getText().equals(oldTextBottom)
+        && textViewFeet.getText().equals(oldTextFeet));
+  }
 }
