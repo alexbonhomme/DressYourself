@@ -46,7 +46,7 @@ public class ActivityClotheMail extends Activity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == REQUEST_CODE_MAILINTENT) {
-      Intent intent = new Intent(ActivityClotheMail.this, ActivityFilter.class);
+      Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
       if (ActivityClotheMail.this.mail.isValidMail()) {
         ActivityClotheMail.this.finish();
       }

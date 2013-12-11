@@ -42,9 +42,6 @@
             android:name="fr.redteam.dressyourself.activities.ActivityOutfit"
             android:label="@string/generate" />
         <activity
-            android:name="fr.redteam.dressyourself.activities.ActivityClotheAdd"
-            android:label="@string/title_add_clothing" />
-        <activity
             android:name="fr.redteam.dressyourself.activities.ActivityClotheList"
             android:label="@string/title_clothe_list" >
         </activity>
@@ -59,10 +56,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ClotheListActivity" />
-        </activity>
-        <activity
-            android:name="fr.redteam.dressyourself.activities.ActivityFilter"
-            android:label="@string/title_activity_filter" >
         </activity>
         <activity
             android:name="fr.redteam.dressyourself.activities.ActivityDebug"
