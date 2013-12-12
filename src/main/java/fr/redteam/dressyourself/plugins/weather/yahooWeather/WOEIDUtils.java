@@ -12,7 +12,7 @@
  * the License.
  */
 
-package fr.redteam.dressyourself.plugins.weather.yahooWeather4a;
+package fr.redteam.dressyourself.plugins.weather.yahooWeather;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -41,10 +41,11 @@ import android.util.Log;
 public class WOEIDUtils {
 
   public static final String WOEID_NOT_FOUND = "WOEID_NOT_FOUND";
-  private final String yahooapisBase =
+  public static final String TAG = "Weather";
+  public static final String TAG_ERREUR_METEO = "ErreurMeteo";
+  private static final String yahooapisBase =
       "http://query.yahooapis.com/v1/public/yql?q=select*from%20geo.places%20where%20text=";
-  private final String yahooapisFormat = "&format=xml";
-  private String yahooAPIsQuery;
+  private static final String yahooapisFormat = "&format=xml";
 
   public static WOEIDUtils getInstance() {
     return new WOEIDUtils();
@@ -55,28 +56,24 @@ public class WOEIDUtils {
   }
 
   private String queryWOEIDfromYahooAPIs(Context context, String uriPlace) {
-    Log.d("tag", "QueryYahooApis");
+    String yahooAPIsQuery;
 
+    Log.d(TAG, "QueryYahooApis");
     yahooAPIsQuery = yahooapisBase + "%22" + uriPlace + "%22" + yahooapisFormat;
-
     yahooAPIsQuery = yahooAPIsQuery.replace(" ", "%20");
+    Log.d(TAG, "yahooAPIsQuery: " + yahooAPIsQuery);
 
-    Log.d("tag", "yahooAPIsQuery: " + yahooAPIsQuery);
-
-    String woeidString = queryYahooWeather(context, yahooAPIsQuery);
-    Document woeidDoc = convertStringToDocument(context, woeidString);
+    String woeidString = queryYahooWeather(yahooAPIsQuery);
+    Document woeidDoc = convertStringToDocument(woeidString);
     return getFirstMatchingWOEID(woeidDoc);
 
   }
 
-  private String queryYahooWeather(Context context, String queryString) {
-    Log.d("tag", "QueryYahooWeather");
+  private String queryYahooWeather(String queryString) {
+    Log.d(TAG, "QueryYahooWeather");
     String qResult = "";
-    // queryString = Uri.encode(queryString);
 
     HttpClient httpClient = new DefaultHttpClient();
-
-    // return Uri.encode(queryString);
 
     HttpGet httpGet = new HttpGet(queryString);
 
@@ -99,15 +96,15 @@ public class WOEIDUtils {
       }
 
     } catch (ClientProtocolException e) {
-      Log.d("erreurMeteo", e.getMessage());
+      Log.d(TAG_ERREUR_METEO, e.getMessage());
     } catch (IOException e) {
-      Log.d("erreurMeteo", e.getMessage());
+      Log.d(TAG_ERREUR_METEO, e.getMessage());
     }
     return qResult;
   }
 
-  private Document convertStringToDocument(Context context, String src) {
-    Log.d("tag", "convertStringToDocument");
+  private Document convertStringToDocument(String src) {
+    Log.d(TAG, "convertStringToDocument");
     Document dest = null;
 
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -117,11 +114,11 @@ public class WOEIDUtils {
       parser = dbFactory.newDocumentBuilder();
       dest = parser.parse(new ByteArrayInputStream(src.getBytes()));
     } catch (ParserConfigurationException e) {
-      Log.d("erreurMeteo", e.getMessage());
+      Log.d(TAG_ERREUR_METEO, e.getMessage());
     } catch (SAXException e) {
-      Log.d("erreurMeteo", e.getMessage());
+      Log.d(TAG_ERREUR_METEO, e.getMessage());
     } catch (IOException e) {
-      Log.d("erreurMeteo", e.getMessage());
+      Log.d(TAG_ERREUR_METEO, e.getMessage());
     }
 
     return dest;
@@ -129,7 +126,7 @@ public class WOEIDUtils {
   }
 
   private String getFirstMatchingWOEID(Document srcDoc) {
-    Log.d("tag", "parserWOEID");
+    Log.d(TAG, "parserWOEID");
 
     try {
       NodeList nodeListDescription = srcDoc.getElementsByTagName("woeid");
