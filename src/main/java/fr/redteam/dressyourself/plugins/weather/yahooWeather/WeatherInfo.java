@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fr.redteam.dressyourself.plugins.weather.yahooWeather4a;
+package fr.redteam.dressyourself.plugins.weather.yahooWeather;
 
 public class WeatherInfo {
 	

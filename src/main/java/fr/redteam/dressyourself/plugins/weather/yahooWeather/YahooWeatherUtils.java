@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fr.redteam.dressyourself.plugins.weather.yahooWeather4a;
+package fr.redteam.dressyourself.plugins.weather.yahooWeather;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -40,7 +40,7 @@ import org.xml.sax.SAXException;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import fr.redteam.dressyourself.plugins.weather.yahooWeather4a.WeatherInfo.ForecastInfo;
+import fr.redteam.dressyourself.plugins.weather.yahooWeather.WeatherInfo.ForecastInfo;
 
 public class YahooWeatherUtils {
 	
