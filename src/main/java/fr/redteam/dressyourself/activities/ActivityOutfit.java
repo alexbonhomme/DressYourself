@@ -115,7 +115,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
       }
     } else {
       imageWeather.setImageDrawable(getResources().getDrawable(R.drawable.nothing));
-      textViewWeather.setText("");
+      textViewWeather.setText("Couldn't get weather information ! ");
     }
   }
 
