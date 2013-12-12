@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 @RunWith(RobolectricTestRunner.class)
 public class ActivityClotheModifyTest {
@@ -124,4 +125,12 @@ public class ActivityClotheModifyTest {
     assertEquals(this.typeSpinner.getSelectedItem().toString(),this.clotheToEdit.getType());
   }
   
+  @Test(expected=DressyourselfRuntimeException.class)
+  public void testIfClotheToModifyIsNullThrowException(){
+	  this.clotheToEdit = null;
+	  Intent intent = new Intent(this.context, ActivityClotheModify.class);
+	  intent.putExtra("clothe", this.clotheToEdit);
+	  this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
+	  
+  }
 }
