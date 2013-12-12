@@ -131,8 +131,12 @@ public class OutfitDecider {
     for (Clothe clothe : listClothe) {
       List<String> listWeather = clothe.getWeather();
       for (String clotheWeather : listWeather) {
-        if (clotheWeather.equals(currentWeather)) {
-          listClotheWeather.add(clothe);
+        // clotheWeather will not be null after introducing weather attribute in bodies table. When
+        // done, remove this if
+        if (clotheWeather != null) {
+          if (clotheWeather.equals(currentWeather)) {
+            listClotheWeather.add(clothe);
+          }
         }
       }
     }
