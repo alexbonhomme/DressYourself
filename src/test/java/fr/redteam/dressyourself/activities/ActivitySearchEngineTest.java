@@ -46,4 +46,9 @@ public class ActivitySearchEngineTest {
 
     controler.destroy();
   }
+
+  @Test
+  public void testOnListItemClick() {
+
+  }
 }
