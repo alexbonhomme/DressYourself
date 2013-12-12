@@ -582,11 +582,32 @@ public class DBHelper implements IntDBHelper {
   @Override
   public long updateClothe(Clothe clothe) {
     ContentValues values = new ContentValues();
-    values.put("model", clothe.getModel());
-    values.put("ID_t", getIDType(clothe.getType()));
-    values.put("ID_c", getIDColor(clothe.getColor()));
-    // values.put("ID_br", getIDBrand(clothe.getBrand()));
+    
+    if (clothe.getType() != null) {
+        values.put("ID_t", getIDType(clothe.getType()));
+      } 
+    else{	
+        values.put("ID_t", 0);
+    }
+    
+    if (clothe.getColor() != null){
+    	values.put("ID_c", getIDColor(clothe.getColor()));
+    }else{
+    	values.put("ID_c", 0);
+    }
 
+    if (clothe.getBrand() != null){
+        values.put("ID_br", getIDBrand(clothe.getBrand()));
+    }else{
+        values.put("ID_br", 0);
+    }
+    
+    if (clothe.getImageRelativePath() != null){
+        values.put("image", getIDBrand(clothe.getBrand()));
+    }else{
+        values.put("image", 0);
+    }
+    
     long r =
         bdd.update("CLOTHES", values, "ID_clothes = ?",
             new String[] {String.valueOf(clothe.getId())});
