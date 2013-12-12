@@ -1,4 +1,4 @@
-package fr.redteam.dressyourself.plugins.weather.tools;
+package fr.redteam.dressyourself.utils;
 
 import static org.junit.Assert.assertEquals;
 
