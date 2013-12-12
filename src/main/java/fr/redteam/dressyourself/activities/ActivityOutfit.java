@@ -44,7 +44,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private Clothe currentBottom;
   private Clothe currentFeet;
   private static boolean gotWeatherInfo;
-  private final OutfitDecider decider = new OutfitDecider(false);
+  private final OutfitDecider decider = new OutfitDecider();
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     initComponent();
     if (Weather.getWeather() != null) {
       gotWeatherInfo = true;
+      decider.setWeather(Weather.getWeather());
     }
     // connexion bdd
     db.open();
