@@ -6,7 +6,6 @@ import java.util.Random;
 
 import android.util.Log;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-import fr.redteam.dressyourself.plugins.weather.Weather;
 
 
 /**
@@ -16,7 +15,7 @@ import fr.redteam.dressyourself.plugins.weather.Weather;
  */
 
 public class OutfitDecider {
-  private boolean weather;
+  private String currentWeather;
   private int currentTop = 0;
   private int currentBottom = 0;
   private int currentFeet = 0;
@@ -31,15 +30,15 @@ public class OutfitDecider {
     super();
   }
 
-  public OutfitDecider(boolean weather) {
-    this.weather = weather;
+  public void setWeather(String weather) {
+    this.currentWeather = weather;
   }
 
   public Clothe decideTop(List<Clothe> listTop) {
     int randomInt;
     List<Clothe> listTopWeather = new ArrayList<Clothe>();
 
-    if (!weather) {
+    if (currentWeather == null) {
       randomInt = randomGenerator.nextInt(listTop.size());
 
       while (randomInt == currentTop) {
@@ -69,7 +68,7 @@ public class OutfitDecider {
     int randomInt;
     List<Clothe> listBottomWeather = new ArrayList<Clothe>();
 
-    if (!weather) {
+    if (currentWeather == null) {
       randomInt = randomGenerator.nextInt(listBottom.size());
 
       while (randomInt == currentTop) {
@@ -99,7 +98,7 @@ public class OutfitDecider {
     int randomInt;
     List<Clothe> listFeetWeather = new ArrayList<Clothe>();
 
-    if (!weather) {
+    if (currentWeather == null) {
       randomInt = randomGenerator.nextInt(listFeet.size());
 
       while (randomInt == currentFeet) {
@@ -126,13 +125,13 @@ public class OutfitDecider {
   }
 
   // build a new list with only clothes adapted for the current weather
-  private List<Clothe> buildListWeather(List<Clothe> listClothe) {
+  public List<Clothe> buildListWeather(List<Clothe> listClothe) {
     List<Clothe> listClotheWeather = new ArrayList<Clothe>();
 
     for (Clothe clothe : listClothe) {
       List<String> listWeather = clothe.getWeather();
-      for (String string : listWeather) {
-        if (string.equals(Weather.getWeather())) {
+      for (String clotheWeather : listWeather) {
+        if (clotheWeather.equals(currentWeather)) {
           listClotheWeather.add(clothe);
         }
       }
