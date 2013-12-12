@@ -1,6 +1,9 @@
 package fr.redteam.dressyourself.activities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,17 +11,21 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowEnvironment;
+import org.robolectric.shadows.ShadowToast;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
+import static org.hamcrest.core.IsEqual.equalTo; 
 @RunWith(RobolectricTestRunner.class)
 public class ActivityClotheModifyTest {
 
@@ -30,6 +37,9 @@ public class ActivityClotheModifyTest {
   private Spinner colorSpinner;
   private Spinner typeSpinner;
   private Clothe clotheToEdit;
+  private Button saveButton;
+  
+  private DBHelper dbHelper = mock(DBHelper.class);
 
   @Before
   public void setUp() {
@@ -55,9 +65,10 @@ public class ActivityClotheModifyTest {
     this.brandEditText = (EditText) this.myActivity.findViewById(R.id.brandEdit);
     this.colorSpinner = (Spinner) this.myActivity.findViewById(R.id.colorSpinner);
     this.typeSpinner = (Spinner) this.myActivity.findViewById(R.id.typeSpinner);
-
+    this.saveButton = (Button) this.myActivity.findViewById(R.id.save);
     /* retrieving informations from intent */
     this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
+    
   }
 
   /* the following tests check the initialization of editable fields */
@@ -132,5 +143,12 @@ public class ActivityClotheModifyTest {
 	  intent.putExtra("clothe", this.clotheToEdit);
 	  this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
 	  
+  }
+  
+  @Test
+  public void testIfUpdateInDatabaseFails(){
+	  when(this.dbHelper.updateClothe(clotheToEdit)).thenReturn((long) 0);
+	  this.saveButton.performClick();
+	  assertThat("An error occured while saving modifications", equalTo(ShadowToast.getTextOfLatestToast()) ); 
   }
 }

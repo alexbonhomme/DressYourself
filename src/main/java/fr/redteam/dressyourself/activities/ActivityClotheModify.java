@@ -80,7 +80,7 @@ public class ActivityClotheModify extends Activity {
         updateClotheValues(clotheToEdit);
         Toast toast;
         bdd.open();
-        if (bdd.updateClothe(clotheToEdit) == 1) {
+        if (bdd.updateClothe(clotheToEdit) == (long)1) {
           toast = Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !", Toast.LENGTH_LONG);
         } else {
           toast = Toast.makeText(ActivityClotheModify.this, "An error occured while saving modifications", Toast.LENGTH_LONG);
