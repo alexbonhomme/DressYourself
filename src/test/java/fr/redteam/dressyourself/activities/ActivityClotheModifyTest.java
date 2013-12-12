@@ -92,7 +92,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on model have been saved */
   @Test
-  public void testupdateClotheValuesOnModel() {
+  public void testUpdateClotheValuesOnModel() {
     this.modelEditText.setText("modified model!");
     this.myActivity.updateClotheValues(this.clotheToEdit);
     assertEquals(this.modelEditText.getText().toString(),this.clotheToEdit.getModel());
@@ -100,7 +100,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on brand have been saved */
   @Test
-  public void testupdateClotheValuesOnBrand() {
+  public void testUpdateClotheValuesOnBrand() {
     this.brandEditText.setText("modified brand!");
     this.myActivity.updateClotheValues(this.clotheToEdit);
     assertEquals(this.brandEditText.getText().toString(),this.clotheToEdit.getBrand());
@@ -108,7 +108,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on color have been saved */
   @Test
-  public void testupdateClotheValuesOnColor() {
+  public void testUpdateClotheValuesOnColor() {
     ArrayAdapter<String> colorAdapter = (ArrayAdapter<String>) this.colorSpinner.getAdapter();
     this.colorSpinner.setSelection(colorAdapter.getPosition("BLUE"));
     this.myActivity.updateClotheValues(this.clotheToEdit);
@@ -117,10 +117,11 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on type have been saved */
   @Test
-  public void testupdateClotheValuesOnType() {
+  public void testUpdateClotheValuesOnType() {
     ArrayAdapter<String> typeAdapter = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
     this.typeSpinner.setSelection(typeAdapter.getPosition("T-shirt"));
     this.myActivity.updateClotheValues(this.clotheToEdit);
     assertEquals(this.typeSpinner.getSelectedItem().toString(),this.clotheToEdit.getType());
   }
+  
 }
