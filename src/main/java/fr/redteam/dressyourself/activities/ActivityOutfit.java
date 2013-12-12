@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
-import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
-import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
@@ -135,11 +132,11 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listTop.size() > 1) {
       currentTop = decider.decideTop(listTop);
       textViewTop.setText(currentTop.getModel());
-      fileImageTop =
-          new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentTop
-              .getImageRelativePath());
-      Uri uri = Uri.fromFile(fileImageTop);
-      imageTop.setImageURI(uri);
+      // fileImageTop =
+      // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentTop
+      // .getImageRelativePath());
+      // Uri uri = Uri.fromFile(fileImageTop);
+      // imageTop.setImageURI(uri);
     }
     textViewTop.setText(textViewTop.getText() + " ");
 
@@ -151,11 +148,11 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listBottom.size() > 1) {
       currentBottom = decider.decideBottom(listBottom);
       textViewBottom.setText(currentBottom.getModel());
-      fileImageBottom =
-          new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentBottom
-              .getImageRelativePath());
-      Uri uri = Uri.fromFile(fileImageBottom);
-      imageBottom.setImageURI(uri);
+      // fileImageBottom =
+      // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentBottom
+      // .getImageRelativePath());
+      // Uri uri = Uri.fromFile(fileImageBottom);
+      // imageBottom.setImageURI(uri);
     }
     textViewBottom.setText(textViewBottom.getText() + " ");
   }
@@ -166,11 +163,11 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     if (listFeet.size() > 1) {
       currentFeet = decider.decideFeet(listFeet);
       textViewFeet.setText(currentFeet.getModel());
-      fileImageFeet =
-          new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentFeet
-              .getImageRelativePath());
-      Uri uri = Uri.fromFile(fileImageFeet);
-      imageFeet.setImageURI(uri);
+      // fileImageFeet =
+      // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentFeet
+      // .getImageRelativePath());
+      // Uri uri = Uri.fromFile(fileImageFeet);
+      // imageFeet.setImageURI(uri);
     }
     textViewFeet.setText(textViewFeet.getText() + " ");
   }

@@ -42,7 +42,7 @@
         
         <TextView 
             android:id="@+id/textview_top"
-            android:layout_width="wrap_content"
+            android:layout_width="100dip"
             android:layout_height="wrap_content"            
             android:layout_alignParentLeft="true"
             />
@@ -50,21 +50,24 @@
         <ImageView
             android:id="@+id/imageview_top"
             android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_height="110dp"
             android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:contentDescription="@string/outfit_top"
-            android:src="@drawable/pull_beige" />
+            android:src="@drawable/pull_beige"
+            android:background="#000000"
+      		android:padding="1dip"
+      		android:scaleType="fitXY" />
 
         <Button
             android:id="@+id/button_refresh_top"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignBottom="@id/imageview_top"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:clickable="true"
-            android:background="@drawable/refresh_button" />
+            android:layout_centerVertical="true"
+            android:background="@drawable/refresh_button"
+            android:clickable="true" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -77,28 +80,31 @@
         
         <TextView 
             android:id="@+id/textview_bottom"
-            android:layout_width="wrap_content"
+            android:layout_width="100dip"
             android:layout_height="wrap_content"            
             android:layout_alignParentLeft="true"
             />
 
         <ImageView
             android:id="@+id/imageview_bottom"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:contentDescription="@string/outfit_bottom"
-            android:src="@drawable/jeans_slim" />
+            android:src="@drawable/jeans_slim" 
+            android:background="#000000"
+      		android:padding="1dip"
+      		android:scaleType="fitXY" />
 
         <Button
             android:id="@+id/button_refresh_bottom"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignBottom="@id/imageview_bottom"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/refresh_button" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -112,29 +118,31 @@
         
         <TextView 
             android:id="@+id/textview_feet"
-            android:layout_width="wrap_content"
+            android:layout_width="100dip"
             android:layout_height="wrap_content"            
             android:layout_alignParentLeft="true"
             />
 
         <ImageView
             android:id="@+id/imageview_feet"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:contentDescription="@string/outfit_feet"
-            android:src="@drawable/basket_compense" />
-        
-        
+            android:src="@drawable/basket_compense"
+            android:background="#000000"
+      		android:padding="1dip"
+      		android:scaleType="fitXY" />
+
          <Button
-            android:id="@+id/button_refresh_feet"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignBottom="@id/imageview_feet"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/refresh_button" />
+             android:id="@+id/button_refresh_feet"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:background="@drawable/refresh_button" />
+
     </RelativeLayout>
 
    <Button 
