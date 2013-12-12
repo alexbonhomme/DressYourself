@@ -19,29 +19,30 @@ package fr.redteam.dressyourself.plugins.weather.yahooWeather;
 
 public class WeatherInfo {
 	
-	String mTitle;
-	String mDescription;
-	String mLanguage;
-	String mLastBuildDate;
-	String mLocationCity;
-	String mLocationRegion; // region may be null
-	String mLocationCountry;
-	
-	String mWindChill;
-	String mWindDirection;
-	String mWindSpeed;
-	
-	String mAtmosphereHumidity;
-	String mAtmosphereVisibility;
-	String mAtmospherePressure;
-	String mAtmosphereRising;
-	
-	String mAstronomySunrise;
-	String mAstronomySunset;
-	
-	String mConditionTitle;
-	String mConditionLat;
-	String mConditionLon;
+  private String mTitle;
+  private String mDescription;
+  private String mLanguage;
+  private String mLastBuildDate;
+  private String mLocationCity;
+  // region may be null
+  private String mLocationRegion;
+  private String mLocationCountry;
+
+  private String mWindChill;
+  private String mWindDirection;
+  private String mWindSpeed;
+
+  private String mAtmosphereHumidity;
+  private String mAtmosphereVisibility;
+  private String mAtmospherePressure;
+  private String mAtmosphereRising;
+
+  private String mAstronomySunrise;
+  private String mAstronomySunset;
+
+  private String mConditionTitle;
+  private String mConditionLat;
+  private String mConditionLon;
 
 	/*
 	 * information in tag "yweather:condition"
