@@ -12,7 +12,7 @@
  * the License.
  */
 
-package fr.redteam.dressyourself.plugins.weather.yahooWeather4a;
+package fr.redteam.dressyourself.plugins.weather.yahooWeather;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
