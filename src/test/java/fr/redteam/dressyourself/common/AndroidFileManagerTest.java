@@ -67,7 +67,6 @@ public class AndroidFileManagerTest {
     manager.writeFileToStorage("test/image.png", imageStream);
 
     manager.deleteFileFromStorage("test/image.png");
-
     File deleteFile = new File(context.getExternalFilesDir(null), "test/image.png");
     assertTrue(!deleteFile.exists());
   }
