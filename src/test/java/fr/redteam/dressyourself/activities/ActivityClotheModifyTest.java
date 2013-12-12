@@ -1,6 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -64,25 +64,25 @@ public class ActivityClotheModifyTest {
   /* check if the clothe's model value is properly loaded into model EditText */
   @Test
   public void testModelInitialValue() {
-    assertTrue(this.clotheToEdit.getModel().equals(this.modelEditText.getText().toString()));
+    assertEquals(this.clotheToEdit.getModel(),this.modelEditText.getText().toString());
   }
 
   /* check if the clothe's brand value is properly loaded into brand EditText */
   @Test
   public void testBrandInitialValue() {
-    assertTrue(this.clotheToEdit.getBrand().equals(this.brandEditText.getText().toString()));
+	  assertEquals(this.clotheToEdit.getBrand(),this.brandEditText.getText().toString());
   }
 
   /* check if the clothe's color value is properly loaded as first element into color Spinner */
   @Test
   public void testColorInitialValue() {
-    assertTrue(this.clotheToEdit.getColor().equals(this.colorSpinner.getSelectedItem().toString()));
+	  assertEquals(this.clotheToEdit.getColor(),this.colorSpinner.getSelectedItem().toString());
   }
 
   /* check if the clothe's type value is properly loaded as first element into type Spinner */
   @Test
   public void testTypeInitialValue() {
-    assertTrue(this.clotheToEdit.getType().equals(this.typeSpinner.getSelectedItem().toString()));
+	  assertEquals(this.clotheToEdit.getType(),this.typeSpinner.getSelectedItem().toString());
   }
 
   /*
@@ -95,7 +95,7 @@ public class ActivityClotheModifyTest {
   public void testupdateClotheValuesOnModel() {
     this.modelEditText.setText("modified model!");
     this.myActivity.updateClotheValues(this.clotheToEdit);
-    assertTrue(this.clotheToEdit.getModel().equals(this.modelEditText.getText().toString()));
+    assertEquals(this.modelEditText.getText().toString(),this.clotheToEdit.getModel());
   }
 
   /* check if the modifications on brand have been saved */
@@ -103,7 +103,7 @@ public class ActivityClotheModifyTest {
   public void testupdateClotheValuesOnBrand() {
     this.brandEditText.setText("modified brand!");
     this.myActivity.updateClotheValues(this.clotheToEdit);
-    assertTrue(this.clotheToEdit.getBrand().equals(this.brandEditText.getText().toString()));
+    assertEquals(this.brandEditText.getText().toString(),this.clotheToEdit.getBrand());
   }
 
   /* check if the modifications on color have been saved */
@@ -112,7 +112,7 @@ public class ActivityClotheModifyTest {
     ArrayAdapter<String> colorAdapter = (ArrayAdapter<String>) this.colorSpinner.getAdapter();
     this.colorSpinner.setSelection(colorAdapter.getPosition("BLUE"));
     this.myActivity.updateClotheValues(this.clotheToEdit);
-    assertTrue(this.clotheToEdit.getColor().equals(this.colorSpinner.getSelectedItem().toString()));
+    assertEquals(this.colorSpinner.getSelectedItem().toString(),this.clotheToEdit.getColor());
   }
 
   /* check if the modifications on type have been saved */
@@ -121,6 +121,6 @@ public class ActivityClotheModifyTest {
     ArrayAdapter<String> typeAdapter = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
     this.typeSpinner.setSelection(typeAdapter.getPosition("T-shirt"));
     this.myActivity.updateClotheValues(this.clotheToEdit);
-    assertTrue(this.clotheToEdit.getType().equals(this.typeSpinner.getSelectedItem().toString()));
+    assertEquals(this.typeSpinner.getSelectedItem().toString(),this.clotheToEdit.getType());
   }
 }
