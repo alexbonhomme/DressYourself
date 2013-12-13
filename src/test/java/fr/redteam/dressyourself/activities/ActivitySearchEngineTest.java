@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.shadows.ShadowListView;
 import org.robolectric.util.ActivityController;
 
 import android.app.SearchManager;
@@ -49,6 +50,19 @@ public class ActivitySearchEngineTest {
 
   @Test
   public void testOnListItemClick() {
+    controler.create();
 
+    SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
+    assertNotNull(searchManager);
+
+    Intent searchIntent = new Intent(Intent.ACTION_SEARCH);
+    searchIntent.putExtra(SearchManager.QUERY, "jeans");
+
+    controler.newIntent(searchIntent);
+    ShadowListView listView = Robolectric.shadowOf(controler.get().getListView());
+
+    listView.performItemClick(0);
+
+    controler.destroy();
   }
 }
