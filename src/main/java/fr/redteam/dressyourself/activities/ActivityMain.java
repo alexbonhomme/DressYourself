@@ -25,25 +25,11 @@ public class ActivityMain extends Activity implements LocationListener {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    // creation base de donnée et test
-    /*
-     * DBHelper db = new DBHelper(this);
-     * 
-     * @Override protected void onCreate(Bundle savedInstanceState) {
-     * super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); // creation base
-     * de donnée DBHelper db = new DBHelper(this); >>>>>>> branch 'master' of
-     * https://tbuisine@bitbucket.org/blckshrk/dressyourself.git
-     * 
-     * <<<<<<< HEAD db.open(); String t = Integer.toString(db.getIDColor("WHITE"));
-     * 
-     * Log.v("BDD", t); db.close();
-     */
 
     // TODO recuperer coordonnees GPS puis recuperer le nom de la ville
 
     WeatherPlugin weather = new WeatherPlugin("lille", getApplicationContext());
     weather.sendYahooQuery();
-
 
     buttonFilters = (Button) findViewById(R.id.btoutfit);
     buttonFilters.setOnClickListener(new OnClickListener() {
@@ -57,7 +43,7 @@ public class ActivityMain extends Activity implements LocationListener {
 
 
     /* Hard tricks */
-    /* Debbug zone */
+    /* Debug zone */
     ImageView logoMain = (ImageView) findViewById(R.id.imgLogoMain);
     logoMain.setOnClickListener(new OnClickListener() {
 
@@ -122,5 +108,4 @@ public class ActivityMain extends Activity implements LocationListener {
     // TODO Auto-generated method stub
 
   }
-
 }
