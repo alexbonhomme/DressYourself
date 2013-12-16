@@ -1,17 +1,16 @@
 package fr.redteam.dressyourself.activities;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
@@ -100,15 +99,16 @@ public class ActivityDebug extends Activity {
 
       @Override
       public void onClick(View v) {
-        try {
-          fillLocalDatabaseHard();
-        } catch (FileNotFoundException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-        }
+        new AsyncTask<String, Void, Void>() {
+
+          @Override
+          protected Void doInBackground(String... params) {
+            fillLocaleDataBaseWithFewClothes();
+            return null;
+          }
+        }.execute();
       }
     });
-
 
 
     this.modifyClothe.setOnClickListener(new OnClickListener() {
@@ -165,8 +165,6 @@ public class ActivityDebug extends Activity {
   }
 
   /**
-   * XXX: Ne fonctionne pas a cause du connecteur
-   * 
    * Méthode temporaire pour permettre l'avancement de Rémy et Antonia
    * 
    * @author Alexandre Bonhomme
@@ -189,142 +187,23 @@ public class ActivityDebug extends Activity {
 
     for (int i = 0; i < 3; i++) {
       Clothe bottom = api.findClotheById(500 + i);
+      bottom.setWeather(new ArrayList<String>());
       db.insertColor(bottom.getColor());
       db.insertType(bottom.getType(), (int) bottomId);
       db.insertClothes(bottom);
 
       Clothe top = api.findClotheById(750 + i);
+      top.setWeather(new ArrayList<String>());
       db.insertColor(top.getColor());
       db.insertType(top.getType(), (int) topId);
       db.insertClothes(top);
 
       Clothe shoes = api.findClotheById(960 + i);
+      shoes.setWeather(new ArrayList<String>());
       db.insertColor(shoes.getColor());
       db.insertType(shoes.getType(), (int) shoesId);
       db.insertClothes(shoes);
     }
-
-    db.close();
-  }
-
-  /**
-   * 
-   * @throws FileNotFoundException
-   */
-  private void fillLocalDatabaseHard() throws FileNotFoundException {
-
-    DBHelper db = new DBHelper(this);
-
-    db.open();
-    long topId = db.insertBodies("Top");
-    long bottomId = db.insertBodies("Bottom");
-    long shoesId = db.insertBodies("Shoes");
-
-    /* long brandId = */db.insertBrand("Zara");
-
-    /* Tops */
-    Clothe top = new Clothe("two-tone wrap around jacket");
-    top.setBodies("Top");
-    top.setBrand("Zara");
-    top.setColor("Ecru / Black");
-    top.setType("Knitwears");
-    // top.setImageRelativePath(getResources().openRawResource(R.raw.twotone_wrap_around_jacket));
-
-    db.insertColor(top.getColor());
-    db.insertType(top.getType(), topId);
-    db.insertClothes(top);
-
-    top = new Clothe("high neck sweater with strass");
-    top.setBodies("Top");
-    top.setBrand("Zara");
-    top.setColor("Grey");
-    top.setType("Knitwears");
-    // top.setImageRelativePath(getResources().openRawResource(R.raw.high_neck_sweater_with_strass));
-
-    db.insertColor(top.getColor());
-    // db.insertType(top.getType(), (int) topId);
-    db.insertClothes(top);
-
-    top = new Clothe("sweater with loose turtle neck");
-    top.setBodies("Top");
-    top.setBrand("Zara");
-    top.setColor("Ecru / Black");
-    top.setType("Knitwears");
-    // top.setImageRelativePath(getResources().openRawResource(R.raw.sweater_with_loose_turtle_neck));
-
-    db.insertColor(top.getColor());
-    // db.insertType(top.getType(), (int) topId);
-    db.insertClothes(top);
-
-    /* Bottoms */
-    Clothe bottom = new Clothe("skinny cropped jeans");
-    bottom.setBodies("Top");
-    bottom.setBrand("Zara");
-    bottom.setColor("Blue");
-    bottom.setType("Jean");
-    // bottom.setImageRelativePath(getResources().openRawResource(R.raw.skinny_cropped_jeans));
-
-    db.insertColor(bottom.getColor());
-    db.insertType(bottom.getType(), bottomId);
-    db.insertClothes(bottom);
-
-    bottom = new Clothe("medium wash jeans");
-    bottom.setBodies("Top");
-    bottom.setBrand("Zara");
-    bottom.setColor("Indigo");
-    bottom.setType("Jean");
-    // bottom.setImageRelativePath(getResources().openRawResource(R.raw.medium_wash_jeans));
-
-    db.insertColor(bottom.getColor());
-    // db.insertType(bottom.getType(), (int) topId);
-    db.insertClothes(bottom);
-
-    bottom = new Clothe("skinny jeans");
-    bottom.setBodies("Top");
-    bottom.setBrand("Zara");
-    bottom.setColor("Black");
-    bottom.setType("Jean");
-    // bottom.setImageRelativePath(getResources().openRawResource(R.raw.skinny_jeans));
-
-    db.insertColor(bottom.getColor());
-    // db.insertType(bottom.getType(), (int) topId);
-    db.insertClothes(bottom);
-
-    /* Shoes */
-    Clothe shoes = new Clothe("embossed leather high heel ankle boot");
-    shoes.setBodies("Top");
-    shoes.setBrand("Zara");
-    shoes.setColor("Black");
-    shoes.setType("Shoes");
-    // shoes.setImageRelativePath(getResources().openRawResource(R.raw.embossed_leather_high_heel_ankle_boot));
-
-    db.insertColor(shoes.getColor());
-    db.insertType(shoes.getType(), shoesId);
-    db.insertClothes(shoes);
-
-    shoes = new Clothe("high heel leather ankle boot with zips");
-    shoes.setBodies("Top");
-    shoes.setBrand("Zara");
-    shoes.setColor("Black");
-    shoes.setType("Shoes");
-    // shoes.setImageRelativePath(getResources().openRawResource(R.raw.high_heel_leather_ankle_boot_with_zips));
-
-    db.insertColor(shoes.getColor());
-    // db.insertType(shoes.getType(), (int) topId);
-    db.insertClothes(shoes);
-
-    shoes = new Clothe("leather ankle boot with zip");
-    shoes.setBodies("Top");
-    shoes.setBrand("Zara");
-    shoes.setColor("Black");
-    shoes.setType("Shoes");
-    // shoes.setImageRelativePath(getResources().openRawResource(R.raw.leather_ankle_boot_with_zip));
-
-    db.insertColor(shoes.getColor());
-    // db.insertType(shoes.getType(), (int) topId);
-    db.insertClothes(shoes);
-
-    Toast.makeText(this, "Products added to local database !", Toast.LENGTH_SHORT).show();
 
     db.close();
   }
