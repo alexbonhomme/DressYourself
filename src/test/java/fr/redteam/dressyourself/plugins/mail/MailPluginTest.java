@@ -44,7 +44,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdresseValide() throws Throwable {
+  public void testAdressValide() throws Throwable {
     MailPlugin mailPlugin = new MailPlugin("", "toto@free.fr", this.activity);
     mailPlugin.createMail();
     assertEquals(true, mailPlugin.isValidMail());
@@ -56,7 +56,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdresseFalse() throws Throwable {
+  public void testAdressFalse() throws Throwable {
     MailPlugin mailPlugin = new MailPlugin("", "to@to@free.fr", this.activity);
     mailPlugin.createMail();
     assertEquals(false, mailPlugin.isValidMail());
