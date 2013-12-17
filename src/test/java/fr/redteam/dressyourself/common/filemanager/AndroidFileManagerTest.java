@@ -50,6 +50,13 @@ public class AndroidFileManagerTest {
     File newFile = new File(context.getExternalFilesDir(null), "test/image.png");
     assertTrue(newFile.exists());
     assertTrue(newFile.isFile());
+
+    /*
+     * Error cases
+     */
+    exception.expect(DressyourselfRuntimeException.class);
+    exception.expectMessage("imageRelitivePath should not be ended by a '/'");
+    manager.writeFileToStorage("test/", imageStream);
   }
 
   @Test
@@ -64,13 +71,16 @@ public class AndroidFileManagerTest {
     assertTrue(loadFile.isFile());
 
     /*
-     * Error case
+     * Error cases
      * 
-     * File null
+     * File not found File null
      */
     exception.expect(DressyourselfIOException.class);
     exception.expectMessage("File 'test/idonotexist.png' not found.");
     manager.loadFileFromStorage("test/idonotexist.png");
+
+    exception.expect(DressyourselfRuntimeException.class);
+    manager.loadFileFromStorage(null);
   }
 
   @Test
@@ -85,7 +95,7 @@ public class AndroidFileManagerTest {
     assertTrue(!deleteFile.exists());
 
     /*
-     * Error case
+     * Error cases
      * 
      * File null
      */
