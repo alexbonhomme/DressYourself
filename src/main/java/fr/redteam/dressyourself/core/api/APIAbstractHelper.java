@@ -33,7 +33,7 @@ public abstract class APIAbstractHelper {
   /**
    * Get a plain text content from an {@link java.net.URL url}
    */
-  public String getContent(URL url) {
+  protected String getContent(URL url) {
     String content = "";
     HttpURLConnection urlConnection = null;
 
@@ -60,7 +60,7 @@ public abstract class APIAbstractHelper {
    * 
    * @throws JSONException
    */
-  public Clothe buildClotheFromJSONArray(JSONObject json) throws JSONException {
+  protected Clothe buildClotheFromJSONArray(JSONObject json) throws JSONException {
     Clothe product = new Clothe();
 
     product.setId(json.getInt("id"));
