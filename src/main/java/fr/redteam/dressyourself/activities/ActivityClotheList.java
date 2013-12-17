@@ -7,12 +7,18 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
+/**
+ * 
+ * @author Florian Recourt
+ * 
+ * This activity allows user to see a list of all clothes present in the database
+ *
+ */
 public class ActivityClotheList extends ListActivity{
 
 	private List<Clothe> clotheList;
@@ -20,12 +26,16 @@ public class ActivityClotheList extends ListActivity{
 	private DBHelper db;
 	private AdapterClothes adapter;
 	
+	/**
+	 * Manage the DBHelper
+	 */
 	private void setClotheList(){
 		this.db.open();
 		this.clotheList = this.db.getListClothes();
 		this.db.close();
 	}
 	
+	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		this.db = new DBHelper(this);
@@ -38,7 +48,8 @@ public class ActivityClotheList extends ListActivity{
 		this.adapter = new AdapterClothes(this, this.clotheList);
 		this.setListAdapter(adapter);
 	}
-
+	
+	@Override
 	public void onResume(){
 		super.onResume();
 		this.setClotheList();
