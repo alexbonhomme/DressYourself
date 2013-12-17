@@ -23,33 +23,25 @@ For example, if you're looking for all clothes which contain _boots_ in here nam
 ```
 $ curl -i "http://dev.alexandrebonhomme.fr/api.php?filters=model&q=boots"
 HTTP/1.1 200 OK
-Set-Cookie: startBAK=R3415747021; path=/; expires=Sun, 08-Dec-2013 14:37:48 GMT
-Date: Sun, 08 Dec 2013 13:36:31 GMT
+Set-Cookie: startBAK=R3415749199; path=/; expires=Tue, 17-Dec-2013 22:22:41 GMT
+Date: Tue, 17 Dec 2013 21:22:18 GMT
 Content-Type: text/html
 Transfer-Encoding: chunked
 Connection: keep-alive
-Set-Cookie: start=R3256006777; path=/; expires=Sun, 08-Dec-2013 14:37:48 GMT
+Set-Cookie: start=R3918654051; path=/; expires=Tue, 17-Dec-2013 22:32:50 GMT
 Server: Apache
 X-Powered-By: PHP/5.3.16
 Vary: Accept-Encoding
 
 [{
-    "id":876,
-    "model":"ankle boots with interior wedge and elastic panels",
-    "imageUrl":"http:\/\/static.zara.net\/photos\/\/2013\/I\/1\/1\/p\/5155\/201\/003\/2\/w\/400\/5155201003_1_1_1.jpg?timestamp=1377247934735",
-    "brand":"Zara",
-    "color":"Ice",
-    "type":"Shoes",
-    "bodies":"Shoes"
- },
- {
-    "id":877,
-    "model":"ankle boots with interior wedge and elastic panels",
-    "imageUrl":"http:\/\/static.zara.net\/photos\/\/2013\/I\/1\/1\/p\/5155\/201\/040\/2\/w\/400\/5155201040_1_1_1.jpg?timestamp=1377247940952",
-    "brand":"Zara",
-    "color":"Black",
-    "type":"Shoes",
-    "bodies":"Shoes"
+	"id":914,
+	"model":"ankle boots with interior wedge and elastic panels",
+	"imageUrl":"http:\/\/static.zara.net\/photos\/\/2013\/I\/1\/1\/p\/5155\/201\/003\/2\/w\/400\/5155201003_1_1_1.jpg?timestamp=1377247934735",
+	"imagePath":"Zara\/en\/woman\/shoes\/113-ankle_boots_with_interior_wedge_and_elastic_panels.jpg",
+	"brand":"Zara",
+	"color":"Ice",
+	"type":"Shoes",
+	"bodies":"Shoes"
 }]
 ```
 
@@ -63,23 +55,24 @@ To get a specific product with his _ID_, it's possible to use the `id` parameter
 ```
 $ curl -i "http://dev.alexandrebonhomme.fr/api.php?id=42"
 HTTP/1.1 200 OK
-Set-Cookie: startBAK=R3415742665; path=/; expires=Sun, 08-Dec-2013 15:26:17 GMT
-Date: Sun, 08 Dec 2013 14:12:16 GMT
+Set-Cookie: startBAK=R3415745932; path=/; expires=Tue, 17-Dec-2013 22:31:58 GMT
+Date: Tue, 17 Dec 2013 21:20:33 GMT
 Content-Type: text/html
 Transfer-Encoding: chunked
 Connection: keep-alive
-Set-Cookie: start=R118850569; path=/; expires=Sun, 08-Dec-2013 15:29:20 GMT
+Set-Cookie: start=R118925710; path=/; expires=Tue, 17-Dec-2013 22:22:41 GMT
 Server: Apache
 X-Powered-By: PHP/5.3.16
 Vary: Accept-Encoding
 
 [{
-    "id":42,
-    "model":"high heel leather ankle boot with straps",
-    "imageUrl":"http:\/\/static.zara.net\/photos\/\/2013\/I\/1\/1\/p\/5131\/201\/040\/2\/w\/400\/5131201040_1_1_1.jpg?timestamp=1384526392536",
-    "brand":"Zara",
-    "color":"Black",
-    "type":"Shoes",
-    "bodies":"Shoes"
+	"id":42,
+	"model":"jeans with stitching and coin pocket",
+	"imageUrl":"http:\/\/static.zara.net\/photos\/\/2013\/I\/0\/2\/p\/2627\/301\/406\/2\/w\/400\/2627301406_6_1_1.jpg?timestamp=1375294960907",
+	"imagePath":"Zara\/en\/man\/jeans\/41-jeans_with_stitching_and_coin_pocket.jpg",
+	"brand":"Zara",
+	"color":"Light blue",
+	"type":"Jean",
+	"bodies":"Bottom"
 }]
 ```
