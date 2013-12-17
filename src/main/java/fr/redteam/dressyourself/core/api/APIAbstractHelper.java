@@ -60,7 +60,7 @@ public abstract class APIAbstractHelper {
    * 
    * @throws JSONException
    */
-  protected Clothe buildClotheFromJSONArray(JSONObject json) throws JSONException {
+  protected Clothe buildClotheFromJSONObject(JSONObject json) throws JSONException {
     Clothe product = new Clothe();
 
     product.setId(json.getInt("id"));
