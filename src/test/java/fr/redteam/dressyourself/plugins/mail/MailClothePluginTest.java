@@ -1,7 +1,10 @@
 package fr.redteam.dressyourself.plugins.mail;
 
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
@@ -35,5 +38,57 @@ public class MailClothePluginTest {
             .get();
   }
 
+  /**
+   * this test made a simple test if the test return true if the mail adress is valid.
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testAdressValid() throws Throwable {
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "toto@free.fr", this.activity);
+    mailClothePlugin.createMail();
+    assertTrue(true == mailClothePlugin.isValidMail());
+  }
 
+  /**
+   * this test made a simple test if the test return false if the mail adress is false.
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testAdressFalse() throws Throwable {
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "to@to@tutu.tox.free.fr", this.activity);
+    mailClothePlugin.createMail();
+    assertTrue(false == mailClothePlugin.isValidMail());
+  }
+
+  /**
+   * this test made a simple test if the test return true if all mail adress is valid.
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testAdressesValid() throws Throwable {
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
+            this.activity);
+    mailClothePlugin.createMail();
+    assertTrue(true == mailClothePlugin.isValidMail());
+  }
+
+  /**
+   * this test made a simple test if the test return false if the one of mail adress isn't valid.
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testAdressesFalse() throws Throwable {
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "",
+            "toto@free.fr;to@to@tutu.tox.free.fr;jerm@live.com;foufou@gmail.com", this.activity);
+    mailClothePlugin.createMail();
+    assertTrue(false == mailClothePlugin.isValidMail());
+  }
 }
