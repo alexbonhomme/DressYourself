@@ -67,4 +67,8 @@ public class ActivityClotheList extends ListActivity{
 			startActivity(intent);
 		}
 	}
+
+	public List<Clothe> getList() {
+		return this.clotheList;
+	}
 } 
