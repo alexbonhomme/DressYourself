@@ -27,7 +27,7 @@ public class ActivityClotheList extends ListActivity{
 	private AdapterClothes adapter;
 	
 	/**
-	 * Manage the DBHelper
+	 * Set the List by using the DBHelper
 	 */
 	private void setClotheList(){
 		this.db.open();
