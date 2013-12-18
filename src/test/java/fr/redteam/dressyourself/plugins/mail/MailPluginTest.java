@@ -14,12 +14,17 @@ import android.os.Bundle;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
-
+/**
+ * This class is made in order to test MailPlugin
+ *
+ */
 @RunWith(RobolectricTestRunner.class)
 public class MailPluginTest {
 
   private Activity activity;
-
+  /**
+   * Configure the environnement's test.
+   */
   @Before
   public void setUp() throws Exception {
     Outfit outfit = new Outfit();
