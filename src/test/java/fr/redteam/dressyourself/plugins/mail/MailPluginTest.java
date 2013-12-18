@@ -49,7 +49,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressValide() throws Throwable {
+  public void testAdressValid() throws Throwable {
     MailPlugin mailPlugin = new MailPlugin("", "toto@free.fr", this.activity);
     mailPlugin.createMail();
     assertEquals(true, mailPlugin.isValidMail());
@@ -73,7 +73,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressesValide() throws Throwable {
+  public void testAdressesValid() throws Throwable {
     MailPlugin mailPlugin =
         new MailPlugin("", "toto@free.fr;jerm@live.com;foufou@gmail.com", this.activity);
     mailPlugin.createMail();
