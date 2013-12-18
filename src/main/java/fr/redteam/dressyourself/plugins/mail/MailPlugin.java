@@ -67,11 +67,10 @@ public class MailPlugin {
         depart = positionSeparateur.get(i) + 1;
       }
       dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
-   
-      for(int i =0; i<nbDst;i++)
-      {
+
+      for (int i = 0; i < nbDst; i++) {
         if (this.adresseValide) {
-        this.adresseValide = isValidEmailAddress(dscList[i]);
+          this.adresseValide = isValidEmailAddress(dscList[i]);
         }
       }
     } else {
