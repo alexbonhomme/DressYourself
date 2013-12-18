@@ -43,12 +43,12 @@ public abstract class APIAbstractHelper {
       content = StreamTools.convertStreamToString(in);
 
     } catch (IOException e) {
-      throw new DressyourselfRuntimeException("IOException", e);
+      throw new DressyourselfIOException(e);
     } finally {
       try {
         urlConnection.disconnect();
       } catch (NullPointerException _) {
-        ;
+        ; // DO NOTHING (we just check is the connection is established before)
       }
     }
 
@@ -79,7 +79,7 @@ public abstract class APIAbstractHelper {
       imageStream.close();
 
     } catch (MalformedURLException e) {
-      throw new DressyourselfRuntimeException(e);
+      throw new DressyourselfRuntimeException("MalformedURLException", e);
     } catch (IOException e) {
       throw new DressyourselfIOException(e);
     }

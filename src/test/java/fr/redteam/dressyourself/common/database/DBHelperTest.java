@@ -7,23 +7,14 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.junit.runners.model.InitializationError;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
-import android.app.Activity;
 import android.content.Context;
-import android.test.AndroidTestCase;
-import android.test.mock.MockContext;
-import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-import fr.redteam.dressyourself.plugins.weather.Weather;
-import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier;
 @RunWith(RobolectricTestRunner.class)
 public class DBHelperTest  {
  
@@ -49,27 +40,28 @@ DBHelper db;
   @Test
   public void testInsertColor() {
     long c = db.insertColor("Mauve");
+    assertEquals("Mauve", db.getColor(c));
     
   }
 
   @Test
   public void testInsertWeather() {
-    long c = db.insertWeather("Mauve");
+    fail("Not yet implemented");
    }
 
   @Test
   public void testInsertBodies() {
-    long c = db.insertBodies("Mauve");
+    fail("Not yet implemented");
    }
 
   @Test
   public void testInsertType() {
-    long c = db.insertType("Mauve",1);
+    fail("Not yet implemented");
    }
   
   @Test
   public void testInsertBrand() {
-	  long c = db.insertBrand("toto");
+	  fail("Not yet implemented");
   }
 
   @Test
@@ -82,6 +74,7 @@ DBHelper db;
     clothe.setModel("model");
     clothe.setType("pull");
     long c = db.insertClothes(clothe);
+	assertEquals(clothe, db.getClothe(c));
   }
 
   @Test
@@ -93,28 +86,29 @@ DBHelper db;
   public void testGetIDColor() {
     long c = db.insertColor("Mauve");
     long l = db.getIDColor("Mauve");
-    assertTrue(c == l);    ;
+    assertEquals(c,l);
   }
 
   @Test
   public void testGetIDWeather() {
-    long c = db.insertWeather("Mauve");
-    long l = db.getIDWeather("Mauve");
-    assertTrue(c == l) ;  }
+    long c = db.insertWeather("hot");
+    long l = db.getIDWeather("hot");
+    assertEquals(c,l);
+    }
 
   @Test
   public void testGetIDBodies() {
-    long c = db.insertBodies("Mauve");
+    long c = db.insertBodies("Top");
     
-    long l = db.getIDBodies("Mauve");
-    assertTrue( c == l) ;  }
+    long l = db.getIDBodies("Top");
+    assertEquals(c,l);  }
 
   @Test
   public void testGetIDType() {
-    long c = db.insertType("Mauve",1);
+    long c = db.insertType("Jeans",1);
     
-    long l = db.getIDType("Mauve");
-    assertTrue( c == l );  }
+    long l = db.getIDType("Jeans");
+    assertEquals(c,l);  }
 
   @Test
   public void testGetIDClothes() {
@@ -130,7 +124,7 @@ DBHelper db;
     System.out.println();
     long l = db.getIDClothes("toto");
 
-    assertTrue (c == l);
+    assertEquals(c,l);
     }
 
   @Test
@@ -143,36 +137,36 @@ DBHelper db;
     long c = db.insertBrand("Mauve");
     
     long l = db.getIDBrand("Mauve");
-    assertTrue  (c == l) ;  
+    assertEquals(c,l);  
     }
 
   @Test
   public void testGetColor() {
     long l = db.insertColor("mauve");
-    assertTrue (db.getColor(l).equals("mauve"));
+    assertEquals (db.getColor(l),("mauve"));
   }
 
   @Test
   public void testGetBodies() {
     long l = db.insertBodies("mauve");
-    assertTrue (db.getBodies(l).equals("mauve"));
+    assertEquals (db.getBodies(l),("mauve"));
     }
 
   @Test
   public void testGetWeather() {
     long l = db.insertWeather("mauve");
-    assertTrue (db.getWeather(l).equals("mauve"));
+    assertEquals(db.getWeather(l),("mauve"));
     }
 
   @Test
   public void testGetType() {
     long l = db.insertType("mauve",0);
-    assertTrue (db.getType(l).equals("mauve"));  }
+    assertEquals (db.getType(l),("mauve"));  }
 
   @Test
   public void testGetBrand() {
     long l = db.insertBrand("mauve");
-    assertTrue (db.getBrand(l).equals("mauve"));
+    assertEquals (db.getBrand(l),("mauve"));
     }
 
   @Test
@@ -198,7 +192,8 @@ DBHelper db;
 	  clothe.setImageRelativePath("path");
 	  clothe.setType("pull");
 	  long c = db.insertClothes(clothe);
-	  List clothes = db.getListFeet();   }
+	  List clothes = db.getListFeet();
+  }
 
   @Test
   public void testGetListBottom() {
