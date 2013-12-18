@@ -2,6 +2,9 @@ package fr.redteam.dressyourself.common.database;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,6 +22,8 @@ import android.test.mock.MockContext;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.plugins.weather.Weather;
+import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier;
 @RunWith(RobolectricTestRunner.class)
 public class DBHelperTest  {
  
@@ -61,10 +66,21 @@ DBHelper db;
   public void testInsertType() {
     long c = db.insertType("Mauve",1);
    }
+  
+  @Test
+  public void testInsertBrand() {
+	  long c = db.insertBrand("toto");
+  }
 
   @Test
   public void testInsertClothes() {
     Clothe clothe = new Clothe("toto");
+    clothe.setBodies("haut");
+    clothe.setBrand("xara");
+    clothe.setColor("mauve");
+    clothe.setImageRelativePath("path");
+    clothe.setModel("model");
+    clothe.setType("pull");
     long c = db.insertClothes(clothe);
   }
 
@@ -76,18 +92,14 @@ DBHelper db;
   @Test
   public void testGetIDColor() {
     long c = db.insertColor("Mauve");
-   
     long l = db.getIDColor("Mauve");
-    
     assertTrue(c == l);    ;
   }
 
   @Test
   public void testGetIDWeather() {
     long c = db.insertWeather("Mauve");
-    
     long l = db.getIDWeather("Mauve");
-    
     assertTrue(c == l) ;  }
 
   @Test
@@ -107,7 +119,15 @@ DBHelper db;
   @Test
   public void testGetIDClothes() {
     Clothe clothe = new Clothe("toto");
+    List<String> w = new ArrayList<String>();
+    w.add("chaud");
+    clothe.setBodies("haut");
+    clothe.setBrand("xara");
+    clothe.setColor("mauve");
+    clothe.setImageRelativePath("path");
+
     long c = db.insertClothes(clothe);
+    System.out.println();
     long l = db.getIDClothes("toto");
 
     assertTrue (c == l);
@@ -157,38 +177,76 @@ DBHelper db;
 
   @Test
   public void testGetClothe() {
-    fail("Not yet implemented");
+	  Clothe clothe = new Clothe("toto");
+	  clothe.setBodies("TOP");
+	  clothe.setBrand("xara");
+	  clothe.setColor("mauve");
+	  clothe.setImageRelativePath("path");
+	  clothe.setType("pull");
+	  long c = db.insertClothes(clothe);
+	  Clothe result = db.getClothe(c);	
+	  System.out.println(result.getBodies());
+	  assertTrue(clothe.getBodies().equals(result.getBodies()));
   }
 
   @Test
   public void testGetListTop() {
-    fail("Not yet implemented");
-  }
+	  Clothe clothe = new Clothe("toto");
+	  clothe.setBodies("Bottom");
+	  clothe.setBrand("xara");
+	  clothe.setColor("mauve");
+	  clothe.setImageRelativePath("path");
+	  clothe.setType("pull");
+	  long c = db.insertClothes(clothe);
+	  List clothes = db.getListFeet();   }
 
   @Test
   public void testGetListBottom() {
-    fail("Not yet implemented");
-  }
+	  Clothe clothe = new Clothe("toto");
+	  clothe.setBodies("shoes");
+	  clothe.setBrand("xara");
+	  clothe.setColor("mauve");
+	  clothe.setImageRelativePath("path");
+	  clothe.setType("pull");
+	  long c = db.insertClothes(clothe);
+	  List clothes = db.getListFeet();   }
 
   @Test
   public void testGetListFeet() {
-    fail("Not yet implemented");
+	  Clothe clothe = new Clothe("toto");
+	  clothe.setBodies("shoes");
+	  clothe.setBrand("xara");
+	  clothe.setColor("mauve");
+	  clothe.setImageRelativePath("path");
+	  clothe.setType("pull");
+	  long c = db.insertClothes(clothe);
+	  List clothes = db.getListFeet(); 
   }
 
   @Test
   public void testGetListClothes() {
-    fail("Not yet implemented");
-  }
+	  Clothe clothe = new Clothe("toto");
+	  clothe.setBodies("shoes");
+	  clothe.setBrand("xara");
+	  clothe.setColor("mauve");
+	  clothe.setImageRelativePath("path");
+	  clothe.setType("pull");
+	  long c = db.insertClothes(clothe);
+	  List clothes = db.getListClothes();   }
 
   @Test
   public void testGetAllColors() {
-    fail("Not yet implemented");
+	  List t;
+	  long c = db.insertColor("mauve");
+	  t=db.getAllColors();
   }
 
   @Test
   public void testGetAllTypes() {
-    fail("Not yet implemented");
-  }
+	  List t;
+	  long c = db.insertType("Mauve",1);
+	  t = db.getAllTypes();
+	  }
 
   @Test
   public void testUpdateClothe() {
