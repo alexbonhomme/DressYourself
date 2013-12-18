@@ -109,19 +109,22 @@ public class DBHelper implements IntDBHelper {
       } else
         values.put("ID_t", 0);
 
-      if (clothe.getColor() != null)
+      if (clothe.getColor() != null) {
         values.put("ID_c", getIDColor(clothe.getColor()));
-      else
+      } else {
         values.put("ID_c", 0);
+      }
 
-      if (clothe.getBrand() != null)
+      if (clothe.getBrand() != null) {
         values.put("ID_br", getIDBrand(clothe.getBrand()));
-      else
+      } else {
         values.put("ID_br", 0);
-      if (clothe.getImageRelativePath() != null)
+      }
+      if (clothe.getImageRelativePath() != null) {
         values.put("image", getIDBrand(clothe.getBrand()));
-      else
+      } else {
         values.put("image", 0);
+      }
 
       long r = bdd.insertWithOnConflict("CLOTHES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
@@ -647,8 +650,9 @@ public class DBHelper implements IntDBHelper {
     this.insertBrand(clothe.getBrand());
     this.insertColor(clothe.getColor());
     this.insertType(clothe.getType(), l);
-    for (int i = 0; i < clothe.getWeather().size(); i++)
+      for (int i = 0; i < clothe.getWeather().size(); i++) {
       this.insertWeather(clothe.getWeather().get(i));
+      }
     l = insertJustClothes(clothe);
     return l;
     } catch (RuntimeException e) {
