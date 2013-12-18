@@ -211,7 +211,7 @@ public class DBHelper implements IntDBHelper {
       c.moveToFirst();
       return c.getLong(0);
     } catch (Exception e) {
-      throw new DressyourselfDatabaseException("Erreur getIDClothe: " + e.getMessage());
+      throw new DressyourselfDatabaseException("Erreur getIDClothe: " +e.getClass() + " "+ e.getMessage());
     }
 
   }
@@ -315,16 +315,17 @@ public class DBHelper implements IntDBHelper {
   // a refaire
   @Override
   public Clothe getClothe(long id) {
-    String query =
-        "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-            + "AND CLOTHES.ID_c = COLOR.ID_color "
-            + "AND CLOTHES.ID_t = TYPE.ID_type "
-            + "AND TYPE.ID_b = BODIES.ID_bodies"
-            + "AND CLOTHES.ID_clothes = " + id;
+    String query=
+    		"SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
+    	            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
+    	            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+    	            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
+    	            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
+    	            + "AND CLOTHES.ID_c = COLOR.ID_color "
+    	            + "AND CLOTHES.ID_t = TYPE.ID_type "
+    	            + "AND TYPE.ID_b = BODIES.ID_bodies AND id=" +id;
+
+    
     Cursor cursor = bdd.rawQuery(query, null);
     /*
      * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -341,10 +342,11 @@ public class DBHelper implements IntDBHelper {
     clothe.setBrand(cursor.getString(4));
     clothe.setColor(cursor.getString(5));;
     weather.add(cursor.getString(6));
+    clothe.setImageRelativePath(cursor.getString(7));
+
     while (cursor.moveToNext()) {
       weather.add(cursor.getString(6));
     }
-    clothe.setImageRelativePath(cursor.getString(7));
     clothe.setWeather(weather);
 
     return clothe;
@@ -628,7 +630,7 @@ public class DBHelper implements IntDBHelper {
     for (int i = 0; i < clothe.getWeather().size(); i++)
       this.insertWeather(clothe.getWeather().get(i));
     l = insertJustClothes(clothe);
-    return 0;
+    return l;
   }
 
   @Override

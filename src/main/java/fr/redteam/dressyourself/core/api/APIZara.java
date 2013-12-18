@@ -38,7 +38,7 @@ public final class APIZara extends APIAbstractHelper implements API {
 
     try {
       String jsonContent = getContent(new URL(DB_PROTOCOL, DB_HOST, DB_PAGE + "?id=" + id));
-      product = buildClotheFromJSONArray(new JSONArray(jsonContent).getJSONObject(0));
+      product = buildClotheFromJSONObject(new JSONArray(jsonContent).getJSONObject(0));
 
     } catch (MalformedURLException e) {
       throw new DressyourselfRuntimeException(e);
@@ -66,7 +66,7 @@ public final class APIZara extends APIAbstractHelper implements API {
 
       JSONArray arrayOfProducts = new JSONArray(jsonContent);
       for (int i = 0; i < arrayOfProducts.length(); i++) {
-        Clothe product = buildClotheFromJSONArray(arrayOfProducts.getJSONObject(i));
+        Clothe product = buildClotheFromJSONObject(arrayOfProducts.getJSONObject(i));
         listProducts.add(product);
       }
 

@@ -12,6 +12,7 @@ import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 
 /**
+ * This class manage storage/reading/deleting of a file on an Android device
  * 
  * @author Alexandre Bonhomme
  * 
@@ -20,17 +21,12 @@ public class AndroidFileManager implements FileManager {
 
   private final Context context;
 
-  /**
-   * @param context
-   */
   public AndroidFileManager(Context context) {
     this.context = context;
   }
 
   /**
-   * Cette méthode indique si la mémoire interne du device est accessible AU MOINS en lecture
-   * 
-   * @return
+   * This method indicate if the we are (at least) allow to access to the memory in Read mode
    */
   private static boolean isExternalStorageReadAccess() {
     String state = Environment.getExternalStorageState();
@@ -40,9 +36,7 @@ public class AndroidFileManager implements FileManager {
   }
 
   /**
-   * Cette méthode indique si la mémoire interne du device est accessible en lecture ET en écriture
-   * 
-   * @return
+   * This method indicate if the we are allow to access to the memory in Read AND Write mode
    */
   private static boolean isExternalStorageReadWriteAccess() {
     String state = Environment.getExternalStorageState();
@@ -65,18 +59,18 @@ public class AndroidFileManager implements FileManager {
 
   private void writeFileToExternalStorage(Context context, String imagePath, InputStream imageStream) {
 
-    // HACK: used a temporary File object to slip path and file name
-    File fullPath = new File(imagePath);
-
-    // relative directory from the root of the storage
-    File dir = new File(context.getExternalFilesDir(null), fullPath.getParent());
-    dir.mkdirs();
-
-    File file = new File(dir, fullPath.getName());
     FileOutputStream outStream = null;
-
     try {
+      // HACK: used a temporary File object to slip path and file name
+      File fullPath = new File(imagePath);
+
+      // relative directory from the root of the storage
+      File dir = new File(context.getExternalFilesDir(null), fullPath.getParent());
+      dir.mkdirs();
+
+      File file = new File(dir, fullPath.getName());
       file.createNewFile();
+
       outStream = new FileOutputStream(file);
       byte[] data = new byte[imageStream.available()];
 
@@ -85,6 +79,8 @@ public class AndroidFileManager implements FileManager {
 
     } catch (IOException e) {
       throw new DressyourselfIOException(e);
+    } catch (NullPointerException e) {
+      throw new DressyourselfRuntimeException(e);
     } finally {
       // always close stream
       try {
@@ -109,16 +105,15 @@ public class AndroidFileManager implements FileManager {
 
   private File loadFileFromExternalStorage(Context context, String imagePath) {
 
-    // writing image to external storage (local to us application)
-    File file = new File(context.getExternalFilesDir(null), imagePath);
-    
+    File file = null;
     try {
-      // verify if the file really exists
+      file = new File(context.getExternalFilesDir(null), imagePath);
+
       if (!file.exists()) {
         throw new DressyourselfIOException("File '"+ imagePath +"' not found.");
       }
     } catch(NullPointerException e) {
-      throw new DressyourselfIOException(e);
+      throw new DressyourselfRuntimeException(e);
     }
     
     return file;
@@ -135,14 +130,11 @@ public class AndroidFileManager implements FileManager {
 
   private void deleteFileFromExternalStorage(Context context, String imagePath) {
 
-    // writing image to external storage (local to us application)
-    File file = new File(context.getExternalFilesDir(null), imagePath);
-
-    // delete if the file exists
     try {
+      File file = new File(context.getExternalFilesDir(null), imagePath);
       file.delete();
     } catch (NullPointerException e) {
-      throw new DressyourselfIOException(e);
+      throw new DressyourselfRuntimeException(e);
     }
   }
 }
