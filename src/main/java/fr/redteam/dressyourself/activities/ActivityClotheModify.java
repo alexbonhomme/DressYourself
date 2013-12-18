@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -98,8 +99,8 @@ public class ActivityClotheModify extends Activity {
   public void initSpinnersWithData() {
     /* retrieve informations from database */
     this.bdd.open();
-    ArrayList<String> colors = this.bdd.getAllColors();
-    ArrayList<String> types = this.bdd.getAllTypes();
+    List<String> colors = this.bdd.getAllColors();
+    List<String> types = this.bdd.getAllTypes();
     this.bdd.close();
 
     /* create colorSpinnerAdapter and initialize the corresponding spinner with */
