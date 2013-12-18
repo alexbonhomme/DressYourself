@@ -27,7 +27,14 @@ public class Clothe implements Serializable {
 
 
   public Clothe() {
-    super();
+    this.id = 0L;
+    this.model = null;
+    this.brand = null;
+    this.color = null;
+    this.imageRelativePath = null;
+    this.type = null;
+    this.bodies = null;
+    this.weather = new ArrayList<String>();
   }
 
   public Clothe(String model) {
