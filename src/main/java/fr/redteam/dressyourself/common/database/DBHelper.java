@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.common.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -36,7 +37,7 @@ public class DBHelper implements IntDBHelper {
   // memoire
   public DBHelper(Context context, String name) {
     super();
-    mbdd = new CreateSQLBase(context, null, null, 1);
+    mbdd = new CreateSQLBase(context, name, null, 1);
 
   }
 
@@ -353,7 +354,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<Clothe> getListTop() {
+  public List<Clothe> getListTop() {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
@@ -404,7 +405,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<Clothe> getListBottom() {
+  public List<Clothe> getListBottom() {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
@@ -455,7 +456,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<Clothe> getListFeet() {
+  public List<Clothe> getListFeet() {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
@@ -506,7 +507,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<Clothe> getListClothes() {
+  public List<Clothe> getListClothes() {
     try {
       String query =
           "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
@@ -560,7 +561,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<String> getAllColors() {
+  public List<String> getAllColors() {
     String query = "Select colorName FROM COLOR";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<String> colors = new ArrayList<String>();
@@ -571,7 +572,7 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public ArrayList<String> getAllTypes() {
+  public List<String> getAllTypes() {
     String query = "Select typeName FROM TYPE";
     Cursor cursor = bdd.rawQuery(query, null);
     ArrayList<String> types = new ArrayList<String>();

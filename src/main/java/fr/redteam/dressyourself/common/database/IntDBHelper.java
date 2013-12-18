@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.common.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
@@ -51,17 +52,17 @@ public interface IntDBHelper {
 
   public Clothe getClothe(long id);
 
-  public ArrayList<Clothe> getListTop();
+  public List<Clothe> getListTop();
 
-  public ArrayList<Clothe> getListBottom();
+  public List<Clothe> getListBottom();
 
-  public ArrayList<Clothe> getListFeet();
+  public List<Clothe> getListFeet();
 
-  public ArrayList<Clothe> getListClothes();
+  public List<Clothe> getListClothes();
 
-  public ArrayList<String> getAllColors();
+  public List<String> getAllColors();
 
-  public ArrayList<String> getAllTypes();
+  public List<String> getAllTypes();
 
   public long updateClothe(Clothe clothe);
 
