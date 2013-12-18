@@ -54,8 +54,7 @@ public class APIZaraTest {
      */
     url = new URL("http://www.thisisafakeurlwebsite.me");
 
-    exception.expect(DressyourselfRuntimeException.class);
-    exception.expectMessage("IOException");
+    exception.expect(DressyourselfIOException.class);
     api.getContent(url);
   }
 
