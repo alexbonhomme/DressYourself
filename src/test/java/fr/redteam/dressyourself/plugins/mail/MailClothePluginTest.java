@@ -16,14 +16,18 @@ import fr.redteam.dressyourself.activities.ActivityClotheMail;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
-
+/**
+ * This class is made in order to test MailClothePlugin
+ */
 @RunWith(RobolectricTestRunner.class)
 public class MailClothePluginTest {
 
   private Activity activity;
   private Clothe clothe;
 
-
+  /**
+   * Configure the environnement's test.
+   */
   @Before
   public void setUp() throws Exception {
 
