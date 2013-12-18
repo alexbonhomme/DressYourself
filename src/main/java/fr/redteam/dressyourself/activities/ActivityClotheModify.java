@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,9 +32,6 @@ public class ActivityClotheModify extends Activity {
 
   /* the clothe to Edit */
   private Clothe clotheToEdit;
-
-  /* Uri of the new image if image is modified */
-  private Uri selectedImageUri;
 
   /* components */
   private ImageButton image;
@@ -134,10 +130,6 @@ public class ActivityClotheModify extends Activity {
 
   /** update clothe attributes with values of editable fields */
   public void updateClotheValues(Clothe clotheToEdit) {
-    if (this.selectedImageUri != null) {
-      clotheToEdit.setImageRelativePath(selectedImageUri.getPath());
-      Log.d("ImagePath", selectedImageUri.getPath());
-    }
     clotheToEdit.setModel(modelEditText.getText().toString());
     clotheToEdit.setBrand(brandEditText.getText().toString());
     clotheToEdit.setColor(colorSpinner.getSelectedItem().toString());
@@ -145,6 +137,10 @@ public class ActivityClotheModify extends Activity {
 
   }
 
+  public void updateImage(Uri image, Clothe clothe) {
+    clothe.setImageRelativePath(image.getPath());
+    this.image.setImageURI(image);
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -162,7 +158,6 @@ public class ActivityClotheModify extends Activity {
       }
     }
 
-    /* init the components of the page */
     this.initComponents();
   }
 
@@ -177,11 +172,9 @@ public class ActivityClotheModify extends Activity {
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
-      /* hide background color of the imageButton */
-      this.image.setBackgroundColor(android.R.attr.colorBackground);
-      this.selectedImageUri = data.getData();
-      this.image.setImageURI(this.selectedImageUri);
-      Log.d("path", this.selectedImageUri.getPath());
+      /* hack to hide scaling */
+      // this.image.setBackgroundColor(android.R.attr.colorBackground);
+      this.updateImage(data.getData(), this.clotheToEdit);
     }
   }
 
