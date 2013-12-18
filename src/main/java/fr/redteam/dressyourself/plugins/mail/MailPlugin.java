@@ -13,15 +13,20 @@ import android.widget.Toast;
 public class MailPlugin {
   private Intent mailIntent;
   private String subject;
-  private String textDestinataire;
+  private String receiver;
   private Activity activity;
   private boolean adresseValide;
   private static final int REQUEST_CODE_MAILINTENT = 1234;
-
+/**
+ * 
+ * @param subject
+ * @param textDestinataire
+ * @param activity
+ */
   public MailPlugin(String subject, String textDestinataire, Activity activity) {
     this.mailIntent = new Intent(android.content.Intent.ACTION_SEND);
     this.subject = subject;
-    this.textDestinataire = textDestinataire;
+    this.receiver = textDestinataire;
     this.activity = activity;
     this.adresseValide = true;
   }
@@ -42,7 +47,7 @@ public class MailPlugin {
    * @return list of receiver
    */
   protected String[] listDestinataire() {
-    String txtDsc = this.textDestinataire;
+    String txtDsc = this.receiver;
     String[] dscList;
     int nbDst = 0;
     /*
@@ -67,11 +72,10 @@ public class MailPlugin {
         depart = positionSeparateur.get(i) + 1;
       }
       dscList[nbDst] = txtDsc.substring(positionSeparateur.get(nbDst - 1) + 1);
-   
-      for(int i =0; i<nbDst;i++)
-      {
+
+      for (int i = 0; i < nbDst; i++) {
         if (this.adresseValide) {
-        this.adresseValide = isValidEmailAddress(dscList[i]);
+          this.adresseValide = isValidEmailAddress(dscList[i]);
         }
       }
     } else {

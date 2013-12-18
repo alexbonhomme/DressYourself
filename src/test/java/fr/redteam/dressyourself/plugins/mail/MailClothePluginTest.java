@@ -1,5 +1,6 @@
 package fr.redteam.dressyourself.plugins.mail;
 
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -11,37 +12,37 @@ import org.robolectric.RobolectricTestRunner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import fr.redteam.dressyourself.activities.ActivityClotheMail;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-import fr.redteam.dressyourself.core.clothes.Outfit;
+
 /**
- * This class is made in order to test MailPlugin
- *
+ * This class is made in order to test MailClothePlugin
  */
 @RunWith(RobolectricTestRunner.class)
-public class MailPluginTest {
+public class MailClothePluginTest {
 
   private Activity activity;
+  private Clothe clothe;
+
   /**
    * Configure the environnement's test.
    */
   @Before
   public void setUp() throws Exception {
-    Outfit outfit = new Outfit();
-    Clothe clothe = new Clothe();
-    outfit.addClothe(clothe);
 
+    Clothe clothe = new Clothe();
+    this.clothe = clothe;
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
             ActivityOutfitMail.class);
     Bundle bundle = new Bundle();
-    bundle.putSerializable("outfit", outfit);
+    bundle.putSerializable("clothe", clothe);
     intent.putExtras(bundle);
     this.activity =
-        Robolectric.buildActivity(ActivityOutfitMail.class).withIntent(intent).create().visible()
+        Robolectric.buildActivity(ActivityClotheMail.class).withIntent(intent).create().visible()
             .get();
   }
-
 
   /**
    * this test made a simple test if the test return true if the mail adress is valid.
@@ -50,9 +51,10 @@ public class MailPluginTest {
    */
   @Test
   public void testAdressValid() throws Throwable {
-    MailPlugin mailPlugin = new MailPlugin("", "toto@free.fr", this.activity);
-    mailPlugin.createMail();
-    assertEquals(true, mailPlugin.isValidMail());
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "toto@free.fr", this.activity);
+    mailClothePlugin.createMail();
+    assertEquals(true , mailClothePlugin.isValidMail());
   }
 
   /**
@@ -62,9 +64,10 @@ public class MailPluginTest {
    */
   @Test
   public void testAdressFalse() throws Throwable {
-    MailPlugin mailPlugin = new MailPlugin("", "to@to@free.fr", this.activity);
-    mailPlugin.createMail();
-    assertEquals(false, mailPlugin.isValidMail());
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "to@to@tutu.tox.free.fr", this.activity);
+    mailClothePlugin.createMail();
+    assertEquals(false, mailClothePlugin.isValidMail());
   }
 
   /**
@@ -74,10 +77,11 @@ public class MailPluginTest {
    */
   @Test
   public void testAdressesValid() throws Throwable {
-    MailPlugin mailPlugin =
-        new MailPlugin("", "toto@free.fr;jerm@live.com;foufou@gmail.com", this.activity);
-    mailPlugin.createMail();
-    assertEquals(true, mailPlugin.isValidMail());
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
+            this.activity);
+    mailClothePlugin.createMail();
+    assertEquals(true , mailClothePlugin.isValidMail());
   }
 
   /**
@@ -87,10 +91,10 @@ public class MailPluginTest {
    */
   @Test
   public void testAdressesFalse() throws Throwable {
-    MailPlugin mailPlugin =
-        new MailPlugin("", "toto@free.fr;jerm@tu@tu.live.com;foufou@gmail.com", this.activity);
-    mailPlugin.createMail();
-    assertEquals(false, mailPlugin.isValidMail());
+    MailClothePlugin mailClothePlugin =
+        new MailClothePlugin(this.clothe, "", "",
+            "toto@free.fr;to@to@tutu.tox.free.fr;jerm@live.com;foufou@gmail.com", this.activity);
+    mailClothePlugin.createMail();
+    assertEquals(false, mailClothePlugin.isValidMail());
   }
-
 }
