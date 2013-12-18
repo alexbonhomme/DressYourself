@@ -1,8 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,9 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 import fr.redteam.dressyourself.plugins.weather.Weather;
 import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier;
 import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier.WeatherGroup;
@@ -33,31 +32,25 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private ImageView imageBottom;
   private ImageView imageFeet;
   private ImageView imageWeather;
-  private final DBHelper db = new DBHelper(this);
-  private List<Clothe> listTop = new ArrayList<Clothe>();
-  private List<Clothe> listBottom = new ArrayList<Clothe>();
-  private List<Clothe> listFeet = new ArrayList<Clothe>();
   private Clothe currentTop;
   private Clothe currentBottom;
   private Clothe currentFeet;
   private static boolean gotWeatherInfo;
-  private final OutfitDecider decider = new OutfitDecider();
+  private OutfitDecider decider;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_outfit_layout);
+    decider = new OutfitDecider(this);
     initComponent();
     if (Weather.getWeather() != null) {
       gotWeatherInfo = true;
       decider.setWeather(Weather.getWeather());
     }
-    // connexion bdd
-    db.open();
-    loadData();
+
     bindToLayout();
     setListener();
-    db.close();
   }
 
   private void initComponent() {
@@ -75,19 +68,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     textViewWeather = (TextView) findViewById(R.id.textview_weather);
   }
 
-  private void loadData() {
-    // recup top
-    listTop = db.getListTop();
-
-    // recup bottom
-    listBottom = db.getListBottom();
-
-    // recup feet
-    listFeet = db.getListFeet();
-  }
-
   private void bindToLayout() {
-    // vetements statique TODO: récupérer en bdd
     Clothe clothe = new Clothe("Pull beige");
     textViewTop.setText(clothe.getModel());
     textViewBottom.setText("slim bleu fonce");
@@ -129,47 +110,54 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   private void refreshTop() {
     File fileImageTop;
 
-    if (listTop.size() > 1) {
-      currentTop = decider.decideTop(listTop);
+    try {
+      currentTop = decider.decide(Bodypart.TOP);
       textViewTop.setText(currentTop.getModel());
       // fileImageTop =
       // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentTop
       // .getImageRelativePath());
       // Uri uri = Uri.fromFile(fileImageTop);
       // imageTop.setImageURI(uri);
+
+      textViewTop.setText(textViewTop.getText());
+    } catch (DressyourselfRuntimeException e) {
+      // couldn't decide, we do nothing
     }
-    textViewTop.setText(textViewTop.getText() + " ");
 
   }
 
   private void refreshBottom() {
     File fileImageBottom;
 
-    if (listBottom.size() > 1) {
-      currentBottom = decider.decideBottom(listBottom);
+    try {
+      currentBottom = decider.decide(Bodypart.BOTTOM);
       textViewBottom.setText(currentBottom.getModel());
       // fileImageBottom =
       // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentBottom
       // .getImageRelativePath());
       // Uri uri = Uri.fromFile(fileImageBottom);
       // imageBottom.setImageURI(uri);
+      textViewBottom.setText(textViewBottom.getText() + " ");
+    } catch (DressyourselfRuntimeException e) {
+      // couldn't decide, we do nothing
     }
-    textViewBottom.setText(textViewBottom.getText() + " ");
   }
 
   private void refreshFeet() {
     File fileImageFeet;
 
-    if (listFeet.size() > 1) {
-      currentFeet = decider.decideFeet(listFeet);
+    try {
+      currentFeet = decider.decide(Bodypart.SHOES);
       textViewFeet.setText(currentFeet.getModel());
       // fileImageFeet =
       // new ClothesManager(new AndroidFileManager(this)).loadClotheImage(currentFeet
       // .getImageRelativePath());
       // Uri uri = Uri.fromFile(fileImageFeet);
       // imageFeet.setImageURI(uri);
+      textViewFeet.setText(textViewFeet.getText() + " ");
+    } catch (DressyourselfRuntimeException e) {
+      // couldn't decide, we do nothing
     }
-    textViewFeet.setText(textViewFeet.getText() + " ");
   }
 
   private void generate() {

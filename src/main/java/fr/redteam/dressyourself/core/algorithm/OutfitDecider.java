@@ -4,135 +4,128 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import android.content.Context;
 import android.util.Log;
+import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-
-
-/**
- * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
- * @generated
- */
+import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
 public class OutfitDecider {
   private String currentWeather;
-  private int currentTop = 0;
-  private int currentBottom = 0;
-  private int currentFeet = 0;
+  private Clothe currentTop;
+  private Clothe currentBottom;
+  private Clothe currentFeet;
+  private List<Clothe> listTop = new ArrayList<Clothe>();
+  private List<Clothe> listBottom = new ArrayList<Clothe>();
+  private List<Clothe> listFeet = new ArrayList<Clothe>();
+  private final DBHelper db;
   private Random randomGenerator = new Random();
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public OutfitDecider() {
+  public OutfitDecider(Context context) {
     super();
+    db = new DBHelper(context);
+    db.open();
+    loadData();
+    db.close();
+  }
+
+  private void loadData() {
+    // recup top
+    listTop = db.getListTop();
+
+    // recup bottom
+    listBottom = db.getListBottom();
+
+    // recup feet
+    listFeet = db.getListFeet();
   }
 
   public void setWeather(String weather) {
     this.currentWeather = weather;
   }
 
-  public Clothe decideTop(List<Clothe> listTop) {
-    int randomInt;
-    List<Clothe> listTopWeather = new ArrayList<Clothe>();
+  /**
+   * @author boens
+   * @param body The body part to find Call the decider with the corresponding list
+   */
+  public Clothe decide(Bodypart body) {
+    List<Clothe> listClothes = new ArrayList<Clothe>();
+    Clothe clothe;
 
-    if (currentWeather == null) {
-      randomInt = randomGenerator.nextInt(listTop.size());
-
-      while (randomInt == currentTop) {
-        randomInt = randomGenerator.nextInt(listTop.size());
-      }
-      currentTop = randomInt;
-
-      return listTop.get(currentTop);
-    } else {
-      listTopWeather = buildListWeather(listTop);
-      if (listTopWeather.size() > 0) {
-        randomInt = randomGenerator.nextInt(listTopWeather.size());
-
-        while (randomInt == currentTop) {
-          randomInt = randomGenerator.nextInt(listTopWeather.size());
-        }
-        currentTop = randomInt;
-
-        return listTopWeather.get(currentTop);
-      }
+    switch (body) {
+      case TOP:
+        listClothes = listTop;
+        break;
+      case BOTTOM:
+        listClothes = listBottom;
+        break;
+      case SHOES:
+        listClothes = listFeet;
+        break;
+      default:
+        break;
     }
-    Log.d("erreur", "decideTop could not decide");
-    return listTop.get(0);
+
+    if (currentWeather != null) {
+      listClothes = buildListWeather(listClothes);
+    }
+
+    clothe = decide(listClothes, body);
+
+    return clothe;
   }
 
-  public Clothe decideBottom(List<Clothe> listBottom) {
+  /**
+   * @author boens
+   * @param listClothes The list to proceed
+   * @param body The body part to find
+   * @return the new clothe or null if exception thrown
+   */
+  public Clothe decide(List<Clothe> listClothes, Bodypart body) {
     int randomInt;
-    List<Clothe> listBottomWeather = new ArrayList<Clothe>();
 
-    if (currentWeather == null) {
-      randomInt = randomGenerator.nextInt(listBottom.size());
+    if (listClothes.size() > 1) {
+      randomInt = randomGenerator.nextInt(listClothes.size());
 
-      while (randomInt == currentTop) {
-        randomInt = randomGenerator.nextInt(listBottom.size());
+      while (listClothes.get(randomInt) == currentTop) {
+        randomInt = randomGenerator.nextInt(listClothes.size());
       }
-      currentBottom = randomInt;
-
-      return listBottom.get(currentBottom);
+      switch (body) {
+        case TOP:
+          currentTop = listClothes.get(randomInt);
+          return currentTop;
+        case BOTTOM:
+          currentBottom = listClothes.get(randomInt);
+          return currentBottom;
+        case SHOES:
+          currentFeet = listClothes.get(randomInt);
+          return currentFeet;
+        default:
+          break;
+      }
     } else {
-      listBottomWeather = buildListWeather(listBottom);
-      if (listBottomWeather.size() > 0) {
-        randomInt = randomGenerator.nextInt(listBottomWeather.size());
-
-        while (randomInt == currentTop) {
-          randomInt = randomGenerator.nextInt(listBottomWeather.size());
-        }
-        currentBottom = randomInt;
-
-        return listBottomWeather.get(currentBottom);
-      }
+      Log.d("generation", "decide couldn't chose " + body + "clothe");
+      throw new DressyourselfRuntimeException("decide couldn't chose " + body + "clothe");
     }
-    Log.d("erreur", "decideBottom could not decide");
-    return listBottom.get(0);
+    return null;
   }
 
-  public Clothe decideFeet(List<Clothe> listFeet) {
-    int randomInt;
-    List<Clothe> listFeetWeather = new ArrayList<Clothe>();
-
-    if (currentWeather == null) {
-      randomInt = randomGenerator.nextInt(listFeet.size());
-
-      while (randomInt == currentFeet) {
-        randomInt = randomGenerator.nextInt(listFeet.size());
-      }
-      currentFeet = randomInt;
-
-      return listFeet.get(currentFeet);
-    } else {
-      listFeetWeather = buildListWeather(listFeet);
-      if (listFeetWeather.size() > 0) {
-        randomInt = randomGenerator.nextInt(listFeetWeather.size());
-
-        while (randomInt == currentFeet) {
-          randomInt = randomGenerator.nextInt(listFeetWeather.size());
-        }
-        currentFeet = randomInt;
-
-        return listFeetWeather.get(currentFeet);
-      }
-    }
-    Log.d("erreur", "decideFeet could not decide");
-    return listFeet.get(0);
-  }
-
-  // build a new list with only clothes adapted for the current weather
+  /**
+   * @author boens Build a new list with only clothes adapted for the current weather
+   * @param listClothe the full list
+   * @return list with only clothes adapted for the current weather
+   */
   public List<Clothe> buildListWeather(List<Clothe> listClothe) {
     List<Clothe> listClotheWeather = new ArrayList<Clothe>();
 
     for (Clothe clothe : listClothe) {
       List<String> listWeather = clothe.getWeather();
       for (String clotheWeather : listWeather) {
-        // clotheWeather will not be null after introducing weather attribute in bodies table. When
-        // done, remove this if
+        /*
+         * clotheWeather will not be null after introducing weather attribute in bodies table. When
+         * done, remove this if
+         */
         if (clotheWeather != null) {
           if (clotheWeather.equals(currentWeather)) {
             listClotheWeather.add(clothe);
