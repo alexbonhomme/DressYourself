@@ -16,7 +16,7 @@ public interface IntDBHelper {
 
   public long insertBodies(String bodies);
 
-  public long insertType(String type, long id_bodies);
+  public long insertType(String type, long idBodies);
 
 
   public long insertClothes(Clothe clothe);
@@ -67,5 +67,5 @@ public interface IntDBHelper {
 
   public Outfit getOutfit(long id);
 
-  public void removeClothes(String Clothes);
+  public void removeClothes(String clothes);
 }

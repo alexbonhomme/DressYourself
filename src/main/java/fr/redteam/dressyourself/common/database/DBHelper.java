@@ -87,11 +87,11 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public long insertType(String type, long l) {
+  public long insertType(String type, long idBodies) {
     try {
       ContentValues values = new ContentValues();
       values.put("typeName", type);
-      values.put("ID_b", l);
+      values.put("ID_b", idBodies);
       return bdd.insertWithOnConflict("TYPE", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     } catch (Exception e) {
       throw new DressyourselfDatabaseException("Erreur insertion Type: " + e.getMessage());
@@ -634,9 +634,9 @@ public class DBHelper implements IntDBHelper {
   }
 
   @Override
-  public void removeClothes(String Clothes) {
+  public void removeClothes(String clothes) {
     try {
-      String query = "DELETE FROM CLOTHES" + "WHERE CLOTHES.model = " + Clothes;
+      String query = "DELETE FROM CLOTHES" + "WHERE CLOTHES.model = " + clothes;
       bdd.rawQuery(query, null);
 
     } catch (Exception e) {
