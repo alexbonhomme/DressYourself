@@ -3,6 +3,8 @@ package fr.redteam.dressyourself.core.clothes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 
@@ -225,6 +227,94 @@ public class ClotheTest {
   public void testComplexeConstructorId() throws Throwable {
     Clothe myClothe = new Clothe("MonClothe", "./myPath");
     assertTrue(0L == myClothe.getId());
+  }
+
+  /**
+   * test the setter of name clothe
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testNameSetter() throws Throwable {
+    Clothe clothe = new Clothe("MonClothe");
+    clothe.setModel("toto");
+    assertEquals("toto", clothe.getModel());
+  }
+
+  /**
+   * test the setter of clothe's color
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testColorSetter() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    myClothe.setColor("yellow");
+    assertEquals("yellow", myClothe.getColor());
+  }
+
+  /**
+   * test the setter of clothe's brand
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testBrandSetter() throws Throwable {
+    Clothe myClothe = new Clothe();
+    myClothe.setBrand("MyBrand");
+    assertEquals("MyBrand", myClothe.getBrand());
+  }
+
+  /**
+   * Test the setter of clothe's bodies
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testBodiesSetter() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    myClothe.setBodies("MyBodies");
+    assertEquals("MyBodies", myClothe.getBodies());
+  }
+
+
+  /**
+   * Test the setter of clothe's weather
+   * 
+   * @throws Throwable
+   */
+
+  @Test
+  public void testWeatherSetter() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    ArrayList<String> weather = new ArrayList<String>();
+    weather.add("rainning");
+    myClothe.setWeather(weather);
+    assertTrue(1 == myClothe.getWeather().size());
+  }
+
+  /**
+   * Test the setter of clothe's type
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testTypeSetter() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    myClothe.setType("Type");
+    assertEquals("Type", myClothe.getType());
+  }
+
+  /**
+   * Test the setter of clothe's type
+   * 
+   * @throws Throwable
+   */
+  @Test
+  public void testPathSetter() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    myClothe.setImageRelativePath("./Mypath");
+    assertEquals("./Mypath", myClothe.getImageRelativePath());
   }
 
 }
