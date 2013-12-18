@@ -80,4 +80,76 @@ public class ClotheTest {
     assertTrue(0L == myClothe.getId());
   }
 
+  /**
+   * Test the constructor set the clothe's name
+   */
+  @Test
+  public void testSimpleConstructorModel() throws Throwable {
+    Clothe clothe = new Clothe("MonClothe");
+    assertEquals("MonClothe", clothe.getModel());
+  }
+
+  /**
+   * Test the constructor with a name initialize the weather with an empty list of string
+   */
+  @Test
+  public void testSimpleConstructorWeather() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertTrue(true == myClothe.getWeather().isEmpty());
+  }
+
+  /**
+   * Test the constructor with a name initialize the path as null
+   */
+  @Test
+  public void testSimpleConstructorPath() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertEquals(null, myClothe.getImageRelativePath());
+  }
+
+  /**
+   * Test the constructor with a name initialize the bodies as null
+   */
+  @Test
+  public void testSimpleConstructorBodies() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertEquals(null, myClothe.getBodies());
+  }
+
+  /**
+   * Test the constructor with a name initialize the brand as null
+   */
+  @Test
+  public void testSimpleConstructorBrand() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertEquals(null, myClothe.getBrand());
+  }
+
+  /**
+   * Test the constructor with a name initialize the color as null
+   */
+  @Test
+  public void testSimpleConstructorColor() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertEquals(null, myClothe.getColor());
+  }
+
+  /**
+   * Test the constructor with a name initialize the type as null
+   */
+  @Test
+  public void testSimpleConstructorType() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertEquals(null, myClothe.getType());
+  }
+
+  /**
+   * Test the constructor with a name initialize the id is 0L
+   */
+  @Test
+  public void testSimpleConstructorId() throws Throwable {
+    Clothe myClothe = new Clothe("MonClothe");
+    assertTrue(0L == myClothe.getId());
+  }
+
 }
