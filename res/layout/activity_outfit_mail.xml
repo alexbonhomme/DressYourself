@@ -20,15 +20,14 @@
 
     <Button
         android:id="@+id/btnEnvoieMailOutfit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editDestinataireOutfit"
-        android:layout_marginBottom="24dp"
-        android:layout_marginRight="20dp"
         android:text="@string/send"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_alignParentBottom="true"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/editDestinataireOutfit"
