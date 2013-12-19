@@ -12,46 +12,52 @@
 
     <Button
         android:id="@+id/buttonAddClotheClothesToDB"
-        android:layout_width="match_parent"
+        android:text="Ajouter des vêtements à la DB"
+		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ajouter des vêtements à la DB" 
-        android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/btnSendOutfitMail"
-        android:layout_width="match_parent"
+        android:text="@string/sendOutfitByMail"
+		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sendOutfitByMail" 
-        android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/btnClothMail"
-        android:layout_width="match_parent"
+        android:text="@string/sendClothMail"
+		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sendClothMail" 
-		android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
     
     <Button
         android:id="@+id/buttonClotheModify"
+        android:text="ModifyClothe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ModifyClothe" 
-        android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
+    
 	<Button
         android:id="@+id/buttonDetailClothe"
+        android:text="DetailClothe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DetailClothe" 
-        android:layout_margin="8dp"
-		android:textAppearance="@style/btnStyle"
-		android:background="@drawable/button_dressyourself_style" />
+        android:layout_margin="10dp"
+        android:textAppearance="@style/btnStyle"
+        android:background="@drawable/button_dressyourself_style"
+        android:textColor="#ffffff" />
     
 </LinearLayout>
