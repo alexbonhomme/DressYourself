@@ -79,7 +79,7 @@ public class OutfitDecider {
    * @author boens
    * @param listClothes The list to proceed
    * @param body The body part to find
-   * @return the new clothe or null if exception thrown
+   * @return a different clothe than the current one or null if exception thrown
    */
   public Clothe decide(List<Clothe> listClothes, Bodypart body) {
     int randomInt;
@@ -87,17 +87,23 @@ public class OutfitDecider {
     if (listClothes.size() > 1) {
       randomInt = randomGenerator.nextInt(listClothes.size());
 
-      while (listClothes.get(randomInt) == currentTop) {
-        randomInt = randomGenerator.nextInt(listClothes.size());
-      }
       switch (body) {
         case TOP:
+          while (listClothes.get(randomInt) == currentTop) {
+            randomInt = randomGenerator.nextInt(listClothes.size());
+          }
           currentTop = listClothes.get(randomInt);
           return currentTop;
         case BOTTOM:
+          while (listClothes.get(randomInt) == currentBottom) {
+            randomInt = randomGenerator.nextInt(listClothes.size());
+          }
           currentBottom = listClothes.get(randomInt);
           return currentBottom;
         case SHOES:
+          while (listClothes.get(randomInt) == currentFeet) {
+            randomInt = randomGenerator.nextInt(listClothes.size());
+          }
           currentFeet = listClothes.get(randomInt);
           return currentFeet;
         default:
