@@ -1,7 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class ActivityClotheModifyTest {
   private Clothe clotheToEdit;
   private Button saveButton;
 
-  private final DBHelper dbHelper = mock(DBHelper.class);
+  private DBHelper dbHelper;
 
   @Before
   public void setUp() {
@@ -49,6 +48,10 @@ public class ActivityClotheModifyTest {
     /* getting context */
     this.context = Robolectric.getShadowApplication().getApplicationContext();
     ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
+    
+    /* init DBHelper*/
+    this.dbHelper = new DBHelper(context, null);
+
     /* passing the clothe through intent */
     Intent intent = new Intent(this.context, ActivityClotheModify.class);
     intent.putExtra("clothe", this.clotheToEdit);
@@ -64,7 +67,7 @@ public class ActivityClotheModifyTest {
     this.saveButton = (Button) this.myActivity.findViewById(R.id.save);
     /* retrieving informations from intent */
     this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
-
+    
   }
 
   /* the following tests check the initialization of editable fields */
@@ -141,11 +144,9 @@ public class ActivityClotheModifyTest {
 
   }
 
-  // @Test
-  // public void testIfUpdateInDatabaseFails(){
-  // when(this.dbHelper.updateClothe(clotheToEdit)).thenReturn((long) 0);
-  // this.saveButton.performClick();
-  // assertThat("An error occured while saving modifications",
-  // equalTo(ShadowToast.getTextOfLatestToast()) );
-  // }
+   @Test
+  public void testSelectImage() {
+
+  }
+
 }
