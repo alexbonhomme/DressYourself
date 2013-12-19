@@ -1,6 +1,5 @@
 package fr.redteam.dressyourself.common.database;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -9,6 +8,10 @@ import fr.redteam.dressyourself.core.clothes.Outfit;
 
 public interface IntDBHelper {
   // Les requetes d'insertion dans la table de labse de données, retourne l'id de l'element inserer
+  public void open();
+
+  public void close();
+
   public long insertBrand(String brand);
 
   public long insertColor(String color);
