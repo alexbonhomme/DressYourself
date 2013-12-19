@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import android.content.Context;
 import android.util.Log;
-import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.common.database.IntDBHelper;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
@@ -19,12 +18,12 @@ public class OutfitDecider {
   private List<Clothe> listTop = new ArrayList<Clothe>();
   private List<Clothe> listBottom = new ArrayList<Clothe>();
   private List<Clothe> listFeet = new ArrayList<Clothe>();
-  private final DBHelper db;
+  private final IntDBHelper db;
   private Random randomGenerator = new Random();
 
-  public OutfitDecider(Context context) {
+  public OutfitDecider(IntDBHelper dbhelper) {
     super();
-    db = new DBHelper(context);
+    this.db = dbhelper;
     db.open();
     loadData();
     db.close();

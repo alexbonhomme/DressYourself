@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -42,7 +43,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_outfit_layout);
-    decider = new OutfitDecider(this);
+    decider = new OutfitDecider(new DBHelper(this));
     initComponent();
     if (Weather.getWeather() != null) {
       gotWeatherInfo = true;
