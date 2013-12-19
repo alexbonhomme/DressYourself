@@ -105,7 +105,7 @@ public class ActivityClotheModifyTest {
   @Test
   public void testUpdateClotheValuesOnModel() {
     this.modelEditText.setText("modified model!");
-    this.myActivity.updateClotheValues(this.clotheToEdit);
+    this.myActivity.updateClothe(this.clotheToEdit);
     assertEquals(this.modelEditText.getText().toString(), this.clotheToEdit.getModel());
   }
 
@@ -113,7 +113,7 @@ public class ActivityClotheModifyTest {
   @Test
   public void testUpdateClotheValuesOnBrand() {
     this.brandEditText.setText("modified brand!");
-    this.myActivity.updateClotheValues(this.clotheToEdit);
+    this.myActivity.updateClothe(this.clotheToEdit);
     assertEquals(this.brandEditText.getText().toString(), this.clotheToEdit.getBrand());
   }
 
@@ -122,7 +122,7 @@ public class ActivityClotheModifyTest {
   public void testUpdateClotheValuesOnColor() {
     ArrayAdapter<String> colorAdapter = (ArrayAdapter<String>) this.colorSpinner.getAdapter();
     this.colorSpinner.setSelection(colorAdapter.getPosition("BLUE"));
-    this.myActivity.updateClotheValues(this.clotheToEdit);
+    this.myActivity.updateClothe(this.clotheToEdit);
     assertEquals(this.colorSpinner.getSelectedItem().toString(), this.clotheToEdit.getColor());
   }
 
@@ -131,7 +131,7 @@ public class ActivityClotheModifyTest {
   public void testUpdateClotheValuesOnType() {
     ArrayAdapter<String> typeAdapter = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
     this.typeSpinner.setSelection(typeAdapter.getPosition("T-shirt"));
-    this.myActivity.updateClotheValues(this.clotheToEdit);
+    this.myActivity.updateClothe(this.clotheToEdit);
     assertEquals(this.typeSpinner.getSelectedItem().toString(), this.clotheToEdit.getType());
   }
 
