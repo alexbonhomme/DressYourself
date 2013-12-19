@@ -1,6 +1,6 @@
 package fr.redteam.dressyourself.plugins.mail;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,13 +14,18 @@ import android.os.Bundle;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
-
+/**
+ * This class is made in order to test MailOutfitPlugin
+ *
+ */
 @RunWith(RobolectricTestRunner.class)
 public class MailOutfitPluginTest {
 
   private Activity activity;
   private Outfit outfit;
-
+  /**
+   * Configure the environnement's test.
+   */
   @Before
   public void setUp() throws Exception {
     Outfit outfit = new Outfit();
@@ -45,11 +50,11 @@ public class MailOutfitPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressValide() throws Throwable {
+  public void testAdressValid() throws Throwable {
     MailOutfitPlugin mailOutfitPlugin =
         new MailOutfitPlugin(this.outfit, "", "", "toto@free.fr", this.activity);
     mailOutfitPlugin.createMail();
-    assertTrue(true == mailOutfitPlugin.isValidMail());
+    assertEquals(true , mailOutfitPlugin.isValidMail());
   }
 
   /**
@@ -62,7 +67,7 @@ public class MailOutfitPluginTest {
     MailOutfitPlugin mailOutfitPlugin =
         new MailOutfitPlugin(this.outfit, "", "", "to@to@free.fr", this.activity);
     mailOutfitPlugin.createMail();
-    assertTrue(false == mailOutfitPlugin.isValidMail());
+    assertEquals(false, mailOutfitPlugin.isValidMail());
   }
 
   /**
@@ -71,12 +76,12 @@ public class MailOutfitPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressesValide() throws Throwable {
+  public void testAdressesValid() throws Throwable {
     MailOutfitPlugin mailOutfitPlugin =
         new MailOutfitPlugin(this.outfit, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
             this.activity);
     mailOutfitPlugin.createMail();
-    assertTrue(true == mailOutfitPlugin.isValidMail());
+    assertEquals(true , mailOutfitPlugin.isValidMail());
   }
 
   /**
@@ -90,7 +95,7 @@ public class MailOutfitPluginTest {
         new MailOutfitPlugin(this.outfit, "", "",
             "toto@free.fr;jerm@tu@tu.live.com;foufou@gmail.com", this.activity);
     mailOutfitPlugin0.createMail();
-    assertTrue(false == mailOutfitPlugin0.isValidMail());
+    assertEquals(false, mailOutfitPlugin0.isValidMail());
   }
 
 }

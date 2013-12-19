@@ -12,8 +12,7 @@ import fr.redteam.dressyourself.core.clothes.Outfit;
 import fr.redteam.dressyourself.plugins.mail.MailOutfitPlugin;
 
 /**
- * This activity is made in order to share by mail
- * 
+ * This activity is made in order to share an outfit by mail
  */
 public class ActivityOutfitMail extends Activity {
 
@@ -22,7 +21,9 @@ public class ActivityOutfitMail extends Activity {
   private MailOutfitPlugin mail;
   private Outfit outfit;
   private static final int REQUEST_CODE_MAILINTENT = 1234;
-
+  /**
+   * Define all object create on the open of activity
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_outfit_mail);

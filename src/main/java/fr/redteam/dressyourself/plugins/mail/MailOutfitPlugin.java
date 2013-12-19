@@ -13,10 +13,17 @@ public class MailOutfitPlugin extends MailPlugin {
 
   private Outfit outfit;
   private String textBody;
-
-  public MailOutfitPlugin(Outfit outfit, String subject, String textBody, String textDestinataire,
+/**
+ * 
+ * @param outfit
+ * @param subject
+ * @param textBody
+ * @param receiver
+ * @param activity
+ */
+  public MailOutfitPlugin(Outfit outfit, String subject, String textBody, String receiver,
       Activity activity) {
-    super(subject, textDestinataire, activity);
+    super(subject, receiver, activity);
     this.outfit = outfit;
     this.textBody = textBody;
   }

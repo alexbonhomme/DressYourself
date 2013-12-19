@@ -11,6 +11,9 @@ import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.mail.MailClothePlugin;
 
+/**
+ * This activity is made in order to share a clothe by mail
+ */
 public class ActivityClotheMail extends Activity {
 
   private EditText textDestinataire;
@@ -18,7 +21,9 @@ public class ActivityClotheMail extends Activity {
   private MailClothePlugin mail;
   private Clothe clothe;
   private static final int REQUEST_CODE_MAILINTENT = 1234;
-
+/**
+ * Define all object create on the open of activity
+ */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

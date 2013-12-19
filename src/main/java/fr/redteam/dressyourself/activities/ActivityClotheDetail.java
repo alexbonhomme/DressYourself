@@ -17,21 +17,22 @@ import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
 import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-
+/**
+ * this Activity able to complete the activity action
+ *
+ */
 public class ActivityClotheDetail extends Activity {
 
   private ImageView imagePhoto;
   private Clothe myClothe;
-
+  /**
+   * Define all object create on the open of activity
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_clothe_detail);
 
-    /*
-     * Show the Up button in the action bar. add onclick action for the button in order to put the
-     * object cloth and call the modification page.
-     */
     Button btnModify = (Button) findViewById(R.id.modifyBtn);
     btnModify.setOnClickListener(new OnClickListener() {
 
@@ -51,7 +52,7 @@ public class ActivityClotheDetail extends Activity {
     this.initImageView();
   }
 
-  /*
+  /**
    * init cloth object
    */
   public void initMyClothe() {
@@ -60,7 +61,9 @@ public class ActivityClotheDetail extends Activity {
       this.myClothe = (Clothe) myIntent.getSerializableExtra("clothe");
     }
   }
-
+  /**
+   * Insert the clothe picture on activity
+   */
   public void initImageView() {
     this.imagePhoto = (ImageView) findViewById(R.id.photo);
     if (!(myClothe.getImageRelativePath() == null)) {
@@ -74,7 +77,7 @@ public class ActivityClotheDetail extends Activity {
     }
   }
 
-  /*
+  /**
    * Init all textviews
    */
   public void initTextView() {
@@ -101,7 +104,7 @@ public class ActivityClotheDetail extends Activity {
     textViewWeather.setText(this.getStringWeather());
   }
 
-  /*
+  /**
    * Method which made the text of wather
    */
   public String getStringWeather() {

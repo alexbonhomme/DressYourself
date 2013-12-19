@@ -14,6 +14,7 @@ import org.robolectric.util.ActivityController;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import fr.redteam.dressyourself.views.ListViewClothes;
 
 /**
  * 
@@ -60,6 +61,8 @@ public class ActivitySearchEngineTest {
 
     controler.newIntent(searchIntent);
     ShadowListView listView = Robolectric.shadowOf(controler.get().getListView());
+    // XXX CHECK
+    listView.addView(new ListViewClothes(context), 0, null);
 
     listView.performItemClick(0);
 
