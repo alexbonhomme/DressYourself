@@ -59,6 +59,7 @@ public class ActivityClotheModify extends Activity {
 
   }
 
+  /** Set listeners on buttons */
   private void setListeners() {
     /* add listeners */
     this.image.setOnClickListener(new OnClickListener() {
@@ -129,11 +130,16 @@ public class ActivityClotheModify extends Activity {
 
   }
 
+  /**
+   * update the imageButton image with the selected image and update the clothe's image value with
+   * the new path
+   */
   private void updateImage(Uri image, Clothe clothe) {
     clothe.setImageRelativePath(image.getPath());
     this.image.setImageURI(image);
   }
 
+  /** Copy one file to another location */
   private void copySelectedImage(File source) {
     String destinationPath = "/res/drawable/imported";
     File destinationDir = new File(destinationPath);
