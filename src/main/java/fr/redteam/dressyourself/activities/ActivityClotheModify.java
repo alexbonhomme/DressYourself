@@ -1,13 +1,15 @@
 package fr.redteam.dressyourself.activities;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -55,9 +57,9 @@ public class ActivityClotheModify extends Activity {
     this.typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
     this.saveButton = (Button) findViewById(R.id.save);
 
-    /* init all the dynamic fields (spinners and editable fields) */
-    this.initFieldsWithValues(this.clotheToEdit);
+  }
 
+  private void setListeners() {
     /* add listeners */
     this.image.setOnClickListener(new OnClickListener() {
 
@@ -74,7 +76,7 @@ public class ActivityClotheModify extends Activity {
       @Override
       public void onClick(View v) {
         /* retrieves all editable fields values and update the clothe then update in BDD */
-        updateClotheValues(clotheToEdit);
+        updateClothe(clotheToEdit);
         Toast toast;
         bdd.open();
         if (bdd.updateClothe(clotheToEdit) == (long)1) {
@@ -87,16 +89,14 @@ public class ActivityClotheModify extends Activity {
         finish();
       }
     });
-
-  }
-
-  /** Transform a null String in an empty String */
-  public String nullStringToEmptyString(String s) {
-    return (s == null ? s + " " : s);
   }
 
   /** Init the spinners with the values stored in database */
-  public void initSpinnersWithData() {
+  public void loadData(Clothe clothe) {
+    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(clothe.getImageRelativePath()))));
+    this.modelEditText.append(nullStringToEmptyString(clothe.getModel()));
+    this.brandEditText.append(nullStringToEmptyString(clothe.getBrand()));
+
     /* retrieve informations from database */
     this.bdd.open();
     List<String> colors = this.bdd.getAllColors();
@@ -109,7 +109,7 @@ public class ActivityClotheModify extends Activity {
     this.colorSpinner.setAdapter(colorAdapter);
 
     /* get the clotheToEdit color and put it as default value */
-    this.colorSpinner.setSelection(colorAdapter.getPosition(this.clotheToEdit.getColor()));
+    this.colorSpinner.setSelection(colorAdapter.getPosition(clothe.getColor()));
 
     /* create typeSpinnerAdapter and initialize the corresponding spinner with */
     ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
@@ -117,31 +117,33 @@ public class ActivityClotheModify extends Activity {
     this.typeSpinner.setAdapter(typeAdapter);
 
     /* get the clotheToEdit color and put it as default value */
-    this.typeSpinner.setSelection(typeAdapter.getPosition(this.clotheToEdit.getType()));
+    this.typeSpinner.setSelection(typeAdapter.getPosition(clothe.getType()));
   }
 
-  /** fill the editable fields with the caracteristics of the clothe in order to edit them */
-  public void initFieldsWithValues(Clothe clotheToEdit) {
-    // this.image.setImageURI(Uri.fromFile(new ClothesManager(new
-    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(this.clotheToEdit.getImageRelativePath()))));
-    this.modelEditText.append(nullStringToEmptyString(clotheToEdit.getModel()));
-    this.brandEditText.append(nullStringToEmptyString(clotheToEdit.getBrand()));
-    this.initSpinnersWithData();
-  }
-
-  /** update clothe attributes with values of editable fields */
-  public void updateClotheValues(Clothe clotheToEdit) {
-    clotheToEdit.setModel(modelEditText.getText().toString());
-    clotheToEdit.setBrand(brandEditText.getText().toString());
-    clotheToEdit.setColor(colorSpinner.getSelectedItem().toString());
-    clotheToEdit.setType(typeSpinner.getSelectedItem().toString());
+  /** update the clothe's attributes with values of editable fields */
+  public void updateClothe(Clothe clothe) {
+    clothe.setModel(modelEditText.getText().toString());
+    clothe.setBrand(brandEditText.getText().toString());
+    clothe.setColor(colorSpinner.getSelectedItem().toString());
+    clothe.setType(typeSpinner.getSelectedItem().toString());
 
   }
 
-  public void updateImage(Uri image, Clothe clothe) {
+  private void updateImage(Uri image, Clothe clothe) {
     clothe.setImageRelativePath(image.getPath());
     this.image.setImageURI(image);
   }
+
+  private void copySelectedImage(File source) {
+    String destinationPath = "/res/drawable/imported";
+    File destinationDir = new File(destinationPath);
+    try {
+      FileUtils.copyFileToDirectory(source, destinationDir);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -154,19 +156,14 @@ public class ActivityClotheModify extends Activity {
     if (intent != null) {
       this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
 
-      if (this.clotheToEdit == null) {
+      if (this.clotheToEdit != null) {
+        this.initComponents();
+        this.setListeners();
+        this.loadData(this.clotheToEdit);
+      } else {
         throw new DressyourselfRuntimeException("ModifyClothe : Error while retrieving information from intent");
       }
     }
-
-    this.initComponents();
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    /* Inflate the menu; this adds items to the action bar if it is present. */
-    getMenuInflater().inflate(R.menu.modify_clothe, menu);
-    return true;
   }
 
   @Override
@@ -179,5 +176,9 @@ public class ActivityClotheModify extends Activity {
     }
   }
 
+  /** Transform a null String in an empty String */
+  public String nullStringToEmptyString(String s) {
+    return (s == null ? s + " " : s);
+  }
 
 }
