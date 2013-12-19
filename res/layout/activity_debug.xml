@@ -15,49 +15,44 @@
         android:text="Ajouter des vêtements à la DB"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style" />
 
     <Button
         android:id="@+id/btnSendOutfitMail"
         android:text="@string/sendOutfitByMail"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style" />
 
     <Button
         android:id="@+id/btnClothMail"
         android:text="@string/sendClothMail"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style" />
     
     <Button
         android:id="@+id/buttonClotheModify"
         android:text="ModifyClothe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style" />
     
 	<Button
         android:id="@+id/buttonDetailClothe"
         android:text="DetailClothe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style" />
     
 </LinearLayout>
