@@ -45,7 +45,6 @@ public class ListViewClothes extends LinearLayout {
 		imageViewProduct = (ImageView) findViewById(R.id.imageViewAdapter);
 		textViewProductModel = (TextView) findViewById(R.id.textViewModelAdapter);
 		textViewProductBrand = (TextView) findViewById(R.id.textViewBrandAdapter);
-
 	}
 
 	/**

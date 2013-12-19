@@ -14,12 +14,17 @@ import android.os.Bundle;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
-
+/**
+ * This class is made in order to test MailPlugin
+ *
+ */
 @RunWith(RobolectricTestRunner.class)
 public class MailPluginTest {
 
   private Activity activity;
-
+  /**
+   * Configure the environnement's test.
+   */
   @Before
   public void setUp() throws Exception {
     Outfit outfit = new Outfit();
@@ -44,7 +49,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressValide() throws Throwable {
+  public void testAdressValid() throws Throwable {
     MailPlugin mailPlugin = new MailPlugin("", "toto@free.fr", this.activity);
     mailPlugin.createMail();
     assertEquals(true, mailPlugin.isValidMail());
@@ -68,7 +73,7 @@ public class MailPluginTest {
    * @throws Throwable
    */
   @Test
-  public void testAdressesValide() throws Throwable {
+  public void testAdressesValid() throws Throwable {
     MailPlugin mailPlugin =
         new MailPlugin("", "toto@free.fr;jerm@live.com;foufou@gmail.com", this.activity);
     mailPlugin.createMail();

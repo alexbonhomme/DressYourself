@@ -1,7 +1,7 @@
 package fr.redteam.dressyourself.plugins.mail;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +16,18 @@ import fr.redteam.dressyourself.activities.ActivityClotheMail;
 import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
+/**
+ * This class is made in order to test MailClothePlugin
+ */
 @RunWith(RobolectricTestRunner.class)
 public class MailClothePluginTest {
 
   private Activity activity;
   private Clothe clothe;
 
+  /**
+   * Configure the environnement's test.
+   */
   @Before
   public void setUp() throws Exception {
 
@@ -48,7 +54,7 @@ public class MailClothePluginTest {
     MailClothePlugin mailClothePlugin =
         new MailClothePlugin(this.clothe, "", "", "toto@free.fr", this.activity);
     mailClothePlugin.createMail();
-    assertTrue(true == mailClothePlugin.isValidMail());
+    assertEquals(true , mailClothePlugin.isValidMail());
   }
 
   /**
@@ -61,7 +67,7 @@ public class MailClothePluginTest {
     MailClothePlugin mailClothePlugin =
         new MailClothePlugin(this.clothe, "", "", "to@to@tutu.tox.free.fr", this.activity);
     mailClothePlugin.createMail();
-    assertTrue(false == mailClothePlugin.isValidMail());
+    assertEquals(false, mailClothePlugin.isValidMail());
   }
 
   /**
@@ -75,7 +81,7 @@ public class MailClothePluginTest {
         new MailClothePlugin(this.clothe, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
             this.activity);
     mailClothePlugin.createMail();
-    assertTrue(true == mailClothePlugin.isValidMail());
+    assertEquals(true , mailClothePlugin.isValidMail());
   }
 
   /**
@@ -89,6 +95,6 @@ public class MailClothePluginTest {
         new MailClothePlugin(this.clothe, "", "",
             "toto@free.fr;to@to@tutu.tox.free.fr;jerm@live.com;foufou@gmail.com", this.activity);
     mailClothePlugin.createMail();
-    assertTrue(false == mailClothePlugin.isValidMail());
+    assertEquals(false, mailClothePlugin.isValidMail());
   }
 }
