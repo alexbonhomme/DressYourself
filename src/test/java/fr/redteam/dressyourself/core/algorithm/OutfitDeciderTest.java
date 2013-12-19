@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
-import android.content.Context;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.common.database.IntDBHelper;
 import fr.redteam.dressyourself.core.Bodypart;
@@ -29,7 +28,6 @@ public class OutfitDeciderTest {
   private List<Clothe> listBottom = new ArrayList<Clothe>();
   private List<Clothe> listFeet = new ArrayList<Clothe>();
   private IntDBHelper db;
-  Context context;
 
   @Before
   public void setUp() throws Exception {
