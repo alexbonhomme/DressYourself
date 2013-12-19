@@ -92,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:textAppearance="@style/btnStyle"
-        android:background="@drawable/button_dressyourself_style"
-        android:textColor="#ffffff" />
+        android:background="@drawable/button_dressyourself_style"/>
 
 </RelativeLayout>
