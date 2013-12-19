@@ -48,7 +48,7 @@ public class ActivityClotheModify extends Activity {
   private DBHelper bdd;
 
   /** init the attributes with their corresponding item in layout */
-  public void initComponents() {
+  private void initComponents() {
     /* retrieving components from layout */
     this.image = (ImageButton) findViewById(R.id.imageButton);
     this.modelEditText = (EditText) findViewById(R.id.modelEdit);
@@ -93,7 +93,7 @@ public class ActivityClotheModify extends Activity {
   }
 
   /** Init the spinners with the values stored in database */
-  public void loadData(Clothe clothe) {
+  private void loadData(Clothe clothe) {
     // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(clothe.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clothe.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clothe.getBrand()));
@@ -122,7 +122,7 @@ public class ActivityClotheModify extends Activity {
   }
 
   /** update the clothe's attributes with values of editable fields */
-  public void updateClothe(Clothe clothe) {
+  private void updateClothe(Clothe clothe) {
     clothe.setModel(modelEditText.getText().toString());
     clothe.setBrand(brandEditText.getText().toString());
     clothe.setColor(colorSpinner.getSelectedItem().toString());
@@ -179,6 +179,7 @@ public class ActivityClotheModify extends Activity {
       /* hack to hide scaling */
       // this.image.setBackgroundColor(android.R.attr.colorBackground);
       this.updateImage(data.getData(), this.clotheToEdit);
+      this.copySelectedImage(new File(data.getData().getPath()));
     }
   }
 

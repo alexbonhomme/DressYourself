@@ -2,6 +2,9 @@ package fr.redteam.dressyourself.activities;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -103,35 +106,51 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on model have been saved */
   @Test
-  public void testUpdateClotheValuesOnModel() {
+  public void testUpdateClotheValuesOnModel() throws NoSuchMethodException,
+      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
+    updateClotheMethod.setAccessible(true);
+
     this.modelEditText.setText("modified model!");
-    this.myActivity.updateClothe(this.clotheToEdit);
+    updateClotheMethod.invoke(this.myActivity, this.clotheToEdit);
     assertEquals(this.modelEditText.getText().toString(), this.clotheToEdit.getModel());
   }
 
   /* check if the modifications on brand have been saved */
   @Test
-  public void testUpdateClotheValuesOnBrand() {
+  public void testUpdateClotheValuesOnBrand() throws NoSuchMethodException,
+      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
+    updateClotheMethod.setAccessible(true);
+
     this.brandEditText.setText("modified brand!");
-    this.myActivity.updateClothe(this.clotheToEdit);
+    updateClotheMethod.invoke(this.myActivity, this.clotheToEdit);
     assertEquals(this.brandEditText.getText().toString(), this.clotheToEdit.getBrand());
   }
 
   /* check if the modifications on color have been saved */
   @Test
-  public void testUpdateClotheValuesOnColor() {
+  public void testUpdateClotheValuesOnColor() throws NoSuchMethodException,
+      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
+    updateClotheMethod.setAccessible(true);
+
     ArrayAdapter<String> colorAdapter = (ArrayAdapter<String>) this.colorSpinner.getAdapter();
     this.colorSpinner.setSelection(colorAdapter.getPosition("BLUE"));
-    this.myActivity.updateClothe(this.clotheToEdit);
+    updateClotheMethod.invoke(this.myActivity, this.clotheToEdit);
     assertEquals(this.colorSpinner.getSelectedItem().toString(), this.clotheToEdit.getColor());
   }
 
   /* check if the modifications on type have been saved */
   @Test
-  public void testUpdateClotheValuesOnType() {
+  public void testUpdateClotheValuesOnType() throws NoSuchMethodException,
+      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
+    updateClotheMethod.setAccessible(true);
+
     ArrayAdapter<String> typeAdapter = (ArrayAdapter<String>) this.typeSpinner.getAdapter();
     this.typeSpinner.setSelection(typeAdapter.getPosition("T-shirt"));
-    this.myActivity.updateClothe(this.clotheToEdit);
+    updateClotheMethod.invoke(this.myActivity, this.clotheToEdit);
     assertEquals(this.typeSpinner.getSelectedItem().toString(), this.clotheToEdit.getType());
   }
 
