@@ -11,18 +11,20 @@ import org.robolectric.RobolectricTestRunner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import fr.redteam.dressyourself.activities.ActivityOutfitMail;
+import fr.redteam.dressyourself.activities.ActivityClotheMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.core.clothes.Outfit;
+
 /**
  * This class is made in order to test MailOutfitPlugin
- *
+ * 
  */
 @RunWith(RobolectricTestRunner.class)
 public class MailOutfitPluginTest {
 
   private Activity activity;
   private Outfit outfit;
+
   /**
    * Configure the environnement's test.
    */
@@ -35,12 +37,12 @@ public class MailOutfitPluginTest {
 
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
-            ActivityOutfitMail.class);
+            ActivityClotheMail.class);
     Bundle bundle = new Bundle();
     bundle.putSerializable("outfit", outfit);
     intent.putExtras(bundle);
     this.activity =
-        Robolectric.buildActivity(ActivityOutfitMail.class).withIntent(intent).create().visible()
+        Robolectric.buildActivity(ActivityClotheMail.class).withIntent(intent).create().visible()
             .get();
   }
 
@@ -54,7 +56,7 @@ public class MailOutfitPluginTest {
     MailOutfitPlugin mailOutfitPlugin =
         new MailOutfitPlugin(this.outfit, "", "", "toto@free.fr", this.activity);
     mailOutfitPlugin.createMail();
-    assertEquals(true , mailOutfitPlugin.isValidMail());
+    assertEquals(true, mailOutfitPlugin.isValidMail());
   }
 
   /**
@@ -81,7 +83,7 @@ public class MailOutfitPluginTest {
         new MailOutfitPlugin(this.outfit, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
             this.activity);
     mailOutfitPlugin.createMail();
-    assertEquals(true , mailOutfitPlugin.isValidMail());
+    assertEquals(true, mailOutfitPlugin.isValidMail());
   }
 
   /**
