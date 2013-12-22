@@ -62,10 +62,6 @@
             android:label="@string/title_activity_activity_debug" >
         </activity>
         <activity
-            android:name="fr.redteam.dressyourself.activities.ActivityOutfitMail"
-            android:label="@string/title_activity_outfit_mail" >
-        </activity>
-        <activity
             android:name="fr.redteam.dressyourself.activities.ActivityClotheMail"
             android:label="@string/title_activity_clothe_mail" >
         </activity>
@@ -82,5 +78,4 @@
                 android:resource="@xml/searchable" />
         </activity>
     </application>
-
 </manifest>
