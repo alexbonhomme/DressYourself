@@ -17,7 +17,7 @@ import fr.redteam.dressyourself.plugins.mail.MailPlugin;
 /**
  * This activity is made in order to share a clothe by mail
  */
-public class ActivityClotheMail extends Activity {
+public class ActivityMail extends Activity {
 
   private EditText textDestinataire;
   private EditText textContenu;
@@ -42,7 +42,7 @@ public class ActivityClotheMail extends Activity {
 
       @Override
       public void onClick(View v) {
-        ActivityClotheMail.this.creationMail();
+        ActivityMail.this.creationMail();
       }
     });
   }
@@ -53,9 +53,9 @@ public class ActivityClotheMail extends Activity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == REQUEST_CODE_MAILINTENT) {
-      Intent intent = new Intent(ActivityClotheMail.this, ActivityMain.class);
-      if (ActivityClotheMail.this.mail.isValidMail()) {
-        ActivityClotheMail.this.finish();
+      Intent intent = new Intent(ActivityMail.this, ActivityMain.class);
+      if (ActivityMail.this.mail.isValidMail()) {
+        ActivityMail.this.finish();
       }
       startActivity(intent);
     }
@@ -69,7 +69,7 @@ public class ActivityClotheMail extends Activity {
     if (clothe != null) {
       MailClothePlugin mailClothe =
           new MailClothePlugin(clothe, "i want to share this Clothe", this.textContenu.getText()
-              .toString(), this.textDestinataire.getText().toString(), ActivityClotheMail.this);
+              .toString(), this.textDestinataire.getText().toString(), ActivityMail.this);
       this.mail = mailClothe;
       mailClothe.createMail();
     } else {

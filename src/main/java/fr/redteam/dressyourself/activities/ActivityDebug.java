@@ -63,7 +63,7 @@ public class ActivityDebug extends Activity {
         Outfit outfit = new Outfit();
         outfit.addClothe(clothe);
         outfit.addClothe(clothe2);
-        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        Intent intent = new Intent(ActivityDebug.this, ActivityMail.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("outfit", outfit);
         intent.putExtras(bundle);
@@ -85,7 +85,7 @@ public class ActivityDebug extends Activity {
         clothe.setType("pull");
         clothe.setBodies("body");
 
-        Intent intent = new Intent(ActivityDebug.this, ActivityClotheMail.class);
+        Intent intent = new Intent(ActivityDebug.this, ActivityMail.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("clothe", clothe);
         intent.putExtras(bundle);

@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import fr.redteam.dressyourself.activities.ActivityClotheMail;
+import fr.redteam.dressyourself.activities.ActivityMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
@@ -34,12 +34,12 @@ public class MailClothePluginTest {
     this.clothe = clothe;
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
-            ActivityClotheMail.class);
+            ActivityMail.class);
     Bundle bundle = new Bundle();
     bundle.putSerializable("clothe", clothe);
     intent.putExtras(bundle);
     this.activity =
-        Robolectric.buildActivity(ActivityClotheMail.class).withIntent(intent).create().visible()
+        Robolectric.buildActivity(ActivityMail.class).withIntent(intent).create().visible()
             .get();
   }
 

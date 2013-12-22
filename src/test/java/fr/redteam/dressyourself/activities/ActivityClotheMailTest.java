@@ -20,7 +20,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 
 @RunWith(RobolectricTestRunner.class)
 public class ActivityClotheMailTest {
-  private ActivityClotheMail activityClotheMail;
+  private ActivityMail activityClotheMail;
   private Clothe clothe;
 
   @Before
@@ -29,7 +29,7 @@ public class ActivityClotheMailTest {
     this.clothe();
     Intent intent = this.createIntent();
     this.activityClotheMail =
-        Robolectric.buildActivity(ActivityClotheMail.class).withIntent(intent).create().visible()
+        Robolectric.buildActivity(ActivityMail.class).withIntent(intent).create().visible()
             .get();
   }
 
@@ -52,7 +52,7 @@ public class ActivityClotheMailTest {
   public Intent createIntent() throws FileNotFoundException {
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
-            ActivityClotheMail.class);
+            ActivityMail.class);
     Bundle bundle = new Bundle();
     bundle.putSerializable("clothe", this.clothe);
     intent.putExtras(bundle);
