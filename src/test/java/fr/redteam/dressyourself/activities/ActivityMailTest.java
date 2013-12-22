@@ -19,7 +19,7 @@ import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 @RunWith(RobolectricTestRunner.class)
-public class ActivityClotheMailTest {
+public class ActivityMailTest {
   private ActivityMail activityClotheMail;
   private Clothe clothe;
 
