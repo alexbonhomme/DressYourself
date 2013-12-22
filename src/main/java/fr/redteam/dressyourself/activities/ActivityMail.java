@@ -30,7 +30,7 @@ public class ActivityMail extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_clothe_mail);
+    setContentView(R.layout.activity_mail);
     Button buttonEnvoyer = (Button) findViewById(R.id.btnEnvoieMailClothe);
     this.textDestinataire = (EditText) findViewById(R.id.editDestinataireClothe);
     this.textContenu = (EditText) findViewById(R.id.editMailClothe);
