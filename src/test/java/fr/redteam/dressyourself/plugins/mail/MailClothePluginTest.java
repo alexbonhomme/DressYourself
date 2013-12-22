@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import fr.redteam.dressyourself.activities.ActivityClotheMail;
-import fr.redteam.dressyourself.activities.ActivityOutfitMail;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
@@ -35,7 +34,7 @@ public class MailClothePluginTest {
     this.clothe = clothe;
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
-            ActivityOutfitMail.class);
+            ActivityClotheMail.class);
     Bundle bundle = new Bundle();
     bundle.putSerializable("clothe", clothe);
     intent.putExtras(bundle);
@@ -54,7 +53,7 @@ public class MailClothePluginTest {
     MailClothePlugin mailClothePlugin =
         new MailClothePlugin(this.clothe, "", "", "toto@free.fr", this.activity);
     mailClothePlugin.createMail();
-    assertEquals(true , mailClothePlugin.isValidMail());
+    assertEquals(true, mailClothePlugin.isValidMail());
   }
 
   /**
@@ -81,7 +80,7 @@ public class MailClothePluginTest {
         new MailClothePlugin(this.clothe, "", "", "toto@free.fr;jerm@live.com;foufou@gmail.com",
             this.activity);
     mailClothePlugin.createMail();
-    assertEquals(true , mailClothePlugin.isValidMail());
+    assertEquals(true, mailClothePlugin.isValidMail());
   }
 
   /**
