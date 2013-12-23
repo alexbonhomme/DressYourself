@@ -65,7 +65,7 @@ public class ActivityClotheDetail extends Activity {
    * Insert the clothe picture on activity
    */
   public void initImageView() {
-    this.imagePhoto = (ImageView) findViewById(R.id.photo);
+    this.imagePhoto = (ImageView) findViewById(R.id.photoDetail);
     if (!(myClothe.getImageRelativePath() == null)) {
       File imgFile =
           new ClothesManager(new AndroidFileManager(this)).loadClotheImage(myClothe
