@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import fr.redteam.dressyourself.R;
@@ -17,7 +16,7 @@ import fr.redteam.dressyourself.plugins.weather.WeatherPlugin;
 
 public class ActivityMain extends Activity implements LocationListener {
 
-  private Button buttonFilters;
+  private ImageView buttonFilters;
   private LocationManager locationManager;
   private String provider;
 
@@ -31,7 +30,7 @@ public class ActivityMain extends Activity implements LocationListener {
     WeatherPlugin weather = new WeatherPlugin("lille", getApplicationContext());
     weather.sendYahooQuery();
 
-    buttonFilters = (Button) findViewById(R.id.btoutfit);
+    buttonFilters = (ImageView) findViewById(R.id.btoutfit);
     buttonFilters.setOnClickListener(new OnClickListener() {
 
       @Override
