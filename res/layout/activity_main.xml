@@ -30,6 +30,7 @@
         android:layout_margin="20dp"
         android:src="@drawable/get_dressed"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:contentDescription="@string/title_activity_main"
         android:clickable="true" />
 	
