@@ -1,5 +1,7 @@
 package fr.redteam.dressyourself.activities;
 
+
+
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
@@ -51,8 +53,8 @@ public class ActivityClotheModifyTest {
     /* getting context */
     this.context = Robolectric.getShadowApplication().getApplicationContext();
     ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
-    
-    /* init DBHelper*/
+
+    /* init DBHelper */
     this.dbHelper = new DBHelper(context, null);
 
     /* passing the clothe through intent */
@@ -70,7 +72,7 @@ public class ActivityClotheModifyTest {
     this.saveButton = (Button) this.myActivity.findViewById(R.id.save);
     /* retrieving informations from intent */
     this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
-    
+
   }
 
   /* the following tests check the initialization of editable fields */
@@ -106,8 +108,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on model have been saved */
   @Test
-  public void testUpdateClotheValuesOnModel() throws NoSuchMethodException,
-      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+  public void testUpdateClotheValuesOnModel() throws NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
     Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
     updateClotheMethod.setAccessible(true);
 
@@ -118,8 +119,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on brand have been saved */
   @Test
-  public void testUpdateClotheValuesOnBrand() throws NoSuchMethodException,
-      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+  public void testUpdateClotheValuesOnBrand() throws NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
     Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
     updateClotheMethod.setAccessible(true);
 
@@ -130,8 +130,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on color have been saved */
   @Test
-  public void testUpdateClotheValuesOnColor() throws NoSuchMethodException,
-      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+  public void testUpdateClotheValuesOnColor() throws NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
     Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
     updateClotheMethod.setAccessible(true);
 
@@ -143,8 +142,7 @@ public class ActivityClotheModifyTest {
 
   /* check if the modifications on type have been saved */
   @Test
-  public void testUpdateClotheValuesOnType() throws NoSuchMethodException,
-      IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+  public void testUpdateClotheValuesOnType() throws NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
     Method updateClotheMethod = ActivityClotheModify.class.getDeclaredMethod("updateClothe", Clothe.class);
     updateClotheMethod.setAccessible(true);
 
@@ -160,11 +158,6 @@ public class ActivityClotheModifyTest {
     Intent intent = new Intent(this.context, ActivityClotheModify.class);
     intent.putExtra("clothe", this.clotheToEdit);
     this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
-
-  }
-
-   @Test
-  public void testSelectImage() {
 
   }
 
