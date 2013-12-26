@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.adapters.AdapterClothes;
 import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
 import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 /**
+ * View to display a {@link Clothes}. This is used by {@link AdapterClothes}.
  * 
  * @author Alexandre Bonhomme
  * 
@@ -42,9 +44,6 @@ public class ListViewClothes extends LinearLayout {
     initComponent();
   }
 
-  /**
-   * Initialisation des composants
-   */
   private void initComponent() {
     inflate(getContext(), R.layout.listview_clothes, this);
 
