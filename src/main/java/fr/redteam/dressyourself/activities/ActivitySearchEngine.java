@@ -1,6 +1,5 @@
 package fr.redteam.dressyourself.activities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -114,12 +113,6 @@ public class ActivitySearchEngine extends ListActivity {
 
     @Override
     protected void onPostExecute(List<Clothe> listClothes) {
-      List<String> listProductModels = new ArrayList<String>();
-
-      for (Clothe clothe : listClothes) {
-        listProductModels.add(clothe.getModel());
-      }
-
       AdapterClothes adapter = new AdapterClothes(context, listClothes);
       setListAdapter(adapter);
     }
