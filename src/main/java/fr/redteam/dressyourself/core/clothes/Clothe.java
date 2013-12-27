@@ -19,7 +19,7 @@ public class Clothe implements Serializable {
 
   private String color;
 
-  private String imageRelativePath;
+  private String image;
 
   private String type;
 
@@ -36,7 +36,7 @@ public class Clothe implements Serializable {
     this.model = null;
     this.brand = null;
     this.color = null;
-    this.imageRelativePath = null;
+    this.image = null;
     this.type = null;
     this.bodies = null;
     this.weather = new ArrayList<String>();
@@ -52,24 +52,9 @@ public class Clothe implements Serializable {
     this.id = 0L;
     this.brand = null;
     this.color = null;
-    this.imageRelativePath = null;
+    this.image = null;
     this.type = null;
     this.bodies = null;
-  }
-
-  /**
-   * this a simple constructor with a string for modelname and the second string define the path all
-   * of others arguments are null except weather which is an empty arraylist
-   */
-  public Clothe(String model, String image) {
-    this.model = model;
-    this.imageRelativePath = image;
-    this.id = 0L;
-    this.brand = null;
-    this.color = null;
-    this.type = null;
-    this.bodies = null;
-    this.weather = new ArrayList<String>();
   }
 
   /**
@@ -132,14 +117,14 @@ public class Clothe implements Serializable {
    * get the clothe's path of clothe's image
    */
   public String getImageRelativePath() {
-    return imageRelativePath;
+    return image;
   }
 
   /**
    * set the clothe's path with the string imagePath
    */
   public void setImageRelativePath(String imagePath) {
-    this.imageRelativePath = imagePath;
+    this.image = imagePath;
   }
 
   /**
