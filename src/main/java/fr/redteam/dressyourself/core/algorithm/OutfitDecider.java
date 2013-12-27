@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import android.util.Log;
+import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.IntDBHelper;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -19,7 +20,7 @@ public class OutfitDecider {
   private List<Clothe> listBottom = new ArrayList<Clothe>();
   private List<Clothe> listFeet = new ArrayList<Clothe>();
   private final IntDBHelper db;
-  private Random randomGenerator = new Random();
+  private final Random randomGenerator = new Random();
 
   public OutfitDecider(IntDBHelper dbhelper) {
     super();
@@ -38,6 +39,40 @@ public class OutfitDecider {
 
     // recup feet
     listFeet = db.getListFeet();
+  }
+
+  // Need to be improved, should return a Clothe list I guess
+  /**
+   * Return pictures to display
+   * 
+   * @param body the bodypart you ask for
+   * @return an array with pictures references
+   */
+  public int[] getBodypartClothes(Bodypart body) {
+    switch (body) {
+      case TOP:
+        int[] data =
+            {R.drawable.echarpe_peche, R.drawable.pull_beige, R.drawable.sac_camel,
+                R.drawable.pull_beige, R.drawable.echarpe_peche};
+        return data;
+        // return this.listTop;
+      case BOTTOM:
+        int[] data2 =
+            {R.drawable.tshirt_w, R.drawable.jeans_slim, R.drawable.tshirt_w,
+                R.drawable.jeans_slim, R.drawable.tshirt_w};
+        return data2;
+        // return this.listBottom;
+      case SHOES:
+        int[] data3 =
+            {R.drawable.basket_compense, R.drawable.bottines, R.drawable.basket_compense,
+                R.drawable.bottines, R.drawable.basket_compense};
+        return data3;
+        // return this.listFeet;
+      default:
+        int[] data4 = {};
+        return data4;
+        // return new ArrayList<Clothe>();
+    }
   }
 
   public void setWeather(String weather) {
