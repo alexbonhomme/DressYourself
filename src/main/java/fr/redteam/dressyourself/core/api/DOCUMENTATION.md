@@ -1,13 +1,11 @@
 # R.E.S.T. API
 
 ## Schema
-All API access is over HTTP, and accessed from the `dev.alexandrebonhomme.fr` domain. All data is received as JSON format.
-
-In case of empty result you will receive an empty array `[]`.
+All data is received as JSON format (in an array). In case of empty result you will receive an empty array `[]`.
 
 ## Usage
 
-### Filters
+### GET api.php?filters=<filters_list>&q=<query>
 Filters let you select on which kind of data you want to look. 
 
 There are currently five different filters :
@@ -47,9 +45,9 @@ Vary: Accept-Encoding
 
 Basically, you selected one or more filter(s) with the parameter `filter` and you defined your query with the parameter `q`.
 
-_Note: This is a classic research using the `LIKE` SQL key word._
+_Note: This is a classic partial research using the `LIKE` SQL key word._
 
-### Get by ID
+### GET api.php?id=<id_of_the_product>
 
 To get a specific product with his _ID_, it's possible to use the `id` parameter :
 ```

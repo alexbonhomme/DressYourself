@@ -34,7 +34,7 @@ public class ClotheTest {
   @Test
   public void testEmptyConstructorPath() throws Throwable {
     Clothe myClothe = new Clothe();
-    assertEquals(null, myClothe.getImageRelativePath());
+    assertEquals("", myClothe.getImageRelativePath());
   }
 
   /**
@@ -106,7 +106,7 @@ public class ClotheTest {
   @Test
   public void testSimpleConstructorPath() throws Throwable {
     Clothe myClothe = new Clothe("MonClothe");
-    assertEquals(null, myClothe.getImageRelativePath());
+    assertEquals("", myClothe.getImageRelativePath());
   }
 
   /**
@@ -151,81 +151,6 @@ public class ClotheTest {
   @Test
   public void testSimpleConstructorId() throws Throwable {
     Clothe myClothe = new Clothe("MonClothe");
-    assertTrue(0L == myClothe.getId());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the model
-   * 
-   * @throws Throwable
-   */
-  @Test
-  public void testComplexeConstructorModel() throws Throwable {
-    Clothe clothe = new Clothe("MonClothe", "./myPath");
-    assertEquals("MonClothe", clothe.getModel());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the path as null
-   */
-  @Test
-  public void testComplexeConstructorPath() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
-    assertEquals("./myPath", myClothe.getImageRelativePath());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the weather with an empty list of string
-   */
-  @Test
-  public void testComplexeConstructorWeather() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
-    assertTrue(true == myClothe.getWeather().isEmpty());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the bodies as null
-   */
-  @Test
-  public void testComplexeConstructorBodies() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");;
-    assertEquals(null, myClothe.getBodies());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the brand as null
-   */
-  @Test
-  public void testComplexeConstructorBrand() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
-    assertEquals(null, myClothe.getBrand());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the color as null
-   */
-  @Test
-  public void testComplexeConstructorColor() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
-    assertEquals(null, myClothe.getColor());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the type as null
-   * 
-   */
-  @Test
-  public void testComplexeConstructorType() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
-    assertEquals(null, myClothe.getType());
-  }
-
-  /**
-   * Test the constructor with a name and a path initialize the id is 0L
-   */
-  @Test
-  public void testComplexeConstructorId() throws Throwable {
-    Clothe myClothe = new Clothe("MonClothe", "./myPath");
     assertTrue(0L == myClothe.getId());
   }
 
