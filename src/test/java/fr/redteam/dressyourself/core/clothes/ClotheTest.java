@@ -34,7 +34,7 @@ public class ClotheTest {
   @Test
   public void testEmptyConstructorPath() throws Throwable {
     Clothe myClothe = new Clothe();
-    assertEquals(null, myClothe.getImageRelativePath());
+    assertEquals("", myClothe.getImageRelativePath());
   }
 
   /**
@@ -106,7 +106,7 @@ public class ClotheTest {
   @Test
   public void testSimpleConstructorPath() throws Throwable {
     Clothe myClothe = new Clothe("MonClothe");
-    assertEquals(null, myClothe.getImageRelativePath());
+    assertEquals("", myClothe.getImageRelativePath());
   }
 
   /**
