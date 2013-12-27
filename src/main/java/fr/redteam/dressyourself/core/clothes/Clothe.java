@@ -173,4 +173,50 @@ public class Clothe implements Serializable {
     this.weather = weather;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    Clothe clothe = (Clothe) obj;
+
+    if (clothe.getId() != id) {
+      return false;
+    }
+
+    if (!clothe.getModel().equals(model)) {
+      return false;
+    }
+
+    if (!clothe.getBrand().equals(brand)) {
+      return false;
+    }
+
+    if (!clothe.getColor().equals(color)) {
+      return false;
+    }
+
+    if (!clothe.getImageRelativePath().equals(getImageRelativePath())) {
+      return false;
+    }
+
+    if (!clothe.getType().equals(type)) {
+      return false;
+    }
+
+    if (!clothe.getBodies().equals(bodies)) {
+      return false;
+    }
+
+    if (!clothe.getWeather().equals(weather)) {
+      return false;
+    }
+
+    return true;
+  }
 }

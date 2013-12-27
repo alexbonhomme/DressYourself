@@ -1,6 +1,8 @@
 package fr.redteam.dressyourself.common.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 import android.content.Context;
-import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 @RunWith(RobolectricTestRunner.class)
 public class DBHelperTest  {
@@ -74,7 +75,7 @@ DBHelper db;
     clothe.setModel("model");
     clothe.setType("pull");
     long c = db.insertClothes(clothe);
-	assertEquals(clothe, db.getClothe(c));
+    assertEquals(clothe, db.getClothe(c));
   }
 
   @Test
