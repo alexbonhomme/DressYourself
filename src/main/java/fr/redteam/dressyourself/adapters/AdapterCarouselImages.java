@@ -1,6 +1,11 @@
 package fr.redteam.dressyourself.adapters;
 
+import java.io.File;
+import java.util.List;
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,29 +18,22 @@ import android.widget.ImageView;
 import com.digitalaria.gama.carousel.Carousel;
 
 import fr.redteam.dressyourself.R;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
+import fr.redteam.dressyourself.core.ClothesManager;
+import fr.redteam.dressyourself.core.clothes.Clothe;
 
 public class AdapterCarouselImages extends BaseAdapter {
   private final Context mContext;
-  private final int[] data;
+  private final List<Clothe> data;
 
-  public AdapterCarouselImages(Context c, int[] data) {
+  public AdapterCarouselImages(Context c, List<Clothe> data) {
     mContext = c;
     this.data = data;
   }
 
   @Override
   public int getCount() {
-    return data.length;
-  }
-
-  @Override
-  public Object getItem(int position) {
-    return null;
-  }
-
-  @Override
-  public long getItemId(int position) {
-    return data[position];
+    return data.size();
   }
 
   @Override
@@ -52,7 +50,19 @@ public class AdapterCarouselImages extends BaseAdapter {
 
     ViewHolder holder = (ViewHolder) view.getTag();
     holder.imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-    holder.imageView.setImageResource(data[position]);
+
+    // get clothe's image file
+    AndroidFileManager fileManager = new AndroidFileManager(mContext);
+    ClothesManager manager = new ClothesManager(fileManager);
+    String relativePath = data.get(position).getImageRelativePath();
+    File imageFile = manager.loadClotheImage(relativePath);
+
+    // file to bitmap
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
+
+    holder.imageView.setImageBitmap(myBitmap);
 
     // Get some information about the clothe selected
     holder.imageView.setOnTouchListener(new itemListener(position) {});
@@ -71,7 +81,7 @@ public class AdapterCarouselImages extends BaseAdapter {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-      Log.d("Clicked : ", Integer.toString(this.position));
+      Log.d("Clicked : ", data.get(position).getModel());
       return false;
     }
 
@@ -79,5 +89,15 @@ public class AdapterCarouselImages extends BaseAdapter {
 
   private class ViewHolder {
     ImageView imageView;
+  }
+
+  @Override
+  public Object getItem(int position) {
+    return null;
+  }
+
+  @Override
+  public long getItemId(int position) {
+    return 0;
   }
 }

@@ -121,7 +121,7 @@ public class DBHelper implements IntDBHelper {
         values.put("ID_br", 0);
       }
       if (clothe.getImageRelativePath() != null) {
-        values.put("image", getIDBrand(clothe.getBrand()));
+        values.put("image", clothe.getImageRelativePath());
       } else {
         values.put("image", 0);
       }
