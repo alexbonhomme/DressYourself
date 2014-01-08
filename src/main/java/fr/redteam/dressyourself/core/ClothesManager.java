@@ -42,11 +42,14 @@ public class ClothesManager {
 
   /**
    * 
-   * @return an Bitmap object representing the clothe's image
+   * @author burillon
+   * @author boens
+   * @return a Bitmap object representing the clothe's image
    */
   public Bitmap getClotheBitmapImage(Clothe clothe) {
+    File imageFile = this.loadClotheImage(clothe.getImageRelativePath());
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    return BitmapFactory.decodeFile(clothe.getImageRelativePath(), options);
+    return BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
   }
 }
