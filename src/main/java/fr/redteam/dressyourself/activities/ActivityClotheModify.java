@@ -20,6 +20,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.common.database.DBHelper;
+import fr.redteam.dressyourself.common.filemanager.AndroidFileManager;
+import fr.redteam.dressyourself.core.ClothesManager;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -81,7 +83,7 @@ public class ActivityClotheModify extends Activity {
         updateClothe(clotheToEdit);
         Toast toast;
         bdd.open();
-        if (bdd.updateClothe(clotheToEdit) == (long)1) {
+        if (bdd.updateClothe(clotheToEdit) == 1) {
           toast = Toast.makeText(ActivityClotheModify.this, "Modifications have been saved !", Toast.LENGTH_LONG);
         } else {
           toast = Toast.makeText(ActivityClotheModify.this, "An error occured while saving modifications", Toast.LENGTH_LONG);
@@ -93,11 +95,13 @@ public class ActivityClotheModify extends Activity {
     });
   }
 
-  /** Init the spinners with the values stored in database */
+  /** load all the data into the page */
   private void loadData(Clothe clothe) {
     // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(clothe.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clothe.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clothe.getBrand()));
+    ClothesManager manager = new ClothesManager(new AndroidFileManager(this.getApplicationContext()));
+    this.image.setImageBitmap(manager.getClotheBitmapImage(this.clotheToEdit));
 
     /* retrieve informations from database */
     this.bdd.open();
