@@ -32,6 +32,7 @@ public class ActivityClotheModify extends Activity {
 
   /* constant */
   private static final int SELECT_IMAGE = 1;
+  private static final String COPIED_IMAGE_LOCATION = "res/drawable/imported";
 
   /* the clothe to Edit */
   private Clothe clotheToEdit;
@@ -141,8 +142,8 @@ public class ActivityClotheModify extends Activity {
 
   /** Copy one file to another location */
   private void copySelectedImage(File source) {
-    String destinationPath = "/res/drawable/imported";
-    File destinationDir = new File(destinationPath);
+
+    File destinationDir = new File(COPIED_IMAGE_LOCATION);
     try {
       FileUtils.copyFileToDirectory(source, destinationDir);
     } catch (IOException e) {
