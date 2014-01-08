@@ -1,7 +1,6 @@
 package fr.redteam.dressyourself.core.algorithm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,7 +15,6 @@ import org.robolectric.RobolectricTestRunner;
 
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.common.database.IntDBHelper;
-import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 
 @RunWith(RobolectricTestRunner.class)
@@ -75,27 +73,6 @@ public class OutfitDeciderTest {
     when(db.getListBottom()).thenReturn(listBottom);
     when(db.getListFeet()).thenReturn(listFeet);
     outfitDecider = new OutfitDecider(db);
-  }
-
-  @Test
-  public void testDecideTop() {
-    Clothe oldTop = outfitDecider.decide(Bodypart.TOP);
-    Clothe newTop = outfitDecider.decide(Bodypart.TOP);
-    assertTrue(!oldTop.getModel().equals(newTop.getModel()));
-  }
-
-  @Test
-  public void testDecideBottom() {
-    Clothe oldBottom = outfitDecider.decide(Bodypart.BOTTOM);
-    Clothe newBottom = outfitDecider.decide(Bodypart.BOTTOM);
-    assertTrue(!oldBottom.getModel().equals(newBottom.getModel()));
-  }
-
-  @Test
-  public void testDecideFeet() {
-    Clothe oldFeet = outfitDecider.decide(Bodypart.SHOES);
-    Clothe newFeet = outfitDecider.decide(Bodypart.SHOES);
-    assertTrue(!oldFeet.getModel().equals(newFeet.getModel()));
   }
 
   @Test

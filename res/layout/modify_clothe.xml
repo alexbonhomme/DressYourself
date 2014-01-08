@@ -14,8 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:contentDescription="@string/photo"
-				android:scaleType="fitXY"
-        android:src="@drawable/jeans_slim" />
+				android:scaleType="fitXY"/>
     
     <TextView
         android:id="@+id/model"

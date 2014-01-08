@@ -31,9 +31,9 @@ public class ActivityMail extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_mail);
-    Button buttonEnvoyer = (Button) findViewById(R.id.btnEnvoieMailClothe);
-    this.textDestinataire = (EditText) findViewById(R.id.editDestinataireClothe);
-    this.textContenu = (EditText) findViewById(R.id.editMailClothe);
+    Button buttonEnvoyer = (Button) findViewById(R.id.btnSendMail);
+    this.textDestinataire = (EditText) findViewById(R.id.editReceiver);
+    this.textContenu = (EditText) findViewById(R.id.editMail);
     /**
      * define the click listener
      */
@@ -56,8 +56,8 @@ public class ActivityMail extends Activity {
       Intent intent = new Intent(ActivityMail.this, ActivityMain.class);
       if (ActivityMail.this.mail.isValidMail()) {
         ActivityMail.this.finish();
+        startActivity(intent);
       }
-      startActivity(intent);
     }
   }
 
@@ -73,7 +73,6 @@ public class ActivityMail extends Activity {
       this.mail = mailClothe;
       mailClothe.createMail();
     } else {
-
       Outfit outfit = (Outfit) this.getIntent().getExtras().get("outfit");
       MailOutfitPlugin mailOutfit =
           new MailOutfitPlugin(outfit, "i want to share this Outfit", this.textContenu.getText()
