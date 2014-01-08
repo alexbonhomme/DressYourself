@@ -1,7 +1,6 @@
 package fr.redteam.dressyourself.activities;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,11 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import static org.mockito.Mockito.*;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-import fr.redteam.dressyourself.R;
+import android.content.Context;
 import fr.redteam.dressyourself.adapters.AdapterClothes;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
@@ -28,16 +25,17 @@ public class ActivityClotheListTest {
 	private DBHelper dbHelp;
 	private List<Clothe> clotheListTest;
 	private AdapterClothes adapter;
+	private Context context;
 
 	@Before
 	public void setUp() throws Exception {
 
 		this.createClothes();
 		this.activityClotheList = Robolectric.buildActivity(ActivityClotheList.class).create().visible().get();
-		this.dbHelp = new DBHelper(Robolectric.getShadowApplication().getApplicationContext(), null);
-		this.dbHelp.open();
-		
+		context = Robolectric.getShadowApplication().getApplicationContext();
+	    this.dbHelp = mock(DBHelper.class);
 	}
+
 
 	public void createClothes() throws FileNotFoundException {
 
@@ -59,21 +57,31 @@ public class ActivityClotheListTest {
 		myClotheTest.setType("jean");
 		myClotheTest.setBodies("bottom");
 		this.clotheListTest.add(myClotheTest);
+		myClotheTest = new Clothe("Clothe test3");
+		myClotheTest.setWeather(weather);
+		myClotheTest.setBrand("Zaraaa");
+		myClotheTest.setColor("BLUE");
+		myClotheTest.setType("jean");
+		myClotheTest.setBodies("bottom");
+		this.clotheListTest.add(myClotheTest);
 		
 		
 	}
 	
 	@Test
 	public void TestListIsGoodSize(){
-		if (this.dbHelp.getListClothes().size() != 0){
-			assertEquals(this.dbHelp.getListClothes().size(), this.activityClotheList.getList().size());
-		}else{
-			assertEquals(1, this.activityClotheList.getList().size());
-		}
 		
+		when(this.dbHelp.getListClothes()).thenReturn(clotheListTest);
+		this.activityClotheList.setClotheList(this.dbHelp);
+		
+		assertEquals(this.dbHelp.getListClothes().size(), this.activityClotheList.getList().size());
 	}
 	
-	
+	@Test
+	public void TestListIsNull(){
+		when(this.dbHelp.getListClothes()).thenReturn(new ArrayList<Clothe>());
+		assertEquals(1, this.activityClotheList.getList().size());
+	}
 
 	
 }

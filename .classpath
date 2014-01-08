@@ -9,6 +9,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/gama_carousel_v1.0.jar"/>
 	<classpathentry kind="src" output="bin/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -21,11 +22,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/gama_carousel_v1.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
