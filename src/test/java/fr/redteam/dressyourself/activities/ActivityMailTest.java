@@ -14,19 +14,20 @@ import org.robolectric.RobolectricTestRunner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import fr.redteam.dressyourself.R;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+import fr.redteam.dressyourself.core.clothes.Outfit;
 
 @RunWith(RobolectricTestRunner.class)
 public class ActivityMailTest {
   private ActivityMail activityMail;
   private Clothe clothe;
-
+  private static final int REQUEST_CODE_MAILINTENT = 1234;
+  
   @Before
   public void setUp() throws Exception {
-
-    this.clothe();
     Intent intent = this.createIntent();
     this.activityMail =
         Robolectric.buildActivity(ActivityMail.class).withIntent(intent).create().visible()
@@ -48,7 +49,18 @@ public class ActivityMailTest {
     myClothe.setType("pull");
     this.clothe = myClothe;
   }
-
+  
+  public Outfit generateOutfit() throws FileNotFoundException {
+	    Clothe clothe = new Clothe("the pull of your life");
+	    Clothe clothe2 = new Clothe("the t-shirt of your life");
+	    Outfit myOutfit = new Outfit();
+	    myOutfit.addClothe(clothe2);
+	    myOutfit.addClothe(clothe);
+	    return myOutfit;
+	  }
+  /*
+   * Create an intent with a clothe
+   */
   public Intent createIntent() throws FileNotFoundException {
     Intent intent =
         new Intent(Robolectric.getShadowApplication().getApplicationContext(),
@@ -58,18 +70,30 @@ public class ActivityMailTest {
     intent.putExtras(bundle);
     return intent;
   }
-
+  
+  /*
+   * Create an intent with an outfit
+   */
+  public Intent createIntentWithOutfit() throws FileNotFoundException {
+	    Intent intent =
+	        new Intent(Robolectric.getShadowApplication().getApplicationContext(),
+	            ActivityMail.class);
+	    Bundle bundle = new Bundle();
+	    bundle.putSerializable("outfit", this.generateOutfit());
+	    intent.putExtras(bundle);
+	    return intent;
+	  }
   /* check if the clothe's brand value is properly loaded into brand EditText */
   @Test
   public void testReceveirInitialValue() {
-    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editDestinataireClothe);
+    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editReceiver);
     assertTrue(textReceveir.getText().equals(""));
   }
 
   /* check if the modifications on model have been saved */
   @Test
   public void testReceveirChangeValue() {
-    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editDestinataireClothe);
+    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editReceiver);
     textReceveir.setText("tom@gmail.com");
     assertTrue(textReceveir.getText().equals("tom@gmail.com"));
   }
@@ -77,16 +101,24 @@ public class ActivityMailTest {
   /* check if the clothe's brand value is properly loaded into brand EditText */
   @Test
   public void testContenueInitialValue() {
-    EditText textBody = (EditText) activityMail.findViewById(R.id.editMailClothe);
+    EditText textBody = (EditText) activityMail.findViewById(R.id.editMail);
     assertTrue(textBody.getText().equals(""));
   }
 
   /* check if the modifications on model have been saved */
   @Test
   public void testContenuChangeValue() {
-    EditText textBody = (EditText) activityMail.findViewById(R.id.editMailClothe);
+    EditText textBody = (EditText) activityMail.findViewById(R.id.editMail);
     textBody.setText("content");
     assertTrue(textBody.getText().equals("content"));
   }
-
+  
+  /*
+   * Test onActivityResult with the bad requestcode
+   */
+  @Test
+  public void testOnActivityResultBad(){
+	  this.activityMail.onActivityResult(123455,1, null);
+	  assertTrue(this.activityMail.isFinishing() == false);
+  }
 }
