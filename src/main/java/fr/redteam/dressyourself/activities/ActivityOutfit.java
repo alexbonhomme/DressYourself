@@ -67,9 +67,6 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     // set images for the carousel.
     adapter = new AdapterCarouselImages(this, decider.getBodypartClothes(part));
     carousel.setAdapter(adapter);
-
-    // change the first selected position. (optional)
-    carousel.setCenterPosition(3);
   }
 
   private void initComponent() {
