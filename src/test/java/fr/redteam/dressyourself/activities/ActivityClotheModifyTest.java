@@ -22,12 +22,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -43,9 +41,6 @@ public class ActivityClotheModifyTest {
   private Spinner colorSpinner;
   private Spinner typeSpinner;
   private Clothe clotheToEdit;
-  private Button saveButton;
-
-  private DBHelper dbHelper;
 
   @Before
   public void setUp() {
@@ -60,9 +55,6 @@ public class ActivityClotheModifyTest {
     this.context = Robolectric.getShadowApplication().getApplicationContext();
     ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
 
-    /* init DBHelper */
-    this.dbHelper = new DBHelper(context, null);
-
     /* passing the clothe through intent */
     Intent intent = new Intent(this.context, ActivityClotheModify.class);
     intent.putExtra("clothe", this.clotheToEdit);
@@ -76,7 +68,7 @@ public class ActivityClotheModifyTest {
     this.brandEditText = (EditText) this.myActivity.findViewById(R.id.brandEdit);
     this.colorSpinner = (Spinner) this.myActivity.findViewById(R.id.colorSpinner);
     this.typeSpinner = (Spinner) this.myActivity.findViewById(R.id.typeSpinner);
-    this.saveButton = (Button) this.myActivity.findViewById(R.id.save);
+
     /* retrieving informations from intent */
     this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
 
