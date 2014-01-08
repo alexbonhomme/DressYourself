@@ -20,7 +20,7 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 
 @RunWith(RobolectricTestRunner.class)
 public class ActivityMailTest {
-  private ActivityMail activityClotheMail;
+  private ActivityMail activityMail;
   private Clothe clothe;
 
   @Before
@@ -28,7 +28,7 @@ public class ActivityMailTest {
 
     this.clothe();
     Intent intent = this.createIntent();
-    this.activityClotheMail =
+    this.activityMail =
         Robolectric.buildActivity(ActivityMail.class).withIntent(intent).create().visible()
             .get();
   }
@@ -62,14 +62,14 @@ public class ActivityMailTest {
   /* check if the clothe's brand value is properly loaded into brand EditText */
   @Test
   public void testReceveirInitialValue() {
-    EditText textReceveir = (EditText) activityClotheMail.findViewById(R.id.editDestinataireClothe);
+    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editDestinataireClothe);
     assertTrue(textReceveir.getText().equals(""));
   }
 
   /* check if the modifications on model have been saved */
   @Test
   public void testReceveirChangeValue() {
-    EditText textReceveir = (EditText) activityClotheMail.findViewById(R.id.editDestinataireClothe);
+    EditText textReceveir = (EditText) activityMail.findViewById(R.id.editDestinataireClothe);
     textReceveir.setText("tom@gmail.com");
     assertTrue(textReceveir.getText().equals("tom@gmail.com"));
   }
@@ -77,14 +77,14 @@ public class ActivityMailTest {
   /* check if the clothe's brand value is properly loaded into brand EditText */
   @Test
   public void testContenueInitialValue() {
-    EditText textBody = (EditText) activityClotheMail.findViewById(R.id.editMailClothe);
+    EditText textBody = (EditText) activityMail.findViewById(R.id.editMailClothe);
     assertTrue(textBody.getText().equals(""));
   }
 
   /* check if the modifications on model have been saved */
   @Test
   public void testContenuChangeValue() {
-    EditText textBody = (EditText) activityClotheMail.findViewById(R.id.editMailClothe);
+    EditText textBody = (EditText) activityMail.findViewById(R.id.editMailClothe);
     textBody.setText("content");
     assertTrue(textBody.getText().equals("content"));
   }

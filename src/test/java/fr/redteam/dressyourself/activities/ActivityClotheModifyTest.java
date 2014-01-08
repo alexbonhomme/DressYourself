@@ -3,10 +3,13 @@ package fr.redteam.dressyourself.activities;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +19,13 @@ import org.robolectric.shadows.ShadowEnvironment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import fr.redteam.dressyourself.R;
-import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfRuntimeException;
 
@@ -32,14 +35,12 @@ public class ActivityClotheModifyTest {
   private ActivityClotheModify myActivity;
   private Context context;
 
+  private ImageButton image;
   private EditText modelEditText;
   private EditText brandEditText;
   private Spinner colorSpinner;
   private Spinner typeSpinner;
   private Clothe clotheToEdit;
-  private Button saveButton;
-
-  private DBHelper dbHelper;
 
   @Before
   public void setUp() {
@@ -54,9 +55,6 @@ public class ActivityClotheModifyTest {
     this.context = Robolectric.getShadowApplication().getApplicationContext();
     ShadowEnvironment.setExternalStorageState(Environment.MEDIA_MOUNTED);
 
-    /* init DBHelper */
-    this.dbHelper = new DBHelper(context, null);
-
     /* passing the clothe through intent */
     Intent intent = new Intent(this.context, ActivityClotheModify.class);
     intent.putExtra("clothe", this.clotheToEdit);
@@ -65,11 +63,12 @@ public class ActivityClotheModifyTest {
     this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
 
     /* retrieving the editable components */
+    this.image = (ImageButton) this.myActivity.findViewById(R.id.imageButton);
     this.modelEditText = (EditText) this.myActivity.findViewById(R.id.modelEdit);
     this.brandEditText = (EditText) this.myActivity.findViewById(R.id.brandEdit);
     this.colorSpinner = (Spinner) this.myActivity.findViewById(R.id.colorSpinner);
     this.typeSpinner = (Spinner) this.myActivity.findViewById(R.id.typeSpinner);
-    this.saveButton = (Button) this.myActivity.findViewById(R.id.save);
+
     /* retrieving informations from intent */
     this.clotheToEdit = (Clothe) intent.getSerializableExtra("clothe");
 
@@ -159,6 +158,38 @@ public class ActivityClotheModifyTest {
     intent.putExtra("clothe", this.clotheToEdit);
     this.myActivity = Robolectric.buildActivity(ActivityClotheModify.class).withIntent(intent).create().get();
 
+  }
+
+  @Test
+  public void updateImageTest() throws NoSuchMethodException, IllegalArgumentException,
+      IllegalAccessException, InvocationTargetException {
+    Class[] parametersType = {Uri.class, Clothe.class};
+    Method updateImageMethod = ActivityClotheModify.class.getDeclaredMethod("updateImage", parametersType);
+    updateImageMethod.setAccessible(true);
+    
+    Uri imageUri = Uri.fromFile(new File("res/drawable/bottines.jpg"));
+    updateImageMethod.invoke(this.myActivity, imageUri, this.clotheToEdit);
+
+    assertEquals(imageUri.getPath(), this.clotheToEdit.getImageRelativePath());
+  }
+
+  @Test
+  public void testCopySelectedImage() throws NoSuchMethodException, IllegalArgumentException,
+      IllegalAccessException, InvocationTargetException {
+    Method copyselectedImage = ActivityClotheModify.class.getDeclaredMethod("copySelectedImage", File.class);
+    copyselectedImage.setAccessible(true);
+    
+    File f = new File("res/drawable/bottines.jpg");
+    copyselectedImage.invoke(this.myActivity, f);
+
+    File copiedFile = new File("res/drawable/imported/bottines.jpg");
+    assertTrue(copiedFile.exists());
+  }
+
+  @AfterClass
+  public static void clean() {
+    File f = new File("res/drawable/imported/bottines.jpg");
+    f.delete();
   }
 
 }

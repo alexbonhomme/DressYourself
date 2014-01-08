@@ -56,8 +56,8 @@ public class ActivityMail extends Activity {
       Intent intent = new Intent(ActivityMail.this, ActivityMain.class);
       if (ActivityMail.this.mail.isValidMail()) {
         ActivityMail.this.finish();
+        startActivity(intent);
       }
-      startActivity(intent);
     }
   }
 
