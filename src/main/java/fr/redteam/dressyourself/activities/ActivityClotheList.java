@@ -29,7 +29,8 @@ public class ActivityClotheList extends ListActivity{
 	/**
 	 * Set the List by using the DBHelper
 	 */
-	private void setClotheList(){
+	public void setClotheList(DBHelper db){
+		this.db = db;
 		this.db.open();
 		this.clotheList = this.db.getListClothes();
 		this.db.close();
@@ -39,7 +40,7 @@ public class ActivityClotheList extends ListActivity{
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		this.db = new DBHelper(this);
-		this.setClotheList();
+		this.setClotheList(this.db);
 
 		if(this.clotheList.size() == 0){
 			this.listIsEmpty = true; 
@@ -52,7 +53,7 @@ public class ActivityClotheList extends ListActivity{
 	@Override
 	public void onResume(){
 		super.onResume();
-		this.setClotheList();
+		this.setClotheList(this.db);
 		this.adapter = new AdapterClothes(this, this.clotheList);
 		setListAdapter(adapter);
 	}
