@@ -125,15 +125,6 @@ public class ActivityMailTest {
 	 */
 
 	/*
-	 * Test onActivityResult with the good requestcode
-	 */
-	@Test
-	public void testOnActivityResultGood() {
-		this.activityMail.onActivityResult(REQUEST_CODE_MAILINTENT, 1, null);
-		assertTrue(this.activityMail.isDestroyed());
-	}
-
-	/*
 	 * Test creationMail with a clothe
 	 */
 	@Test
