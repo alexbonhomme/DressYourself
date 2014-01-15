@@ -65,7 +65,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     db.execSQL(TABLE_WEATHER_CLOTHES);
     db.execSQL(TABLE_BRAND);
 
-    insertColor(db, "WHITE");
+   /* insertColor(db, "WHITE");
     insertColor(db, "BLACK");
     insertColor(db, "BLUE");
     insertColor(db, "YELLOW");
@@ -73,14 +73,12 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     insertColor(db, "RED");
     insertColor(db, "PURPLE");
     insertColor(db, "PINK");
-    insertBodies(db, "TOP");
-    insertBodies(db, "HEAD");
-    insertBodies(db, "BOTTOM");
+    
     insertBodies(db, "SHOES");
     insertWeather(db, "SUNNY");
     insertWeather(db, "CLOUNY");
     insertWeather(db, "RAINY");
-    insertWeather(db, "SNOWNY");
+    insertWeather(db, "SNOWNY");*/
     insertType(db, "pull", 1);
     insertType(db, "pantalon", 2);
     insertType(db, "T-shirt", 1);
