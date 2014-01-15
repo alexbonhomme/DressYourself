@@ -36,11 +36,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.google.android</groupId>
-			<artifactId>android-test</artifactId>
-			<version>LATEST</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.android</groupId>
 			<artifactId>support-v4</artifactId>
 			<version>LATEST</version>
 		</dependency>
