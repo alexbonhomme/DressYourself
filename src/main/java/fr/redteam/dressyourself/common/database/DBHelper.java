@@ -54,8 +54,7 @@ public class DBHelper implements IntDBHelper {
     return bdd;
   }
 
-  @Override
-  public long insertColor(String couleur) {
+  private long insertColor(String couleur) {
     try {
       ContentValues values = new ContentValues();
       values.put("colorName", couleur);
@@ -65,8 +64,7 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long insertWeather(String weather) {
+  private long insertWeather(String weather) {
     try {
       ContentValues values = new ContentValues();
       values.put("weatherName", weather);
@@ -76,9 +74,10 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long insertBodies(String bodies) {
+
+  private long insertBodies(String bodies) {
     try {
+      
       ContentValues values = new ContentValues();
       values.put("bodiesName", bodies);
       return bdd.insertWithOnConflict("BODIES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
@@ -87,8 +86,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long insertType(String type, long idBodies) {
+
+  private long insertType(String type, long idBodies) {
     try {
       ContentValues values = new ContentValues();
       values.put("typeName", type);
@@ -141,13 +140,13 @@ public class DBHelper implements IntDBHelper {
    * bdd.insert("WEATHER_CLOTHES", null, values); }
    */
 
-  @Override
-  public long insertOutfit(String name, Clothe[] clothes) {
+
+  private long insertOutfit(String name, Clothe[] clothes) {
     return 0; // TODO
   }
 
-  @Override
-  public long insertBrand(String brand) {
+
+  private long insertBrand(String brand) {
     try {
       ContentValues values = new ContentValues();
       values.put("brandName", brand);
@@ -158,8 +157,8 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-  @Override
-  public long getIDColor(String color) {
+
+  private long getIDColor(String color) {
     try {
       String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
       Log.v("BDD", query);
@@ -172,8 +171,8 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-  @Override
-  public long getIDWeather(String weather) {
+
+  private long getIDWeather(String weather) {
     try {
       String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \"" + weather + "\"";
       Log.v("BDD", query);
@@ -185,8 +184,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long getIDBodies(String bodies) {
+
+  private long getIDBodies(String bodies) {
     try {
       String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \"" + bodies + "\"";
       Log.v("BDD", query);
@@ -199,8 +198,8 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-  @Override
-  public long getIDType(String type) {
+
+  private long getIDType(String type) {
     try {
       String query = "SELECT ID_type FROM TYPE WHERE typeName = \"" + type + "\"";
       Log.v("BDD", query);
@@ -212,8 +211,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long getIDClothes(String clothes) {
+
+  private long getIDClothes(String clothes) {
     try {
       String query = "SELECT ID_clothes FROM CLOTHES WHERE model = \"" + clothes + "\"";
       Log.v("BDD", query);
@@ -226,8 +225,8 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-  @Override
-  public long getIDOutfit(String outfit) {
+
+  private long getIDOutfit(String outfit) {
     try {
       String query = "SELECT ID_outfit FROM OUTFIT WHERE outfitName = \"" + outfit + "\"";
       Log.v("BDD", query);
@@ -239,8 +238,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public long getIDBrand(String brand) {
+
+  private long getIDBrand(String brand) {
     try {
       String query = "SELECT ID_brand FROM BRAND WHERE brandName = \"" + brand + "\"";
       Log.v("BDD", query);
@@ -252,8 +251,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public String getColor(long id) {
+
+  private String getColor(long id) {
     try {
       String query = "SELECT colorName FROM COLOR WHERE ID_color = " + id;
       Log.v("BDD", query);
@@ -265,8 +264,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public String getBodies(long l) {
+
+  private String getBodies(long l) {
     try {
       String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = " + l;
       Log.v("BDD", query);
@@ -279,8 +278,7 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public String getWeather(long id) {
+  private String getWeather(long id) {
     try {
       String query = "SELECT weatherName FROM WEATHER WHERE ID_weather = " + id;
       Log.v("BDD", query);
@@ -293,8 +291,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public String getType(long id) {
+
+  private String getType(long id) {
     try {
       String query = "SELECT typeName FROM TYPE WHERE ID_type = " + id;
       Log.v("BDD", query);
@@ -307,8 +305,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public String getBrand(long id) {
+
+  private String getBrand(long id) {
     try {
       String query = "SELECT brandName FROM BRAND WHERE ID_brand = " + id;
       Log.v("BDD", query);
@@ -322,9 +320,7 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-  // a refaire
-  @Override
-  public Clothe getClothe(long id) {
+  private Clothe getClothe(long id) {
     String query=
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
             + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
@@ -388,7 +384,6 @@ public class DBHelper implements IntDBHelper {
     int id = -1;
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
-
     while (cursor.moveToNext()) {
       Log.v("BDD", Integer.toString(cursor.getInt(0)));
       if (cursor.getInt(0) != id) {
@@ -411,6 +406,7 @@ public class DBHelper implements IntDBHelper {
         weather.add(cursor.getString(6));
       }
     }
+    listClothes.add(clothe);
 
     return listClothes;
     } catch (RuntimeException e) {
@@ -429,7 +425,8 @@ public class DBHelper implements IntDBHelper {
             + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
             + "AND CLOTHES.ID_c = COLOR.ID_color "
             + "AND CLOTHES.ID_t = TYPE.ID_type "
-            + "AND TYPE.ID_b = BODIES.ID_bodies AND bodiesName='Bottom'";
+            + "AND TYPE.ID_b = BODIES.ID_bodies "
+            + "AND bodiesName='Bottom'";
 
     /*
      * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -464,6 +461,8 @@ public class DBHelper implements IntDBHelper {
       } else {
         weather.add(cursor.getString(6));
       }
+      listClothes.add(clothe);
+
     }
 
     return listClothes;
@@ -480,7 +479,8 @@ public class DBHelper implements IntDBHelper {
             + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
             + "AND CLOTHES.ID_c = COLOR.ID_color "
             + "AND CLOTHES.ID_t = TYPE.ID_type "
-            + "AND TYPE.ID_b = BODIES.ID_bodies AND bodiesName='Shoes'";
+            + "AND TYPE.ID_b = BODIES.ID_bodies "
+            + "AND bodiesName='Shoes'";
 
     /*
      * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -515,6 +515,7 @@ public class DBHelper implements IntDBHelper {
       } else {
         weather.add(cursor.getString(6));
       }
+      listClothes.add(clothe);
     }
 
     return listClothes;
@@ -533,7 +534,8 @@ public class DBHelper implements IntDBHelper {
               + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
               + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
               + "AND CLOTHES.ID_c = COLOR.ID_color "
-              + "AND CLOTHES.ID_t = TYPE.ID_type " + "AND TYPE.ID_b = BODIES.ID_bodies";
+              + "AND CLOTHES.ID_t = TYPE.ID_type " 
+              + "AND TYPE.ID_b = BODIES.ID_bodies";
 
       /*
        * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -569,6 +571,7 @@ public class DBHelper implements IntDBHelper {
           weather.add(cursor.getString(6));
         }
       }
+      listClothes.add(clothe);
 
       return listClothes;
 
@@ -646,10 +649,12 @@ public class DBHelper implements IntDBHelper {
   @Override
   public long insertClothes(Clothe clothe) {
     try {
-    long l = this.insertBodies(clothe.getBodies());
+   
+    this.insertBodies(clothe.getBodies());
     this.insertBrand(clothe.getBrand());
     this.insertColor(clothe.getColor());
-    this.insertType(clothe.getType(), l);
+    long l = this.getIDBodies(clothe.getBodies());
+    this.insertType(clothe.getType(), l );
       for (int i = 0; i < clothe.getWeather().size(); i++) {
       this.insertWeather(clothe.getWeather().get(i));
       }

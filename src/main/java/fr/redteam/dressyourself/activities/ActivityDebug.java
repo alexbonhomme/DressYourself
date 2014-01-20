@@ -175,11 +175,7 @@ public class ActivityDebug extends Activity {
     APIZara api = new APIZara(new AndroidFileManager(getApplicationContext()));
 
     db.open();
-    long topId = db.insertBodies("Top");
-    long bottomId = db.insertBodies("Bottom");
-    long shoesId = db.insertBodies("Shoes");
 
-    /* long brandId = */db.insertBrand("Zara");
 
     /**
      * Get 3 tops, 3 bottoms and 3 shoes (females)
@@ -188,20 +184,21 @@ public class ActivityDebug extends Activity {
     for (int i = 0; i < 3; i++) {
       Clothe bottom = api.findClotheById(500 + i);
       bottom.setWeather(new ArrayList<String>());
-      db.insertColor(bottom.getColor());
-      db.insertType(bottom.getType(), (int) bottomId);
+      bottom.setBodies("bottom");
+      bottom.setBrand("zara");
+ 
       db.insertClothes(bottom);
 
       Clothe top = api.findClotheById(750 + i);
       top.setWeather(new ArrayList<String>());
-      db.insertColor(top.getColor());
-      db.insertType(top.getType(), (int) topId);
+      bottom.setBodies("Top");
+      bottom.setBrand("zara");
       db.insertClothes(top);
 
       Clothe shoes = api.findClotheById(960 + i);
       shoes.setWeather(new ArrayList<String>());
-      db.insertColor(shoes.getColor());
-      db.insertType(shoes.getType(), (int) shoesId);
+      bottom.setBodies("shoes");
+      bottom.setBrand("zara");
       db.insertClothes(shoes);
     }
 
