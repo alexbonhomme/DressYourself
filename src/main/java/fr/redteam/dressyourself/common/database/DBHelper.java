@@ -172,17 +172,7 @@ public class DBHelper implements IntDBHelper {
   }
 
 
-  private long getIDWeather(String weather) {
-    try {
-      String query = "SELECT ID_weather FROM WEATHER WHERE weatherName = \"" + weather + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
+  
 
 
   private long getIDBodies(String bodies) {
@@ -212,31 +202,10 @@ public class DBHelper implements IntDBHelper {
   }
 
 
-  private long getIDClothes(String clothes) {
-    try {
-      String query = "SELECT ID_clothes FROM CLOTHES WHERE model = \"" + clothes + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-
-  }
+  
 
 
-  private long getIDOutfit(String outfit) {
-    try {
-      String query = "SELECT ID_outfit FROM OUTFIT WHERE outfitName = \"" + outfit + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
+  
 
 
   private long getIDBrand(String brand) {
@@ -252,113 +221,12 @@ public class DBHelper implements IntDBHelper {
   }
 
 
-  private String getColor(long id) {
-    try {
-      String query = "SELECT colorName FROM COLOR WHERE ID_color = " + id;
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getString(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
+  
 
 
-  private String getBodies(long l) {
-    try {
-      String query = "SELECT bodiesName FROM BODIES WHERE ID_bodies = " + l;
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
+  
 
-      return c.getString(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
-
-  private String getWeather(long id) {
-    try {
-      String query = "SELECT weatherName FROM WEATHER WHERE ID_weather = " + id;
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-
-      return c.getString(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
-
-
-  private String getType(long id) {
-    try {
-      String query = "SELECT typeName FROM TYPE WHERE ID_type = " + id;
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-
-      return c.getString(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
-
-
-  private String getBrand(long id) {
-    try {
-      String query = "SELECT brandName FROM BRAND WHERE ID_brand = " + id;
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-
-      return c.getString(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-
-  }
-
-  private Clothe getClothe(long id) {
-    String query=
-        "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-            + "AND CLOTHES.ID_c = COLOR.ID_color "
-            + "AND CLOTHES.ID_t = TYPE.ID_type " + "AND TYPE.ID_b = BODIES.ID_bodies AND id=" + id;
-
-    try {
-    Cursor cursor = bdd.rawQuery(query, null);
-    /*
-     * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
-     * brandName 5: colorName 6: weatherName 7:image
-     */
-
-    Clothe clothe = new Clothe();
-    cursor.moveToFirst();
-    ArrayList<String> weather = new ArrayList<String>();
-    clothe.setId(cursor.getInt(0));
-    clothe.setModel(cursor.getString(1));
-    clothe.setType(cursor.getString(2));
-    clothe.setBodies(cursor.getString(3));
-    clothe.setBrand(cursor.getString(4));
-    clothe.setColor(cursor.getString(5));;
-    weather.add(cursor.getString(6));
-    clothe.setImageRelativePath(cursor.getString(7));
-
-    while (cursor.moveToNext()) {
-      weather.add(cursor.getString(6));
-    }
-    clothe.setWeather(weather);
-
-    return clothe;
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
-  }
+  
 
   @Override
   public List<Clothe> getListTop() {
@@ -439,9 +307,11 @@ public class DBHelper implements IntDBHelper {
     int id = -1;
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
+    
 
     while (cursor.moveToNext()) {
-      Log.v("BDD", Integer.toString(cursor.getInt(0)));
+    	Log.v("BDD", Integer.toString(cursor.getInt(0)));
+
       if (cursor.getInt(0) != id) {
         if (id != -1) {
           listClothes.add(clothe);
@@ -461,10 +331,12 @@ public class DBHelper implements IntDBHelper {
       } else {
         weather.add(cursor.getString(6));
       }
-      listClothes.add(clothe);
 
     }
+    listClothes.add(clothe);
+    
 
+    
     return listClothes;
   }
 
@@ -512,11 +384,13 @@ public class DBHelper implements IntDBHelper {
         clothe.setImageRelativePath(cursor.getString(7));
         weather.add(cursor.getString(6));
         clothe.setWeather(weather);
+
       } else {
         weather.add(cursor.getString(6));
       }
-      listClothes.add(clothe);
     }
+    listClothes.add(clothe);
+
 
     return listClothes;
     } catch (RuntimeException e) {
@@ -567,6 +441,8 @@ public class DBHelper implements IntDBHelper {
           clothe.setImageRelativePath(cursor.getString(7));
           weather.add(cursor.getString(6));
           clothe.setWeather(weather);
+          Log.v("BDD", clothe.getBodies());
+
         } else {
           weather.add(cursor.getString(6));
         }
