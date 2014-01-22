@@ -184,7 +184,7 @@ public class ActivityDebug extends Activity {
     for (int i = 0; i < 3; i++) {
       Clothe bottom = api.findClotheById(500 + i);
       bottom.setWeather(new ArrayList<String>());
-      bottom.setBodies("bottom");
+      bottom.setBodies("Bottom");
       bottom.setBrand("zara");
  
       db.insertClothes(bottom);
@@ -197,7 +197,7 @@ public class ActivityDebug extends Activity {
 
       Clothe shoes = api.findClotheById(960 + i);
       shoes.setWeather(new ArrayList<String>());
-      bottom.setBodies("shoes");
+      bottom.setBodies("Shoes");
       bottom.setBrand("zara");
       db.insertClothes(shoes);
     }
