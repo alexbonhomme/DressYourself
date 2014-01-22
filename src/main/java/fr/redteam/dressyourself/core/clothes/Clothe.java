@@ -174,6 +174,21 @@ public class Clothe implements Serializable {
   }
 
   @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((bodies == null) ? 0 : bodies.hashCode());
+    result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+    result = prime * result + ((color == null) ? 0 : color.hashCode());
+    result = prime * result + (int) (id ^ (id >>> 32));
+    result = prime * result + ((image == null) ? 0 : image.hashCode());
+    result = prime * result + ((model == null) ? 0 : model.hashCode());
+    result = prime * result + ((type == null) ? 0 : type.hashCode());
+    result = prime * result + ((weather == null) ? 0 : weather.hashCode());
+    return result;
+  }
+
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
@@ -219,4 +234,5 @@ public class Clothe implements Serializable {
 
     return true;
   }
+
 }
