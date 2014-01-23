@@ -57,7 +57,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     carousel = (Carousel) findViewById(name);
 
     // configurations for the carousel.
-    carousel.setType(Carousel.TYPE_COVERFLOW);
+    carousel.setType(Carousel.TYPE_ROTARY);
     carousel.setOverScrollBounceEnabled(true);
     carousel.setInfiniteScrollEnabled(false);
     carousel.setItemRearrangeEnabled(false);
@@ -65,6 +65,9 @@ public class ActivityOutfit extends Activity implements OnClickListener {
     
     // set images for the carousel.
     adapter = new AdapterCarouselImages(this, decider.getBodypartClothes(part));
+    
+    
+    
     carousel.setAdapter(adapter);
   }
 
