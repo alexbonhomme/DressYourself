@@ -14,7 +14,6 @@ import fr.redteam.dressyourself.adapters.AdapterCarouselImages;
 import fr.redteam.dressyourself.common.database.DBHelper;
 import fr.redteam.dressyourself.core.Bodypart;
 import fr.redteam.dressyourself.core.algorithm.OutfitDecider;
-import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.plugins.weather.Weather;
 import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier;
 import fr.redteam.dressyourself.plugins.weather.WeatherIdentifier.WeatherGroup;
@@ -75,8 +74,7 @@ public class ActivityOutfit extends Activity implements OnClickListener {
   }
 
   private void bindToLayout() {
-    Clothe clothe = new Clothe("Pull beige");
-    textViewWeather.setText("Now : " + Weather.getTemperature() + " °C ");
+    textViewWeather.setText(Weather.getTemperature() + " °C ");
     WeatherIdentifier.fillLists();
     if (gotWeatherInfo) {
       switch (WeatherGroup.valueOf(Weather.getWeather())) {
