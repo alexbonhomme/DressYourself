@@ -74,7 +74,7 @@ public abstract class APIAbstractHelper {
     // Writing image into the device storage from a web stream
     try {
       URL imageUrl = new URL(json.getString("imageUrl"));
-      InputStream imageStream = imageUrl.openStream();
+      InputStream imageStream = new BufferedInputStream(imageUrl.openStream());      
       manager.writeFileToStorage(product.getImageRelativePath(), imageStream);
       imageStream.close();
 

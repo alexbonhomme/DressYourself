@@ -72,11 +72,13 @@ public class AndroidFileManager implements FileManager {
       file.createNewFile();
 
       outStream = new FileOutputStream(file);
-      byte[] data = new byte[imageStream.available()];
-
-      imageStream.read(data);
-      outStream.write(data);
-
+      
+      byte[] buffer = new byte[1024];
+      int bytesRead;
+      while ((bytesRead = imageStream.read(buffer)) != -1) {
+        outStream.write(buffer, 0, bytesRead);
+      }
+      
     } catch (IOException e) {
       throw new DressyourselfIOException(e);
     } catch (NullPointerException e) {

@@ -64,16 +64,16 @@ public class ListViewClothes extends LinearLayout {
     // if no image attached to this product, we just put a default image
     if (product.getImageRelativePath() == null) {
       imageViewProduct.setImageResource(R.drawable.logo_2_2_1);
-
       return;
     }
 
     ClothesManager manager = new ClothesManager(new AndroidFileManager(getContext()));
     File imgFile = manager.loadClotheImage(product.getImageRelativePath());
-
+    
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inPreferredConfig = Bitmap.Config.ARGB_8888;
     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
+    
     imageViewProduct.setImageBitmap(myBitmap);
   }
 
