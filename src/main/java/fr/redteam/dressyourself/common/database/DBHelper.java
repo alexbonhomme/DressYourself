@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import fr.redteam.dressyourself.core.clothes.Clothe;
-import fr.redteam.dressyourself.core.clothes.Outfit;
 import fr.redteam.dressyourself.exceptions.DressyourselfDatabaseException;
 
 /**
@@ -141,9 +140,7 @@ public class DBHelper implements IntDBHelper {
    */
 
 
-  private long insertOutfit(String name, Clothe[] clothes) {
-    return 0; // TODO
-  }
+
 
 
   private long insertBrand(String brand) {
@@ -252,6 +249,8 @@ public class DBHelper implements IntDBHelper {
     int id = -1;
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
+    
+    //add a Clothe with multiple Weather
     while (cursor.moveToNext()) {
       Log.v("BDD", Integer.toString(cursor.getInt(0)));
       if (cursor.getInt(0) != id) {
@@ -308,6 +307,7 @@ public class DBHelper implements IntDBHelper {
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
     
+    //add a Clothe with multiple Weather
 
     while (cursor.moveToNext()) {
     	Log.v("BDD", Integer.toString(cursor.getInt(0)));
@@ -365,6 +365,7 @@ public class DBHelper implements IntDBHelper {
     int id = -1;
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
+    //add a Clothe with multiple Weather
 
     while (cursor.moveToNext()) {
       Log.v("BDD", Integer.toString(cursor.getInt(0)));
@@ -422,6 +423,8 @@ public class DBHelper implements IntDBHelper {
       int id = -1;
       clothe = new Clothe();
       ArrayList<String> weather = new ArrayList<String>();
+
+      //add a Clothe with multiple Weather
 
       while (cursor.moveToNext()) {
         Log.v("BDD", Integer.toString(cursor.getInt(0)));
@@ -517,10 +520,7 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-  @Override
-  public Outfit getOutfit(long id) {
-    return null;
-  }
+ 
 
   @Override
   public long insertClothes(Clothe clothe) {
