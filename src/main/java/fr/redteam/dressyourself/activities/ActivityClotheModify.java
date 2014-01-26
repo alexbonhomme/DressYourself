@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -182,8 +183,9 @@ public class ActivityClotheModify extends Activity {
     if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
       /* hack to hide scaling */
       // this.image.setBackgroundColor(android.R.attr.colorBackground);
+      Log.d("PATH", data.getData().getPath());
       this.updateImage(data.getData(), this.clotheToEdit);
-      this.copySelectedImage(new File(data.getData().getPath()));
+      // this.copySelectedImage(new File(data.getData().getPath()));
     }
   }
 
