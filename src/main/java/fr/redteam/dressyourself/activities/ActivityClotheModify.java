@@ -97,7 +97,6 @@ public class ActivityClotheModify extends Activity {
 
   /** load all the data into the page */
   private void loadData(Clothe clothe) {
-    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(clothe.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clothe.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clothe.getBrand()));
     ClothesManager manager = new ClothesManager(new AndroidFileManager(this.getApplicationContext()));
@@ -190,7 +189,7 @@ public class ActivityClotheModify extends Activity {
 
   /** Transform a null String in an empty String */
   public String nullStringToEmptyString(String s) {
-    return (s == null ? s + " " : s);
+    return (s == null ? s + "" : s);
   }
 
 }
