@@ -40,11 +40,13 @@ public class DBHelper implements IntDBHelper {
 
   }
 
+  @Override
   public void open() {
     // on ouvre la BDD en Ã©criture
     bdd = mbdd.getWritableDatabase();
   }
 
+  @Override
   public void close() {
     bdd.close();
   }
@@ -59,7 +61,7 @@ public class DBHelper implements IntDBHelper {
       values.put("colorName", couleur);
       return bdd.insertWithOnConflict("COLOR", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException" , e);
+      throw new DressyourselfDatabaseException("RuntimeException", e);
     }
   }
 
@@ -68,20 +70,20 @@ public class DBHelper implements IntDBHelper {
       ContentValues values = new ContentValues();
       values.put("weatherName", weather);
       return bdd.insertWithOnConflict("WEATHER", null, values, SQLiteDatabase.CONFLICT_IGNORE);
-    } catch ( RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException" , e);
+    } catch (RuntimeException e) {
+      throw new DressyourselfDatabaseException("RuntimeException", e);
     }
   }
 
 
   private long insertBodies(String bodies) {
     try {
-      
+
       ContentValues values = new ContentValues();
       values.put("bodiesName", bodies);
       return bdd.insertWithOnConflict("BODIES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException" , e);
+      throw new DressyourselfDatabaseException("RuntimeException", e);
     }
   }
 
@@ -93,7 +95,7 @@ public class DBHelper implements IntDBHelper {
       values.put("ID_b", idBodies);
       return bdd.insertWithOnConflict("TYPE", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException" , e);
+      throw new DressyourselfDatabaseException("RuntimeException", e);
     }
 
   }
@@ -141,8 +143,6 @@ public class DBHelper implements IntDBHelper {
 
 
 
-
-
   private long insertBrand(String brand) {
     try {
       ContentValues values = new ContentValues();
@@ -168,8 +168,6 @@ public class DBHelper implements IntDBHelper {
 
   }
 
-
-  
 
 
   private long getIDBodies(String bodies) {
@@ -199,11 +197,6 @@ public class DBHelper implements IntDBHelper {
   }
 
 
-  
-
-
-  
-
 
   private long getIDBrand(String brand) {
     try {
@@ -218,24 +211,14 @@ public class DBHelper implements IntDBHelper {
   }
 
 
-  
-
-
-  
-
-  
 
   @Override
   public List<Clothe> getListTop() {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-            + "AND CLOTHES.ID_c = COLOR.ID_color "
-            + "AND CLOTHES.ID_t = TYPE.ID_type "
+            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES " + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  " + "WHERE CLOTHES.ID_br= BRAND.ID_brand " + "AND CLOTHES.ID_c = COLOR.ID_color " + "AND CLOTHES.ID_t = TYPE.ID_type "
             + "AND TYPE.ID_b = BODIES.ID_bodies AND bodiesName='Top'";
 
     /*
@@ -243,39 +226,39 @@ public class DBHelper implements IntDBHelper {
      * brandName 5: colorName 6: weatherName 7:image
      */
     try {
-    Cursor cursor = bdd.rawQuery(query, null);
-    ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
-    Clothe clothe;
-    int id = -1;
-    clothe = new Clothe();
-    ArrayList<String> weather = new ArrayList<String>();
-    
-    //add a Clothe with multiple Weather
-    while (cursor.moveToNext()) {
-      Log.v("BDD", Integer.toString(cursor.getInt(0)));
-      if (cursor.getInt(0) != id) {
-        if (id != -1) {
-          listClothes.add(clothe);
-        }
-        clothe = new Clothe();
-        weather = new ArrayList<String>();
-        id = cursor.getInt(0);
-        clothe.setId(cursor.getInt(0));
-        clothe.setModel(cursor.getString(1));
-        clothe.setType(cursor.getString(2));
-        clothe.setBodies(cursor.getString(3));
-        clothe.setBrand(cursor.getString(4));
-        clothe.setColor(cursor.getString(5));
-        clothe.setImageRelativePath(cursor.getString(7));
-        weather.add(cursor.getString(6));
-        clothe.setWeather(weather);
-      } else {
-        weather.add(cursor.getString(6));
-      }
-    }
-    listClothes.add(clothe);
+      Cursor cursor = bdd.rawQuery(query, null);
+      ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
+      Clothe clothe;
+      int id = -1;
+      clothe = new Clothe();
+      ArrayList<String> weather = new ArrayList<String>();
 
-    return listClothes;
+      // add a Clothe with multiple Weather
+      while (cursor.moveToNext()) {
+        Log.v("BDD", Integer.toString(cursor.getInt(0)));
+        if (cursor.getInt(0) != id) {
+          if (id != -1) {
+            listClothes.add(clothe);
+          }
+          clothe = new Clothe();
+          weather = new ArrayList<String>();
+          id = cursor.getInt(0);
+          clothe.setId(cursor.getInt(0));
+          clothe.setModel(cursor.getString(1));
+          clothe.setType(cursor.getString(2));
+          clothe.setBodies(cursor.getString(3));
+          clothe.setBrand(cursor.getString(4));
+          clothe.setColor(cursor.getString(5));
+          clothe.setImageRelativePath(cursor.getString(7));
+          weather.add(cursor.getString(6));
+          clothe.setWeather(weather);
+        } else {
+          weather.add(cursor.getString(6));
+        }
+      }
+      listClothes.add(clothe);
+
+      return listClothes;
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
@@ -286,14 +269,9 @@ public class DBHelper implements IntDBHelper {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-            + "AND CLOTHES.ID_c = COLOR.ID_color "
-            + "AND CLOTHES.ID_t = TYPE.ID_type "
-            + "AND TYPE.ID_b = BODIES.ID_bodies "
-            + "AND bodiesName='Bottom'";
+            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES " + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  " + "WHERE CLOTHES.ID_br= BRAND.ID_brand " + "AND CLOTHES.ID_c = COLOR.ID_color " + "AND CLOTHES.ID_t = TYPE.ID_type "
+            + "AND TYPE.ID_b = BODIES.ID_bodies " + "AND bodiesName='Bottom'";
 
     /*
      * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -306,11 +284,11 @@ public class DBHelper implements IntDBHelper {
     int id = -1;
     clothe = new Clothe();
     ArrayList<String> weather = new ArrayList<String>();
-    
-    //add a Clothe with multiple Weather
+
+    // add a Clothe with multiple Weather
 
     while (cursor.moveToNext()) {
-    	Log.v("BDD", Integer.toString(cursor.getInt(0)));
+      Log.v("BDD", Integer.toString(cursor.getInt(0)));
 
       if (cursor.getInt(0) != id) {
         if (id != -1) {
@@ -334,9 +312,9 @@ public class DBHelper implements IntDBHelper {
 
     }
     listClothes.add(clothe);
-    
 
-    
+
+
     return listClothes;
   }
 
@@ -345,55 +323,50 @@ public class DBHelper implements IntDBHelper {
 
     String query =
         "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-            + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-            + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-            + "AND CLOTHES.ID_c = COLOR.ID_color "
-            + "AND CLOTHES.ID_t = TYPE.ID_type "
-            + "AND TYPE.ID_b = BODIES.ID_bodies "
-            + "AND bodiesName='Shoes'";
+            + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES " + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+            + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  " + "WHERE CLOTHES.ID_br= BRAND.ID_brand " + "AND CLOTHES.ID_c = COLOR.ID_color " + "AND CLOTHES.ID_t = TYPE.ID_type "
+            + "AND TYPE.ID_b = BODIES.ID_bodies " + "AND bodiesName='Shoes'";
 
     /*
      * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
      * brandName 5: colorName 6: weatherName 7:image
      */
     try {
-    Cursor cursor = bdd.rawQuery(query, null);
-    ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
-    Clothe clothe;
-    int id = -1;
-    clothe = new Clothe();
-    ArrayList<String> weather = new ArrayList<String>();
-    //add a Clothe with multiple Weather
+      Cursor cursor = bdd.rawQuery(query, null);
+      ArrayList<Clothe> listClothes = new ArrayList<Clothe>();
+      Clothe clothe;
+      int id = -1;
+      clothe = new Clothe();
+      ArrayList<String> weather = new ArrayList<String>();
+      // add a Clothe with multiple Weather
 
-    while (cursor.moveToNext()) {
-      Log.v("BDD", Integer.toString(cursor.getInt(0)));
-      if (cursor.getInt(0) != id) {
-        if (id != -1) {
-          listClothes.add(clothe);
+      while (cursor.moveToNext()) {
+        Log.v("BDD", Integer.toString(cursor.getInt(0)));
+        if (cursor.getInt(0) != id) {
+          if (id != -1) {
+            listClothes.add(clothe);
+          }
+          clothe = new Clothe();
+          weather = new ArrayList<String>();
+          id = cursor.getInt(0);
+          clothe.setId(cursor.getInt(0));
+          clothe.setModel(cursor.getString(1));
+          clothe.setType(cursor.getString(2));
+          clothe.setBodies(cursor.getString(3));
+          clothe.setBrand(cursor.getString(4));
+          clothe.setColor(cursor.getString(5));
+          clothe.setImageRelativePath(cursor.getString(7));
+          weather.add(cursor.getString(6));
+          clothe.setWeather(weather);
+
+        } else {
+          weather.add(cursor.getString(6));
         }
-        clothe = new Clothe();
-        weather = new ArrayList<String>();
-        id = cursor.getInt(0);
-        clothe.setId(cursor.getInt(0));
-        clothe.setModel(cursor.getString(1));
-        clothe.setType(cursor.getString(2));
-        clothe.setBodies(cursor.getString(3));
-        clothe.setBrand(cursor.getString(4));
-        clothe.setColor(cursor.getString(5));
-        clothe.setImageRelativePath(cursor.getString(7));
-        weather.add(cursor.getString(6));
-        clothe.setWeather(weather);
-
-      } else {
-        weather.add(cursor.getString(6));
       }
-    }
-    listClothes.add(clothe);
+      listClothes.add(clothe);
 
 
-    return listClothes;
+      return listClothes;
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
@@ -404,13 +377,9 @@ public class DBHelper implements IntDBHelper {
     try {
       String query =
           "SELECT CLOTHES.ID_clothes AS id, CLOTHES.model,TYPE.typeName, BODIES.bodiesName, BRAND.brandName,COLOR.colorName,WEATHER.weatherName,CLOTHES.image "
-              + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES "
-              + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
-              + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  "
-              + "WHERE CLOTHES.ID_br= BRAND.ID_brand "
-              + "AND CLOTHES.ID_c = COLOR.ID_color "
-              + "AND CLOTHES.ID_t = TYPE.ID_type " 
-              + "AND TYPE.ID_b = BODIES.ID_bodies";
+              + "FROM BRAND,COLOR,TYPE,BODIES, CLOTHES " + "LEFT JOIN WEATHER_CLOTHES ON CLOTHES.ID_clothes = WEATHER_CLOTHES.ID_c "
+              + "LEFT JOIN WEATHER  ON WEATHER.ID_weather = WEATHER_CLOTHES.ID_w  " + "WHERE CLOTHES.ID_br= BRAND.ID_brand " + "AND CLOTHES.ID_c = COLOR.ID_color "
+              + "AND CLOTHES.ID_t = TYPE.ID_type " + "AND TYPE.ID_b = BODIES.ID_bodies";
 
       /*
        * placement des champs dans le curseur 0:ID_clothes 1: model 2: typeName 3:bodiesName 4:
@@ -424,7 +393,7 @@ public class DBHelper implements IntDBHelper {
       clothe = new Clothe();
       ArrayList<String> weather = new ArrayList<String>();
 
-      //add a Clothe with multiple Weather
+      // add a Clothe with multiple Weather
 
       while (cursor.moveToNext()) {
         Log.v("BDD", Integer.toString(cursor.getInt(0)));
@@ -484,58 +453,55 @@ public class DBHelper implements IntDBHelper {
   @Override
   public long updateClothe(Clothe clothe) {
     try {
-    ContentValues values = new ContentValues();
+      ContentValues values = new ContentValues();
 
-    if (clothe.getType() != null) {
-      values.put("ID_t", getIDType(clothe.getType()));
-    }
-    else{	
-      values.put("ID_t", 0);
-    }
+      if (clothe.getType() != null) {
+        values.put("ID_t", getIDType(clothe.getType()));
+      } else {
+        values.put("ID_t", 0);
+      }
 
-    if (clothe.getColor() != null){
-      values.put("ID_c", getIDColor(clothe.getColor()));
-    }else{
-      values.put("ID_c", 0);
-    }
+      if (clothe.getColor() != null) {
+        values.put("ID_c", getIDColor(clothe.getColor()));
+      } else {
+        values.put("ID_c", 0);
+      }
 
-    if (clothe.getBrand() != null){
-      values.put("ID_br", getIDBrand(clothe.getBrand()));
-    }else{
-      values.put("ID_br", 0);
-    }
+      if (clothe.getBrand() != null) {
+        values.put("ID_br", getIDBrand(clothe.getBrand()));
+      } else {
+        values.put("ID_br", 0);
+      }
 
-    if (clothe.getImageRelativePath() != null){
-      values.put("image", getIDBrand(clothe.getBrand()));
-    }else{
-      values.put("image", 0);
-    }
+      if (clothe.getImageRelativePath() != null) {
+        values.put("image", clothe.getImageRelativePath());
+      } else {
+        values.put("image", 0);
+      }
 
-    long r =
-        bdd.update("CLOTHES", values, "ID_clothes = ?",
-            new String[] {String.valueOf(clothe.getId())});
-    return r;
+      long r = bdd.update("CLOTHES", values, "ID_clothes = ?", new String[] {String.valueOf(clothe.getId())});
+      return r;
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
   }
 
- 
+
 
   @Override
   public long insertClothes(Clothe clothe) {
     try {
-   
-    this.insertBodies(clothe.getBodies());
-    this.insertBrand(clothe.getBrand());
-    this.insertColor(clothe.getColor());
-    long l = this.getIDBodies(clothe.getBodies());
-    this.insertType(clothe.getType(), l );
+
+      this.insertBodies(clothe.getBodies());
+      this.insertBrand(clothe.getBrand());
+      this.insertColor(clothe.getColor());
+      long l = this.getIDBodies(clothe.getBodies());
+      this.insertType(clothe.getType(), l);
       for (int i = 0; i < clothe.getWeather().size(); i++) {
-      this.insertWeather(clothe.getWeather().get(i));
+        this.insertWeather(clothe.getWeather().get(i));
       }
-    l = insertJustClothes(clothe);
-    return l;
+      l = insertJustClothes(clothe);
+      return l;
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
