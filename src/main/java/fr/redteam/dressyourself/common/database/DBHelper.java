@@ -12,37 +12,27 @@ import fr.redteam.dressyourself.core.clothes.Clothe;
 import fr.redteam.dressyourself.exceptions.DressyourselfDatabaseException;
 
 /**
- * <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
- * @generated
+ *
  */
-
 public class DBHelper implements IntDBHelper {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
+
   private final CreateSQLBase mbdd;
   private SQLiteDatabase bdd;
 
   public DBHelper(Context context) {
-    super();
     mbdd = new CreateSQLBase(context, "GYSBdd", null, 2);
-
   }
 
   // pour pouvoir creer une bdd avec un nom particulier , mettre null pour en
   // memoire
   public DBHelper(Context context, String name) {
-    super();
     mbdd = new CreateSQLBase(context, name, null, 1);
-
   }
 
   @Override
   public void open() {
-    // on ouvre la BDD en Ã©criture
+    // on ouvre la BDD en écriture
     bdd = mbdd.getWritableDatabase();
   }
 
@@ -75,10 +65,8 @@ public class DBHelper implements IntDBHelper {
     }
   }
 
-
   private long insertBodies(String bodies) {
     try {
-
       ContentValues values = new ContentValues();
       values.put("bodiesName", bodies);
       return bdd.insertWithOnConflict("BODIES", null, values, SQLiteDatabase.CONFLICT_IGNORE);
@@ -86,7 +74,6 @@ public class DBHelper implements IntDBHelper {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
   }
-
 
   private long insertType(String type, long idBodies) {
     try {
@@ -106,8 +93,9 @@ public class DBHelper implements IntDBHelper {
       values.put("model", clothe.getModel());
       if (clothe.getType() != null) {
         values.put("ID_t", getIDType(clothe.getType()));
-      } else
-        values.put("ID_t", 0);
+      } else {
+		values.put("ID_t", 0);
+      }
 
       if (clothe.getColor() != null) {
         values.put("ID_c", getIDColor(clothe.getColor()));
@@ -132,16 +120,7 @@ public class DBHelper implements IntDBHelper {
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
-
   }
-
-  /*
-   * values = new ContentValues(); for (int i = 0; i < clothe.getWeather().size(); i++) {
-   * values.put("ID_c", r); values.put("ID_w", getIDWeather(clothe.getWeather().get(i)));
-   * bdd.insert("WEATHER_CLOTHES", null, values); }
-   */
-
-
 
   private long insertBrand(String brand) {
     try {
@@ -151,66 +130,43 @@ public class DBHelper implements IntDBHelper {
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }
-
   }
-
 
   private long getIDColor(String color) {
-    try {
-      String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
+    String query = "SELECT ID_color FROM COLOR WHERE colorName = \"" + color + "\"";
+    Log.v("BDD", query);
+    Cursor c = bdd.rawQuery(query, null);
+    c.moveToFirst();
 
+    return c.getLong(c.getColumnIndexOrThrow("ID_color"));
   }
-
-
 
   private long getIDBodies(String bodies) {
-    try {
-      String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \"" + bodies + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
+    String query = "SELECT ID_bodies FROM BODIES WHERE bodiesName = \"" + bodies + "\"";
+    Log.v("BDD", query);
+    Cursor c = bdd.rawQuery(query, null);
+    c.moveToFirst();
 
+    return c.getLong(c.getColumnIndexOrThrow("ID_bodies"));
   }
-
 
   private long getIDType(String type) {
-    try {
-      String query = "SELECT ID_type FROM TYPE WHERE typeName = \"" + type + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
+    String query = "SELECT ID_type FROM TYPE WHERE typeName = \"" + type + "\"";
+    Log.v("BDD", query);
+    Cursor c = bdd.rawQuery(query, null);
+    c.moveToFirst();
+
+    return c.getLong(c.getColumnIndexOrThrow("ID_type"));
   }
-
-
 
   private long getIDBrand(String brand) {
-    try {
-      String query = "SELECT ID_brand FROM BRAND WHERE brandName = \"" + brand + "\"";
-      Log.v("BDD", query);
-      Cursor c = bdd.rawQuery(query, null);
-      c.moveToFirst();
-      return c.getLong(0);
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
-    }
+    String query = "SELECT ID_brand FROM BRAND WHERE brandName = \"" + brand + "\"";
+    Log.v("BDD", query);
+    Cursor c = bdd.rawQuery(query, null);
+    c.moveToFirst();
+
+    return c.getLong(c.getColumnIndexOrThrow("ID_brand"));
   }
-
-
 
   @Override
   public List<Clothe> getListTop() {
@@ -313,8 +269,6 @@ public class DBHelper implements IntDBHelper {
     }
     listClothes.add(clothe);
 
-
-
     return listClothes;
   }
 
@@ -394,7 +348,6 @@ public class DBHelper implements IntDBHelper {
       ArrayList<String> weather = new ArrayList<String>();
 
       // add a Clothe with multiple Weather
-
       while (cursor.moveToNext()) {
         Log.v("BDD", Integer.toString(cursor.getInt(0)));
         if (cursor.getInt(0) != id) {
@@ -452,56 +405,51 @@ public class DBHelper implements IntDBHelper {
 
   @Override
   public long updateClothe(Clothe clothe) {
-    try {
-      ContentValues values = new ContentValues();
+    ContentValues values = new ContentValues();
 
-      if (clothe.getType() != null) {
-        values.put("ID_t", getIDType(clothe.getType()));
-      } else {
-        values.put("ID_t", 0);
-      }
-
-      if (clothe.getColor() != null) {
-        values.put("ID_c", getIDColor(clothe.getColor()));
-      } else {
-        values.put("ID_c", 0);
-      }
-
-      if (clothe.getBrand() != null) {
-        values.put("ID_br", getIDBrand(clothe.getBrand()));
-      } else {
-        values.put("ID_br", 0);
-      }
-
-      if (clothe.getImageRelativePath() != null) {
-        values.put("image", clothe.getImageRelativePath());
-      } else {
-        values.put("image", 0);
-      }
-
-      long r = bdd.update("CLOTHES", values, "ID_clothes = ?", new String[] {String.valueOf(clothe.getId())});
-      return r;
-    } catch (RuntimeException e) {
-      throw new DressyourselfDatabaseException("RuntimeException", e);
+    if (clothe.getType() != null) {
+      values.put("ID_t", getIDType(clothe.getType()));
+    } else {
+      values.put("ID_t", 0);
     }
+
+    if (clothe.getColor() != null) {
+      values.put("ID_c", getIDColor(clothe.getColor()));
+    } else {
+      values.put("ID_c", 0);
+    }
+
+    if (clothe.getBrand() != null) {
+      values.put("ID_br", getIDBrand(clothe.getBrand()));
+    } else {
+      values.put("ID_br", 0);
+    }
+
+    if (clothe.getImageRelativePath() != null) {
+      values.put("image", clothe.getImageRelativePath());
+    } else {
+      values.put("image", 0);
+    }
+
+    return bdd.update("CLOTHES", values, "ID_clothes = ?",
+        new String[] {String.valueOf(clothe.getId())});
   }
-
-
 
   @Override
   public long insertClothes(Clothe clothe) {
     try {
+      insertBodies(clothe.getBodies());
+      insertBrand(clothe.getBrand());
+      insertColor(clothe.getColor());
 
-      this.insertBodies(clothe.getBodies());
-      this.insertBrand(clothe.getBrand());
-      this.insertColor(clothe.getColor());
-      long l = this.getIDBodies(clothe.getBodies());
-      this.insertType(clothe.getType(), l);
+      long l = getIDBodies(clothe.getBodies());
+      insertType(clothe.getType(), l);
+
       for (int i = 0; i < clothe.getWeather().size(); i++) {
         this.insertWeather(clothe.getWeather().get(i));
       }
-      l = insertJustClothes(clothe);
-      return l;
+
+      return insertJustClothes(clothe);
     } catch (RuntimeException e) {
       throw new DressyourselfDatabaseException("RuntimeException", e);
     }

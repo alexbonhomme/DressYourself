@@ -1,6 +1,7 @@
 package fr.redteam.dressyourself.common.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -15,243 +16,189 @@ import org.robolectric.RobolectricTestRunner;
 
 import android.content.Context;
 import fr.redteam.dressyourself.core.clothes.Clothe;
+
 @RunWith(RobolectricTestRunner.class)
 public class DBHelperTest  {
- 
-DBHelper db;
-  
+
+  DBHelper db;
   Context context;
-  
-  
+
   @Before
   public void setUp() throws Exception {
     context = Robolectric.getShadowApplication().getApplicationContext();
     db = new DBHelper(context, null);
     db.open();
   }
-  
 
   @After
   public void tearDown() throws Exception {
     db.close();
   }
 
-  // ce commentaire est provisoire car ces classes
-
-  /*
-   * @Test public void testInsertColor() {zz long c = db.insertColor("Mauve"); assertEquals("Mauve",
-   * db.getColor(c));
+  /**
+   * Generate a {@link Clothe} object from the given features.
    * 
-   * }
+   * @param model
+   * @param bodies
+   * @param brand
+   * @param color
+   * @param path
+   * @param type
    * 
-   * @Test public void testInsertWeather() { fail("Not yet implemented"); }
-   * 
-   * @Test public void testInsertBodies() { fail("Not yet implemented"); }
-   * 
-   * @Test public void testInsertType() { fail("Not yet implemented"); }
-   * 
-   * @Test public void testInsertBrand() { fail("Not yet implemented"); }
+   * @return {@link Clothe}
    */
+  private Clothe createClothe(String model, String bodies, String brand, String color,
+      String path, String type) {
+    Clothe clothe = new Clothe(model);
+    clothe.setBodies(bodies);
+    clothe.setBrand(brand);
+    clothe.setColor(color);
+    clothe.setImageRelativePath(path);
+    clothe.setType(type);
+
+    return clothe;
+  }
+
   @Test
   public void testInsertClothes() throws NoSuchMethodException, IllegalArgumentException,
       IllegalAccessException, InvocationTargetException {
-	 
-    Clothe clothe = new Clothe("toto");
-    clothe.setBodies("TOP");
-    clothe.setBrand("xara");
-    clothe.setColor("mauve");
-    clothe.setImageRelativePath("path");
-    clothe.setModel("model");
-    clothe.setType("pull");
-    clothe.setId( db.insertClothes(clothe));
-    List<Clothe> compClothes  = new ArrayList<Clothe>();
-    compClothes.add(clothe);
-    clothe = new Clothe("tata");
-    clothe.setBodies("Bot");
-    clothe.setBrand("xara");
-    clothe.setColor("mauve");
-    clothe.setImageRelativePath("path");
-    clothe.setModel("test");
-    clothe.setType("jean");
-    clothe.setId( db.insertClothes(clothe));
-    compClothes.add(clothe);
-    List<Clothe> clothes = db.getListClothes();
-    
-    assertEquals(compClothes.get(0).getId(), clothes.get(0).getId());
-    assertEquals(compClothes.get(1).getId(), clothes.get(1).getId());
-    
-    assertEquals(compClothes.get(0).getModel(), clothes.get(0).getModel());
-    assertEquals(compClothes.get(1).getModel(), clothes.get(1).getModel());
 
-    assertEquals(compClothes.get(0).getBodies(), clothes.get(0).getBodies());
-    assertEquals(compClothes.get(1).getBodies(), clothes.get(1).getBodies());
+    List<Clothe> expectedClothes  = new ArrayList<Clothe>();
+
+    Clothe clothe = createClothe("toto", "Top", "Zara", "mauve", "path", "pull");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    // Testing
+    List<Clothe> clothes = db.getListClothes();
+
+    assertEquals(2, clothes.size());
+
+    assertEquals(expectedClothes.get(0).getId(), clothes.get(0).getId());
+    assertEquals(expectedClothes.get(1).getId(), clothes.get(1).getId());
+
+    assertEquals(expectedClothes.get(0).getModel(), clothes.get(0).getModel());
+    assertEquals(expectedClothes.get(1).getModel(), clothes.get(1).getModel());
+
+    assertEquals(expectedClothes.get(0).getBodies(), clothes.get(0).getBodies());
+    assertEquals(expectedClothes.get(1).getBodies(), clothes.get(1).getBodies());
 
   }
 
- 
+
   @Test
   public void testGetListTop() {
-	  Clothe clothe = new Clothe("toto");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("model");
-	    clothe.setType("pull");
-	    clothe.setId( db.insertClothes(clothe));
-	    List<Clothe> compClothes  = new ArrayList<Clothe>();
-	    compClothes.add(clothe);
-	    clothe = new Clothe("tata");
-	    clothe.setBodies("Bot");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    clothe = new Clothe("titi");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    List<Clothe> clothes = db.getListTop();
-	    assertTrue(0 < clothes.size());
-		for (int i = 0; i < clothes.size(); i ++){
-		    assertEquals("Top", clothes.get(i).getBodies());
-		}
+    Clothe clothe = createClothe("toto", "Top", "Zara", "mauve", "path", "pull");
+    db.insertClothes(clothe);
+
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    db.insertClothes(clothe);
+
+    clothe = createClothe("titi", "Top", "Zara", "red", "path", "pull");
+    db.insertClothes(clothe);
+
+    // Testing
+    List<Clothe> clothes = db.getListTop();
+    assertTrue(clothes.size() > 0);
+
+    for (Clothe topClothe : clothes) {
+      assertEquals("Top", topClothe.getBodies());
+    }
   }
 
   @Test
   public void testGetListBottom() {
-	  Clothe clothe = new Clothe("toto");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("model");
-	    clothe.setType("pull");
-	    clothe.setId( db.insertClothes(clothe));
-	    List<Clothe> compClothes  = new ArrayList<Clothe>();
-	    compClothes.add(clothe);
-	    clothe = new Clothe("tata");
-	    clothe.setBodies("Bottom");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    clothe = new Clothe("titi");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    List<Clothe> clothes = db.getListBottom();
-	    assertTrue(0 < clothes.size());
-		for (int i = 0; i < clothes.size(); i ++){
-		    assertEquals("Bottom", clothes.get(i).getBodies());
-		}   }
+    Clothe clothe = createClothe("toto", "Top", "Zara", "mauve", "path", "pull");
+    db.insertClothes(clothe);
 
-  @Test
-  public void testGetListFeet() {
-	  Clothe clothe = new Clothe("toto");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("model");
-	    clothe.setType("pull");
-	    clothe.setId( db.insertClothes(clothe));
-	    List<Clothe> compClothes  = new ArrayList<Clothe>();
-	    compClothes.add(clothe);
-	    clothe = new Clothe("tata");
-	    clothe.setBodies("Bottom");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    clothe = new Clothe("titi");
-	    clothe.setBodies("Shoes");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("pompe");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    List<Clothe> clothes = db.getListFeet();
-	    assertTrue(0 < clothes.size());
-		for (int i = 0; i < clothes.size(); i ++){
-		    assertEquals("Shoes", clothes.get(i).getBodies());
-		}   }
-  
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    db.insertClothes(clothe);
 
-  @Test
-  public void testGetListClothes() {
-	  Clothe clothe = new Clothe("toto");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("model");
-	    clothe.setType("pull");
-	    clothe.setId( db.insertClothes(clothe));
-	    List<Clothe> compClothes  = new ArrayList<Clothe>();
-	    compClothes.add(clothe);
-	    clothe = new Clothe("tata");
-	    clothe.setBodies("Bottom");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("jean");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    clothe = new Clothe("titi");
-	    clothe.setBodies("Top");
-	    clothe.setBrand("xara");
-	    clothe.setColor("mauve");
-	    clothe.setImageRelativePath("path");
-	    clothe.setModel("test");
-	    clothe.setType("t-shirt");
-	    clothe.setId( db.insertClothes(clothe));
-	    compClothes.add(clothe);
-	    List<Clothe> clothes = db.getListClothes();
-	    	for(int i = 0; i <clothes.size(); i ++){
-	    		  assertEquals(compClothes.get(i).getId(), clothes.get(i).getId());	    		    
-	    		  assertEquals(compClothes.get(i).getModel(), clothes.get(i).getModel());
-	    		  assertEquals(compClothes.get(i).getBodies(), clothes.get(i).getBodies());
-	    	}
-	    }
+    clothe = createClothe("titi", "Bottom", "Zara", "red", "path", "jean");
+    db.insertClothes(clothe);
 
-  /*
-   * @Test public void testGetAllColors() { List t; long c = db.insertColor("mauve");
-   * t=db.getAllColors(); }
-   * 
-   * @Test public void testGetAllTypes() { List t; long c = db.insertType("Mauve",1); t =
-   * db.getAllTypes(); }
-   */
-  @Test
-  public void testUpdateClothe() {
-    fail("Not yet implemented");
+    // Testing
+    List<Clothe> clothes = db.getListBottom();
+    assertTrue(clothes.size() > 0);
+
+    for (Clothe bottomClothe : clothes) {
+      assertEquals("Bottom", bottomClothe.getBodies());
+    }
   }
 
   @Test
-  public void testGetOutfit() {
-    fail("Not yet implemented");
+  public void testGetListFeet() {
+    Clothe clothe = createClothe("toto", "Shoes", "Zara", "black", "path", "boots");
+    db.insertClothes(clothe);
+
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    db.insertClothes(clothe);
+
+    clothe = createClothe("titi", "Top", "Zara", "red", "path", "pull");
+    db.insertClothes(clothe);
+
+    // Testing
+    List<Clothe> clothes = db.getListFeet();
+    assertTrue(clothes.size() > 0);
+
+    for (Clothe topClothe : clothes) {
+      assertEquals("Shoes", topClothe.getBodies());
+    }
+  }
+
+
+  @Test
+  public void testGetListClothes() {
+    List<Clothe> expectedClothes = new ArrayList<Clothe>();
+
+    Clothe clothe = createClothe("toto", "Top", "Zara", "mauve", "path", "pull");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    clothe = createClothe("titi", "Top", "Zara", "mauve", "path", "t-shirt");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    // Testing
+    List<Clothe> clothes = db.getListClothes();
+    for (int i = 0; i < clothes.size(); i++) {
+      assertEquals(expectedClothes.get(i).getId(), clothes.get(i).getId());
+      assertEquals(expectedClothes.get(i).getModel(), clothes.get(i).getModel());
+      assertEquals(expectedClothes.get(i).getBodies(), clothes.get(i).getBodies());
+    }
+  }
+
+  @Test
+  public void testUpdateClothe() {
+    List<Clothe> expectedClothes = new ArrayList<Clothe>();
+
+    Clothe clothe = createClothe("toto", "Top", "Zara", "red", "path", "pull");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    clothe = createClothe("tata", "Bottom", "Zara", "mauve", "path", "jean");
+    clothe.setId(db.insertClothes(clothe));
+    expectedClothes.add(clothe);
+
+    // Updating
+    clothe.setColor("red");
+    db.updateClothe(clothe);
+
+    // Testing
+    List<Clothe> clothes = db.getListClothes();
+    assertEquals(2, clothes.size());
+
+    assertEquals(expectedClothes.get(0).getModel(), clothes.get(0).getModel());
+    assertEquals(clothe.getColor(), clothes.get(1).getColor());
+
   }
 
 }
