@@ -91,6 +91,7 @@ public class DBHelper implements IntDBHelper {
     try {
       ContentValues values = new ContentValues();
       values.put("model", clothe.getModel());
+
       if (clothe.getType() != null) {
         values.put("ID_t", getIDType(clothe.getType()));
       } else {
@@ -406,6 +407,7 @@ public class DBHelper implements IntDBHelper {
   @Override
   public long updateClothe(Clothe clothe) {
     ContentValues values = new ContentValues();
+    values.put("model", clothe.getModel());
 
     if (clothe.getType() != null) {
       values.put("ID_t", getIDType(clothe.getType()));
