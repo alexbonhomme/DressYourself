@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -97,7 +98,6 @@ public class ActivityClotheModify extends Activity {
 
   /** load all the data into the page */
   private void loadData(Clothe clothe) {
-    // AndroidFileManager(this)).loadClotheImage(nullStringToEmptyString(clothe.getImageRelativePath()))));
     this.modelEditText.append(nullStringToEmptyString(clothe.getModel()));
     this.brandEditText.append(nullStringToEmptyString(clothe.getBrand()));
     ClothesManager manager = new ClothesManager(new AndroidFileManager(this.getApplicationContext()));
@@ -183,14 +183,15 @@ public class ActivityClotheModify extends Activity {
     if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
       /* hack to hide scaling */
       // this.image.setBackgroundColor(android.R.attr.colorBackground);
+      Log.d("PATH", data.getData().getPath());
       this.updateImage(data.getData(), this.clotheToEdit);
-      this.copySelectedImage(new File(data.getData().getPath()));
+      // this.copySelectedImage(new File(data.getData().getPath()));
     }
   }
 
   /** Transform a null String in an empty String */
   public String nullStringToEmptyString(String s) {
-    return (s == null ? s + " " : s);
+    return (s == null ? s + "" : s);
   }
 
 }

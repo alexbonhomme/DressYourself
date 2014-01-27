@@ -9,41 +9,28 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CreateSQLBase extends SQLiteOpenHelper {
   private static final String CREATE_TABLE_IFE = "CREATE TABLE IF NOT EXISTS";
   private static final String PRIMARY_INTEGER_KEY = " INTEGER PRIMARY KEY AUTOINCREMENT";
-  private static final String TABLE_COLOR = CREATE_TABLE_IFE + " COLOR" + "(" + "ID_color"
-      + PRIMARY_INTEGER_KEY + "," + "colorName TEXT UNIQUE)";
+  private static final String TABLE_COLOR = CREATE_TABLE_IFE + " COLOR" + "(" + "ID_color" + PRIMARY_INTEGER_KEY + "," + "colorName TEXT UNIQUE)";
 
-  private static final String TABLE_BODIES = CREATE_TABLE_IFE + " BODIES" + "(" + "ID_bodies"
-      + PRIMARY_INTEGER_KEY + "," + "bodiesName TEXT UNIQUE" + ")";
+  private static final String TABLE_BODIES = CREATE_TABLE_IFE + " BODIES" + "(" + "ID_bodies" + PRIMARY_INTEGER_KEY + "," + "bodiesName TEXT UNIQUE" + ")";
 
-  private static final String TABLE_TYPE = CREATE_TABLE_IFE + " TYPE" + "(" + "ID_type"
-      + PRIMARY_INTEGER_KEY + "," + "typeName TEXT UNIQUE" + "," + "ID_b INTEGER" + ","
+  private static final String TABLE_TYPE = CREATE_TABLE_IFE + " TYPE" + "(" + "ID_type" + PRIMARY_INTEGER_KEY + "," + "typeName TEXT UNIQUE" + "," + "ID_b INTEGER" + ","
       + "FOREIGN KEY (ID_b) REFERENCES BODIES(ID_bodies))";
 
-  private static final String TABLE_WEATHER = CREATE_TABLE_IFE + " WEATHER" + "(" + "ID_weather"
-      + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT UNIQUE)";
+  private static final String TABLE_WEATHER = CREATE_TABLE_IFE + " WEATHER" + "(" + "ID_weather" + PRIMARY_INTEGER_KEY + "," + "weatherName TEXT UNIQUE)";
 
-  private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes"
-      + PRIMARY_INTEGER_KEY + "," + "model TEXT" + "," + "image TEXT" + "," + "ID_c INTEGER" + ","
-      + "ID_t INTEGER" + "," + "ID_br INTEGER" + ","
-      + "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + ","
-      + "FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type)" + ","
+  private static final String TABLE_CLOTHES = CREATE_TABLE_IFE + " CLOTHES" + "(" + "ID_clothes" + PRIMARY_INTEGER_KEY + "," + "model TEXT" + "," + "image TEXT" + "," + "ID_c INTEGER" + ","
+      + "ID_t INTEGER" + "," + "ID_br INTEGER" + "," + "FOREIGN KEY (ID_c) REFERENCES COLOR (ID_color)" + "," + "FOREIGN KEY (ID_t) REFERENCES TYPE (ID_type)" + ","
       + "FOREIGN KEY (ID_br) REFERENCES BRAND (ID_brand)" + ")";
 
-  private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE + " WEATHER_CLOTHES " + "( "
-      + "ID_c INTEGER" + "," + "ID_w INTEGER" + "," + "PRIMARY KEY (ID_c,ID_w)" + ","
-      + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + ","
-      + "FOREIGN KEY (ID_w)REFERENCES WEATHER (ID_weather))";
+  private static final String TABLE_WEATHER_CLOTHES = CREATE_TABLE_IFE + " WEATHER_CLOTHES " + "( " + "ID_c INTEGER" + "," + "ID_w INTEGER" + "," + "PRIMARY KEY (ID_c,ID_w)" + ","
+      + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + "," + "FOREIGN KEY (ID_w)REFERENCES WEATHER (ID_weather))";
 
-  private static final String TABLE_OUTFIT = CREATE_TABLE_IFE + " OUTFIT" + "(" + "ID_outfit"
-      + PRIMARY_INTEGER_KEY + "," + "outfitName TEXT UNIQUE)";
+  private static final String TABLE_OUTFIT = CREATE_TABLE_IFE + " OUTFIT" + "(" + "ID_outfit" + PRIMARY_INTEGER_KEY + "," + "outfitName TEXT UNIQUE)";
 
-  private static final String TABLE_OUTFIT_CLOTHES = CREATE_TABLE_IFE + " OUTFIT_CLOTHES"
-      + "( ID_c INTEGER" + "," + "ID_o INTEGER" + "," + "PRIMARY KEY (ID_c,ID_o)" + ","
-      + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + ","
-      + "FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))";
+  private static final String TABLE_OUTFIT_CLOTHES = CREATE_TABLE_IFE + " OUTFIT_CLOTHES" + "( ID_c INTEGER" + "," + "ID_o INTEGER" + "," + "PRIMARY KEY (ID_c,ID_o)" + ","
+      + "FOREIGN KEY (ID_c)REFERENCES CLOTHES (ID_clothes)" + "," + "FOREIGN KEY (ID_o)REFERENCES OUTFIT (ID_outfit))";
 
-  private static final String TABLE_BRAND = CREATE_TABLE_IFE + " BRAND" + "( ID_brand"
-      + PRIMARY_INTEGER_KEY + "," + "brandName TEXT UNIQUE" + ")";
+  private static final String TABLE_BRAND = CREATE_TABLE_IFE + " BRAND" + "( ID_brand" + PRIMARY_INTEGER_KEY + "," + "brandName TEXT UNIQUE" + ")";
 
 
 
@@ -65,7 +52,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     db.execSQL(TABLE_WEATHER_CLOTHES);
     db.execSQL(TABLE_BRAND);
 
-   /* insertColor(db, "WHITE");
+    insertColor(db, "WHITE");
     insertColor(db, "BLACK");
     insertColor(db, "BLUE");
     insertColor(db, "YELLOW");
@@ -73,12 +60,7 @@ public class CreateSQLBase extends SQLiteOpenHelper {
     insertColor(db, "RED");
     insertColor(db, "PURPLE");
     insertColor(db, "PINK");
-    
-    insertBodies(db, "SHOES");
-    insertWeather(db, "SUNNY");
-    insertWeather(db, "CLOUNY");
-    insertWeather(db, "RAINY");
-    insertWeather(db, "SNOWNY");*/
+
     insertType(db, "pull", 1);
     insertType(db, "pantalon", 2);
     insertType(db, "T-shirt", 1);
