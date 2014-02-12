@@ -1,15 +1,20 @@
 package fr.redteam.dressyourself.activities;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +40,6 @@ public class ActivityClotheModify extends Activity {
 
   /* constant */
   private static final int SELECT_IMAGE = 1;
-  private static final String COPIED_IMAGE_LOCATION = "res/drawable/imported";
 
   /* the clothe to Edit */
   private Clothe clotheToEdit;
@@ -50,6 +54,8 @@ public class ActivityClotheModify extends Activity {
 
   /* DB helper */
   private DBHelper bdd;
+  private AndroidFileManager fm = new AndroidFileManager(this);
+
 
   /** init the attributes with their corresponding item in layout */
   private void initComponents() {
@@ -140,17 +146,20 @@ public class ActivityClotheModify extends Activity {
    * the new path
    */
   private void updateImage(Uri image, Clothe clothe) {
-    clothe.setImageRelativePath(image.getPath());
+    clothe.setImageRelativePath(new File(getRealPathFromURI(this, image)).getPath());
     this.image.setImageURI(image);
   }
 
   /** Copy one file to another location */
   private void copySelectedImage(File source) {
-
-    File destinationDir = new File(COPIED_IMAGE_LOCATION);
     try {
-      FileUtils.copyFileToDirectory(source, destinationDir);
+      InputStream is = new BufferedInputStream(new FileInputStream(source));
+      fm.writeFileToStorage(source.getPath(), is);
+      is.close();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     } catch (IOException e) {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -183,9 +192,9 @@ public class ActivityClotheModify extends Activity {
     if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK) {
       /* hack to hide scaling */
       // this.image.setBackgroundColor(android.R.attr.colorBackground);
-      Log.d("PATH", data.getData().getPath());
+      Log.d("PATH", getRealPathFromURI(this, data.getData()));
       this.updateImage(data.getData(), this.clotheToEdit);
-      // this.copySelectedImage(new File(data.getData().getPath()));
+      this.copySelectedImage(new File(getRealPathFromURI(this, data.getData())));
     }
   }
 
@@ -193,5 +202,24 @@ public class ActivityClotheModify extends Activity {
   public String nullStringToEmptyString(String s) {
     return (s == null ? s + "" : s);
   }
+
+
+
+  public String getRealPathFromURI(Context context, Uri contentUri) {
+    Cursor cursor = null;
+    try {
+      String[] proj = {MediaStore.Images.Media.DATA};
+      cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+      int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+      cursor.moveToFirst();
+      return cursor.getString(column_index);
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+  }
+
+
 
 }
